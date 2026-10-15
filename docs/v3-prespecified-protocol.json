@@ -1,0 +1,29 @@
+{
+  "declared_at_utc": "2026-10-15T21:30:32+00:00",
+  "hypothesis": "A larger SQuAD2-trained RoBERTa reader may improve exact-span answer extraction on identical frozen retrieval contexts compared with MiniLM.",
+  "validation": "29 reused Dorian questions plus four authored unknown controls; frozen v2 expanded fine96/top12 contexts",
+  "fresh_test_document": "a9a03a147849d65e6bcaf3cc74c3dd93d0ef88d4",
+  "fresh_test_title": "The Cask of Amontillado",
+  "fresh_test_author": "Edgar Allan Poe",
+  "fresh_test_author_death": 1849,
+  "fresh_test_gutenberg_id": 1063,
+  "official_split_verified_from_documents_csv": "test",
+  "rights_source": "https://www.gutenberg.org/ebooks/1063",
+  "rights_status": "Public domain in the USA; check local rights. Original short story 1846.",
+  "fresh_questions_or_answers_inspected": false,
+  "fresh_selection_basis": "One short official public-domain test story chosen by source metadata and bounded retrieval cost, before QA inspection. This is not a representative long-novel benchmark.",
+  "models": [
+    {"name": "deepset/minilm-uncased-squad2", "revision": "934656cdda79824eabf503ed56e15c01ddbdbe3f", "license": "CC-BY-4.0", "creator": "deepset", "source": "https://huggingface.co/deepset/minilm-uncased-squad2/raw/934656cdda79824eabf503ed56e15c01ddbdbe3f/README.md", "ungated_verified": true},
+    {"name": "deepset/roberta-base-squad2", "revision": "adc3b06f79f797d1c575d5479d6f5efe54a9e3b4", "license": "CC-BY-4.0", "creator": "deepset", "source": "https://huggingface.co/deepset/roberta-base-squad2/raw/adc3b06f79f797d1c575d5479d6f5efe54a9e3b4/README.md", "ungated_verified": true}
+  ],
+  "reader_conditions": {"max_length": 384, "stride": 96, "max_answer_tokens": 30, "batch_size": 8, "precision": "float32", "tf32": false},
+  "thresholds": [0, 2, 4, 6, 8, 10],
+  "rank_penalties": [0, 0.3, 0.8, 1.5, 3, 6],
+  "selection": "Validation F1 minus 0.25 times authored-control false-answer rate; ties EM, larger threshold, smaller penalty, then MiniLM model order. Serialize before fresh question access.",
+  "retrieval": {"words": 96, "overlap": 48, "k": 12, "expand": 700, "mode": "hybrid", "candidate_rerank": 30, "embedding_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41", "reranker_revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a"},
+  "fresh_retrieval_corpus": "Only the prespecified short-story source; unsupervised source index, no summaries or QA answers indexed.",
+  "fresh_inference": "Only selected reader and validation-selected threshold/rank; exactly one fresh test pass, no tuning from outcomes. Question and gold files remain separate.",
+  "compute": "One private free Kaggle GPU kernel, sequential readers, hard 900-second process watchdog including installation/download. Launch only after root confirms audio GPU terminal.",
+  "historical_tests_preserved": ["Persuasion", "The Call of the Wild", "A Sentimental Journey Through France and Italy"],
+  "fallback": "If fresh retrieval or dependencies cannot fit the bounded pass, preserve partial evidence and report validation-only scope; do not invent a held-out score."
+}

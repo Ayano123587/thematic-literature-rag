@@ -1,0 +1,8 @@
+{
+  "roberta_tokenizer_revision": "adc3b06f79f797d1c575d5479d6f5efe54a9e3b4",
+  "roberta_late_context_offset_coverage": true,
+  "actual_minilm_portable_forward": true,
+  "late_answer_exact": true,
+  "window": 2,
+  "scope": "Tokenizer and baseline forward smoke only; stronger reader inference unverified until bounded Kaggle run"
+}

@@ -1,0 +1,12 @@
+{
+  "declared_at_utc": "2026-10-15T21:47:13+00:00",
+  "scope": "Cached Dorian validation outputs only; no new inference or GPU",
+  "motivation": "Prespecified RoBERTa abstention was 79.31%; a nonnegative threshold grid may not match this model's novel-domain null-margin scale.",
+  "hypothesis": "Allowing negative null thresholds may improve the larger reader's validation F1 while the same authored-control penalty constrains false answers.",
+  "thresholds": [-20, -15, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10],
+  "rank_penalties": [0, 0.3, 0.8, 1.5, 3, 6],
+  "objective_and_tie_breaks": "Unchanged validation F1 minus 0.25 control false-answer rate, EM, larger threshold, smaller penalty, MiniLM order",
+  "heldout_status": "Poe and Journey tests are now observed. This follow-up has no fresh held-out score and cannot alter their frozen reported outcomes.",
+  "no_new_model_run": true,
+  "production_policy_change_authorized_by_this_followup": false
+}

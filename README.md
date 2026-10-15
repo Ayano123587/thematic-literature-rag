@@ -75,6 +75,15 @@ source/model/chunk contracts and supports rebuilding its selected index; see the
 linked reproducibility instructions. Different test books prevent a direct gain
 claim over the earlier Persuasion or Call of the Wild results.
 
+The [v3 controlled reader comparison](docs/v3-reader-experiment.md) tested a pinned
+larger RoBERTa reader on the same validation evidence. It lost (3.94% F1 versus
+MiniLM's 8.78%), so production retains MiniLM, threshold 0 and rank penalty 0.8.
+That frozen selection reached 19.84% F1 and 14.29% EM on 28 fresh questions about
+a short Poe story, with 23/23 emitted spans matching source offsets. This is not
+long-novel performance or proven entailment. A cached negative-threshold follow-up
+raised validation F1 but regressed unknown controls; its diagnostic winner was
+not deployed. Original failed experiments and all tested policies remain visible.
+
 ## Optional grounded generation
 
 ```bash

@@ -1,0 +1,27 @@
+{
+  "scope": "Post-run integrity audit, no inference or score refit",
+  "counts": {
+    "deepset/minilm-uncased-squad2": {
+      "questions": 33,
+      "all_candidate_spans": 789,
+      "invalid_source_citations_or_margins": 0
+    },
+    "deepset/roberta-base-squad2": {
+      "questions": 33,
+      "all_candidate_spans": 801,
+      "invalid_source_citations_or_margins": 0
+    },
+    "fresh-selected-reader": {
+      "questions": 28,
+      "all_candidate_spans": 663,
+      "invalid_source_citations_or_margins": 0
+    }
+  },
+  "validation_and_fresh_ids_disjoint": true,
+  "all_payload_gold_runner_hashes_match": true,
+  "private_report_sha256": "8c69ec4349f28781b475111058d4516d4c50383d6625c630aa1482d09fa2bced",
+  "fresh_predictions_sha256": "c77c2e0a06fad8fffcc2f0cbbca87cc95074926e4015f3e84d9a0a4e23f39826",
+  "selection_frozen_at_unix": 1792100613.3437552,
+  "weights_private": true,
+  "environment_limit": "Actual torch/transformers/tokenizers and fixed sentence-transformers install recorded; base image numpy/scikit-learn versions were not explicitly captured by v1."
+}
