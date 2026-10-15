@@ -49,6 +49,22 @@ also exposes more incorrect answers; the small F1 increase does not establish
 safe no-answer behavior. Exact match does not improve. All 72 candidates remain
 in [selection evidence](v2-validation-selection.json), including failures.
 
+## Locked fresh test
+
+The selected policy was run once on all 27 official NarrativeQA Journey test
+questions: **8.33% answer token F1, 3.70% exact match (1/27), 18.52% abstention
+(5/27)**. All 22 emitted answers exactly matched their cited source offsets.
+That is a source-integrity result, not proof of entailment or correct literary
+interpretation. There was no independent unknown-question cohort on this test.
+See [locked aggregate evidence](v2-reader-locked-test.json).
+
+The bounded CPU round finished at 21:12:36 UTC, about 35.8 minutes after its
+original declaration, including the failed checkpoint attempt and continuation.
+The validation changes produced a modest gain and unchanged exact match; fresh
+accuracy remains weak. The pretrained SQuAD2 reader and exact-span answer format
+do not resolve paraphrased, multi-hop or interpretive gold answers. Further work
+requires a controlled reader hypothesis, not tuning from this now-observed test.
+
 The selection is serialized before fresh test questions are read. The evaluator
 refuses to overwrite its locked test report. Prior Persuasion and Call of the Wild
 results, including Qwen's zero score, remain unchanged. Different test books do
@@ -68,6 +84,10 @@ Use this repository's separate virtual environment, with `.[models,reader]`
 installed. After the locally retained selection and fitted index exist:
 
 ```bash
+python -m pip install -e '.[models,reader]'
+python -m src.cli fetch-qa --acknowledge-local-rights
+python -m src.cli fetch-reader-v2 --acknowledge-local-rights
+python -m src.cli index --backend sentence-transformer --words 96 --overlap 48 --books dorian journey --output models/v2-96.lrag
 python -m src.cli answer-v2 "Your question" journey
 ```
 
@@ -76,6 +96,16 @@ requires an index built with its stated chunk configuration. Production inferenc
 checks all source fingerprints before learned inference, and then checks exact
 answer coordinates before returning a citation. The API abstains on empty
 questions and absent books. It does not verify semantic entailment.
+
+Post-experiment guards reject nonfinite reader logits, margins and policy values,
+negative context expansion, oversized question tokenization, inconsistent span
+book identifiers, and mismatched index chunk contracts. Chunk metadata is stored
+in new archives and verified by reconstructing exact passages from fingerprinted
+sources. Historical archives remain readable for their original uses, but an
+archive without a verified chunk contract cannot serve `answer-v2`. Only local v2
+archives were migrated after evaluation: vectors, passages and source fingerprints
+were bitwise/structurally unchanged; original files remain privately preserved.
+See [migration audit](v2-chunk-contract-migration.json). No test was rescored.
 
 The new index CLI accepts `--words`, `--overlap`, `--books` and `--output`, so
 the selected passage policy can be rebuilt rather than requiring a private

@@ -1,8 +1,11 @@
 """Deterministic source attribution outside learned answer generation."""
+import math
 from src.features.build_features import Passage
 
 
 def expand_passage(passage,text,characters=700):
+    if not isinstance(characters,int) or characters<0:
+        raise ValueError('Expansion must be a nonnegative integer')
     if text[passage.start:passage.end]!=passage.text:
         raise ValueError('Cannot expand a passage that mismatches its source')
     start=max(0,passage.start-characters)
@@ -14,7 +17,10 @@ def expand_passage(passage,text,characters=700):
 
 
 def select_span(spans,threshold=0,rank_penalty=0):
-    eligible=[s for s in spans if s['null_margin']>threshold]
+    if not math.isfinite(threshold) or not math.isfinite(rank_penalty) or rank_penalty<0:
+        raise ValueError('Threshold and nonnegative rank penalty must be finite')
+    eligible=[s for s in spans if math.isfinite(s['null_margin']) and s['null_margin']>threshold
+              and isinstance(s.get('retrieval_rank',1),int) and s.get('retrieval_rank',1)>=1]
     if not eligible:return None
     return max(eligible,key=lambda s:s['null_margin']-rank_penalty*(s.get('retrieval_rank',1)-1))
 
@@ -23,7 +29,7 @@ def assemble(span,passages,book):
     if span is None:return {'abstained':True,'answer':None,'reason':'No span exceeded the frozen null threshold'}
     known={p.id:p for p in passages}
     passage=known.get(span['citation'])
-    if passage is None or passage.book!=book:
+    if passage is None or passage.book!=book or span.get('book')!=book:
         return {'abstained':True,'answer':None,'reason':'Span source is absent or belongs to another book'}
     start=span['answer_start']-passage.start;end=span['answer_end']-passage.start
     if not 0<=start<end<=len(passage.text) or passage.text[start:end]!=span['answer']:
@@ -52,6 +58,7 @@ def answer(index, question, book, source_directory, selection):
         raise ValueError('Index or reader model differs from the frozen selection')
     policy = selection['selected']
     config = policy['config']
+    index.verify_chunk_contract(Path(source_directory),config['words'],config['overlap'])
     hits = index.search(question, book=book, k=config['k'],
                         reranker='cross-encoder/ms-marco-MiniLM-L-6-v2')
     text = (Path(source_directory) / f'{book}.txt').read_text(encoding='utf-8')

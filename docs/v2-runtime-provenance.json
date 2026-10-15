@@ -1,5 +1,5 @@
 {
-  "source_commit": "7236f15",
+  "source_commit": "7236f15e2062cddf127a93383e451c8158e0ad11",
   "files": {
     "src/improve_reader.py": "8f8e52200b4fee35a8d1a51d270d6ebe8aa912d853964fa7f57e8cb036ab082a",
     "src/models/reader.py": "18b666b480f82f075f293ceb965119d24f202c19a5071c3bf1f3baaec3b0a4d3",
@@ -17,8 +17,8 @@
   },
   "hardware_note": "CPU only; shared Windows 8 GB host with paging slowdown",
   "first_attempt_exit": "FileNotFoundError while writing validation checkpoint; no fresh test accessed",
-  "latest_behavioral_tests": "24 complete-suite tests passed; two added CLI/source replay tests passed, final suite pending.",
-  "inference_cache_source_commit": "c9ba605",
+  "latest_behavioral_tests": "29 complete-suite tests passed in 31.30 seconds after post-experiment guards.",
+  "inference_cache_source_commit": "c9ba60562ed68af7e73000a7fd366debb0b444ca",
   "selection_change": "Only the stronger validation rank-penalty grid changed between these commits; cached inference policies, source hashes and model revisions did not change.",
   "files_note": "Hashes record experiment-loaded files, before later production-only API hardening.",
   "weight_files": {
@@ -34,5 +34,15 @@
       "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
       "sha256": "821d1aa69520101d6e0737f78a042ae25b19e5cb9160701909d10434f4aeb0ae"
     }
+  },
+  "final_test_queries": 27,
+  "test_inference_completed_at_utc": "2026-10-15T21:12:36.347700+00:00",
+  "total_wall_minutes_from_original_start": 35.7832,
+  "post_experiment_guards": "Finite reader logits, margins and policy values; nonnegative expansion; question token-count bound; consistent span book; persisted reconstructed chunk contracts. No test predictions rerun or policies changed.",
+  "production_smoke": {
+    "scope": "Historical Dorian question after all production guards and contract migration, not fresh test",
+    "abstained": false,
+    "exact_source_span": true,
+    "semantic_correctness_claimed": false
   }
 }

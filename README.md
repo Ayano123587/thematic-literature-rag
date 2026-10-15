@@ -65,6 +65,16 @@ NarrativeQA metadata is pinned to a source commit and kept locally. The subset a
 
 Original locked outputs in docs are preserved; rerunning a locked evaluator requires a separately named output or a fresh checkout with results directed outside docs. Use a separate virtual environment for this repository. No novel text, benchmark CSV or fitted model is committed. See [benchmark data card](docs/narrativeqa-data-card.md).
 
+The controlled [v2 reader round](docs/v2-improvements.md) adds fine passages,
+expanded sliding contexts and deterministic citation assembly. Validation F1
+increased modestly from 7.62% to 8.78%, with unchanged exact match. Its fresh
+Journey test scores 8.33% F1 and 3.70% EM on 27 questions; all 22 emitted answers
+match exact source offsets. Accuracy remains weak, and source matches do not prove
+correct answers. The historical Qwen zero result is preserved. `answer-v2` checks
+source/model/chunk contracts and supports rebuilding its selected index; see the
+linked reproducibility instructions. Different test books prevent a direct gain
+claim over the earlier Persuasion or Call of the Wild results.
+
 ## Optional grounded generation
 
 ```bash

@@ -60,6 +60,7 @@ def run():
         else:
             passages=[p for book,text in texts.items() for p in chunk_book(book,text,words,overlap)]
             index=HybridIndex(passages,backend='sentence-transformer',model_revision=DENSE_REVISION)
+            index.chunk_contract={'words':words,'overlap':overlap}
             index.source_hashes={book:hashlib.sha256(text.encode()).hexdigest() for book,text in texts.items()}
             index.save(index_path)
         indexes[words]=index

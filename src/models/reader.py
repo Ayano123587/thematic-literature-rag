@@ -22,6 +22,8 @@ def candidates(question,passages,sliding=False,max_length=384,stride=96,batch_si
     if not 128<=max_length<=512 or not 0<=stride<max_length//2 or batch_size<1:
         raise ValueError('Invalid reader window or batch configuration')
     tokenizer,model=reader()
+    if len(tokenizer.encode(question,add_special_tokens=False))>max_length-32:
+        return []
     options={'return_overflowing_tokens':True,'stride':stride} if sliding else {}
     encoded=tokenizer([question]*len(passages),[p.text for p in passages],padding=True,truncation='only_second',max_length=max_length,return_offsets_mapping=True,return_tensors='pt',**options)
     mapping=encoded.pop('overflow_to_sample_mapping').tolist() if sliding else list(range(len(passages)))
@@ -37,6 +39,8 @@ def candidates(question,passages,sliding=False,max_length=384,stride=96,batch_si
         context=[i for i,seq in enumerate(encoded.sequence_ids(row)) if seq==1 and offsets[row][i][1]>offsets[row][i][0]]
         if not context:continue
         starts=starts_all[row];ends=ends_all[row]
+        if not torch.isfinite(starts).all() or not torch.isfinite(ends).all():
+            continue
         top_starts=sorted(context,key=lambda i:-float(starts[i]))[:20]
         top_ends=sorted(context,key=lambda i:-float(ends[i]))[:20]
         valid=[(float(starts[a]+ends[b]),a,b) for a in top_starts for b in top_ends if a<=b<a+30]

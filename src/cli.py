@@ -71,6 +71,7 @@ def main():
         if empty:parser.error('Empty source documents cannot be indexed: '+', '.join(empty))
         passages=[p for path in paths for p in chunk_book(path.stem,path.read_text(encoding="utf-8"),args.words,args.overlap)]
         index=HybridIndex(passages,backend=args.backend)
+        index.chunk_contract={'words':args.words,'overlap':args.overlap}
         index.source_hashes={path.stem:hashlib.sha256(path.read_text(encoding='utf-8').encode()).hexdigest() for path in paths}
         index.save(Path(args.output) if args.output else MODEL)
         result={"passages":len(passages),"backend":args.backend}

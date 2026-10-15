@@ -10,6 +10,7 @@ def test_expansion_keeps_exact_offsets_and_word_boundaries():
     assert text[expanded.start:expanded.end]==expanded.text
     assert expanded.start<=passage.start and expanded.end>=passage.end
     with pytest.raises(ValueError,match='mismatches'):expand_passage(passage,'changed source')
+    with pytest.raises(ValueError,match='nonnegative'):expand_passage(passage,text,characters=-1)
 
 
 def test_rank_penalty_and_null_threshold_are_separate():
@@ -17,6 +18,10 @@ def test_rank_penalty_and_null_threshold_are_separate():
     assert select_span(spans,threshold=2,rank_penalty=0)==spans[1]
     assert select_span(spans,threshold=2,rank_penalty=.3)==spans[0]
     assert select_span(spans,threshold=8) is None
+    assert select_span([{'null_margin':float('nan')},{'null_margin':float('inf')}]) is None
+    with pytest.raises(ValueError,match='finite'):select_span(spans,threshold=float('nan'))
+    with pytest.raises(ValueError,match='finite'):select_span(spans,rank_penalty=float('inf'))
+    with pytest.raises(ValueError,match='finite'):select_span(spans,rank_penalty=-1)
 
 
 def test_citation_assembly_fails_closed_on_fabrication_and_wrong_book():
@@ -26,6 +31,7 @@ def test_citation_assembly_fails_closed_on_fabrication_and_wrong_book():
     assert assemble(span,[passage],'other')['abstained']
     assert assemble(dict(span,answer='Jonas'),[passage],'story')['abstained']
     assert assemble(dict(span,answer_start=-1),[passage],'story')['abstained']
+    assert assemble(dict(span,book='other'),[passage],'story')['abstained']
 
 
 def test_sliding_window_configuration_rejected_before_model_load():
@@ -58,3 +64,35 @@ def test_production_reader_rejects_a_different_model_policy(tmp_path):
             pass
     with pytest.raises(ValueError, match='frozen selection'):
         answer(Index(), 'Who?', 'story', tmp_path, {'models': {}})
+
+
+def test_question_that_exhausts_reader_context_abstains(monkeypatch):
+    pytest.importorskip('torch')
+    from src.models import reader
+    class Tokenizer:
+        def encode(self, *args, **kwargs):
+            return [1] * 400
+    monkeypatch.setattr(reader, 'reader', lambda: (Tokenizer(), None))
+    passage = chunk_book('story', 'Mira tended the lantern.', words=20, overlap=0)[0]
+    assert reader.candidates('Long question', [passage], sliding=True) == []
+
+
+def test_nonfinite_reader_logits_fail_closed(monkeypatch):
+    torch = pytest.importorskip('torch')
+    from types import SimpleNamespace
+    from src.models import reader
+    class Encoding(dict):
+        def sequence_ids(self, row):
+            return [None, 0, None, 1, None]
+    class Tokenizer:
+        def encode(self, *args, **kwargs):
+            return [1]
+        def __call__(self, *args, **kwargs):
+            return Encoding(input_ids=torch.tensor([[0,1,2,3,4]]),
+                            offset_mapping=torch.tensor([[[0,0],[0,3],[0,0],[0,4],[0,0]]]))
+    def model(**kwargs):
+        return SimpleNamespace(start_logits=torch.tensor([[0.,0.,0.,float('nan'),0.]]),
+                               end_logits=torch.zeros(1,5))
+    monkeypatch.setattr(reader, 'reader', lambda: (Tokenizer(), model))
+    passage = chunk_book('story', 'Mira tended the lantern.', words=20, overlap=0)[0]
+    assert reader.candidates('Who?', [passage]) == []

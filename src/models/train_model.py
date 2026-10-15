@@ -98,7 +98,7 @@ class HybridIndex:
     def save(self,path):
         if self.backend=='sentence-transformer' and (not getattr(self,'model_revision',None) or not re.fullmatch(r'[0-9a-f]{40}',self.model_revision)):raise ValueError('Cannot persist neural index without exact embedding revision')
         path.parent.mkdir(parents=True,exist_ok=True)
-        metadata={'schema':1,'backend':self.backend,'model_name':self.model_name,'model_revision':getattr(self,'model_revision',None),'passages':[asdict(p) for p in self.passages],'source_hashes':getattr(self,'source_hashes',{})}
+        metadata={'schema':1,'backend':self.backend,'model_name':self.model_name,'model_revision':getattr(self,'model_revision',None),'chunk_contract':getattr(self,'chunk_contract',None),'passages':[asdict(p) for p in self.passages],'source_hashes':getattr(self,'source_hashes',{})}
         arrays={'dense':self.dense}
         if self.backend=='lsa':
             metadata['vocabulary']=self.vectorizer.vocabulary_
@@ -135,6 +135,7 @@ class HybridIndex:
                 index.model_revision=meta.get('model_revision')
                 if index.backend=='sentence-transformer' and (not index.model_revision or not re.fullmatch(r'[0-9a-f]{40}',index.model_revision)) and not allow_missing_revision:raise ValueError('Neural index is missing an exact model revision; re-encode legacy artifacts')
                 index.source_hashes=meta.get('source_hashes',{})
+                index.chunk_contract=meta.get('chunk_contract')
                 index.dense=arrays['dense'].copy()
                 if index.dense.ndim!=2 or index.dense.shape[0]!=len(index.passages) or not np.isfinite(index.dense).all():raise ValueError('Invalid embedding matrix')
                 if len({p.id for p in index.passages})!=len(index.passages):raise ValueError('Duplicate passage identifiers')
@@ -163,3 +164,12 @@ class HybridIndex:
             if path.exists():
                 text=path.read_text(encoding='utf-8')
                 if any(text[p.start:p.end]!=p.text for p in self.passages if p.book==book):raise ValueError(f'Citation/source mismatch for {book}')
+
+    def verify_chunk_contract(self, folder, words, overlap):
+        from src.features.build_features import chunk_book
+        if getattr(self, 'chunk_contract', None) != {'words': words, 'overlap': overlap}:
+            raise ValueError('Index chunk contract differs from the frozen selection')
+        expected = [p for book in sorted({p.book for p in self.passages})
+                    for p in chunk_book(book, (folder / f'{book}.txt').read_text(encoding='utf-8'), words, overlap)]
+        if {p.id: p for p in expected} != {p.id: p for p in self.passages}:
+            raise ValueError('Index passages do not satisfy the declared chunk contract')
