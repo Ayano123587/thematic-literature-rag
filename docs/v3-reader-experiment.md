@@ -30,7 +30,14 @@ passages; this short-story test does not represent long novels or cross-book
 thematic reasoning. Its 28 official questions are packaged separately from gold.
 No summaries or QA answers enter the unsupervised source index.
 
-Validation selection must be serialized before the fresh question file is parsed.
+Before launch, `prepare_reader_v3.py` parses the pinned CSV and packages fresh
+questions and gold into separate private files. This staging step does not expose
+their contents to the GPU reader or model-selection procedure, and no human
+inspection or policy use of the fresh QA informed selection. In the GPU runner,
+validation selection must be serialized before the fresh question file is parsed;
+fresh gold is parsed only after fresh predictions finish. This ordering claim
+applies to the runner, not to the earlier preparation builder.
+
 Fresh retrieval uses the pinned v2 hybrid/reranker configuration against only the
 new story, then the selected reader runs once. Fresh gold is read after prediction.
 All emitted answers must match exact source offsets. That establishes source

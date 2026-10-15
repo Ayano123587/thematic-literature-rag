@@ -56,6 +56,12 @@ answer instructions work without the private QA payload. Use a separate reposito
 venv. Exact fresh-story index/source can be copied to the original checkout by
 root for `answer-v2 --index models/v3-cask.lrag`, without rescoring anything.
 
+Fresh QA provenance: the preparation builder parsed and packaged fresh CSV rows
+before launch into separate private question/gold files, without human inspection
+or policy use. Only the GPU runner withheld parsing fresh questions until its
+validation choice was serialized, and withheld fresh gold until prediction ended.
+Do not describe the preparation stage as having left the original CSV unparsed.
+
 Preserve the original loading/source/model hashes. Version 1 captured Python,
 Torch, Transformers and tokenizers versions and fixed sentence-transformers
 installation; base-image NumPy/scikit-learn versions were not explicitly recorded.
