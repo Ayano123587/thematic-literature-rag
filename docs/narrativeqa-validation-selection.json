@@ -1,0 +1,2276 @@
+{
+  "upstream_commit": "904246f6d1fe99a99a08a03501fe3e619af2cee5",
+  "validation_documents": [
+    "879287f285743b08d86c3bd0831ec1e49fa92e39"
+  ],
+  "test_documents": [
+    "55d68540c6b86bc90f7a9e630c8b13c0920bf834"
+  ],
+  "source_hashes": {
+    "dorian": "96fe04970f0eaa11a0281ad4c0498c30e3421279597ef11028c8b49c388ba302",
+    "frankenstein": "bb13857aa6861ca7734c16b1b54226b320da22c14fd8a70a26c10bc3925af7f3",
+    "persuasion": "335817d939bef8e25f327753d9bd1b3f3b77e24af3f81fc5693868986fdc4bc8",
+    "pride": "91e1dfaf95f58b58abca2157e6d6014f34e3c02abae490a89224a6c8a828d026"
+  },
+  "selection_metric": "Mean per-question maximum gold answer content-token recall in any top-5 passage; weak lexical evidence proxy, not QA accuracy",
+  "candidates": [
+    {
+      "policy": {
+        "name": "bm25",
+        "index": "lsa",
+        "mode": "bm25"
+      },
+      "validation": {
+        "queries": 29,
+        "mean_gold_content_token_recall_at5": 0.32068965517241377,
+        "literal_answer_present_rate_at5": 0.20689655172413793,
+        "source_grounding_rate": 1.0
+      },
+      "cases": [
+        {
+          "id": "narrativeqa:24242",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:123883-124877",
+            "dorian:116957-117939",
+            "dorian:124662-125663",
+            "dorian:374836-375763",
+            "dorian:122325-123294"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24243",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:374836-375763",
+            "dorian:116957-117939",
+            "dorian:106009-106957",
+            "dorian:150099-151049",
+            "dorian:103720-104708"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24244",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:213149-214185",
+            "dorian:244386-245406",
+            "dorian:245176-246187",
+            "dorian:374836-375763",
+            "dorian:327263-328319"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24245",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:51939-52925",
+            "dorian:63617-64611",
+            "dorian:69085-70131",
+            "dorian:418850-419865",
+            "dorian:375557-376527"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24246",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:77284-78278",
+            "dorian:56474-57455",
+            "dorian:33363-34349",
+            "dorian:378511-379497",
+            "dorian:213149-214185"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24247",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:100659-101678",
+            "dorian:189545-190494",
+            "dorian:244386-245406",
+            "dorian:213149-214185",
+            "dorian:385742-386812"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24248",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.3333333333333333,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:377050-378008",
+            "dorian:231295-232287",
+            "dorian:58776-59816",
+            "dorian:368607-369605",
+            "dorian:418850-419865"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24249",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.5,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:430889-431864",
+            "dorian:343243-344247",
+            "dorian:325658-326719",
+            "dorian:330492-331442",
+            "dorian:412035-413037"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24250",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:375557-376527",
+            "dorian:374836-375763",
+            "dorian:116957-117939",
+            "dorian:53485-54435",
+            "dorian:270175-271248"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24251",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.6666666666666666,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:53485-54435",
+            "dorian:307830-308830",
+            "dorian:23456-24419",
+            "dorian:0-1128",
+            "dorian:250010-251040"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24252",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:178761-179781",
+            "dorian:174918-175951",
+            "dorian:182731-183698",
+            "dorian:430889-431864",
+            "dorian:212397-213376"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24253",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.3333333333333333,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:375557-376527",
+            "dorian:15690-16726",
+            "dorian:357627-358593",
+            "dorian:153204-154254",
+            "dorian:210189-211152"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24254",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:308639-309608",
+            "dorian:375557-376527",
+            "dorian:165649-166707",
+            "dorian:58776-59816",
+            "dorian:296604-297547"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24255",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.8,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:375557-376527",
+            "dorian:116957-117939",
+            "dorian:357627-358593",
+            "dorian:377050-378008",
+            "dorian:270175-271248"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24256",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:95275-96289",
+            "dorian:84449-85444",
+            "dorian:271019-272097",
+            "dorian:69085-70131",
+            "dorian:83687-84662"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24257",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:394508-395506",
+            "dorian:50386-51391",
+            "dorian:33363-34349",
+            "dorian:52716-53691",
+            "dorian:60408-61468"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24258",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.8,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:415136-416048",
+            "dorian:58776-59816",
+            "dorian:228239-229216",
+            "dorian:218563-219486",
+            "dorian:414384-415331"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24259",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.2,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:307830-308830",
+            "dorian:89870-90892",
+            "dorian:225329-226223",
+            "dorian:10238-11212",
+            "dorian:222992-224011"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24260",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:362270-363257",
+            "dorian:368607-369605",
+            "dorian:4896-5850",
+            "dorian:365398-366422",
+            "dorian:363781-364794"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24261",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:11006-12021",
+            "dorian:278572-279539",
+            "dorian:430889-431864",
+            "dorian:174918-175951",
+            "dorian:182731-183698"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24262",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:213149-214185",
+            "dorian:415136-416048",
+            "dorian:412830-413825",
+            "dorian:108269-109217",
+            "dorian:212397-213376"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24263",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:28025-29004",
+            "dorian:213149-214185",
+            "dorian:32631-33569",
+            "dorian:415136-416048",
+            "dorian:9489-10471"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24264",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:380894-381891",
+            "dorian:381665-382667",
+            "dorian:322371-323409",
+            "dorian:288149-289174",
+            "dorian:61228-62236"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24265",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:163330-164343",
+            "dorian:353708-354691",
+            "dorian:141525-142532",
+            "dorian:63617-64611",
+            "dorian:212397-213376"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24266",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.6666666666666666,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:51939-52925",
+            "dorian:302544-303528",
+            "dorian:23456-24419",
+            "dorian:41073-42067",
+            "dorian:396894-397840"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24267",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:308639-309608",
+            "dorian:188787-189756",
+            "dorian:53485-54435",
+            "dorian:307830-308830",
+            "dorian:282508-283542"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24268",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:311627-312626",
+            "dorian:188787-189756",
+            "dorian:100659-101678",
+            "dorian:153204-154254",
+            "dorian:213149-214185"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24269",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:34130-35105",
+            "dorian:207887-208905",
+            "dorian:425686-426638",
+            "dorian:33363-34349",
+            "dorian:100659-101678"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24270",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:163330-164343",
+            "dorian:397622-398559",
+            "dorian:425686-426638",
+            "dorian:396894-397840",
+            "dorian:337848-338832"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        }
+      ]
+    },
+    {
+      "policy": {
+        "name": "lsa_hybrid",
+        "index": "lsa",
+        "mode": "hybrid"
+      },
+      "validation": {
+        "queries": 29,
+        "mean_gold_content_token_recall_at5": 0.36091954022988504,
+        "literal_answer_present_rate_at5": 0.2413793103448276,
+        "source_grounding_rate": 1.0
+      },
+      "cases": [
+        {
+          "id": "narrativeqa:24242",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:124662-125663",
+            "dorian:123883-124877",
+            "dorian:120752-121760",
+            "dorian:116957-117939",
+            "dorian:374836-375763"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24243",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:116957-117939",
+            "dorian:374836-375763",
+            "dorian:150099-151049",
+            "dorian:188787-189756",
+            "dorian:106009-106957"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24244",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:327263-328319",
+            "dorian:21978-22912",
+            "dorian:376289-377266",
+            "dorian:28025-29004",
+            "dorian:213149-214185"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24245",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:394508-395506",
+            "dorian:21978-22912",
+            "dorian:418850-419865",
+            "dorian:236022-236960",
+            "dorian:69085-70131"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24246",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:33363-34349",
+            "dorian:385742-386812",
+            "dorian:143118-144177",
+            "dorian:143937-144942",
+            "dorian:384135-385168"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24247",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:100659-101678",
+            "dorian:189545-190494",
+            "dorian:384135-385168",
+            "dorian:188787-189756",
+            "dorian:213149-214185"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24248",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:418850-419865",
+            "dorian:384135-385168",
+            "dorian:396894-397840",
+            "dorian:368607-369605",
+            "dorian:195556-196512"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24249",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.5,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:430889-431864",
+            "dorian:330492-331442",
+            "dorian:339365-340354",
+            "dorian:341715-342671",
+            "dorian:343243-344247"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24250",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:374836-375763",
+            "dorian:375557-376527",
+            "dorian:116957-117939",
+            "dorian:376289-377266",
+            "dorian:418850-419865"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24251",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.6666666666666666,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:23456-24419",
+            "dorian:53485-54435",
+            "dorian:21978-22912",
+            "dorian:71428-72450",
+            "dorian:95275-96289"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24252",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.5,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:178761-179781",
+            "dorian:11006-12021",
+            "dorian:174918-175951",
+            "dorian:176503-177511",
+            "dorian:430889-431864"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24253",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.3333333333333333,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:15690-16726",
+            "dorian:357627-358593",
+            "dorian:191007-191964",
+            "dorian:210189-211152",
+            "dorian:375557-376527"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24254",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:375557-376527",
+            "dorian:21978-22912",
+            "dorian:376289-377266",
+            "dorian:384135-385168",
+            "dorian:165649-166707"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24255",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.8,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:375557-376527",
+            "dorian:377050-378008",
+            "dorian:357627-358593",
+            "dorian:376289-377266",
+            "dorian:148510-149529"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24256",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:21978-22912",
+            "dorian:327263-328319",
+            "dorian:407485-408466",
+            "dorian:69085-70131",
+            "dorian:229024-229977"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24257",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:418850-419865",
+            "dorian:394508-395506",
+            "dorian:7190-8205",
+            "dorian:400619-401589",
+            "dorian:118527-119479"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24258",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.8,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:228239-229216",
+            "dorian:218563-219486",
+            "dorian:415136-416048",
+            "dorian:414384-415331",
+            "dorian:227472-228446"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24259",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.2,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:307830-308830",
+            "dorian:227472-228446",
+            "dorian:225329-226223",
+            "dorian:11006-12021",
+            "dorian:226011-226952"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24260",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:362270-363257",
+            "dorian:368607-369605",
+            "dorian:365398-366422",
+            "dorian:366193-367219",
+            "dorian:363781-364794"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24261",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:11006-12021",
+            "dorian:430889-431864",
+            "dorian:250809-251821",
+            "dorian:182731-183698",
+            "dorian:226750-227710"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24262",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:229024-229977",
+            "dorian:11006-12021",
+            "dorian:218563-219486",
+            "dorian:228239-229216",
+            "dorian:58776-59816"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24263",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:32631-33569",
+            "dorian:28025-29004",
+            "dorian:212397-213376",
+            "dorian:58001-59020",
+            "dorian:58776-59816"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24264",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:381665-382667",
+            "dorian:54210-55202",
+            "dorian:380894-381891",
+            "dorian:351290-352348",
+            "dorian:78904-80008"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24265",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:212397-213376",
+            "dorian:213149-214185",
+            "dorian:163330-164343",
+            "dorian:231295-232287",
+            "dorian:195556-196512"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24266",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.6666666666666666,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:41073-42067",
+            "dorian:23456-24419",
+            "dorian:302544-303528",
+            "dorian:21978-22912",
+            "dorian:51939-52925"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24267",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:308639-309608",
+            "dorian:11006-12021",
+            "dorian:51939-52925",
+            "dorian:222268-223223",
+            "dorian:53485-54435"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24268",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:33363-34349",
+            "dorian:212397-213376",
+            "dorian:227472-228446",
+            "dorian:213149-214185",
+            "dorian:21978-22912"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24269",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:34130-35105",
+            "dorian:418850-419865",
+            "dorian:21978-22912",
+            "dorian:33363-34349",
+            "dorian:28774-29766"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24270",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:397622-398559",
+            "dorian:396894-397840",
+            "dorian:425686-426638",
+            "dorian:163330-164343",
+            "dorian:309389-310332"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        }
+      ]
+    },
+    {
+      "policy": {
+        "name": "minilm_dense",
+        "index": "dense",
+        "mode": "dense"
+      },
+      "validation": {
+        "queries": 29,
+        "mean_gold_content_token_recall_at5": 0.3310344827586207,
+        "literal_answer_present_rate_at5": 0.1724137931034483,
+        "source_grounding_rate": 1.0
+      },
+      "cases": [
+        {
+          "id": "narrativeqa:24242",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:124662-125663",
+            "dorian:104479-105479",
+            "dorian:178039-178991",
+            "dorian:120752-121760",
+            "dorian:129339-130329"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24243",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:204847-205816",
+            "dorian:205597-206556",
+            "dorian:201781-202792",
+            "dorian:129339-130329",
+            "dorian:213949-214964"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24244",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:290500-291520",
+            "dorian:155553-156527",
+            "dorian:376289-377266",
+            "dorian:171587-172654",
+            "dorian:377050-378008"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24245",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:259503-260560",
+            "dorian:41863-42854",
+            "dorian:285754-286732",
+            "dorian:236022-236960",
+            "dorian:290500-291520"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24246",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:259503-260560",
+            "dorian:285754-286732",
+            "dorian:41863-42854",
+            "dorian:248370-249441",
+            "dorian:41073-42067"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24247",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:427196-428114",
+            "dorian:81354-82423",
+            "dorian:171587-172654",
+            "dorian:404469-405472",
+            "dorian:290500-291520"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24248",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:368607-369605",
+            "dorian:362270-363257",
+            "dorian:366994-367997",
+            "dorian:15690-16726",
+            "dorian:404469-405472"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24249",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.5,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:430889-431864",
+            "dorian:343243-344247",
+            "dorian:329691-330702",
+            "dorian:184979-185980",
+            "dorian:414384-415331"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24250",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:243597-244632",
+            "dorian:430889-431864",
+            "dorian:376289-377266",
+            "dorian:389864-390889",
+            "dorian:375557-376527"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24251",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.6666666666666666,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:69085-70131",
+            "dorian:259503-260560",
+            "dorian:111407-112425",
+            "dorian:0-1128",
+            "dorian:285754-286732"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24252",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.5,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:414384-415331",
+            "dorian:233595-234644",
+            "dorian:184979-185980",
+            "dorian:54961-55933",
+            "dorian:176503-177511"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24253",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.3333333333333333,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:114574-115568",
+            "dorian:259503-260560",
+            "dorian:41863-42854",
+            "dorian:15690-16726",
+            "dorian:248370-249441"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24254",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.5,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:15690-16726",
+            "dorian:232065-233065",
+            "dorian:191741-192714",
+            "dorian:155553-156527",
+            "dorian:404469-405472"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24255",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.6,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:376289-377266",
+            "dorian:404469-405472",
+            "dorian:155553-156527",
+            "dorian:41863-42854",
+            "dorian:366994-367997"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24256",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:155553-156527",
+            "dorian:290500-291520",
+            "dorian:213149-214185",
+            "dorian:376289-377266",
+            "dorian:404469-405472"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24257",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:264475-265487",
+            "dorian:60408-61468",
+            "dorian:277820-278790",
+            "dorian:75608-76682",
+            "dorian:173251-174328"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24258",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.8,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:415136-416048",
+            "dorian:414384-415331",
+            "dorian:213149-214185",
+            "dorian:250010-251040",
+            "dorian:412830-413825"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24259",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.2,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:222268-223223",
+            "dorian:155553-156527",
+            "dorian:307830-308830",
+            "dorian:248370-249441",
+            "dorian:220778-221739"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24260",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:368607-369605",
+            "dorian:363781-364794",
+            "dorian:362270-363257",
+            "dorian:367782-368830",
+            "dorian:262735-263832"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24261",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:22715-23667",
+            "dorian:222268-223223",
+            "dorian:48810-49849",
+            "dorian:236022-236960",
+            "dorian:20537-21458"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24262",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.5,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:414384-415331",
+            "dorian:70700-71645",
+            "dorian:233595-234644",
+            "dorian:324882-325899",
+            "dorian:24205-25120"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24263",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.6666666666666666,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:222992-224011",
+            "dorian:305537-306519",
+            "dorian:213149-214185",
+            "dorian:250010-251040",
+            "dorian:412830-413825"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24264",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:428635-429609",
+            "dorian:85972-87047",
+            "dorian:392151-393155",
+            "dorian:391436-392357",
+            "dorian:433158-434131"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24265",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:404469-405472",
+            "dorian:15690-16726",
+            "dorian:143937-144942",
+            "dorian:102195-103154",
+            "dorian:213149-214185"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24266",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.3333333333333333,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:41073-42067",
+            "dorian:213149-214185",
+            "dorian:15690-16726",
+            "dorian:111407-112425",
+            "dorian:41863-42854"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24267",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:222268-223223",
+            "dorian:307830-308830",
+            "dorian:290500-291520",
+            "dorian:0-1128",
+            "dorian:155553-156527"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24268",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:213149-214185",
+            "dorian:222992-224011",
+            "dorian:305537-306519",
+            "dorian:212397-213376",
+            "dorian:229024-229977"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24269",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:259503-260560",
+            "dorian:15690-16726",
+            "dorian:41863-42854",
+            "dorian:114574-115568",
+            "dorian:248370-249441"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24270",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:141525-142532",
+            "dorian:213149-214185",
+            "dorian:404469-405472",
+            "dorian:396894-397840",
+            "dorian:304817-305741"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        }
+      ]
+    },
+    {
+      "policy": {
+        "name": "minilm_hybrid",
+        "index": "dense",
+        "mode": "hybrid"
+      },
+      "validation": {
+        "queries": 29,
+        "mean_gold_content_token_recall_at5": 0.3781609195402299,
+        "literal_answer_present_rate_at5": 0.2413793103448276,
+        "source_grounding_rate": 1.0
+      },
+      "cases": [
+        {
+          "id": "narrativeqa:24242",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:124662-125663",
+            "dorian:120752-121760",
+            "dorian:116957-117939",
+            "dorian:104479-105479",
+            "dorian:374836-375763"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24243",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:374836-375763",
+            "dorian:125436-126493",
+            "dorian:106009-106957",
+            "dorian:104479-105479",
+            "dorian:146261-147289"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24244",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:376289-377266",
+            "dorian:213149-214185",
+            "dorian:244386-245406",
+            "dorian:404469-405472",
+            "dorian:407485-408466"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24245",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:69085-70131",
+            "dorian:51939-52925",
+            "dorian:236022-236960",
+            "dorian:285754-286732",
+            "dorian:213149-214185"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24246",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:259503-260560",
+            "dorian:378511-379497",
+            "dorian:51939-52925",
+            "dorian:21978-22912",
+            "dorian:213149-214185"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24247",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:189545-190494",
+            "dorian:100659-101678",
+            "dorian:213149-214185",
+            "dorian:374836-375763",
+            "dorian:171587-172654"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24248",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:368607-369605",
+            "dorian:362270-363257",
+            "dorian:58776-59816",
+            "dorian:296604-297547",
+            "dorian:396894-397840"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24249",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.5,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:430889-431864",
+            "dorian:343243-344247",
+            "dorian:329691-330702",
+            "dorian:339365-340354",
+            "dorian:325658-326719"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24250",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:375557-376527",
+            "dorian:374836-375763",
+            "dorian:377050-378008",
+            "dorian:430889-431864",
+            "dorian:376289-377266"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24251",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:0-1128",
+            "dorian:21978-22912",
+            "dorian:326500-327484",
+            "dorian:307830-308830",
+            "dorian:327263-328319"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24252",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.5,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:174918-175951",
+            "dorian:182731-183698",
+            "dorian:176503-177511",
+            "dorian:221514-222475",
+            "dorian:212397-213376"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24253",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.3333333333333333,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:15690-16726",
+            "dorian:213149-214185",
+            "dorian:114574-115568",
+            "dorian:100659-101678",
+            "dorian:404469-405472"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24254",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.5,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:165649-166707",
+            "dorian:148510-149529",
+            "dorian:100659-101678",
+            "dorian:375557-376527",
+            "dorian:396894-397840"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24255",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.8,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:377050-378008",
+            "dorian:375557-376527",
+            "dorian:376289-377266",
+            "dorian:407485-408466",
+            "dorian:15690-16726"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24256",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:376289-377266",
+            "dorian:69085-70131",
+            "dorian:244386-245406",
+            "dorian:375557-376527",
+            "dorian:15690-16726"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24257",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:60408-61468",
+            "dorian:50386-51391",
+            "dorian:347993-349084",
+            "dorian:394508-395506",
+            "dorian:127881-128840"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24258",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.8,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:415136-416048",
+            "dorian:414384-415331",
+            "dorian:218563-219486",
+            "dorian:58776-59816",
+            "dorian:412830-413825"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24259",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.2,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:307830-308830",
+            "dorian:336385-337355",
+            "dorian:227472-228446",
+            "dorian:222268-223223",
+            "dorian:308639-309608"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24260",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:368607-369605",
+            "dorian:362270-363257",
+            "dorian:363781-364794",
+            "dorian:4896-5850",
+            "dorian:363055-364023"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24261",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:11006-12021",
+            "dorian:226750-227710",
+            "dorian:182731-183698",
+            "dorian:53485-54435",
+            "dorian:22715-23667"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24262",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:412830-413825",
+            "dorian:212397-213376",
+            "dorian:415136-416048",
+            "dorian:213149-214185",
+            "dorian:229024-229977"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24263",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:213149-214185",
+            "dorian:250010-251040",
+            "dorian:212397-213376",
+            "dorian:58776-59816",
+            "dorian:415136-416048"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24264",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:381665-382667",
+            "dorian:400619-401589",
+            "dorian:61228-62236",
+            "dorian:380894-381891",
+            "dorian:298070-299057"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24265",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:141525-142532",
+            "dorian:213149-214185",
+            "dorian:212397-213376",
+            "dorian:404469-405472",
+            "dorian:232065-233065"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24266",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.3333333333333333,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:41073-42067",
+            "dorian:369374-370396",
+            "dorian:302544-303528",
+            "dorian:111407-112425",
+            "dorian:404469-405472"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24267",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:307830-308830",
+            "dorian:222268-223223",
+            "dorian:48810-49849",
+            "dorian:58001-59020",
+            "dorian:308639-309608"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24268",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:213149-214185",
+            "dorian:212397-213376",
+            "dorian:21978-22912",
+            "dorian:218563-219486",
+            "dorian:227472-228446"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24269",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:100659-101678",
+            "dorian:141525-142532",
+            "dorian:248370-249441",
+            "dorian:81354-82423",
+            "dorian:34130-35105"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24270",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:141525-142532",
+            "dorian:396894-397840",
+            "dorian:213149-214185",
+            "dorian:397622-398559",
+            "dorian:100659-101678"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        }
+      ]
+    },
+    {
+      "policy": {
+        "name": "minilm_reranked",
+        "index": "dense",
+        "mode": "hybrid",
+        "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2"
+      },
+      "validation": {
+        "queries": 29,
+        "mean_gold_content_token_recall_at5": 0.3954022988505747,
+        "literal_answer_present_rate_at5": 0.3448275862068966,
+        "source_grounding_rate": 1.0
+      },
+      "cases": [
+        {
+          "id": "narrativeqa:24242",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:120752-121760",
+            "dorian:123883-124877",
+            "dorian:124662-125663",
+            "dorian:116957-117939",
+            "dorian:125436-126493"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24243",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:190274-191205",
+            "dorian:374836-375763",
+            "dorian:205597-206556",
+            "dorian:213949-214964",
+            "dorian:204847-205816"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24244",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:376289-377266",
+            "dorian:245176-246187",
+            "dorian:213149-214185",
+            "dorian:377050-378008",
+            "dorian:407485-408466"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24245",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:69085-70131",
+            "dorian:394508-395506",
+            "dorian:285754-286732",
+            "dorian:41863-42854",
+            "dorian:28025-29004"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24246",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:259503-260560",
+            "dorian:143937-144942",
+            "dorian:22715-23667",
+            "dorian:220778-221739",
+            "dorian:376289-377266"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24247",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:171587-172654",
+            "dorian:100659-101678",
+            "dorian:213149-214185",
+            "dorian:374836-375763",
+            "dorian:133869-134834"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24248",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.3333333333333333,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:362270-363257",
+            "dorian:368607-369605",
+            "dorian:377050-378008",
+            "dorian:32631-33569",
+            "dorian:366994-367997"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24249",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.5,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:430889-431864",
+            "dorian:435410-436387",
+            "dorian:343243-344247",
+            "dorian:322371-323409",
+            "dorian:184979-185980"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24250",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:375557-376527",
+            "dorian:389864-390889",
+            "dorian:430889-431864",
+            "dorian:374836-375763",
+            "dorian:377050-378008"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24251",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:0-1128",
+            "dorian:253168-254193",
+            "dorian:327263-328319",
+            "dorian:21978-22912",
+            "dorian:326500-327484"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24252",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.5,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:174918-175951",
+            "dorian:184979-185980",
+            "dorian:176503-177511",
+            "dorian:183494-184435",
+            "dorian:250809-251821"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24253",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:404469-405472",
+            "dorian:259503-260560",
+            "dorian:188787-189756",
+            "dorian:222992-224011",
+            "dorian:15690-16726"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24254",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.5,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:375557-376527",
+            "dorian:204099-205061",
+            "dorian:165649-166707",
+            "dorian:162557-163550",
+            "dorian:100659-101678"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24255",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.8,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:242109-243085",
+            "dorian:375557-376527",
+            "dorian:377050-378008",
+            "dorian:376289-377266",
+            "dorian:389092-390087"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24256",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:375557-376527",
+            "dorian:330492-331442",
+            "dorian:69085-70131",
+            "dorian:244386-245406",
+            "dorian:376289-377266"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24257",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:60408-61468",
+            "dorian:33363-34349",
+            "dorian:30333-31295",
+            "dorian:50386-51391",
+            "dorian:2417-3504"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24258",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.8,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:415136-416048",
+            "dorian:412830-413825",
+            "dorian:34130-35105",
+            "dorian:213149-214185",
+            "dorian:414384-415331"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24259",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.2,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:225329-226223",
+            "dorian:307830-308830",
+            "dorian:222268-223223",
+            "dorian:11006-12021",
+            "dorian:227472-228446"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24260",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:362270-363257",
+            "dorian:368607-369605",
+            "dorian:4896-5850",
+            "dorian:280104-281142",
+            "dorian:363781-364794"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24261",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:11006-12021",
+            "dorian:72240-73235",
+            "dorian:48810-49849",
+            "dorian:226750-227710",
+            "dorian:227472-228446"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24262",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.5,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:108999-110033",
+            "dorian:233595-234644",
+            "dorian:415136-416048",
+            "dorian:70700-71645",
+            "dorian:34130-35105"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24263",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:222992-224011",
+            "dorian:28025-29004",
+            "dorian:32631-33569",
+            "dorian:213149-214185",
+            "dorian:59592-60635"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24264",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:381665-382667",
+            "dorian:85972-87047",
+            "dorian:351290-352348",
+            "dorian:89870-90892",
+            "dorian:428635-429609"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24265",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:236022-236960",
+            "dorian:213149-214185",
+            "dorian:295089-296067",
+            "dorian:370945-371968",
+            "dorian:404469-405472"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24266",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.3333333333333333,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:418850-419865",
+            "dorian:41073-42067",
+            "dorian:420413-421360",
+            "dorian:188787-189756",
+            "dorian:302544-303528"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24267",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:408246-409244",
+            "dorian:49593-50631",
+            "dorian:58001-59020",
+            "dorian:227472-228446",
+            "dorian:188787-189756"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24268",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:222992-224011",
+            "dorian:213149-214185",
+            "dorian:58776-59816",
+            "dorian:21978-22912",
+            "dorian:227472-228446"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24269",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 1.0,
+          "literal_answer_present_at5": true,
+          "citations": [
+            "dorian:34130-35105",
+            "dorian:212397-213376",
+            "dorian:100659-101678",
+            "dorian:248370-249441",
+            "dorian:222992-224011"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        },
+        {
+          "id": "narrativeqa:24270",
+          "book": "dorian",
+          "gold_content_token_recall_at5": 0.0,
+          "literal_answer_present_at5": false,
+          "citations": [
+            "dorian:397622-398559",
+            "dorian:100659-101678",
+            "dorian:412830-413825",
+            "dorian:304817-305741",
+            "dorian:149295-150304"
+          ],
+          "source_grounded": true,
+          "retrieved": 5
+        }
+      ]
+    }
+  ],
+  "selected": {
+    "name": "minilm_reranked",
+    "index": "dense",
+    "mode": "hybrid",
+    "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2"
+  },
+  "limitations": "NarrativeQA questions were written from story summaries, not passage-level evidence. Answers can be paraphrased or absent from the edition. Literal answer presence and token recall do not establish relevance, reasoning, complete answers, or thematic understanding. Two books is a narrow subset."
+}

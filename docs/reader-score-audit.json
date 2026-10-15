@@ -1,0 +1,10 @@
+{
+  "scope": "Metric-only audit of already-frozen extractive predictions; no inference, threshold reselection or test retuning",
+  "normalizer": "Conventional SQuAD-style lowercase, ASCII punctuation removal, article removal and whitespace normalization. Original run separated punctuation; both outputs are retained.",
+  "frozen_threshold": 2,
+  "questions": 29,
+  "mean_token_f1": 0.15265118023738714,
+  "exact_match": 0.06896551724137931,
+  "original_mean_token_f1": 0.14904003034674543,
+  "original_exact_match": 0.06896551724137931
+}

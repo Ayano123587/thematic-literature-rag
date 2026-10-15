@@ -1,0 +1,193 @@
+{
+  "scope": "Three original authored cross-book evidence queries and two character-turning-point diagnostics; small, non-independent annotation study, not a public benchmark or interpretation accuracy score",
+  "annotation": "One anchor per book/question chosen by the implementing agent after reading source excerpts, without independent adjudication. Development/test labels prevent query reuse but do not establish external generalization. Policies are not tuned on these test queries. Gold passages can overlap.",
+  "themes": [
+    {
+      "id": "theme-judgment",
+      "split": "development",
+      "books": [
+        {
+          "book": "pride",
+          "gold_evidence_ids": [
+            "pride:65016-65983"
+          ],
+          "retrieved_ids": [
+            "pride:132290-133343",
+            "pride:133097-134149",
+            "pride:178233-179250",
+            "pride:179015-180027",
+            "pride:371636-372745",
+            "pride:385593-386762",
+            "pride:411879-412966",
+            "pride:627930-628951",
+            "pride:64223-65224",
+            "pride:65016-65983"
+          ],
+          "gold_passage_recall_at10": 1.0
+        },
+        {
+          "book": "frankenstein",
+          "gold_evidence_ids": [
+            "frankenstein:173686-174683"
+          ],
+          "retrieved_ids": [
+            "frankenstein:218359-219411",
+            "frankenstein:232099-233195",
+            "frankenstein:32099-33187",
+            "frankenstein:32954-34035",
+            "frankenstein:347202-348176",
+            "frankenstein:379373-380379",
+            "frankenstein:420540-421543",
+            "frankenstein:421308-422342",
+            "frankenstein:73803-74881",
+            "frankenstein:74657-75650"
+          ],
+          "gold_passage_recall_at10": 0.0
+        }
+      ],
+      "both_books_have_annotated_evidence": false,
+      "extractive_sentences": 3,
+      "all_sentence_spans_grounded": true,
+      "cross_book_lexical_links": 0
+    },
+    {
+      "id": "theme-injured-affection",
+      "split": "test",
+      "books": [
+        {
+          "book": "pride",
+          "gold_evidence_ids": [
+            "pride:201058-202152"
+          ],
+          "retrieved_ids": [
+            "pride:22034-23050",
+            "pride:250163-251146",
+            "pride:250929-251904",
+            "pride:251700-252698",
+            "pride:288599-289647",
+            "pride:295953-296890",
+            "pride:384828-385845",
+            "pride:67454-68421",
+            "pride:68207-69181",
+            "pride:740795-741877"
+          ],
+          "gold_passage_recall_at10": 0.0
+        },
+        {
+          "book": "frankenstein",
+          "gold_evidence_ids": [
+            "frankenstein:265400-266393",
+            "frankenstein:266154-267176"
+          ],
+          "retrieved_ids": [
+            "frankenstein:113036-114094",
+            "frankenstein:160017-161017",
+            "frankenstein:173686-174683",
+            "frankenstein:265400-266393",
+            "frankenstein:266154-267176",
+            "frankenstein:269919-270870",
+            "frankenstein:277705-278775",
+            "frankenstein:312277-313257",
+            "frankenstein:353535-354537",
+            "frankenstein:420540-421543"
+          ],
+          "gold_passage_recall_at10": 1.0
+        }
+      ],
+      "both_books_have_annotated_evidence": false,
+      "extractive_sentences": 5,
+      "all_sentence_spans_grounded": true,
+      "cross_book_lexical_links": 4
+    },
+    {
+      "id": "theme-self-recognition",
+      "split": "test",
+      "books": [
+        {
+          "book": "pride",
+          "gold_evidence_ids": [
+            "pride:412742-413831"
+          ],
+          "retrieved_ids": [
+            "pride:131547-132524",
+            "pride:132290-133343",
+            "pride:175754-176812",
+            "pride:208293-209343",
+            "pride:280598-281631",
+            "pride:365328-366336",
+            "pride:411879-412966",
+            "pride:412742-413831",
+            "pride:421780-422917",
+            "pride:65016-65983"
+          ],
+          "gold_passage_recall_at10": 1.0
+        },
+        {
+          "book": "frankenstein",
+          "gold_evidence_ids": [
+            "frankenstein:86695-87704"
+          ],
+          "retrieved_ids": [
+            "frankenstein:132203-133266",
+            "frankenstein:133024-134035",
+            "frankenstein:137855-138915",
+            "frankenstein:142599-143641",
+            "frankenstein:248233-249246",
+            "frankenstein:253763-254736",
+            "frankenstein:280152-281210",
+            "frankenstein:292367-293390",
+            "frankenstein:416493-417551",
+            "frankenstein:417320-418366"
+          ],
+          "gold_passage_recall_at10": 0.0
+        }
+      ],
+      "both_books_have_annotated_evidence": false,
+      "extractive_sentences": 0,
+      "all_sentence_spans_grounded": true,
+      "cross_book_lexical_links": 0
+    }
+  ],
+  "character_arcs": [
+    {
+      "character": "Elizabeth",
+      "book": "pride",
+      "gold_ids": [
+        "pride:412742-413831"
+      ],
+      "retrieved_ids": [
+        "pride:132290-133343",
+        "pride:280598-281631",
+        "pride:412742-413831",
+        "pride:480333-481385",
+        "pride:535561-536640",
+        "pride:5357-6513",
+        "pride:549345-550403",
+        "pride:712126-713239",
+        "pride:73684-74747"
+      ],
+      "gold_passage_recall": 1.0,
+      "note": "Gold anchor denotes a relevant narrative turning point; no independent speaker/coreference annotation is available"
+    },
+    {
+      "character": "Victor",
+      "book": "frankenstein",
+      "gold_ids": [
+        "frankenstein:86695-87704"
+      ],
+      "retrieved_ids": [
+        "frankenstein:126652-127604",
+        "frankenstein:152076-153128",
+        "frankenstein:159204-160255",
+        "frankenstein:238744-239786",
+        "frankenstein:329930-330974",
+        "frankenstein:348773-349808",
+        "frankenstein:400663-401671",
+        "frankenstein:48454-49476",
+        "frankenstein:86695-87704"
+      ],
+      "gold_passage_recall": 1.0,
+      "note": "Gold anchor denotes a relevant narrative turning point; no independent speaker/coreference annotation is available"
+    }
+  ]
+}

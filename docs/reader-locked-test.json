@@ -1,0 +1,427 @@
+{
+  "scope": "Pretrained SQuAD2 MiniLM exact-span QA on 29 official NarrativeQA Persuasion questions after Dorian validation; answers remain exact cited substrings",
+  "selection": {
+    "model": "deepset/minilm-uncased-squad2",
+    "revision": "934656cdda79824eabf503ed56e15c01ddbdbe3f",
+    "model_license": "CC BY 4.0; attribution deepset",
+    "retrieval_policy": {
+      "name": "minilm_reranked",
+      "index": "dense",
+      "mode": "hybrid",
+      "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    },
+    "threshold_options": [
+      {
+        "threshold": 0,
+        "validation": {
+          "questions": 29,
+          "mean_token_f1": 0.06239737274220032,
+          "exact_match": 0.034482758620689655,
+          "abstention_rate": 0.27586206896551724,
+          "authored_no_answer_controls": 4,
+          "control_false_answer_rate": 0.0
+        },
+        "objective": 0.06239737274220032
+      },
+      {
+        "threshold": 2,
+        "validation": {
+          "questions": 29,
+          "mean_token_f1": 0.06239737274220032,
+          "exact_match": 0.034482758620689655,
+          "abstention_rate": 0.3793103448275862,
+          "authored_no_answer_controls": 4,
+          "control_false_answer_rate": 0.0
+        },
+        "objective": 0.06239737274220032
+      },
+      {
+        "threshold": 4,
+        "validation": {
+          "questions": 29,
+          "mean_token_f1": 0.027914614121510674,
+          "exact_match": 0.0,
+          "abstention_rate": 0.5517241379310345,
+          "authored_no_answer_controls": 4,
+          "control_false_answer_rate": 0.0
+        },
+        "objective": 0.027914614121510674
+      },
+      {
+        "threshold": 6,
+        "validation": {
+          "questions": 29,
+          "mean_token_f1": 0.027914614121510674,
+          "exact_match": 0.0,
+          "abstention_rate": 0.7586206896551724,
+          "authored_no_answer_controls": 4,
+          "control_false_answer_rate": 0.0
+        },
+        "objective": 0.027914614121510674
+      },
+      {
+        "threshold": 8,
+        "validation": {
+          "questions": 29,
+          "mean_token_f1": 0.022988505747126436,
+          "exact_match": 0.0,
+          "abstention_rate": 0.9310344827586207,
+          "authored_no_answer_controls": 4,
+          "control_false_answer_rate": 0.0
+        },
+        "objective": 0.022988505747126436
+      }
+    ],
+    "selected_threshold": 2,
+    "objective": "Published QA mean token F1 minus .25*false-answer rate on four authored impossible-modern-technology controls; controls are not NarrativeQA labels"
+  },
+  "test": {
+    "questions": 29,
+    "mean_token_f1": 0.14904003034674543,
+    "exact_match": 0.06896551724137931,
+    "abstention_rate": 0.3793103448275862,
+    "authored_no_answer_controls": 4,
+    "control_false_answer_rate": 0.0
+  },
+  "test_cases": [
+    {
+      "id": "narrativeqa:15892",
+      "best": {
+        "citation": "persuasion:44692-45752",
+        "book": "persuasion",
+        "answer_start": 44892,
+        "answer_end": 44900,
+        "null_margin": 4.229307174682617
+      },
+      "token_f1_at_selected_threshold": 0.5
+    },
+    {
+      "id": "narrativeqa:15893",
+      "best": {
+        "citation": "persuasion:52999-54080",
+        "book": "persuasion",
+        "answer_start": 53794,
+        "answer_end": 53806,
+        "null_margin": 0.5713348388671875
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15894",
+      "best": {
+        "citation": "persuasion:104673-105663",
+        "book": "persuasion",
+        "answer_start": 105240,
+        "answer_end": 105260,
+        "null_margin": 0.013814926147460938
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15895",
+      "best": {
+        "citation": "persuasion:135700-136688",
+        "book": "persuasion",
+        "answer_start": 136033,
+        "answer_end": 136042,
+        "null_margin": 9.986986637115479
+      },
+      "token_f1_at_selected_threshold": 1.0
+    },
+    {
+      "id": "narrativeqa:15896",
+      "best": {
+        "citation": "persuasion:183868-184928",
+        "book": "persuasion",
+        "answer_start": 184808,
+        "answer_end": 184815,
+        "null_margin": 0.025931358337402344
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15897",
+      "best": {
+        "citation": "persuasion:386912-387951",
+        "book": "persuasion",
+        "answer_start": 387456,
+        "answer_end": 387495,
+        "null_margin": 3.1796674728393555
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15898",
+      "best": {
+        "citation": "persuasion:388559-389631",
+        "book": "persuasion",
+        "answer_start": 389078,
+        "answer_end": 389098,
+        "null_margin": 6.119382858276367
+      },
+      "token_f1_at_selected_threshold": 0.26666666666666666
+    },
+    {
+      "id": "narrativeqa:15899",
+      "best": {
+        "citation": "persuasion:468935-469994",
+        "book": "persuasion",
+        "answer_start": 469531,
+        "answer_end": 469581,
+        "null_margin": 6.040764331817627
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15900",
+      "best": {
+        "citation": "persuasion:402111-403155",
+        "book": "persuasion",
+        "answer_start": 402210,
+        "answer_end": 402225,
+        "null_margin": 5.325063705444336
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15901",
+      "best": {
+        "citation": "persuasion:471351-472398",
+        "book": "persuasion",
+        "answer_start": 471832,
+        "answer_end": 471914,
+        "null_margin": 2.667327880859375
+      },
+      "token_f1_at_selected_threshold": 0.3157894736842105
+    },
+    {
+      "id": "narrativeqa:15902",
+      "best": {
+        "citation": "persuasion:135700-136688",
+        "book": "persuasion",
+        "answer_start": 136033,
+        "answer_end": 136042,
+        "null_margin": -3.5037670135498047
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15903",
+      "best": {
+        "citation": "persuasion:311288-312305",
+        "book": "persuasion",
+        "answer_start": 311693,
+        "answer_end": 311765,
+        "null_margin": -2.1274003982543945
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15904",
+      "best": {
+        "citation": "persuasion:13325-14315",
+        "book": "persuasion",
+        "answer_start": 14139,
+        "answer_end": 14148,
+        "null_margin": -0.029645919799804688
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15905",
+      "best": {
+        "citation": "persuasion:276238-277239",
+        "book": "persuasion",
+        "answer_start": 276279,
+        "answer_end": 276290,
+        "null_margin": 10.665022373199463
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15906",
+      "best": {
+        "citation": "persuasion:973-2048",
+        "book": "persuasion",
+        "answer_start": 1299,
+        "answer_end": 1324,
+        "null_margin": -6.479510307312012
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15907",
+      "best": {
+        "citation": "persuasion:57853-58879",
+        "book": "persuasion",
+        "answer_start": 58217,
+        "answer_end": 58242,
+        "null_margin": 3.935055732727051
+      },
+      "token_f1_at_selected_threshold": 0.15384615384615383
+    },
+    {
+      "id": "narrativeqa:15908",
+      "best": {
+        "citation": "persuasion:429288-430320",
+        "book": "persuasion",
+        "answer_start": 429377,
+        "answer_end": 429383,
+        "null_margin": 6.931332588195801
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15909",
+      "best": {
+        "citation": "persuasion:447264-448308",
+        "book": "persuasion",
+        "answer_start": 447305,
+        "answer_end": 447333,
+        "null_margin": 5.181942701339722
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15910",
+      "best": {
+        "citation": "persuasion:300330-301292",
+        "book": "persuasion",
+        "answer_start": 301074,
+        "answer_end": 301120,
+        "null_margin": 0.11678028106689453
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15911",
+      "best": {
+        "citation": "persuasion:295507-296547",
+        "book": "persuasion",
+        "answer_start": 295531,
+        "answer_end": 295543,
+        "null_margin": 2.2258830070495605
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15912",
+      "best": {
+        "citation": "persuasion:46305-47382",
+        "book": "persuasion",
+        "answer_start": 46339,
+        "answer_end": 46351,
+        "null_margin": 2.843647003173828
+      },
+      "token_f1_at_selected_threshold": 1.0
+    },
+    {
+      "id": "narrativeqa:15913",
+      "best": {
+        "citation": "persuasion:276238-277239",
+        "book": "persuasion",
+        "answer_start": 276299,
+        "answer_end": 276393,
+        "null_margin": 0.8496551513671875
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15914",
+      "best": {
+        "citation": "persuasion:214888-215931",
+        "book": "persuasion",
+        "answer_start": 215243,
+        "answer_end": 215284,
+        "null_margin": 0.207611083984375
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15915",
+      "best": {
+        "citation": "persuasion:202110-203081",
+        "book": "persuasion",
+        "answer_start": 202902,
+        "answer_end": 202910,
+        "null_margin": 8.870250463485718
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15916",
+      "best": {
+        "citation": "persuasion:152333-153395",
+        "book": "persuasion",
+        "answer_start": 152936,
+        "answer_end": 152953,
+        "null_margin": 4.572138786315918
+      },
+      "token_f1_at_selected_threshold": 0.5
+    },
+    {
+      "id": "narrativeqa:15917",
+      "best": {
+        "citation": "persuasion:148345-149350",
+        "book": "persuasion",
+        "answer_start": 148511,
+        "answer_end": 148543,
+        "null_margin": 3.7406959533691406
+      },
+      "token_f1_at_selected_threshold": 0.22222222222222224
+    },
+    {
+      "id": "narrativeqa:15918",
+      "best": {
+        "citation": "persuasion:471351-472398",
+        "book": "persuasion",
+        "answer_start": 472090,
+        "answer_end": 472180,
+        "null_margin": 6.950672626495361
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15919",
+      "best": {
+        "citation": "persuasion:23092-24112",
+        "book": "persuasion",
+        "answer_start": 23394,
+        "answer_end": 23398,
+        "null_margin": -2.659538745880127
+      },
+      "token_f1_at_selected_threshold": 0.0
+    },
+    {
+      "id": "narrativeqa:15920",
+      "best": {
+        "citation": "persuasion:466480-467529",
+        "book": "persuasion",
+        "answer_start": 466970,
+        "answer_end": 467006,
+        "null_margin": 14.871145367622375
+      },
+      "token_f1_at_selected_threshold": 0.3636363636363636
+    }
+  ],
+  "no_answer_controls": [
+    {
+      "id": "authored-test-0",
+      "answered": false
+    },
+    {
+      "id": "authored-test-1",
+      "answered": false
+    },
+    {
+      "id": "authored-test-2",
+      "answered": false
+    },
+    {
+      "id": "authored-test-3",
+      "answered": false
+    }
+  ],
+  "limitations": "Token F1 is a conventional automatic answer score, not semantic correctness or thematic reasoning. Published answers were written from summaries; a novel passage may not contain a contiguous answer. Small book subset and authored no-answer controls do not establish out-of-domain calibration.",
+  "private_predictions_sha256": "398465b413e19027d7e4f29f7a66d935b4632ffdc1f90bc7b94aadb0e6d4ab2d"
+}

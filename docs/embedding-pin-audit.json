@@ -1,0 +1,13 @@
+{
+  "scope": "CPU re-encoding audit only; no model/policy selection or benchmark/fresh-test rerun",
+  "passages": 2605,
+  "historical_embedded_revision": null,
+  "new_exact_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "max_absolute_vector_difference": 0.0,
+  "vectors_bitwise_equal": true,
+  "vectors_allclose_rtol1e5_atol1e6": true,
+  "historical_archive_sha256": "2d59ed22af38e0ae840a6e0e686b3f5c89afe3cb1ac53d95d09dcb2c9cbb52fe",
+  "new_archive_sha256": "f2d3470b35ef97e9b11189d42c48ebad2fa4493eac177793cef576aa8b0541af",
+  "production_replaced": true,
+  "historical_uncertainty": "The original archive did not attest its model revision. Numerical equality to explicitly pinned re-encoding can establish reproducible current vectors, not rewrite original provenance."
+}

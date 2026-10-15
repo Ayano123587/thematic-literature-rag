@@ -1,0 +1,530 @@
+{
+  "selection": {
+    "environment": {
+      "python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+      "torch": "2.11.0+cu128",
+      "transformers": "5.16.1",
+      "cuda": "12.8",
+      "gpu": "Tesla T4",
+      "weight_hashes": {
+        "model.safetensors": "dd924a11b4c220f385b51ffa522daea7c9f3d850e31b162bb5661df483c6d3ee"
+      },
+      "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "input_sha256": "64ef627b2693b6401b83b70c4286f2af2c19d4b004a7e94f5284c527b414ad07",
+      "limit_seconds": 3300,
+      "generation": {
+        "do_sample": false,
+        "max_new_tokens": 192,
+        "max_context_tokens": 3072,
+        "max_time_per_generation_seconds": 75
+      }
+    },
+    "protocol": {
+      "fresh_test_document": "1fa32a0798f79e13ca92ae84eda9ab3eb12c70a4",
+      "title": "The Call of the Wild",
+      "gutenberg_id": 215,
+      "author": "Jack London",
+      "author_death": 1916,
+      "selection_reason": "Preselected official NarrativeQA test book, compatible public-domain literature; no questions inspected before this declaration",
+      "validation_document": "879287f285743b08d86c3bd0831ec1e49fa92e39",
+      "test_queries_must_not_be_used_for_prompt_or_policy_selection": true,
+      "source": {
+        "url": "https://www.gutenberg.org/ebooks/215.txt.utf-8",
+        "raw_sha256": "30f569c5671bba7bbc4a92ab6d8ee01a0d3be00f994819c77da62c28041eb8a2",
+        "normalized_text_sha256": "412c5a2cde1249c2c06795580e268a7416f3e64842371790166e69b584543908",
+        "bytes": 199757
+      },
+      "upstream_commit": "904246f6d1fe99a99a08a03501fe3e619af2cee5",
+      "model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "model_license": "Apache-2.0",
+      "validation_queries": 29,
+      "fresh_test_queries": 30,
+      "retrieval": "Frozen MiniLM BM25 hybrid + MS-MARCO reranking; four passages per question; no gold answer injected into passages"
+    },
+    "validation": {
+      "direct": {
+        "queries": 29,
+        "token_f1": 0.0,
+        "exact_match": 0.0,
+        "abstention_rate": 1.0,
+        "schema_valid_rate": 0.0,
+        "raw_answer_citation_valid_rate": null,
+        "raw_answer_quote_exact_rate": null,
+        "raw_answered": 0
+      },
+      "strict": {
+        "queries": 29,
+        "token_f1": 0.06896551724137931,
+        "exact_match": 0.06896551724137931,
+        "abstention_rate": 0.9310344827586207,
+        "schema_valid_rate": 0.7241379310344828,
+        "raw_answer_citation_valid_rate": 0.9523809523809523,
+        "raw_answer_quote_exact_rate": 0.09523809523809523,
+        "raw_answered": 21
+      }
+    },
+    "selected_prompt": "strict",
+    "prompts": {
+      "direct": "Use only the supplied passages. Answer the question concisely. If the passages do not support an answer, abstain. Return JSON only with keys answer (string), abstain (boolean), citations (list of passage labels such as P1), supporting_quotes (list of objects with citation and quote). Every nonempty answer must cite at least one provided passage and include an exact supporting quote from that passage. Do not use outside knowledge.",
+      "strict": "You are an evidence-bound literary reader. First check whether the retrieved passages explicitly support the requested fact. Similar themes, familiar character names and your prior knowledge are insufficient. If evidence is incomplete, set abstain=true and answer=\"\". Otherwise answer in at most 15 words. Output only valid JSON: {\"answer\":\"...\",\"abstain\":false,\"citations\":[\"P1\"],\"supporting_quotes\":[{\"citation\":\"P1\",\"quote\":\"an exact substring of P1\"}]}. Use only labels present below. Quotes must support the answer. Never guess."
+    },
+    "selected_before_test_generation": true
+  },
+  "fresh_test": {
+    "queries": 30,
+    "token_f1": 0.0,
+    "exact_match": 0.0,
+    "abstention_rate": 0.9333333333333333,
+    "schema_valid_rate": 0.8333333333333334,
+    "raw_answer_citation_valid_rate": 0.9166666666666666,
+    "raw_answer_quote_exact_rate": 0.08333333333333333,
+    "raw_answered": 24
+  },
+  "test_cases": [
+    {
+      "id": "narrativeqa:6292",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:3296-4360"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6293",
+      "abstained": false,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": true,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:30689-31705"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6294",
+      "abstained": true,
+      "raw_answered": false,
+      "citation_valid": false,
+      "quote_exact_valid": false,
+      "schema_valid": false,
+      "citations": [],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6295",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:104553-105617"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6296",
+      "abstained": true,
+      "raw_answered": false,
+      "citation_valid": false,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [],
+      "source_citations": [],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6297",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:102105-103132"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6298",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:137422-138452"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6299",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:68305-69337"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6300",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:120944-121938"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6301",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": false,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [],
+      "source_citations": [],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6302",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:2468-3540"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6303",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:117746-118821"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6304",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": false,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [],
+      "source_citations": [],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6305",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:4916-5941"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6306",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:18111-19126"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6307",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:33072-34093"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6308",
+      "abstained": true,
+      "raw_answered": false,
+      "citation_valid": false,
+      "quote_exact_valid": false,
+      "schema_valid": false,
+      "citations": [],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6309",
+      "abstained": true,
+      "raw_answered": false,
+      "citation_valid": false,
+      "quote_exact_valid": false,
+      "schema_valid": false,
+      "citations": [],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6310",
+      "abstained": true,
+      "raw_answered": false,
+      "citation_valid": false,
+      "quote_exact_valid": false,
+      "schema_valid": false,
+      "citations": [],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6311",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:16556-17550"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6312",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:16556-17550"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6313",
+      "abstained": true,
+      "raw_answered": false,
+      "citation_valid": false,
+      "quote_exact_valid": false,
+      "schema_valid": false,
+      "citations": [],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6314",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:169106-170114"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6315",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:62851-63838"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6316",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:84627-85611"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6317",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:128808-129789"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6318",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:134308-135311"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6319",
+      "abstained": false,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": true,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:171445-172435"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6320",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:173714-174770"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    },
+    {
+      "id": "narrativeqa:6321",
+      "abstained": true,
+      "raw_answered": true,
+      "citation_valid": true,
+      "quote_exact_valid": false,
+      "schema_valid": true,
+      "citations": [
+        "P1"
+      ],
+      "source_citations": [
+        "callwild:171445-172435"
+      ],
+      "token_f1": 0.0,
+      "exact_match": false
+    }
+  ],
+  "limitations": "Valid citation labels and exact quotes prove source linkage only, not answer entailment or thematic reasoning. Fail-closed formatting/support abstentions affect EM/F1. No examples were discarded and no parameters were selected from fresh test outcomes. Model generation is pretrained, not newly finetuned."
+}

@@ -1,0 +1,73 @@
+{
+  "scope": "Metadata-only correction; source files, indexed passages, cloud payload, model, policies and predictions are unchanged",
+  "mechanism": "Raw Gutenberg CRLF text was passed to Windows native write_text, yielding CRCRLF. Actual Path.read_text normalizes that to doubled LF. Original processed fields incorrectly hashed the prewrite decoded body; index source fingerprints and citation offsets use actual postwrite read_text.",
+  "books": [
+    {
+      "book": "dorian",
+      "raw_sha256": "38f36b510417177aa87a6a24c968e3ec63a447b7df36a9c1a7c5a3f2d9e51547",
+      "prewrite_body_sha256": "cff1585005b24cf871b1aadec2b4413ecc742c8f926c6a39ab76322c2fcf19c0",
+      "actual_processed_bytes_sha256": "15f273e058b01f3d38c1c21ae97563ae6019e4038210d451b427e1c2f3cf0841",
+      "actual_read_text_sha256": "96fe04970f0eaa11a0281ad4c0498c30e3421279597ef11028c8b49c388ba302",
+      "actual_read_text_characters": 437835
+    },
+    {
+      "book": "persuasion",
+      "raw_sha256": "64ffb821b9e9eb1040c103a44c28893c94ebe33ffbb911288b5022efaecbfefc",
+      "prewrite_body_sha256": "3666def5761810f4e40628708e07a844a193c3a58a73f0befe4bb16db37e788c",
+      "actual_processed_bytes_sha256": "c202c3d21f31c9ee814687193f700a27881ef61f64c1d32bcd7a3981a92e3aaa",
+      "actual_read_text_sha256": "335817d939bef8e25f327753d9bd1b3f3b77e24af3f81fc5693868986fdc4bc8",
+      "actual_read_text_characters": 473183
+    },
+    {
+      "book": "callwild",
+      "raw_sha256": "30f569c5671bba7bbc4a92ab6d8ee01a0d3be00f994819c77da62c28041eb8a2",
+      "prewrite_body_sha256": "412c5a2cde1249c2c06795580e268a7416f3e64842371790166e69b584543908",
+      "actual_processed_bytes_sha256": "73e446c70b6c6162d1dcd4cba103d3cbb67010185fb72b7f15497d4caff044b6",
+      "actual_read_text_sha256": "105a350370f6f13406c0eea1303ef3a76d62a656beff47de6a9ea09f1b9aa494",
+      "actual_read_text_characters": 178655
+    }
+  ],
+  "live_input_sha256": "64ef627b2693b6401b83b70c4286f2af2c19d4b004a7e94f5284c527b414ad07",
+  "live_payload_original_callwild_source_hash": "412c5a2cde1249c2c06795580e268a7416f3e64842371790166e69b584543908",
+  "payload_citation_audit": {
+    "validation": {
+      "questions": 29,
+      "passages": 116
+    },
+    "test": {
+      "questions": 30,
+      "passages": 120
+    },
+    "bad_slices": 0
+  },
+  "benchmark_index_revision_metadata": [
+    {
+      "file": "benchmark-dense.lrag",
+      "embedded_model_revision": null,
+      "array_archive_sha256": "e356378d42dbd3f27921b8cdac9aa52014a75b52f81b073e9e281de102a61646",
+      "source_hashes": {
+        "dorian": "96fe04970f0eaa11a0281ad4c0498c30e3421279597ef11028c8b49c388ba302",
+        "frankenstein": "bb13857aa6861ca7734c16b1b54226b320da22c14fd8a70a26c10bc3925af7f3",
+        "persuasion": "335817d939bef8e25f327753d9bd1b3f3b77e24af3f81fc5693868986fdc4bc8",
+        "pride": "91e1dfaf95f58b58abca2157e6d6014f34e3c02abae490a89224a6c8a828d026"
+      },
+      "migration_note": "Legacy schema1 archives lacked revision field; current loader explicitly pins known default model revision. Observed HuggingFace cache refs are recorded below; old archive itself does not attest a revision."
+    },
+    {
+      "file": "benchmark-lsa.lrag",
+      "embedded_model_revision": null,
+      "array_archive_sha256": "00d1a43d091e4c12f203c915430e79afe6555029b7e2a9a96347b8dfe2b5ce17",
+      "source_hashes": {
+        "dorian": "96fe04970f0eaa11a0281ad4c0498c30e3421279597ef11028c8b49c388ba302",
+        "frankenstein": "bb13857aa6861ca7734c16b1b54226b320da22c14fd8a70a26c10bc3925af7f3",
+        "persuasion": "335817d939bef8e25f327753d9bd1b3f3b77e24af3f81fc5693868986fdc4bc8",
+        "pride": "91e1dfaf95f58b58abca2157e6d6014f34e3c02abae490a89224a6c8a828d026"
+      },
+      "migration_note": "Legacy schema1 archives lacked revision field; current loader explicitly pins known default model revision. Observed HuggingFace cache refs are recorded below; old archive itself does not attest a revision."
+    }
+  ],
+  "observed_cache_revisions": {
+    "dense": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "reranker": "233902d25c440f23af6f7d6e94d2946bac0bee0a"
+  }
+}

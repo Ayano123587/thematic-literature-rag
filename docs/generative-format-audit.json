@@ -1,0 +1,31 @@
+{
+  "validation_direct": {
+    "rows": 29,
+    "parse_failures": {
+      "ValueError": 22,
+      "JSONDecodeError": 2
+    },
+    "wrong_list_types": 0,
+    "exact_quote_instances": 0,
+    "whitespace_normalized_quote_instances": 0
+  },
+  "validation_strict": {
+    "rows": 29,
+    "parse_failures": {
+      "JSONDecodeError": 7
+    },
+    "wrong_list_types": 0,
+    "exact_quote_instances": 2,
+    "whitespace_normalized_quote_instances": 8
+  },
+  "fresh_test": {
+    "rows": 30,
+    "parse_failures": {
+      "JSONDecodeError": 3
+    },
+    "wrong_list_types": 0,
+    "exact_quote_instances": 2,
+    "whitespace_normalized_quote_instances": 12
+  },
+  "scope": "Retrospective output-format diagnosis only; no acceptance relaxation, rescoring under a new policy, model/prompt change, or rerun"
+}

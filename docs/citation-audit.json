@@ -1,0 +1,7 @@
+{
+  "scope": "Literal source-span audit of all stored extractive reader candidates, independently checked against normalized processed text",
+  "candidate_spans": 29,
+  "exact_source_matches": 29,
+  "all_candidates_grounded": true,
+  "semantic_correctness_claimed": false
+}
