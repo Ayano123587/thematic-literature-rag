@@ -30,6 +30,14 @@ refuses to overwrite its locked test report. Prior Persuasion and Call of the Wi
 results, including Qwen's zero score, remain unchanged. Different test books do
 not support a direct numerical improvement claim over those historical tests.
 
+The first attempt failed after its first validation configuration when writing
+to an absent ignored `data/interim` directory. It produced no saved validation
+score and never accessed fresh test questions. The continuation fixes directory
+creation, retains private per-query inference checkpoints, and reuses verified
+persisted indexes without changing the retrieval or reader policies. The parent
+authorized a 45-minute total wall limit because shared memory paging slowed CPU
+inference; [continuation metadata](v2-continuation.json) records this explicitly.
+
 ## Usage
 
 Use this repository's separate virtual environment, with `.[models,reader]`

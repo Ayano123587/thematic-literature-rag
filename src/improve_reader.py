@@ -37,9 +37,12 @@ def run():
     if output.exists():raise ValueError('V2 locked test already exists; preserve the first outcome')
     protocol=json.loads(Path('docs/v2-prespecified-protocol.json').read_text(encoding='utf-8'))
     declared=datetime.datetime.fromisoformat(protocol['declared_at_utc'])
-    deadline=declared.timestamp()+protocol['cpu_budget_minutes']*60
+    continuation_path=Path('docs/v2-continuation.json')
+    continuation=json.loads(continuation_path.read_text()) if continuation_path.exists() else None
+    deadline=declared.timestamp()+(continuation['total_wall_minutes'] if continuation else protocol['cpu_budget_minutes'])*60
+    (DATA/'interim').mkdir(parents=True,exist_ok=True)
     def check():
-        if time.time()>deadline:raise TimeoutError('Prespecified 25-minute CPU pass expired; no test restart')
+        if time.time()>deadline:raise TimeoutError('Bounded CPU pass expired; preserve checkpoints and do not restart test')
     check()
     url='https://www.gutenberg.org/ebooks/804.txt.utf-8'
     raw=urllib.request.urlopen(url,timeout=45).read()
@@ -51,17 +54,33 @@ def run():
     controls=[{'id':f'v2-control-{i}','question':q,'book':'dorian','answers':['']} for i,q in enumerate(CONTROLS['valid'])]
     indexes={}
     for words,overlap in [(180,40),(96,48)]:
-        check();passages=[p for book,text in texts.items() for p in chunk_book(book,text,words,overlap)]
-        index=HybridIndex(passages,backend='sentence-transformer',model_revision=DENSE_REVISION)
-        index.source_hashes={book:hashlib.sha256(text.encode()).hexdigest() for book,text in texts.items()}
-        index.save(Path('models')/f'v2-{words}.lrag');indexes[words]=index
-        print('indexed',words,len(passages),flush=True)
+        check();index_path=Path('models')/f'v2-{words}.lrag'
+        if index_path.exists():
+            index=HybridIndex.load(index_path);index.verify_sources(DATA/'processed')
+        else:
+            passages=[p for book,text in texts.items() for p in chunk_book(book,text,words,overlap)]
+            index=HybridIndex(passages,backend='sentence-transformer',model_revision=DENSE_REVISION)
+            index.source_hashes={book:hashlib.sha256(text.encode()).hexdigest() for book,text in texts.items()}
+            index.save(index_path)
+        indexes[words]=index
+        print('indexed',words,len(index.passages),flush=True)
     def infer(row,config):
         check();index=indexes[config['words']]
+        cache_path=DATA/'interim'/f"v2-{config['name']}-{row['id'].replace(':','-')}.json"
+        if cache_path.exists():
+            saved=json.loads(cache_path.read_text(encoding='utf-8'))
+            if saved['source']!=source or saved['config']!=config:raise ValueError('Inference cache provenance mismatch')
+            from src.features.build_features import Passage
+            result=saved['result'];result['passages']=[Passage(**p) for p in result['passages']]
+            return result
         hits=index.search(row['question'],book=row['book'],k=config['k'],reranker=RERANKER)
         passages=[expand_passage(p,texts[row['book']],config['expand']) if config['expand'] else p for p,_ in hits]
         spans=candidates(row['question'],passages,sliding=config['sliding'])
-        return {'id':row['id'],'book':row['book'],'answers':row['answers'],'spans':spans,'passages':passages}
+        result={'id':row['id'],'book':row['book'],'answers':row['answers'],'spans':spans,'passages':passages}
+        serialized={**result,'passages':[vars(p) for p in passages]}
+        cache_path.write_text(json.dumps({'source':source,'config':config,'result':serialized}),encoding='utf-8')
+        print('inferred',config['name'],row['id'],flush=True)
+        return result
     all_candidates=[];cache={}
     for config in CONFIGS:
         rows=[infer(r,config) for r in validation];negative=[infer(r,config) for r in controls]
@@ -74,7 +93,7 @@ def run():
         Path('data/interim/v2-validation-checkpoint.json').write_text(json.dumps(checkpoint,indent=2),encoding='utf-8')
         print(config['name'],max(c['objective'] for c in all_candidates if c['config']['name']==config['name']),flush=True)
     selected=max(all_candidates,key=lambda r:(r['objective'],r['validation']['exact_match'],-r['config']['k'],r['threshold']))
-    selection={'protocol':protocol,'source':source,'models':{'embedding_revision':DENSE_REVISION,'reranker_revision':RERANKER_REVISION,'reader':MODEL,'reader_revision':REVISION},'candidates':all_candidates,'selected':selected,'selection_frozen_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'retrieval_corpus':'Dorian plus fresh Journey source text, no QA answers or summaries indexed','validation_reused_from_v1':True}
+    selection={'protocol':protocol,'continuation':continuation,'source':source,'models':{'embedding_revision':DENSE_REVISION,'reranker_revision':RERANKER_REVISION,'reader':MODEL,'reader_revision':REVISION},'candidates':all_candidates,'selected':selected,'selection_frozen_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'retrieval_corpus':'Dorian plus fresh Journey source text, no QA answers or summaries indexed','validation_reused_from_v1':True}
     Path('docs/v2-validation-selection.json').write_text(json.dumps(selection,indent=2),encoding='utf-8')
     # Read and infer fresh-test questions only after selection has been serialized.
     test=[]
