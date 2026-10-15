@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1342,
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "death": 1817,
+    "key": "pride",
+    "url": "https://www.gutenberg.org/ebooks/1342.txt.utf-8",
+    "sha256": "3f6bb9d6f78e0293b56acd4714dd68cb7d6d1d293402031ce9d5a216bcaf9d75",
+    "bytes": 772386
+  },
+  {
+    "id": 84,
+    "title": "Frankenstein",
+    "author": "Mary Shelley",
+    "death": 1851,
+    "key": "frankenstein",
+    "url": "https://www.gutenberg.org/ebooks/84.txt.utf-8",
+    "sha256": "7810cd483cffcf2cc8a1d8f0d5807931e69d4f48cd14149b8c76f88af82fead3",
+    "bytes": 448885
+  }
+]

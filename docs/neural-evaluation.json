@@ -1,0 +1,37 @@
+{
+  "scope": "Four manually specified known-passage smoke queries; not thematic reasoning quality",
+  "backend": "sentence-transformer",
+  "k": 5,
+  "hit_rate": 1.0,
+  "mrr": 0.8333333333333334,
+  "cases": [
+    {
+      "book": "pride",
+      "query": "single man possession good fortune want wife",
+      "relevant_passages": 1,
+      "hit": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "book": "pride",
+      "query": "Elizabeth vanity pride prejudices Darcy",
+      "relevant_passages": 19,
+      "hit": true,
+      "reciprocal_rank": 0.3333333333333333
+    },
+    {
+      "book": "frankenstein",
+      "query": "creature Adam fallen angel",
+      "relevant_passages": 2,
+      "hit": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "book": "frankenstein",
+      "query": "life death ideal bounds break through",
+      "relevant_passages": 1,
+      "hit": true,
+      "reciprocal_rank": 1.0
+    }
+  ]
+}

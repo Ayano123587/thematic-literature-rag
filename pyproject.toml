@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "thematic-literature-rag"
+version = "0.1.0"
+description = "Traceable cross-book retrieval with lexical and dense semantics"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26,<3", "scikit-learn>=1.4,<2"]
+[project.optional-dependencies]
+models = ["sentence-transformers>=3,<6", "docling>=2,<3"]
+dev = ["pytest>=8,<10"]
+[project.scripts]
+literary-rag = "src.cli:main"
+[tool.setuptools.packages.find]
+include = ["src*"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]

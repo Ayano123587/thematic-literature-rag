@@ -1,0 +1,70 @@
+{
+  "theme": {
+    "query": "isolation rejection responsibility",
+    "books": [
+      {
+        "book": "frankenstein",
+        "citations": [
+          "frankenstein:6605-7634",
+          "frankenstein:35441-36488"
+        ]
+      },
+      {
+        "book": "pride",
+        "citations": [
+          "pride:231472-232516",
+          "pride:512850-513911"
+        ]
+      }
+    ]
+  },
+  "arc": {
+    "character": "Elizabeth",
+    "book": "pride",
+    "stages": [
+      {
+        "stage": "early",
+        "citations": [
+          "pride:124229-125323",
+          "pride:133912-135030"
+        ]
+      },
+      {
+        "stage": "middle",
+        "citations": [
+          "pride:353894-355001",
+          "pride:428448-429516"
+        ]
+      },
+      {
+        "stage": "late",
+        "citations": [
+          "pride:674097-675175",
+          "pride:688631-689733"
+        ]
+      }
+    ]
+  },
+  "cross_book_connections": [
+    {
+      "left": "frankenstein:35441-36488",
+      "right": "pride:512850-513911",
+      "cosine_similarity": 0.2666896192379532
+    },
+    {
+      "left": "frankenstein:6605-7634",
+      "right": "pride:231472-232516",
+      "cosine_similarity": 0.20179179481300666
+    },
+    {
+      "left": "frankenstein:35441-36488",
+      "right": "pride:231472-232516",
+      "cosine_similarity": 0.1840428819269096
+    },
+    {
+      "left": "frankenstein:6605-7634",
+      "right": "pride:512850-513911",
+      "cosine_similarity": 0.18055152623350276
+    }
+  ]
+}
