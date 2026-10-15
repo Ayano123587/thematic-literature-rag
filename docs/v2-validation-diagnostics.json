@@ -1,0 +1,19 @@
+{
+  "computed_at_utc": "2026-10-15T20:57:09.527454+00:00",
+  "scope": "Dorian validation only; before fresh test selection",
+  "config": "baseline180_top5",
+  "queries": 29,
+  "gold_literal_in_full_source": 17,
+  "gold_literal_in_retrieved_context": 10,
+  "limitation": "Literal normalized answer presence is a weak retrieval diagnostic, not comprehension accuracy; short answer matches can be incidental.",
+  "fine96_top12": {
+    "queries": 29,
+    "gold_literal_in_retrieved_context": 8
+  },
+  "fine96_context_top12": {
+    "queries": 29,
+    "gold_literal_in_retrieved_context": 11,
+    "computed_after_selection": true,
+    "used_to_change_selection": false
+  }
+}

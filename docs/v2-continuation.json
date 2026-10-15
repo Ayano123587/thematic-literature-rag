@@ -1,0 +1,6 @@
+{
+  "declared_at_utc": "2026-10-15T20:51:04+00:00",
+  "total_wall_minutes": 45,
+  "reason": "Root authorized extension for shared-memory slowdown. The first attempt finished one validation configuration but failed writing the absent ignored interim directory. No fresh test questions were accessed or outcomes produced. Resume identical policies with per-query private checkpoints and verified existing indexes.",
+  "fresh_test_accessed_before_continuation": false
+}

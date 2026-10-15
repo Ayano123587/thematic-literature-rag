@@ -1,0 +1,19 @@
+{
+  "declared_at_utc": "2026-10-15T20:59:14+00:00",
+  "fresh_selection_exists": false,
+  "fresh_test_accessed": false,
+  "hypothesis": "Higher reader confidence in weakly ranked contexts may introduce distractors. Test stronger retrieval-rank penalties using cached validation spans only.",
+  "initial_penalties": [0, 0.3, 0.8],
+  "additional_penalties": [1.5, 3, 6],
+  "validation_diagnostic_threshold": 0,
+  "observations": {
+    "baseline180_top5_f1_at_0_8": 0.07622504537205081,
+    "baseline180_top5_f1_at_1_5": 0.06374085684430511,
+    "fine96_top12_f1_at_0_8": 0.07155735857561416,
+    "fine96_top12_f1_at_1_5": 0.08113590263691683,
+    "fine96_top12_f1_at_3_and_6": 0.08113590263691683
+  },
+  "procedure": "Interrupt validation before selection; retain exact per-query inference caches, resume same three inference configurations, evaluate expanded grid on validation only, freeze once before fresh test.",
+  "total_wall_minutes_unchanged": 45,
+  "limitation": "Small reused validation set; modest observed gain and plateau can reflect overfitting. No fresh-test inference supports this decision."
+}

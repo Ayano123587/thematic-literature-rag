@@ -14,14 +14,18 @@ def main():
     sub=parser.add_subparsers(dest="command",required=True)
     f=sub.add_parser("fetch"); f.add_argument("--acknowledge-local-rights",action="store_true")
     t=sub.add_parser("index"); t.add_argument("--backend",choices=["lsa","sentence-transformer"],default="lsa")
+    t.add_argument('--words',type=int,default=180);t.add_argument('--overlap',type=int,default=40)
+    t.add_argument('--output');t.add_argument('--books',nargs='+')
     q=sub.add_parser("query"); q.add_argument("text"); q.add_argument("--reranker")
     a=sub.add_parser("arc"); a.add_argument("character"); a.add_argument("book");a.add_argument('--topic')
     n=sub.add_parser('fetch-qa');n.add_argument('--acknowledge-local-rights',action='store_true')
+    v2fetch=sub.add_parser('fetch-reader-v2');v2fetch.add_argument('--acknowledge-local-rights',action='store_true')
     b=sub.add_parser('benchmark');b.add_argument('--output',default='docs/narrativeqa-locked-test.json')
     er=sub.add_parser('evaluate-reader');er.add_argument('--output',default='docs/reader-locked-test.json')
     sub.add_parser('evaluate-themes')
     s=sub.add_parser('synthesize');s.add_argument('text');s.add_argument('--books',nargs='+')
     answer=sub.add_parser('answer');answer.add_argument('text');answer.add_argument('book');answer.add_argument('--threshold',type=float,default=None)
+    improved=sub.add_parser('answer-v2');improved.add_argument('text');improved.add_argument('book');improved.add_argument('--selection',default='docs/v2-validation-selection.json');improved.add_argument('--index')
     g=sub.add_parser('generate');g.add_argument('text');g.add_argument('--books',nargs='+',required=True);g.add_argument('--device',default='auto',choices=['auto','cpu','cuda']);g.add_argument('--prompt',choices=['direct','strict']);g.add_argument('--reranker')
     pg=sub.add_parser('prepare-generation');pg.add_argument('--acknowledge-local-rights',action='store_true');pg.add_argument('--folder',default='data/interim/kaggle-generative')
     d=sub.add_parser("ingest"); d.add_argument("path"); d.add_argument("book")
@@ -32,6 +36,9 @@ def main():
     elif args.command=='fetch-qa':
         from src.data.narrativeqa import fetch as fetch_qa
         result=fetch_qa(args.acknowledge_local_rights)
+    elif args.command=='fetch-reader-v2':
+        from src.data.reader_v2 import fetch as fetch_v2
+        result=fetch_v2(args.acknowledge_local_rights)
     elif args.command=='benchmark':
         from src.benchmark import run
         result=run(Path(args.output))
@@ -48,13 +55,25 @@ def main():
         target=DATA/"processed"/f"{args.book}.txt"
         target.write_text(ingest_document(args.path),encoding="utf-8")
         result={"processed":str(target),"note":"Citations reference normalized converted text, not PDF page coordinates"}
+    elif args.command=='answer-v2':
+        from src.models.grounded_spans import answer as grounded_answer
+        selection=json.loads(Path(args.selection).read_text(encoding='utf-8'))
+        path=Path(args.index) if args.index else Path('models')/f"v2-{selection['selected']['config']['words']}.lrag"
+        index=HybridIndex.load(path)
+        result=grounded_answer(index,args.text,args.book,DATA/'processed',selection)
     elif args.command=="index":
-        empty=[p.name for p in (DATA/'processed').glob('*.txt') if not p.read_text(encoding='utf-8').strip()]
+        paths=sorted((DATA/'processed').glob('*.txt'))
+        if args.books:
+            missing=set(args.books)-{p.stem for p in paths}
+            if missing:parser.error('Requested books are absent: '+', '.join(sorted(missing)))
+            paths=[p for p in paths if p.stem in args.books]
+        empty=[p.name for p in paths if not p.read_text(encoding='utf-8').strip()]
         if empty:parser.error('Empty source documents cannot be indexed: '+', '.join(empty))
-        passages=[p for path in sorted((DATA/"processed").glob("*.txt")) for p in chunk_book(path.stem,path.read_text(encoding="utf-8"))]
+        passages=[p for path in paths for p in chunk_book(path.stem,path.read_text(encoding="utf-8"),args.words,args.overlap)]
         index=HybridIndex(passages,backend=args.backend)
-        index.source_hashes={path.stem:hashlib.sha256(path.read_text(encoding='utf-8').encode()).hexdigest() for path in sorted((DATA/'processed').glob('*.txt'))}
-        index.save(MODEL)
+        index.chunk_contract={'words':args.words,'overlap':args.overlap}
+        index.source_hashes={path.stem:hashlib.sha256(path.read_text(encoding='utf-8').encode()).hexdigest() for path in paths}
+        index.save(Path(args.output) if args.output else MODEL)
         result={"passages":len(passages),"backend":args.backend}
     else:
         index=HybridIndex.load(MODEL);index.verify_sources(DATA/'processed')

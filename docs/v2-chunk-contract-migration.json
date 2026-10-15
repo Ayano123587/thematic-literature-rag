@@ -1,0 +1,25 @@
+{
+  "scope": "Post-experiment local v2 archive metadata hardening; no inference, score refit or test rerun",
+  "records": [
+    {
+      "words": 180,
+      "overlap": 40,
+      "before_sha256": "e7d85c8ba910c9c3c5934dfce511321a51e1b09f60c2e1c53c24ade19f21a563",
+      "after_sha256": "c5dfcd0aef75f2af47a180750b294f154de0b76938942913ec4bbbf508b7402b",
+      "vectors_bitwise_equal": true,
+      "passages_identical": true,
+      "source_fingerprints_unchanged": true,
+      "historical_benchmark_archives_modified": false
+    },
+    {
+      "words": 96,
+      "overlap": 48,
+      "before_sha256": "a6206c5b41d81d871ebd3c1cfcb155a988f95ce6db3b1a04b26074a2e8a6cbac",
+      "after_sha256": "d39c9ad10940b454a7a4f42baeac1e7acc464de7c724f5434b6a74989aceb013",
+      "vectors_bitwise_equal": true,
+      "passages_identical": true,
+      "source_fingerprints_unchanged": true,
+      "historical_benchmark_archives_modified": false
+    }
+  ]
+}

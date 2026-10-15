@@ -1,0 +1,1503 @@
+{
+  "protocol": {
+    "round": "v2",
+    "declared_at_utc": "2026-10-15T20:36:49.357167+00:00",
+    "fresh_test_document": "14fc0de61e9e8044764da1fb9f647d8ceb60e561",
+    "title": "A Sentimental Journey Through France and Italy",
+    "author": "Laurence Sterne",
+    "author_death": 1768,
+    "gutenberg_id": 804,
+    "validation_book": "dorian",
+    "validation_questions": 29,
+    "fresh_test_questions_inspected": false,
+    "cpu_budget_minutes": 25,
+    "hypothesis": "Finer answer-focused retrieval windows plus non-truncating sliding-window reader may recover missed evidence. Citations remain deterministic source spans.",
+    "selection": "Validation-only EM/F1 and explicit false-answer controls; freeze before fresh-test inference",
+    "prior_results_preserved": true
+  },
+  "continuation": {
+    "declared_at_utc": "2026-10-15T20:51:04+00:00",
+    "total_wall_minutes": 45,
+    "reason": "Root authorized extension for shared-memory slowdown. The first attempt finished one validation configuration but failed writing the absent ignored interim directory. No fresh test questions were accessed or outcomes produced. Resume identical policies with per-query private checkpoints and verified existing indexes.",
+    "fresh_test_accessed_before_continuation": false
+  },
+  "source": {
+    "url": "https://www.gutenberg.org/ebooks/804.txt.utf-8",
+    "raw_sha256": "d5afa0205c2343a389f8b2454e2a8723f24335c783e834ef7cd93a55d0c19dcc",
+    "normalized_text_sha256": "fb21ebb52140c08d9b4c4b9642c398d59c34b8c697be0d00d4a285af6ed590f6",
+    "qa_source_commit": "904246f6d1fe99a99a08a03501fe3e619af2cee5",
+    "qa_csv_sha256": "990b02af0b5280de210f0e6b80f43b3fab80dc6de630c4d5059a1b7131c26e38",
+    "source_representation": "CRLF-v1, exact Path.read_text citation coordinates"
+  },
+  "models": {
+    "embedding_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "reranker_revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "reader": "deepset/minilm-uncased-squad2",
+    "reader_revision": "934656cdda79824eabf503ed56e15c01ddbdbe3f"
+  },
+  "candidates": [
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 0,
+      "rank_penalty": 0,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.06239737274220032,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.3103448275862069,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.06239737274220032
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 0,
+      "rank_penalty": 0.3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.07389162561576354,
+        "exact_match": 0.06896551724137931,
+        "abstention_rate": 0.3103448275862069,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.07389162561576354
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 0,
+      "rank_penalty": 0.8,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.07622504537205081,
+        "exact_match": 0.06896551724137931,
+        "abstention_rate": 0.3103448275862069,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.07622504537205081
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 0,
+      "rank_penalty": 1.5,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.06374085684430512,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.3103448275862069,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.06374085684430512
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 0,
+      "rank_penalty": 3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.06374085684430512,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.3103448275862069,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.06374085684430512
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 0,
+      "rank_penalty": 6,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.06374085684430512,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.3103448275862069,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.06374085684430512
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 2,
+      "rank_penalty": 0,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.06239737274220032,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.41379310344827586,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.06239737274220032
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 2,
+      "rank_penalty": 0.3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.07389162561576354,
+        "exact_match": 0.06896551724137931,
+        "abstention_rate": 0.41379310344827586,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.07389162561576354
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 2,
+      "rank_penalty": 0.8,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.07622504537205081,
+        "exact_match": 0.06896551724137931,
+        "abstention_rate": 0.41379310344827586,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.07622504537205081
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 2,
+      "rank_penalty": 1.5,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.06374085684430512,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.41379310344827586,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.06374085684430512
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 2,
+      "rank_penalty": 3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.06374085684430512,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.41379310344827586,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.06374085684430512
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 2,
+      "rank_penalty": 6,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.06374085684430512,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.41379310344827586,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.06374085684430512
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 4,
+      "rank_penalty": 0,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.027914614121510674,
+        "exact_match": 0.0,
+        "abstention_rate": 0.5517241379310345,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.027914614121510674
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 4,
+      "rank_penalty": 0.3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.03940886699507389,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.5517241379310345,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.03940886699507389
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 4,
+      "rank_penalty": 0.8,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.03940886699507389,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.5517241379310345,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.03940886699507389
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 4,
+      "rank_penalty": 1.5,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.027914614121510674,
+        "exact_match": 0.0,
+        "abstention_rate": 0.5517241379310345,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.027914614121510674
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 4,
+      "rank_penalty": 3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.027914614121510674,
+        "exact_match": 0.0,
+        "abstention_rate": 0.5517241379310345,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.027914614121510674
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 4,
+      "rank_penalty": 6,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.027914614121510674,
+        "exact_match": 0.0,
+        "abstention_rate": 0.5517241379310345,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.027914614121510674
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 6,
+      "rank_penalty": 0,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.027914614121510674,
+        "exact_match": 0.0,
+        "abstention_rate": 0.7586206896551724,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.027914614121510674
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 6,
+      "rank_penalty": 0.3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.03940886699507389,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.7586206896551724,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.03940886699507389
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 6,
+      "rank_penalty": 0.8,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.03940886699507389,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.7586206896551724,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.03940886699507389
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 6,
+      "rank_penalty": 1.5,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.027914614121510674,
+        "exact_match": 0.0,
+        "abstention_rate": 0.7586206896551724,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.027914614121510674
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 6,
+      "rank_penalty": 3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.027914614121510674,
+        "exact_match": 0.0,
+        "abstention_rate": 0.7586206896551724,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.027914614121510674
+    },
+    {
+      "config": {
+        "name": "baseline180_top5",
+        "words": 180,
+        "overlap": 40,
+        "k": 5,
+        "expand": 0,
+        "sliding": false
+      },
+      "threshold": 6,
+      "rank_penalty": 6,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.027914614121510674,
+        "exact_match": 0.0,
+        "abstention_rate": 0.7586206896551724,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.027914614121510674
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 0,
+      "rank_penalty": 0,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.06431308155446086,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.1724137931034483,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.06431308155446086
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 0,
+      "rank_penalty": 0.3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.06431308155446086,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.1724137931034483,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.06431308155446086
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 0,
+      "rank_penalty": 0.8,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.07155735857561414,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.1724137931034483,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.07155735857561414
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 0,
+      "rank_penalty": 1.5,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.08113590263691683,
+        "exact_match": 0.06896551724137931,
+        "abstention_rate": 0.1724137931034483,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.08113590263691683
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 0,
+      "rank_penalty": 3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.08113590263691683,
+        "exact_match": 0.06896551724137931,
+        "abstention_rate": 0.1724137931034483,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.08113590263691683
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 0,
+      "rank_penalty": 6,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.08113590263691683,
+        "exact_match": 0.06896551724137931,
+        "abstention_rate": 0.1724137931034483,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.08113590263691683
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 2,
+      "rank_penalty": 0,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.029830322933771213,
+        "exact_match": 0.0,
+        "abstention_rate": 0.3793103448275862,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.029830322933771213
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 2,
+      "rank_penalty": 0.3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.029830322933771213,
+        "exact_match": 0.0,
+        "abstention_rate": 0.3793103448275862,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.029830322933771213
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 2,
+      "rank_penalty": 0.8,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.0370745999549245,
+        "exact_match": 0.0,
+        "abstention_rate": 0.3793103448275862,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.0370745999549245
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 2,
+      "rank_penalty": 1.5,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.05431597926526933,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.3793103448275862,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.05431597926526933
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 2,
+      "rank_penalty": 3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.05431597926526933,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.3793103448275862,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.05431597926526933
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 2,
+      "rank_penalty": 6,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.05431597926526933,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.3793103448275862,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.05431597926526933
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 4,
+      "rank_penalty": 0,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.029830322933771213,
+        "exact_match": 0.0,
+        "abstention_rate": 0.5517241379310345,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.029830322933771213
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 4,
+      "rank_penalty": 0.3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.029830322933771213,
+        "exact_match": 0.0,
+        "abstention_rate": 0.5517241379310345,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.029830322933771213
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 4,
+      "rank_penalty": 0.8,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.04167230110434978,
+        "exact_match": 0.0,
+        "abstention_rate": 0.5517241379310345,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.04167230110434978
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 4,
+      "rank_penalty": 1.5,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.05891368041469461,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.5517241379310345,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.05891368041469461
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 4,
+      "rank_penalty": 3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.05891368041469461,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.5517241379310345,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.05891368041469461
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 4,
+      "rank_penalty": 6,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.05891368041469461,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.5517241379310345,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.05891368041469461
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 6,
+      "rank_penalty": 0,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.02216748768472906,
+        "exact_match": 0.0,
+        "abstention_rate": 0.6551724137931034,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.02216748768472906
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 6,
+      "rank_penalty": 0.3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.02216748768472906,
+        "exact_match": 0.0,
+        "abstention_rate": 0.6551724137931034,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.02216748768472906
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 6,
+      "rank_penalty": 0.8,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.02216748768472906,
+        "exact_match": 0.0,
+        "abstention_rate": 0.6551724137931034,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.02216748768472906
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 6,
+      "rank_penalty": 1.5,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.03940886699507389,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.6551724137931034,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.03940886699507389
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 6,
+      "rank_penalty": 3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.07389162561576354,
+        "exact_match": 0.06896551724137931,
+        "abstention_rate": 0.6551724137931034,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.07389162561576354
+    },
+    {
+      "config": {
+        "name": "fine96_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 0,
+        "sliding": true
+      },
+      "threshold": 6,
+      "rank_penalty": 6,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.07389162561576354,
+        "exact_match": 0.06896551724137931,
+        "abstention_rate": 0.6551724137931034,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.07389162561576354
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 0,
+      "rank_penalty": 0,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.0555008210180624,
+        "exact_match": 0.0,
+        "abstention_rate": 0.06896551724137931,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.0555008210180624
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 0,
+      "rank_penalty": 0.3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.03366174055829228,
+        "exact_match": 0.0,
+        "abstention_rate": 0.06896551724137931,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.03366174055829228
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 0,
+      "rank_penalty": 0.8,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.08775234231623685,
+        "exact_match": 0.06896551724137931,
+        "abstention_rate": 0.06896551724137931,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.08775234231623685
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 0,
+      "rank_penalty": 1.5,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.08775234231623685,
+        "exact_match": 0.06896551724137931,
+        "abstention_rate": 0.06896551724137931,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.08775234231623685
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 0,
+      "rank_penalty": 3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.08775234231623685,
+        "exact_match": 0.06896551724137931,
+        "abstention_rate": 0.06896551724137931,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.08775234231623685
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 0,
+      "rank_penalty": 6,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.07625808944267362,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.06896551724137931,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.07625808944267362
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 2,
+      "rank_penalty": 0,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.027914614121510674,
+        "exact_match": 0.0,
+        "abstention_rate": 0.3448275862068966,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.027914614121510674
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 2,
+      "rank_penalty": 0.3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.027914614121510674,
+        "exact_match": 0.0,
+        "abstention_rate": 0.3448275862068966,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.027914614121510674
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 2,
+      "rank_penalty": 0.8,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.047522457258765576,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.3448275862068966,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.047522457258765576
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 2,
+      "rank_penalty": 1.5,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.047522457258765576,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.3448275862068966,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.047522457258765576
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 2,
+      "rank_penalty": 3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.047522457258765576,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.3448275862068966,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.047522457258765576
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 2,
+      "rank_penalty": 6,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.047522457258765576,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.3448275862068966,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.047522457258765576
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 4,
+      "rank_penalty": 0,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.027914614121510674,
+        "exact_match": 0.0,
+        "abstention_rate": 0.6551724137931034,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.027914614121510674
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 4,
+      "rank_penalty": 0.3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.027914614121510674,
+        "exact_match": 0.0,
+        "abstention_rate": 0.6551724137931034,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.027914614121510674
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 4,
+      "rank_penalty": 0.8,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.047522457258765576,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.6551724137931034,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.047522457258765576
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 4,
+      "rank_penalty": 1.5,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.047522457258765576,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.6551724137931034,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.047522457258765576
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 4,
+      "rank_penalty": 3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.047522457258765576,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.6551724137931034,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.047522457258765576
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 4,
+      "rank_penalty": 6,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.047522457258765576,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.6551724137931034,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.047522457258765576
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 6,
+      "rank_penalty": 0,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.022988505747126436,
+        "exact_match": 0.0,
+        "abstention_rate": 0.7931034482758621,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.022988505747126436
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 6,
+      "rank_penalty": 0.3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.022988505747126436,
+        "exact_match": 0.0,
+        "abstention_rate": 0.7931034482758621,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.022988505747126436
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 6,
+      "rank_penalty": 0.8,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.034482758620689655,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.7931034482758621,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.034482758620689655
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 6,
+      "rank_penalty": 1.5,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.034482758620689655,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.7931034482758621,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.034482758620689655
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 6,
+      "rank_penalty": 3,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.034482758620689655,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.7931034482758621,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.034482758620689655
+    },
+    {
+      "config": {
+        "name": "fine96_context_top12",
+        "words": 96,
+        "overlap": 48,
+        "k": 12,
+        "expand": 700,
+        "sliding": true
+      },
+      "threshold": 6,
+      "rank_penalty": 6,
+      "validation": {
+        "queries": 29,
+        "token_f1": 0.034482758620689655,
+        "exact_match": 0.034482758620689655,
+        "abstention_rate": 0.7931034482758621,
+        "control_false_answer_rate": 0.0
+      },
+      "objective": 0.034482758620689655
+    }
+  ],
+  "selected": {
+    "config": {
+      "name": "fine96_context_top12",
+      "words": 96,
+      "overlap": 48,
+      "k": 12,
+      "expand": 700,
+      "sliding": true
+    },
+    "threshold": 0,
+    "rank_penalty": 0.8,
+    "validation": {
+      "queries": 29,
+      "token_f1": 0.08775234231623685,
+      "exact_match": 0.06896551724137931,
+      "abstention_rate": 0.06896551724137931,
+      "control_false_answer_rate": 0.0
+    },
+    "objective": 0.08775234231623685
+  },
+  "selection_frozen_at_utc": "2026-10-15T21:08:02.752976+00:00",
+  "retrieval_corpus": "Dorian plus fresh Journey source text, no QA answers or summaries indexed",
+  "validation_reused_from_v1": true
+}
