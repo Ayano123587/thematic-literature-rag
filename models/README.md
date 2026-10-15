@@ -1,0 +1,1 @@
+Fitted indexes are local and ignored. Never load pickle indexes from untrusted sources. LSA fits up to 128 dense dimensions with a fixed random seed. Optional neural models download pretrained weights; no neural training is claimed.
