@@ -2,6 +2,7 @@
 from functools import lru_cache
 import torch
 from transformers import AutoModelForQuestionAnswering,AutoTokenizer
+from src.models.loading import validate_loading_info
 
 MODEL='deepset/minilm-uncased-squad2'
 REVISION='934656cdda79824eabf503ed56e15c01ddbdbe3f'
@@ -11,7 +12,8 @@ REVISION='934656cdda79824eabf503ed56e15c01ddbdbe3f'
 def reader():
     torch.set_num_threads(2)
     tokenizer=AutoTokenizer.from_pretrained(MODEL,revision=REVISION,trust_remote_code=False)
-    model=AutoModelForQuestionAnswering.from_pretrained(MODEL,revision=REVISION,trust_remote_code=False,use_safetensors=True)
+    model,loading_info=AutoModelForQuestionAnswering.from_pretrained(MODEL,revision=REVISION,trust_remote_code=False,use_safetensors=True,output_loading_info=True)
+    validate_loading_info(loading_info)
     model.eval()
     return tokenizer,model
 

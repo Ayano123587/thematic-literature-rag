@@ -27,13 +27,16 @@ def token_f1(prediction, answer):
 def choose(spans, threshold, penalty):
     if not math.isfinite(threshold) or not math.isfinite(penalty) or penalty < 0:
         raise ValueError('Invalid finite policy')
-    eligible = [s for s in spans if math.isfinite(s['null_margin']) and s['null_margin'] > threshold]
+    eligible = [s for s in spans if math.isfinite(s['null_margin']) and s['null_margin'] > threshold
+                and isinstance(s['retrieval_rank'], int) and s['retrieval_rank'] >= 1]
     return max(eligible, key=lambda s: s['null_margin'] - penalty * (s['retrieval_rank'] - 1), default=None)
 
 
 def extract(question, passages, tokenizer, model, device, batch_size=8):
     import torch
-    if not passages:
+    if batch_size < 1:
+        raise ValueError('Reader batch size must be positive')
+    if not passages or not isinstance(question, str) or not question.strip():
         return []
     if len(tokenizer.encode(question, add_special_tokens=False)) > 352:
         return []
@@ -77,6 +80,10 @@ def extract(question, passages, tokenizer, model, device, batch_size=8):
 def evaluate(predictions, gold, thresholds, penalties):
     positives = [r for r in gold if r['kind'] == 'validation']
     controls = [r for r in gold if r['kind'] == 'control']
+    if not positives or not controls:
+        raise ValueError('Comparison requires validation answers and unknown controls')
+    if len({r['id'] for r in gold}) != len(gold) or set(predictions) != {r['id'] for r in gold}:
+        raise ValueError('Duplicate or misaligned comparison IDs')
     policies = []
     for threshold in thresholds:
         for penalty in penalties:
@@ -106,6 +113,7 @@ def run(folder, output, budget_seconds=900):
     import torch
     from transformers import AutoModelForQuestionAnswering, AutoTokenizer
     from huggingface_hub import hf_hub_download
+    from src.models.loading import validate_loading_info
     folder, output = Path(folder), Path(output)
     output.mkdir(parents=True, exist_ok=True)
     if (output / 'reader-comparison.json').exists():
@@ -129,8 +137,11 @@ def run(folder, output, budget_seconds=900):
             raise TimeoutError('15-minute run budget expired')
         name, revision = specification['name'], specification['revision']
         tokenizer = AutoTokenizer.from_pretrained(name, revision=revision, trust_remote_code=False)
-        model = AutoModelForQuestionAnswering.from_pretrained(
-            name, revision=revision, trust_remote_code=False, use_safetensors=True).to('cuda').eval()
+        model, loading_info = AutoModelForQuestionAnswering.from_pretrained(
+            name, revision=revision, trust_remote_code=False, use_safetensors=True,
+            output_loading_info=True)
+        validate_loading_info(loading_info)
+        model = model.to('cuda').eval()
         predictions[name] = {}
         for row in rows:
             if time.monotonic() >= deadline:
@@ -193,9 +204,11 @@ def run(folder, output, budget_seconds=900):
         torch.cuda.empty_cache()
         specification = next(m for m in protocol['models'] if m['name'] == selected_name)
         tokenizer = AutoTokenizer.from_pretrained(selected_name, revision=specification['revision'], trust_remote_code=False)
-        model = AutoModelForQuestionAnswering.from_pretrained(
+        model, loading_info = AutoModelForQuestionAnswering.from_pretrained(
             selected_name, revision=specification['revision'], trust_remote_code=False,
-            use_safetensors=True).to('cuda').eval()
+            use_safetensors=True, output_loading_info=True)
+        validate_loading_info(loading_info)
+        model = model.to('cuda').eval()
         fresh_predictions = {}
         for row in fresh_rows:
             if time.monotonic() >= deadline:

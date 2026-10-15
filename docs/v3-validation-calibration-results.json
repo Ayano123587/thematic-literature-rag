@@ -1,0 +1,1469 @@
+{
+  "scope": "Validation-only post-v3 calibration; no inference, no fresh held-out score, no production policy change",
+  "protocol": {
+    "declared_at_utc": "2026-10-15T21:47:13+00:00",
+    "scope": "Cached Dorian validation outputs only; no new inference or GPU",
+    "motivation": "Prespecified RoBERTa abstention was 79.31%; a nonnegative threshold grid may not match this model's novel-domain null-margin scale.",
+    "hypothesis": "Allowing negative null thresholds may improve the larger reader's validation F1 while the same authored-control penalty constrains false answers.",
+    "thresholds": [
+      -20,
+      -15,
+      -10,
+      -8,
+      -6,
+      -4,
+      -2,
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "rank_penalties": [
+      0,
+      0.3,
+      0.8,
+      1.5,
+      3,
+      6
+    ],
+    "objective_and_tie_breaks": "Unchanged validation F1 minus 0.25 control false-answer rate, EM, larger threshold, smaller penalty, MiniLM order",
+    "heldout_status": "Poe and Journey tests are now observed. This follow-up has no fresh held-out score and cannot alter their frozen reported outcomes.",
+    "no_new_model_run": true,
+    "production_policy_change_authorized_by_this_followup": false
+  },
+  "models": {
+    "deepset/minilm-uncased-squad2": {
+      "policies": [
+        {
+          "threshold": -20,
+          "rank_penalty": 0,
+          "token_f1": 0.060426929392446635,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.18957307060755335
+        },
+        {
+          "threshold": -20,
+          "rank_penalty": 0.3,
+          "token_f1": 0.06814449917898194,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.18185550082101806
+        },
+        {
+          "threshold": -20,
+          "rank_penalty": 0.8,
+          "token_f1": 0.11648797450014489,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.1335120254998551
+        },
+        {
+          "threshold": -20,
+          "rank_penalty": 1.5,
+          "token_f1": 0.15097073312083456,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.09902926687916544
+        },
+        {
+          "threshold": -20,
+          "rank_penalty": 3,
+          "token_f1": 0.1548021507453556,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.09519784925464439
+        },
+        {
+          "threshold": -20,
+          "rank_penalty": 6,
+          "token_f1": 0.14553259197635302,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.10446740802364698
+        },
+        {
+          "threshold": -15,
+          "rank_penalty": 0,
+          "token_f1": 0.060426929392446635,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.18957307060755335
+        },
+        {
+          "threshold": -15,
+          "rank_penalty": 0.3,
+          "token_f1": 0.06814449917898194,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.18185550082101806
+        },
+        {
+          "threshold": -15,
+          "rank_penalty": 0.8,
+          "token_f1": 0.11648797450014489,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.1335120254998551
+        },
+        {
+          "threshold": -15,
+          "rank_penalty": 1.5,
+          "token_f1": 0.15097073312083456,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.09902926687916544
+        },
+        {
+          "threshold": -15,
+          "rank_penalty": 3,
+          "token_f1": 0.1548021507453556,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.09519784925464439
+        },
+        {
+          "threshold": -15,
+          "rank_penalty": 6,
+          "token_f1": 0.14553259197635302,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.10446740802364698
+        },
+        {
+          "threshold": -10,
+          "rank_penalty": 0,
+          "token_f1": 0.060426929392446635,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.18957307060755335
+        },
+        {
+          "threshold": -10,
+          "rank_penalty": 0.3,
+          "token_f1": 0.06814449917898194,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.18185550082101806
+        },
+        {
+          "threshold": -10,
+          "rank_penalty": 0.8,
+          "token_f1": 0.11648797450014489,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.1335120254998551
+        },
+        {
+          "threshold": -10,
+          "rank_penalty": 1.5,
+          "token_f1": 0.15097073312083456,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.09902926687916544
+        },
+        {
+          "threshold": -10,
+          "rank_penalty": 3,
+          "token_f1": 0.1548021507453556,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.09519784925464439
+        },
+        {
+          "threshold": -10,
+          "rank_penalty": 6,
+          "token_f1": 0.14553259197635302,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.10446740802364698
+        },
+        {
+          "threshold": -8,
+          "rank_penalty": 0,
+          "token_f1": 0.060426929392446635,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.75,
+          "abstention_rate": 0.0,
+          "objective": -0.12707307060755335
+        },
+        {
+          "threshold": -8,
+          "rank_penalty": 0.3,
+          "token_f1": 0.06814449917898194,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.75,
+          "abstention_rate": 0.0,
+          "objective": -0.11935550082101806
+        },
+        {
+          "threshold": -8,
+          "rank_penalty": 0.8,
+          "token_f1": 0.11648797450014489,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 0.75,
+          "abstention_rate": 0.0,
+          "objective": -0.07101202549985511
+        },
+        {
+          "threshold": -8,
+          "rank_penalty": 1.5,
+          "token_f1": 0.15097073312083456,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 0.75,
+          "abstention_rate": 0.0,
+          "objective": -0.03652926687916544
+        },
+        {
+          "threshold": -8,
+          "rank_penalty": 3,
+          "token_f1": 0.1548021507453556,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 0.75,
+          "abstention_rate": 0.0,
+          "objective": -0.03269784925464439
+        },
+        {
+          "threshold": -8,
+          "rank_penalty": 6,
+          "token_f1": 0.14553259197635302,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 0.75,
+          "abstention_rate": 0.0,
+          "objective": -0.041967408023646985
+        },
+        {
+          "threshold": -6,
+          "rank_penalty": 0,
+          "token_f1": 0.060426929392446635,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.75,
+          "abstention_rate": 0.0,
+          "objective": -0.12707307060755335
+        },
+        {
+          "threshold": -6,
+          "rank_penalty": 0.3,
+          "token_f1": 0.06814449917898194,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.75,
+          "abstention_rate": 0.0,
+          "objective": -0.11935550082101806
+        },
+        {
+          "threshold": -6,
+          "rank_penalty": 0.8,
+          "token_f1": 0.11648797450014489,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 0.75,
+          "abstention_rate": 0.0,
+          "objective": -0.07101202549985511
+        },
+        {
+          "threshold": -6,
+          "rank_penalty": 1.5,
+          "token_f1": 0.15097073312083456,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 0.75,
+          "abstention_rate": 0.0,
+          "objective": -0.03652926687916544
+        },
+        {
+          "threshold": -6,
+          "rank_penalty": 3,
+          "token_f1": 0.1548021507453556,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 0.75,
+          "abstention_rate": 0.0,
+          "objective": -0.03269784925464439
+        },
+        {
+          "threshold": -6,
+          "rank_penalty": 6,
+          "token_f1": 0.1433078978717924,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 0.75,
+          "abstention_rate": 0.0,
+          "objective": -0.044192102128207594
+        },
+        {
+          "threshold": -4,
+          "rank_penalty": 0,
+          "token_f1": 0.060426929392446635,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.5,
+          "abstention_rate": 0.0,
+          "objective": -0.06457307060755337
+        },
+        {
+          "threshold": -4,
+          "rank_penalty": 0.3,
+          "token_f1": 0.06814449917898194,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.5,
+          "abstention_rate": 0.0,
+          "objective": -0.05685550082101806
+        },
+        {
+          "threshold": -4,
+          "rank_penalty": 0.8,
+          "token_f1": 0.11648797450014489,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 0.5,
+          "abstention_rate": 0.0,
+          "objective": -0.008512025499855108
+        },
+        {
+          "threshold": -4,
+          "rank_penalty": 1.5,
+          "token_f1": 0.15097073312083456,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 0.5,
+          "abstention_rate": 0.0,
+          "objective": 0.02597073312083456
+        },
+        {
+          "threshold": -4,
+          "rank_penalty": 3,
+          "token_f1": 0.15097073312083456,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 0.5,
+          "abstention_rate": 0.0,
+          "objective": 0.02597073312083456
+        },
+        {
+          "threshold": -4,
+          "rank_penalty": 6,
+          "token_f1": 0.13947648024727133,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 0.5,
+          "abstention_rate": 0.0,
+          "objective": 0.014476480247271328
+        },
+        {
+          "threshold": -2,
+          "rank_penalty": 0,
+          "token_f1": 0.060426929392446635,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.25,
+          "abstention_rate": 0.034482758620689655,
+          "objective": -0.002073070607553365
+        },
+        {
+          "threshold": -2,
+          "rank_penalty": 0.3,
+          "token_f1": 0.06814449917898194,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.25,
+          "abstention_rate": 0.034482758620689655,
+          "objective": 0.005644499178981938
+        },
+        {
+          "threshold": -2,
+          "rank_penalty": 0.8,
+          "token_f1": 0.11648797450014489,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 0.25,
+          "abstention_rate": 0.034482758620689655,
+          "objective": 0.05398797450014489
+        },
+        {
+          "threshold": -2,
+          "rank_penalty": 1.5,
+          "token_f1": 0.15097073312083456,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 0.25,
+          "abstention_rate": 0.034482758620689655,
+          "objective": 0.08847073312083456
+        },
+        {
+          "threshold": -2,
+          "rank_penalty": 3,
+          "token_f1": 0.15097073312083456,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 0.25,
+          "abstention_rate": 0.034482758620689655,
+          "objective": 0.08847073312083456
+        },
+        {
+          "threshold": -2,
+          "rank_penalty": 6,
+          "token_f1": 0.13947648024727133,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 0.25,
+          "abstention_rate": 0.034482758620689655,
+          "objective": 0.07697648024727133
+        },
+        {
+          "threshold": 0,
+          "rank_penalty": 0,
+          "token_f1": 0.0555008210180624,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.06896551724137931,
+          "objective": 0.0555008210180624
+        },
+        {
+          "threshold": 0,
+          "rank_penalty": 0.3,
+          "token_f1": 0.03366174055829228,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.06896551724137931,
+          "objective": 0.03366174055829228
+        },
+        {
+          "threshold": 0,
+          "rank_penalty": 0.8,
+          "token_f1": 0.08775234231623684,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.06896551724137931,
+          "objective": 0.08775234231623684
+        },
+        {
+          "threshold": 0,
+          "rank_penalty": 1.5,
+          "token_f1": 0.08775234231623684,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.06896551724137931,
+          "objective": 0.08775234231623684
+        },
+        {
+          "threshold": 0,
+          "rank_penalty": 3,
+          "token_f1": 0.08775234231623684,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.06896551724137931,
+          "objective": 0.08775234231623684
+        },
+        {
+          "threshold": 0,
+          "rank_penalty": 6,
+          "token_f1": 0.07625808944267362,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.06896551724137931,
+          "objective": 0.07625808944267362
+        },
+        {
+          "threshold": 2,
+          "rank_penalty": 0,
+          "token_f1": 0.027914614121510674,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.3448275862068966,
+          "objective": 0.027914614121510674
+        },
+        {
+          "threshold": 2,
+          "rank_penalty": 0.3,
+          "token_f1": 0.027914614121510674,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.3448275862068966,
+          "objective": 0.027914614121510674
+        },
+        {
+          "threshold": 2,
+          "rank_penalty": 0.8,
+          "token_f1": 0.047522457258765576,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.3448275862068966,
+          "objective": 0.047522457258765576
+        },
+        {
+          "threshold": 2,
+          "rank_penalty": 1.5,
+          "token_f1": 0.047522457258765576,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.3448275862068966,
+          "objective": 0.047522457258765576
+        },
+        {
+          "threshold": 2,
+          "rank_penalty": 3,
+          "token_f1": 0.047522457258765576,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.3448275862068966,
+          "objective": 0.047522457258765576
+        },
+        {
+          "threshold": 2,
+          "rank_penalty": 6,
+          "token_f1": 0.047522457258765576,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.3448275862068966,
+          "objective": 0.047522457258765576
+        },
+        {
+          "threshold": 4,
+          "rank_penalty": 0,
+          "token_f1": 0.027914614121510674,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.6551724137931034,
+          "objective": 0.027914614121510674
+        },
+        {
+          "threshold": 4,
+          "rank_penalty": 0.3,
+          "token_f1": 0.027914614121510674,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.6551724137931034,
+          "objective": 0.027914614121510674
+        },
+        {
+          "threshold": 4,
+          "rank_penalty": 0.8,
+          "token_f1": 0.047522457258765576,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.6551724137931034,
+          "objective": 0.047522457258765576
+        },
+        {
+          "threshold": 4,
+          "rank_penalty": 1.5,
+          "token_f1": 0.047522457258765576,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.6551724137931034,
+          "objective": 0.047522457258765576
+        },
+        {
+          "threshold": 4,
+          "rank_penalty": 3,
+          "token_f1": 0.047522457258765576,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.6551724137931034,
+          "objective": 0.047522457258765576
+        },
+        {
+          "threshold": 4,
+          "rank_penalty": 6,
+          "token_f1": 0.047522457258765576,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.6551724137931034,
+          "objective": 0.047522457258765576
+        },
+        {
+          "threshold": 6,
+          "rank_penalty": 0,
+          "token_f1": 0.022988505747126436,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.7931034482758621,
+          "objective": 0.022988505747126436
+        },
+        {
+          "threshold": 6,
+          "rank_penalty": 0.3,
+          "token_f1": 0.022988505747126436,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.7931034482758621,
+          "objective": 0.022988505747126436
+        },
+        {
+          "threshold": 6,
+          "rank_penalty": 0.8,
+          "token_f1": 0.034482758620689655,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.7931034482758621,
+          "objective": 0.034482758620689655
+        },
+        {
+          "threshold": 6,
+          "rank_penalty": 1.5,
+          "token_f1": 0.034482758620689655,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.7931034482758621,
+          "objective": 0.034482758620689655
+        },
+        {
+          "threshold": 6,
+          "rank_penalty": 3,
+          "token_f1": 0.034482758620689655,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.7931034482758621,
+          "objective": 0.034482758620689655
+        },
+        {
+          "threshold": 6,
+          "rank_penalty": 6,
+          "token_f1": 0.034482758620689655,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.7931034482758621,
+          "objective": 0.034482758620689655
+        },
+        {
+          "threshold": 8,
+          "rank_penalty": 0,
+          "token_f1": 0.022988505747126436,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.8275862068965517,
+          "objective": 0.022988505747126436
+        },
+        {
+          "threshold": 8,
+          "rank_penalty": 0.3,
+          "token_f1": 0.022988505747126436,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.8275862068965517,
+          "objective": 0.022988505747126436
+        },
+        {
+          "threshold": 8,
+          "rank_penalty": 0.8,
+          "token_f1": 0.034482758620689655,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.8275862068965517,
+          "objective": 0.034482758620689655
+        },
+        {
+          "threshold": 8,
+          "rank_penalty": 1.5,
+          "token_f1": 0.034482758620689655,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.8275862068965517,
+          "objective": 0.034482758620689655
+        },
+        {
+          "threshold": 8,
+          "rank_penalty": 3,
+          "token_f1": 0.034482758620689655,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.8275862068965517,
+          "objective": 0.034482758620689655
+        },
+        {
+          "threshold": 8,
+          "rank_penalty": 6,
+          "token_f1": 0.034482758620689655,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.8275862068965517,
+          "objective": 0.034482758620689655
+        },
+        {
+          "threshold": 10,
+          "rank_penalty": 0,
+          "token_f1": 0.022988505747126436,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.9310344827586207,
+          "objective": 0.022988505747126436
+        },
+        {
+          "threshold": 10,
+          "rank_penalty": 0.3,
+          "token_f1": 0.022988505747126436,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.9310344827586207,
+          "objective": 0.022988505747126436
+        },
+        {
+          "threshold": 10,
+          "rank_penalty": 0.8,
+          "token_f1": 0.022988505747126436,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.9310344827586207,
+          "objective": 0.022988505747126436
+        },
+        {
+          "threshold": 10,
+          "rank_penalty": 1.5,
+          "token_f1": 0.022988505747126436,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.9310344827586207,
+          "objective": 0.022988505747126436
+        },
+        {
+          "threshold": 10,
+          "rank_penalty": 3,
+          "token_f1": 0.022988505747126436,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.9310344827586207,
+          "objective": 0.022988505747126436
+        },
+        {
+          "threshold": 10,
+          "rank_penalty": 6,
+          "token_f1": 0.022988505747126436,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.9310344827586207,
+          "objective": 0.022988505747126436
+        }
+      ],
+      "selected": {
+        "threshold": -2,
+        "rank_penalty": 1.5,
+        "token_f1": 0.15097073312083456,
+        "exact_match": 0.13793103448275862,
+        "control_false_answer_rate": 0.25,
+        "abstention_rate": 0.034482758620689655,
+        "objective": 0.08847073312083456
+      }
+    },
+    "deepset/roberta-base-squad2": {
+      "policies": [
+        {
+          "threshold": -20,
+          "rank_penalty": 0,
+          "token_f1": 0.14285714285714288,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.10714285714285712
+        },
+        {
+          "threshold": -20,
+          "rank_penalty": 0.3,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.12438423645320199
+        },
+        {
+          "threshold": -20,
+          "rank_penalty": 0.8,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.12438423645320199
+        },
+        {
+          "threshold": -20,
+          "rank_penalty": 1.5,
+          "token_f1": 0.15320197044334977,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.09679802955665023
+        },
+        {
+          "threshold": -20,
+          "rank_penalty": 3,
+          "token_f1": 0.13596059113300493,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.11403940886699507
+        },
+        {
+          "threshold": -20,
+          "rank_penalty": 6,
+          "token_f1": 0.11871921182266011,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.1312807881773399
+        },
+        {
+          "threshold": -15,
+          "rank_penalty": 0,
+          "token_f1": 0.14285714285714288,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.10714285714285712
+        },
+        {
+          "threshold": -15,
+          "rank_penalty": 0.3,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.12438423645320199
+        },
+        {
+          "threshold": -15,
+          "rank_penalty": 0.8,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.12438423645320199
+        },
+        {
+          "threshold": -15,
+          "rank_penalty": 1.5,
+          "token_f1": 0.15320197044334977,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.09679802955665023
+        },
+        {
+          "threshold": -15,
+          "rank_penalty": 3,
+          "token_f1": 0.13596059113300493,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.11403940886699507
+        },
+        {
+          "threshold": -15,
+          "rank_penalty": 6,
+          "token_f1": 0.11871921182266011,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.1312807881773399
+        },
+        {
+          "threshold": -10,
+          "rank_penalty": 0,
+          "token_f1": 0.14285714285714288,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.10714285714285712
+        },
+        {
+          "threshold": -10,
+          "rank_penalty": 0.3,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.12438423645320199
+        },
+        {
+          "threshold": -10,
+          "rank_penalty": 0.8,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.12438423645320199
+        },
+        {
+          "threshold": -10,
+          "rank_penalty": 1.5,
+          "token_f1": 0.15320197044334977,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.09679802955665023
+        },
+        {
+          "threshold": -10,
+          "rank_penalty": 3,
+          "token_f1": 0.13596059113300493,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.11403940886699507
+        },
+        {
+          "threshold": -10,
+          "rank_penalty": 6,
+          "token_f1": 0.11871921182266011,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.1312807881773399
+        },
+        {
+          "threshold": -8,
+          "rank_penalty": 0,
+          "token_f1": 0.14285714285714288,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.10714285714285712
+        },
+        {
+          "threshold": -8,
+          "rank_penalty": 0.3,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.12438423645320199
+        },
+        {
+          "threshold": -8,
+          "rank_penalty": 0.8,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.12438423645320199
+        },
+        {
+          "threshold": -8,
+          "rank_penalty": 1.5,
+          "token_f1": 0.15320197044334977,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.09679802955665023
+        },
+        {
+          "threshold": -8,
+          "rank_penalty": 3,
+          "token_f1": 0.13596059113300493,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.11403940886699507
+        },
+        {
+          "threshold": -8,
+          "rank_penalty": 6,
+          "token_f1": 0.11871921182266011,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.1312807881773399
+        },
+        {
+          "threshold": -6,
+          "rank_penalty": 0,
+          "token_f1": 0.14285714285714288,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.10714285714285712
+        },
+        {
+          "threshold": -6,
+          "rank_penalty": 0.3,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.12438423645320199
+        },
+        {
+          "threshold": -6,
+          "rank_penalty": 0.8,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.12438423645320199
+        },
+        {
+          "threshold": -6,
+          "rank_penalty": 1.5,
+          "token_f1": 0.15320197044334977,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.09679802955665023
+        },
+        {
+          "threshold": -6,
+          "rank_penalty": 3,
+          "token_f1": 0.13596059113300493,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.11403940886699507
+        },
+        {
+          "threshold": -6,
+          "rank_penalty": 6,
+          "token_f1": 0.11871921182266011,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.1312807881773399
+        },
+        {
+          "threshold": -4,
+          "rank_penalty": 0,
+          "token_f1": 0.14285714285714288,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.10714285714285712
+        },
+        {
+          "threshold": -4,
+          "rank_penalty": 0.3,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.12438423645320199
+        },
+        {
+          "threshold": -4,
+          "rank_penalty": 0.8,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.12438423645320199
+        },
+        {
+          "threshold": -4,
+          "rank_penalty": 1.5,
+          "token_f1": 0.15320197044334977,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.09679802955665023
+        },
+        {
+          "threshold": -4,
+          "rank_penalty": 3,
+          "token_f1": 0.15320197044334977,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.09679802955665023
+        },
+        {
+          "threshold": -4,
+          "rank_penalty": 6,
+          "token_f1": 0.11871921182266011,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 1.0,
+          "abstention_rate": 0.0,
+          "objective": -0.1312807881773399
+        },
+        {
+          "threshold": -2,
+          "rank_penalty": 0,
+          "token_f1": 0.14285714285714288,
+          "exact_match": 0.13793103448275862,
+          "control_false_answer_rate": 0.5,
+          "abstention_rate": 0.20689655172413793,
+          "objective": 0.017857142857142877
+        },
+        {
+          "threshold": -2,
+          "rank_penalty": 0.3,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 0.5,
+          "abstention_rate": 0.20689655172413793,
+          "objective": 0.0006157635467980149
+        },
+        {
+          "threshold": -2,
+          "rank_penalty": 0.8,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 0.5,
+          "abstention_rate": 0.20689655172413793,
+          "objective": 0.0006157635467980149
+        },
+        {
+          "threshold": -2,
+          "rank_penalty": 1.5,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 0.5,
+          "abstention_rate": 0.20689655172413793,
+          "objective": 0.0006157635467980149
+        },
+        {
+          "threshold": -2,
+          "rank_penalty": 3,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 0.5,
+          "abstention_rate": 0.20689655172413793,
+          "objective": 0.0006157635467980149
+        },
+        {
+          "threshold": -2,
+          "rank_penalty": 6,
+          "token_f1": 0.12561576354679801,
+          "exact_match": 0.10344827586206896,
+          "control_false_answer_rate": 0.5,
+          "abstention_rate": 0.20689655172413793,
+          "objective": 0.0006157635467980149
+        },
+        {
+          "threshold": 0,
+          "rank_penalty": 0,
+          "token_f1": 0.07389162561576354,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 0.25,
+          "abstention_rate": 0.5172413793103449,
+          "objective": 0.01139162561576354
+        },
+        {
+          "threshold": 0,
+          "rank_penalty": 0.3,
+          "token_f1": 0.07389162561576354,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 0.25,
+          "abstention_rate": 0.5172413793103449,
+          "objective": 0.01139162561576354
+        },
+        {
+          "threshold": 0,
+          "rank_penalty": 0.8,
+          "token_f1": 0.09688013136288998,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 0.25,
+          "abstention_rate": 0.5172413793103449,
+          "objective": 0.034380131362889976
+        },
+        {
+          "threshold": 0,
+          "rank_penalty": 1.5,
+          "token_f1": 0.09688013136288998,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 0.25,
+          "abstention_rate": 0.5172413793103449,
+          "objective": 0.034380131362889976
+        },
+        {
+          "threshold": 0,
+          "rank_penalty": 3,
+          "token_f1": 0.09688013136288998,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 0.25,
+          "abstention_rate": 0.5172413793103449,
+          "objective": 0.034380131362889976
+        },
+        {
+          "threshold": 0,
+          "rank_penalty": 6,
+          "token_f1": 0.09688013136288998,
+          "exact_match": 0.06896551724137931,
+          "control_false_answer_rate": 0.25,
+          "abstention_rate": 0.5172413793103449,
+          "objective": 0.034380131362889976
+        },
+        {
+          "threshold": 2,
+          "rank_penalty": 0,
+          "token_f1": 0.03940886699507389,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.7931034482758621,
+          "objective": 0.03940886699507389
+        },
+        {
+          "threshold": 2,
+          "rank_penalty": 0.3,
+          "token_f1": 0.03940886699507389,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.7931034482758621,
+          "objective": 0.03940886699507389
+        },
+        {
+          "threshold": 2,
+          "rank_penalty": 0.8,
+          "token_f1": 0.03940886699507389,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.7931034482758621,
+          "objective": 0.03940886699507389
+        },
+        {
+          "threshold": 2,
+          "rank_penalty": 1.5,
+          "token_f1": 0.03940886699507389,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.7931034482758621,
+          "objective": 0.03940886699507389
+        },
+        {
+          "threshold": 2,
+          "rank_penalty": 3,
+          "token_f1": 0.03940886699507389,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.7931034482758621,
+          "objective": 0.03940886699507389
+        },
+        {
+          "threshold": 2,
+          "rank_penalty": 6,
+          "token_f1": 0.03940886699507389,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.7931034482758621,
+          "objective": 0.03940886699507389
+        },
+        {
+          "threshold": 4,
+          "rank_penalty": 0,
+          "token_f1": 0.034482758620689655,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.8620689655172413,
+          "objective": 0.034482758620689655
+        },
+        {
+          "threshold": 4,
+          "rank_penalty": 0.3,
+          "token_f1": 0.034482758620689655,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.8620689655172413,
+          "objective": 0.034482758620689655
+        },
+        {
+          "threshold": 4,
+          "rank_penalty": 0.8,
+          "token_f1": 0.034482758620689655,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.8620689655172413,
+          "objective": 0.034482758620689655
+        },
+        {
+          "threshold": 4,
+          "rank_penalty": 1.5,
+          "token_f1": 0.034482758620689655,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.8620689655172413,
+          "objective": 0.034482758620689655
+        },
+        {
+          "threshold": 4,
+          "rank_penalty": 3,
+          "token_f1": 0.034482758620689655,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.8620689655172413,
+          "objective": 0.034482758620689655
+        },
+        {
+          "threshold": 4,
+          "rank_penalty": 6,
+          "token_f1": 0.034482758620689655,
+          "exact_match": 0.034482758620689655,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 0.8620689655172413,
+          "objective": 0.034482758620689655
+        },
+        {
+          "threshold": 6,
+          "rank_penalty": 0,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 6,
+          "rank_penalty": 0.3,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 6,
+          "rank_penalty": 0.8,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 6,
+          "rank_penalty": 1.5,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 6,
+          "rank_penalty": 3,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 6,
+          "rank_penalty": 6,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 8,
+          "rank_penalty": 0,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 8,
+          "rank_penalty": 0.3,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 8,
+          "rank_penalty": 0.8,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 8,
+          "rank_penalty": 1.5,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 8,
+          "rank_penalty": 3,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 8,
+          "rank_penalty": 6,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 10,
+          "rank_penalty": 0,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 10,
+          "rank_penalty": 0.3,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 10,
+          "rank_penalty": 0.8,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 10,
+          "rank_penalty": 1.5,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 10,
+          "rank_penalty": 3,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        },
+        {
+          "threshold": 10,
+          "rank_penalty": 6,
+          "token_f1": 0.0,
+          "exact_match": 0.0,
+          "control_false_answer_rate": 0.0,
+          "abstention_rate": 1.0,
+          "objective": 0.0
+        }
+      ],
+      "selected": {
+        "threshold": 2,
+        "rank_penalty": 0,
+        "token_f1": 0.03940886699507389,
+        "exact_match": 0.034482758620689655,
+        "control_false_answer_rate": 0.0,
+        "abstention_rate": 0.7931034482758621,
+        "objective": 0.03940886699507389
+      }
+    }
+  },
+  "private_validation_predictions_sha256": "ba9cab7e7293bc10a6ce7f68d99dff9a402e10e9caa337da1f2a57e6dc258d6f"
+}

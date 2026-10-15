@@ -83,3 +83,46 @@ A separate cached-validation calibration follow-up tests whether RoBERTa's high
 abstention partly reflects a negative null-margin scale. It introduces no new
 inference or GPU use and has no independent held-out score. Its existence cannot
 change the version-1 fresh test or retroactively make those questions fresh.
+
+## Final cached calibration check
+
+The recorded follow-up tested 13 thresholds from -20 through 10 and the same six
+rank penalties on existing validation spans only. RoBERTa's winner was unchanged.
+MiniLM's highest diagnostic objective used **threshold -2 / rank penalty 1.5**:
+F1 **15.10%**, EM **13.79%**, abstention **3.45%**, but **1/4 false answers on unknown
+controls (25%)**. Its penalized objective was 0.088470733, versus 0.087752342 for
+the frozen policy: a gain of only **0.000718391** (0.0718 percentage points).
+See [all follow-up policies](v3-validation-calibration-results.json).
+
+This diagnostic winner is **not the production policy**. Production retains the
+original pinned **MiniLM, threshold 0 / rank penalty 0.8**, selected before the
+fresh test, with source/model/chunk contracts. The follow-up explicitly excluded
+production changes before execution. The later judgment that the tiny objective
+gain and control regression do not justify another test was made after viewing
+the diagnostic, not by a prespecified statistical decision rule. No model or
+test outcomes were rerun, and no new independent held-out gain is claimed.
+Local threshold search stops here; the stronger-reader hypothesis remains a
+documented failure and calibration remains limited by four narrow controls.
+
+Post-run portability guards validate comparison IDs, rank fields and batch sizes.
+Future generated bootstraps use a daemon watchdog so an exception exits promptly
+instead of waiting for the hard timeout. These source changes were not part of
+version 1 and did not change or rerun its inference; the original runner and
+payload hashes remain preserved in the artifact audit.
+
+The [loading audit](v3-loading-audit.json) found pretrained `qa_outputs.weight`
+and `qa_outputs.bias` tensors with architecture-compatible shapes in both pinned
+official safetensors headers. GPU file hashes matched the official LFS hashes.
+The loading log has no missing or newly initialized QA-head warning; MiniLM's
+unused BERT pooler warning is expected. Version 1 did not request structured
+`output_loading_info`, so this audit uses configuration, header and log evidence.
+Future production/cloud loads request that metadata and fail closed on missing
+or mismatched parameters; fixtures cover random-head initialization failures.
+
+The private output download initially hit a Windows console encoding error after
+writing the result files; repeating the download with UTF-8 console encoding
+retrieved the log successfully. This was an artifact-transfer failure, not another
+model run. All 32 tests pass after the post-run guards. The publication audit
+checked repository text as strict UTF-8 and kept book/QA/weight payloads ignored.
+The Kaggle installation warned about incompatible unused Gradio/Diffusers
+Hugging Face Hub requirements; those packages were not used by the reader pipeline.

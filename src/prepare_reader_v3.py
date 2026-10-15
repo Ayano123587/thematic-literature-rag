@@ -109,7 +109,8 @@ def prepare(folder=Path('data/interim/kaggle-reader-v3')):
     files['protocol.json'] = json.dumps(protocol, indent=2).encode()
     # Package only the source modules needed for the exact frozen hybrid policy.
     source_files = ['src/__init__.py', 'src/features/__init__.py', 'src/features/build_features.py',
-                    'src/models/__init__.py', 'src/models/train_model.py', 'src/models/grounded_spans.py']
+                    'src/models/__init__.py', 'src/models/train_model.py', 'src/models/grounded_spans.py',
+                    'src/models/loading.py']
     for path in source_files:
         files[path] = Path(path).read_bytes()
     files['reader_cloud.py'] = Path('src/reader_cloud.py').read_bytes()
@@ -117,7 +118,7 @@ def prepare(folder=Path('data/interim/kaggle-reader-v3')):
     bootstrap = '''import os,sys,time,threading,subprocess,json,base64,gzip
 from pathlib import Path
 os.environ['READER_STARTED_MONOTONIC']=str(time.monotonic())
-threading.Timer(900,lambda:os._exit(124)).start()
+watchdog=threading.Timer(900,lambda:os._exit(124));watchdog.daemon=True;watchdog.start()
 subprocess.run([sys.executable,'-m','pip','install','-q','transformers==4.57.6','sentence-transformers==5.1.2'],check=True,timeout=180)
 folder=Path('/kaggle/working/private-input');folder.mkdir(parents=True,exist_ok=True)
 packed=PACKED_PAYLOAD

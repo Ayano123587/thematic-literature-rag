@@ -16,6 +16,11 @@ def test_reader_comparison_scores_real_answers_separately_from_controls():
     assert choose([{'null_margin': float('nan')}], 0, 0) is None
     with pytest.raises(ValueError):
         choose([], 0, float('inf'))
+    assert choose([{'null_margin':3,'retrieval_rank':0}],0,0) is None
+    with pytest.raises(ValueError,match='unknown controls'):
+        evaluate({'q':predictions['q']},gold[:1],[0],[0])
+    with pytest.raises(ValueError,match='misaligned'):
+        evaluate({'missing':[]},gold,[0],[0])
 
 
 def test_portable_reader_preserves_global_offsets_without_gold(monkeypatch):
@@ -41,3 +46,6 @@ def test_portable_reader_preserves_global_offsets_without_gold(monkeypatch):
     assert spans[0]['answer'] == 'Mira'
     assert spans[0]['answer_start'] == 100 and spans[0]['answer_end'] == 104
     assert spans[0]['citation'] == passage['id']
+    assert extract('', [passage], Tokenizer(), model, 'cpu') == []
+    with pytest.raises(ValueError,match='positive'):
+        extract('Who?', [passage], Tokenizer(), model, 'cpu',batch_size=0)

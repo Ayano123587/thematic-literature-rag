@@ -1,0 +1,85 @@
+{
+  "scope": "Post-run headers/config/logs; no inference or full candidate-weight download",
+  "models": {
+    "deepset/minilm-uncased-squad2": {
+      "revision": "934656cdda79824eabf503ed56e15c01ddbdbe3f",
+      "config_architectures": [
+        "BertForQuestionAnswering"
+      ],
+      "model_type": "bert",
+      "config_sha256": "688d980e03e028843d378fb3bf9919dc4b677b24e2a6ef37c97815d5c056151b",
+      "qa_head_tensors": {
+        "qa_outputs.bias": {
+          "dtype": "F32",
+          "shape": [
+            2
+          ],
+          "data_offsets": [
+            133440000,
+            133440008
+          ]
+        },
+        "qa_outputs.weight": {
+          "dtype": "F32",
+          "shape": [
+            2,
+            384
+          ],
+          "data_offsets": [
+            133440008,
+            133443080
+          ]
+        }
+      },
+      "official_lfs_weight_sha256": "240478c7251d5e55be35feb47177054b960259b9328af662ea3cee87ce9755a6",
+      "gpu_weight_sha256_matches_official_lfs": true,
+      "safetensors_header_sha256": "079d309925317917e323a9afc1f67e92412778507d73cec712bcac3a4723ec2c"
+    },
+    "deepset/roberta-base-squad2": {
+      "revision": "adc3b06f79f797d1c575d5479d6f5efe54a9e3b4",
+      "config_architectures": [
+        "RobertaForQuestionAnswering"
+      ],
+      "model_type": "roberta",
+      "config_sha256": "64fa58495a722d57609c22f199824bfe98c19be068136a70c268214a08cb8060",
+      "qa_head_tensors": {
+        "qa_outputs.bias": {
+          "dtype": "F32",
+          "shape": [
+            2
+          ],
+          "data_offsets": [
+            0,
+            8
+          ]
+        },
+        "qa_outputs.weight": {
+          "dtype": "F32",
+          "shape": [
+            2,
+            768
+          ],
+          "data_offsets": [
+            8,
+            6152
+          ]
+        }
+      },
+      "official_lfs_weight_sha256": "ac5db66fdcfecb400345d09787b71009d60805ef9883451071669cf951b5e2c7",
+      "gpu_weight_sha256_matches_official_lfs": true,
+      "safetensors_header_sha256": "2bee80d3d559e6bb5c23e6b82ed3e27774cedf05776f88179c6a35ec7336a730"
+    }
+  },
+  "loading_info_requested_by_version1": false,
+  "loading_warning_flags": {
+    "newly initialized": false,
+    "not initialized from": false,
+    "missing keys": false,
+    "mismatched keys": false,
+    "qa_outputs.weight were not": false
+  },
+  "expected_unused_pooler_warning": true,
+  "expected_unused_pooler_note": "Unused BERT pooler tensors are expected for the MiniLM QA architecture. No uninitialized QA-head warning appears.",
+  "log_sha256": "445bb5dfa9e8103610e545ca79ecc31ab1fc52208188edc8eb44c5cef4a1574f",
+  "runtime_limit": "Version 1 did not serialize output_loading_info or runtime class strings. Pinned architecture metadata, AutoModel QA mapping, exact weight hashes and logs support pretrained QA-head loading."
+}
