@@ -1,0 +1,73 @@
+{
+  "upstream_commit": "904246f6d1fe99a99a08a03501fe3e619af2cee5",
+  "license": "Apache-2.0 for NarrativeQA metadata and QA; Gutenberg texts retain their own license",
+  "subset_size": 58,
+  "documents": {
+    "879287f285743b08d86c3bd0831ec1e49fa92e39": {
+      "book": "dorian",
+      "id": 174,
+      "split": "valid",
+      "title": "The Picture of Dorian Gray",
+      "author": "Oscar Wilde",
+      "author_death": 1900
+    },
+    "55d68540c6b86bc90f7a9e630c8b13c0920bf834": {
+      "book": "persuasion",
+      "id": 105,
+      "split": "test",
+      "title": "Persuasion",
+      "author": "Jane Austen",
+      "author_death": 1817
+    }
+  },
+  "sources": [
+    {
+      "file": "documents.csv",
+      "url": "https://raw.githubusercontent.com/google-deepmind/narrativeqa/904246f6d1fe99a99a08a03501fe3e619af2cee5/documents.csv",
+      "bytes": 341683,
+      "sha256": "6dffa4cc0b5c9963fe3a097c87f04aa7767da36627500cc7a0d69e2405e1144a"
+    },
+    {
+      "file": "qaps.csv",
+      "url": "https://raw.githubusercontent.com/google-deepmind/narrativeqa/904246f6d1fe99a99a08a03501fe3e619af2cee5/qaps.csv",
+      "bytes": 11475505,
+      "sha256": "990b02af0b5280de210f0e6b80f43b3fab80dc6de630c4d5059a1b7131c26e38"
+    },
+    {
+      "file": "LICENSE",
+      "url": "https://raw.githubusercontent.com/google-deepmind/narrativeqa/904246f6d1fe99a99a08a03501fe3e619af2cee5/LICENSE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "file": "README.md",
+      "url": "https://raw.githubusercontent.com/google-deepmind/narrativeqa/904246f6d1fe99a99a08a03501fe3e619af2cee5/README.md",
+      "bytes": 3840,
+      "sha256": "85b32d79619a8f2fec88ac62ace984bfb60544c6a90766580032a380bbf1262a"
+    },
+    {
+      "file": "dorian",
+      "document_id": "879287f285743b08d86c3bd0831ec1e49fa92e39",
+      "split": "valid",
+      "url": "https://www.gutenberg.org/ebooks/174.txt.utf-8",
+      "sha256": "38f36b510417177aa87a6a24c968e3ec63a447b7df36a9c1a7c5a3f2d9e51547",
+      "processed_sha256": "96fe04970f0eaa11a0281ad4c0498c30e3421279597ef11028c8b49c388ba302",
+      "bytes": 465814,
+      "original_prewrite_processed_sha256": "cff1585005b24cf871b1aadec2b4413ecc742c8f926c6a39ab76322c2fcf19c0",
+      "processed_bytes_sha256": "15f273e058b01f3d38c1c21ae97563ae6019e4038210d451b427e1c2f3cf0841",
+      "processed_hash_definition": "SHA256 of UTF-8 encoding of actual postwrite Path.read_text, with universal newline normalization"
+    },
+    {
+      "file": "persuasion",
+      "document_id": "55d68540c6b86bc90f7a9e630c8b13c0920bf834",
+      "split": "test",
+      "url": "https://www.gutenberg.org/ebooks/105.txt.utf-8",
+      "sha256": "64ffb821b9e9eb1040c103a44c28893c94ebe33ffbb911288b5022efaecbfefc",
+      "processed_sha256": "335817d939bef8e25f327753d9bd1b3f3b77e24af3f81fc5693868986fdc4bc8",
+      "bytes": 497555,
+      "original_prewrite_processed_sha256": "3666def5761810f4e40628708e07a844a193c3a58a73f0befe4bb16db37e788c",
+      "processed_bytes_sha256": "c202c3d21f31c9ee814687193f700a27881ef61f64c1d32bcd7a3981a92e3aaa",
+      "processed_hash_definition": "SHA256 of UTF-8 encoding of actual postwrite Path.read_text, with universal newline normalization"
+    }
+  ]
+}

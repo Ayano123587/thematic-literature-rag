@@ -15,6 +15,16 @@ def strip_gutenberg(text):
     return text[start.end():end.start()].strip()
 
 
+def write_processed(path,body):
+    """Freeze original Windows CRLF-v1 serialization for cross-platform citation replay.
+
+    Existing CRLF in Gutenberg bodies is intentionally preserved by this legacy
+    representation. Hash/read offsets use actual postwrite universal-newline text.
+    Changing this serialization requires a new representation version and index.
+    """
+    path.write_text(body,encoding='utf-8',newline='\r\n')
+
+
 def fetch(acknowledge=False, root=DATA):
     if not acknowledge:
         raise ValueError("Check local copyright law and pass --acknowledge-local-rights")
@@ -27,7 +37,7 @@ def fetch(acknowledge=False, root=DATA):
         for folder in ("raw", "processed", "external", "interim"):
             (root / folder).mkdir(parents=True, exist_ok=True)
         (root / "raw" / f"{key}.txt").write_bytes(raw)
-        (root / "processed" / f"{key}.txt").write_text(body, encoding="utf-8")
+        write_processed(root / "processed" / f"{key}.txt",body)
         records.append(dict(meta, key=key, url=url, sha256=hashlib.sha256(raw).hexdigest(), bytes=len(raw)))
     (root / "external" / "manifest.json").write_text(json.dumps(records, indent=2), encoding="utf-8")
     return records
@@ -38,4 +48,6 @@ def ingest_document(path):
     if path.suffix.lower() in {".txt", ".md"}:
         return path.read_text(encoding="utf-8")
     from docling.document_converter import DocumentConverter
-    return DocumentConverter().convert(str(path)).document.export_to_markdown()
+    converted=DocumentConverter().convert(str(path)).document.export_to_markdown()
+    if not converted.strip():raise ValueError('Document conversion produced no text')
+    return converted

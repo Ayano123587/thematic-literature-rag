@@ -22,11 +22,14 @@ def thematic_report(index, query, k=2, reranker=None):
     return {"query":query,"method":"Per-book hybrid retrieval; excerpts are evidence, not inferred conclusions.","books":sections,"cross_book_connections":connections,"connection_note":"Embedding similarity proposes passages to compare; it does not prove a shared literary interpretation.","abstained":not sections}
 
 
-def character_arc(index, character, book, k=2):
+def character_arc(index, character, book, k=2,topic=None,mode='hybrid',reranker=None):
+    if not isinstance(character,str) or len(character.strip())<2:raise ValueError('Provide a non-empty character name')
     pattern = re.compile(r"\b"+re.escape(character)+r"\b",re.I)
-    hits = index.search(character,k=len(index.passages),book=book)
+    if not any(p.book==book and pattern.search(p.text) for p in index.passages):
+        return {'character':character,'book':book,'stages':[],'abstained':True,'reason':'Character name is not explicitly present in requested source'}
+    hits = index.search(character+' '+(topic or ''),k=len(index.passages),book=book,mode=mode,reranker=reranker)
     stages = []
     for lo,hi,name in [(0,1/3,"early"),(1/3,2/3,"middle"),(2/3,1.01,"late")]:
-        selected = [(p,s) for p,s in hits if lo<=p.progress<hi and pattern.search(p.text)][:k]
-        stages.append({"stage":name,"evidence":[{"citation":p.id,"text":p.text} for p,s in sorted(selected,key=lambda x:x[0].start)]})
-    return {"character":character,"book":book,"stages":stages,"note":"Name mentions by narrative position; not coreference resolution or an inferred psychological arc."}
+        selected = [(p,s) for p,s in hits if lo<=p.progress<hi and (topic is not None or pattern.search(p.text))][:k]
+        stages.append({"stage":name,"evidence":[{"citation":p.id,"text":p.text,'explicit_name_mention':bool(pattern.search(p.text)),'attribution':'Explicit name occurs in passage; speaker is not resolved' if pattern.search(p.text) else 'Candidate thematic passage; character attribution is unverified'} for p,s in sorted(selected,key=lambda x:x[0].start)]})
+    return {"character":character,"book":book,'topic':topic,"stages":stages,'abstained':False,"note":"Chronological candidate evidence, not an inferred psychological arc. Topic mode can retrieve implicit references but marks their attribution unverified."}

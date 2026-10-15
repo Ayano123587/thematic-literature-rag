@@ -1,0 +1,16 @@
+{
+  "kernel": "aikyatansinha/portfolio-literary-grounded-qwen",
+  "version": 1,
+  "status": "COMPLETE",
+  "is_private": true,
+  "accelerator": "NvidiaTeslaT4",
+  "hard_timeout_seconds": 3600,
+  "internal_budget_seconds": 3300,
+  "output_sha256": {
+    "generative-locked-test.json": "48e523ce864a66673f70256b6dda726dfbdeff5fbf4ebbcd174f75adbb0c4f90",
+    "validation-selection.json": "d77be181c831acc1b0f290810bada69facdcc7afe80508ed16c03b6a7c95027b",
+    "private-generations.json": "56b47f745af8ce0cacd0d701671109ea630ff59db71c18955314e8dcc657cc31"
+  },
+  "public_output_excludes_raw_generation_text": true,
+  "download_note": "Kaggle CLI raised a Windows charmap error while writing its log file; all three JSON outputs were downloaded, parsed, and selection equality verified. No job rerun occurred."
+}
