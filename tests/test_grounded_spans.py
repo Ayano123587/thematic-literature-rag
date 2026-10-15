@@ -46,3 +46,15 @@ def test_production_reader_checks_source_before_inference(tmp_path):
     assert answer(Index(), 'Who?', 'missing', tmp_path, {})['abstained']
     with pytest.raises(ValueError, match='fingerprint'):
         answer(Index(), 'Who?', 'story', tmp_path, {})
+
+
+def test_production_reader_rejects_a_different_model_policy(tmp_path):
+    pytest.importorskip('torch')
+    from src.models.grounded_spans import answer
+    class Index:
+        passages = chunk_book('story', 'Mira tended the lantern.', words=20, overlap=0)
+        backend = 'lsa'
+        def verify_sources(self, directory):
+            pass
+    with pytest.raises(ValueError, match='frozen selection'):
+        answer(Index(), 'Who?', 'story', tmp_path, {'models': {}})

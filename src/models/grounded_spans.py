@@ -34,7 +34,8 @@ def assemble(span,passages,book):
 def answer(index, question, book, source_directory, selection):
     """Apply a frozen validation policy to a verified persisted index."""
     from pathlib import Path
-    from src.models.reader import candidates
+    from src.models.reader import candidates, MODEL, REVISION
+    from src.models.train_model import RERANKER_REVISION
     if not isinstance(question, str) or not question.strip():
         return {'abstained': True, 'answer': None, 'reason': 'Empty question'}
     if len(question) > 1000:
@@ -42,6 +43,13 @@ def answer(index, question, book, source_directory, selection):
     if book not in {p.book for p in index.passages}:
         return {'abstained': True, 'answer': None, 'reason': 'Requested source is not indexed'}
     index.verify_sources(Path(source_directory))
+    models = selection['models']
+    if (index.backend != 'sentence-transformer'
+            or index.model_name != 'sentence-transformers/all-MiniLM-L6-v2'
+            or index.model_revision != models['embedding_revision']
+            or models['reader'] != MODEL or models['reader_revision'] != REVISION
+            or models['reranker_revision'] != RERANKER_REVISION):
+        raise ValueError('Index or reader model differs from the frozen selection')
     policy = selection['selected']
     config = policy['config']
     hits = index.search(question, book=book, k=config['k'],

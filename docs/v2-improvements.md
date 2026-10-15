@@ -20,10 +20,34 @@ Three configurations compare 180-word passages/top five contexts, 96-word
 passages/top twelve contexts, and the fine passages with 700-character source
 expansion on each side. The last two use overlapping reader windows rather than
 silently truncating long contexts. Four null thresholds and three retrieval-rank
-penalties are selected using the 29 Dorian validation questions and four authored
+penalties were initially selected using the 29 Dorian validation questions and four authored
 unknown controls. The objective is conventional answer token F1 minus one quarter
 of the control false-answer rate. These four controls do not establish broad
 no-answer calibration. Reusing Dorian validation limits independence.
+
+The fine-window configuration initially scored worse than the coarse baseline.
+A validation-only follow-up tested stronger retrieval-rank penalties of 1.5,
+3 and 6 to reduce high-confidence distractors from weakly ranked contexts.
+Fine-window F1 rose from 7.16% to 8.11% at 1.5 and then plateaued; the same change
+hurt the coarse configuration. This follow-up was recorded before fresh-test
+selection in [validation follow-up](v2-validation-followup.json). The final grid
+therefore contains six rank penalties, with 72 configuration/threshold/rank
+combinations. Small validation gains can reflect overfitting.
+
+Final validation selection was serialized at 2026-10-15 21:08:02 UTC, before
+Journey test inference. Best policies per configuration were:
+
+| Configuration | Answer F1 | EM | Abstention | Threshold / rank penalty |
+| --- | ---: | ---: | ---: | --- |
+| Coarse 180-word / top five | 7.62% | 6.90% | 41.38% | 2 / 0.8 |
+| Fine 96-word / top twelve | 8.11% | 6.90% | 17.24% | 0 / 1.5 |
+| Fine plus expanded sliding context | 8.78% | 6.90% | 6.90% | 0 / 0.8 |
+
+All three best policies answered zero of the four authored unknown controls.
+The expanded configuration wins the stated objective, but its lower abstention
+also exposes more incorrect answers; the small F1 increase does not establish
+safe no-answer behavior. Exact match does not improve. All 72 candidates remain
+in [selection evidence](v2-validation-selection.json), including failures.
 
 The selection is serialized before fresh test questions are read. The evaluator
 refuses to overwrite its locked test report. Prior Persuasion and Call of the Wild
@@ -52,6 +76,12 @@ requires an index built with its stated chunk configuration. Production inferenc
 checks all source fingerprints before learned inference, and then checks exact
 answer coordinates before returning a citation. The API abstains on empty
 questions and absent books. It does not verify semantic entailment.
+
+The new index CLI accepts `--words`, `--overlap`, `--books` and `--output`, so
+the selected passage policy can be rebuilt rather than requiring a private
+fitted artifact. `fetch-reader-v2 --acknowledge-local-rights` downloads only the
+Journey source and rejects drift against the evaluated raw and normalized hashes.
+It does not modify the older NarrativeQA subset or historical evaluations.
 
 An actual pinned reader smoke inference placed a named answer after 140 repeated
 sentences, beyond the initial reader window. Sliding inference recovered the
