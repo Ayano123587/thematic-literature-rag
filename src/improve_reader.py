@@ -86,7 +86,7 @@ def run():
         rows=[infer(r,config) for r in validation];negative=[infer(r,config) for r in controls]
         cache[config['name']]={'rows':rows,'controls':negative}
         for threshold in (0,2,4,6):
-            for penalty in (0,.3,.8):
+            for penalty in (0,.3,.8,1.5,3,6):
                 summary=score(rows,negative,threshold,penalty)
                 all_candidates.append({'config':config,'threshold':threshold,'rank_penalty':penalty,'validation':summary,'objective':summary['token_f1']-.25*summary['control_false_answer_rate']})
         checkpoint={'completed_configs':list(cache),'candidates':all_candidates,'source':source}
