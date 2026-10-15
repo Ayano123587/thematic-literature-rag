@@ -22,6 +22,7 @@ def main():
     sub.add_parser('evaluate-themes')
     s=sub.add_parser('synthesize');s.add_argument('text');s.add_argument('--books',nargs='+')
     answer=sub.add_parser('answer');answer.add_argument('text');answer.add_argument('book');answer.add_argument('--threshold',type=float,default=None)
+    improved=sub.add_parser('answer-v2');improved.add_argument('text');improved.add_argument('book');improved.add_argument('--selection',default='docs/v2-validation-selection.json');improved.add_argument('--index')
     g=sub.add_parser('generate');g.add_argument('text');g.add_argument('--books',nargs='+',required=True);g.add_argument('--device',default='auto',choices=['auto','cpu','cuda']);g.add_argument('--prompt',choices=['direct','strict']);g.add_argument('--reranker')
     pg=sub.add_parser('prepare-generation');pg.add_argument('--acknowledge-local-rights',action='store_true');pg.add_argument('--folder',default='data/interim/kaggle-generative')
     d=sub.add_parser("ingest"); d.add_argument("path"); d.add_argument("book")
@@ -48,6 +49,12 @@ def main():
         target=DATA/"processed"/f"{args.book}.txt"
         target.write_text(ingest_document(args.path),encoding="utf-8")
         result={"processed":str(target),"note":"Citations reference normalized converted text, not PDF page coordinates"}
+    elif args.command=='answer-v2':
+        from src.models.grounded_spans import answer as grounded_answer
+        selection=json.loads(Path(args.selection).read_text(encoding='utf-8'))
+        path=Path(args.index) if args.index else Path('models')/f"v2-{selection['selected']['config']['words']}.lrag"
+        index=HybridIndex.load(path)
+        result=grounded_answer(index,args.text,args.book,DATA/'processed',selection)
     elif args.command=="index":
         empty=[p.name for p in (DATA/'processed').glob('*.txt') if not p.read_text(encoding='utf-8').strip()]
         if empty:parser.error('Empty source documents cannot be indexed: '+', '.join(empty))

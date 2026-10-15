@@ -1,0 +1,16 @@
+{
+  "round": "v2",
+  "declared_at_utc": "2026-10-15T20:36:49.357167+00:00",
+  "fresh_test_document": "14fc0de61e9e8044764da1fb9f647d8ceb60e561",
+  "title": "A Sentimental Journey Through France and Italy",
+  "author": "Laurence Sterne",
+  "author_death": 1768,
+  "gutenberg_id": 804,
+  "validation_book": "dorian",
+  "validation_questions": 29,
+  "fresh_test_questions_inspected": false,
+  "cpu_budget_minutes": 25,
+  "hypothesis": "Finer answer-focused retrieval windows plus non-truncating sliding-window reader may recover missed evidence. Citations remain deterministic source spans.",
+  "selection": "Validation-only EM/F1 and explicit false-answer controls; freeze before fresh-test inference",
+  "prior_results_preserved": true
+}

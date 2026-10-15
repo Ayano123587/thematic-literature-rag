@@ -16,17 +16,27 @@ def reader():
     return tokenizer,model
 
 
-def candidates(question,passages):
+def candidates(question,passages,sliding=False,max_length=384,stride=96,batch_size=8):
     if not passages:return []
+    if not isinstance(question,str) or not question.strip():return []
+    if not 128<=max_length<=512 or not 0<=stride<max_length//2 or batch_size<1:
+        raise ValueError('Invalid reader window or batch configuration')
     tokenizer,model=reader()
-    encoded=tokenizer([question]*len(passages),[p.text for p in passages],padding=True,truncation='only_second',max_length=384,return_offsets_mapping=True,return_tensors='pt')
+    options={'return_overflowing_tokens':True,'stride':stride} if sliding else {}
+    encoded=tokenizer([question]*len(passages),[p.text for p in passages],padding=True,truncation='only_second',max_length=max_length,return_offsets_mapping=True,return_tensors='pt',**options)
+    mapping=encoded.pop('overflow_to_sample_mapping').tolist() if sliding else list(range(len(passages)))
     offsets=encoded.pop('offset_mapping').tolist()
-    with torch.inference_mode():output=model(**encoded)
+    starts_all=[];ends_all=[]
+    for lo in range(0,len(mapping),batch_size):
+        batch={key:value[lo:lo+batch_size] for key,value in encoded.items()}
+        with torch.inference_mode():output=model(**batch)
+        starts_all.extend(output.start_logits);ends_all.extend(output.end_logits)
     result=[]
-    for row,p in enumerate(passages):
+    for row,passage_id in enumerate(mapping):
+        p=passages[passage_id]
         context=[i for i,seq in enumerate(encoded.sequence_ids(row)) if seq==1 and offsets[row][i][1]>offsets[row][i][0]]
         if not context:continue
-        starts=output.start_logits[row];ends=output.end_logits[row]
+        starts=starts_all[row];ends=ends_all[row]
         top_starts=sorted(context,key=lambda i:-float(starts[i]))[:20]
         top_ends=sorted(context,key=lambda i:-float(ends[i]))[:20]
         valid=[(float(starts[a]+ends[b]),a,b) for a in top_starts for b in top_ends if a<=b<a+30]
@@ -35,7 +45,7 @@ def candidates(question,passages):
         cls=(encoded['input_ids'][row]==tokenizer.cls_token_id).nonzero()[0].item()
         margin=score-float(starts[cls]+ends[cls])
         start,end=offsets[row][a][0],offsets[row][b][1]
-        result.append({'answer':p.text[start:end],'citation':p.id,'book':p.book,'answer_start':p.start+start,'answer_end':p.start+end,'null_margin':margin})
+        result.append({'answer':p.text[start:end],'citation':p.id,'book':p.book,'answer_start':p.start+start,'answer_end':p.start+end,'null_margin':margin,'reader_window':row,'retrieval_rank':passage_id+1})
     return sorted(result,key=lambda r:-r['null_margin'])
 
 
