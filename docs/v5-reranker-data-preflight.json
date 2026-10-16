@@ -1,0 +1,25 @@
+{
+  "status": "Real source-only training/validation preflight; no neural inference or test access",
+  "train_questions": 3314,
+  "train_stories": 74,
+  "training_groups": 3770,
+  "training_pairs": 18660,
+  "questions_without_nongold_negative": 3,
+  "group_size_distribution": {
+    "2": 8,
+    "3": 40,
+    "4": 86,
+    "5": 3636
+  },
+  "validation_questions": 400,
+  "validation_origins": {
+    "andersen-fairybook": 100,
+    "blue-fairybook": 100,
+    "green-fairybook": 100,
+    "lilac-fairybook": 100
+  },
+  "validation_ids_sha256": "3a3e35b6cb0db580a6b9000fde69e198149f4f6e4b3d08ae0c191f5494b2e143",
+  "manifest_sha256": "272d1d450c1e30e2153d603b41aaed6867152ee78bf798981749662c73630b08",
+  "test_accessed": false,
+  "model_weights_loaded": false
+}
