@@ -1,5 +1,5 @@
 {
-  "status": "Corrected CPU smoke v2 COMPLETE with real pretrained loading, training, save/reload; full CPU training being prepared",
+  "status": "Full genuine QA fine-tuning RUNNING on private free CPU after successful measured smoke",
   "kernel": "aikyatansinha/portfolio-narrative-t5-cpu-smoke",
   "kernel_version": 2,
   "gpu": false,
@@ -33,6 +33,14 @@
     "answer_metrics": "not yet available; evidence retrieval metrics are not QA accuracy",
     "current_cloud_tests": 2
   },
-  "next": "Launch full free CPU training after measured smoke; keep test QA absent from training dataset and sealed until validation selection is final",
-  "actual_cpu_smoke": "docs/v5-cpu-smoke.json"
+  "next": "Recover full-run validation/loss evidence; use only validation for further justified controlled iterations; freeze final selection before held-out test",
+  "actual_cpu_smoke": "docs/v5-cpu-smoke.json",
+  "full_training": {
+    "kernel": "aikyatansinha/portfolio-narrative-t5-cpu-train",
+    "version": 1,
+    "confirmed_status": "RUNNING",
+    "source_commit": "6068261",
+    "test_qa_mounted": false,
+    "results": "pending"
+  }
 }

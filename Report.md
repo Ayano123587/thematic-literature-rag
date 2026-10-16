@@ -28,7 +28,9 @@ Recurring plots can still cross families; pretraining exposure is also unknown.
 
 The [prespecified protocol](docs/v5-training-protocol.json) records model pins,
 source filters, checkpoint selection, metrics and limitations before scoring.
-Root `train.py` delegates to `src.narrative_training`; notebooks remain EDA only.
+Root `train.py` delegates to `src.narrative_training`. At the user's updated request,
+the end-to-end notebook adds explicit optional orchestration of these modules;
+the original EDA notebook remains available.
 Private data, logs and checkpoints stay ignored. An isolated repository virtual
 environment is required because these research repositories share a `src` name.
 
@@ -83,7 +85,9 @@ preserved rather than silently changed. Corrected CPU smoke version 2 completed
 in 79.77 seconds on four CPU cores. It trained on four real QA, validated on two,
 saved weights and reproduced both answers after reload. Loading diagnostics had
 no missing, unexpected or mismatched keys. These tiny smoke examples establish
-mechanics, not a performance estimate. Full training is being prepared.
+mechanics, not a performance estimate. Full private CPU training version 1 is now
+running at `aikyatansinha/portfolio-narrative-t5-cpu-train`; its validation and
+held-out answer metrics are pending. No test QA is mounted in that training job.
 
 The corrected 400-question validation cohort's BM25 evidence recall@4 is 83.96%
 and evidence precision@4 is 22.13%, before token truncation. These measure human

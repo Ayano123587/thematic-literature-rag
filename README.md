@@ -108,4 +108,4 @@ The original four known-passage anchors remain historical smoke diagnostics. The
 
 Current index persistence uses checked JSON/numeric arrays instead of executable pickle. Older `index.pkl` files are rejected; rebuild them. Optional QA/reranking models are pretrained on other domains, and performance here should not be inferred from their original model-card scores.
 
-Source code lives in `src/{data,features,models,visualization}`; notebooks contain EDA only. Local data and model artifacts stay out of Git. CI runs offline behavioral tests. The software license does not relicense third-party books or model weights.
+Source code lives in `src/{data,features,models,visualization}`. The EDA notebook is supplemented by an [end-to-end narrative QA notebook](notebooks/02_narrative_training_and_audit.ipynb) with explicit optional training, saved-model answers, citation audits and plots; test scoring stays disabled by default. Root `train.py` and `evaluation_scripts` delegate to the source modules. Local data and model artifacts stay out of Git. CI runs offline behavioral tests. The software license does not relicense third-party books or model weights.

@@ -10,6 +10,7 @@ dependencies = ["numpy>=1.26,<3", "scikit-learn>=1.4,<2"]
 [project.optional-dependencies]
 models = ["sentence-transformers>=3,<6", "docling>=2,<3"]
 reader = ["transformers>=4.45,<6", "torch>=2.4,<3"]
+notebook = ["jupyterlab>=4,<5", "matplotlib>=3.8,<4"]
 dev = ["pytest>=8,<10"]
 [project.scripts]
 literary-rag = "src.cli:main"
