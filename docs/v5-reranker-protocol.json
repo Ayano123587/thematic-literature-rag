@@ -1,0 +1,43 @@
+{
+  "status": "Prespecified before pretrained or adapted reranker validation scoring; full T5 training remains running and its validation outcomes have not been inspected",
+  "hypothesis": "Real question-section evidence supervision improves section retrieval over BM25 and the frozen pretrained cross-encoder on source-family held-out validation",
+  "source": {
+    "dataset_manifest_sha256": "272d1d450c1e30e2153d603b41aaed6867152ee78bf798981749662c73630b08",
+    "validation_ids_sha256": "3a3e35b6cb0db580a6b9000fde69e198149f4f6e4b3d08ae0c191f5494b2e143",
+    "train": "Same official train QA from eligible source families only; no validation/test labels enter optimization",
+    "test": "Absent from cloud dataset; no test parsing or scoring in this study",
+    "existing_validation_information": "BM25 recall@4 0.839583 and precision@4 0.22125 are already observed; no generator or reranker validation answer outcomes used for this protocol"
+  },
+  "model": {
+    "name": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "license": "apache-2.0",
+    "source": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/tree/233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "max_tokens": 384,
+    "seed": 42
+  },
+  "training": {
+    "epochs": 2,
+    "learning_rate": 0.00002,
+    "weight_decay": 0.01,
+    "micro_groups": 2,
+    "effective_groups": 16,
+    "objective": "Each annotated positive section forms a listwise group with up to four nongold same-story negatives; cross-entropy selects the positive. All annotated positives participate, so multi-section questions contribute more training groups; report counts.",
+    "negatives": "First three nongold BM25-ranked sections, then one seeded random remaining nongold section; no other gold-linked section can be a negative. If fewer negatives exist use those available. Questions with no nongold section yield no ranking group and are counted.",
+    "truncation": "Question-section pair capped at 384 tokens; section annotation does not prove the retained prefix contains every relevant sentence. Report truncation counts."
+  },
+  "retrieval": {
+    "candidates": "BM25 top12 sections from given story; no gold injection",
+    "return": 4,
+    "compare": ["BM25", "frozen pretrained cross-encoder", "adapted epoch1", "adapted epoch2"],
+    "selection": "Highest validation mean annotated section recall@4; exact ties choose BM25, then pretrained, then earlier adapted epoch. Report precision@4 and candidate recall@12, per-origin/attribute metrics."
+  },
+  "downstream": "Once T5 checkpoint exists, compare selected retrieval against BM25 on the same validation cohort with frozen generator weights. Test stays sealed until all final policy decisions are serialized. Evidence gains are not answer F1 gains.",
+  "resources": "One private free CPU kernel after STS encoding terminal and artifact verification; no GPU or local encoder allocation",
+  "limitations": [
+    "Annotations may omit valid alternative evidence, so nongold negatives are imperfect.",
+    "Source-family separation does not prove plot or pretraining disjointness.",
+    "Validation has two broad source families; several dataset origin labels are Lang collections, not independent populations.",
+    "Within-story retrieval assumes known story identity and does not measure cross-book routing or thematic synthesis."
+  ]
+}
