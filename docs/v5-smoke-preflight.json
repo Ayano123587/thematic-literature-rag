@@ -1,14 +1,18 @@
 {
-  "source_commit": "e9b780510223ed227c772aa3314bfd5dfc7a1bfa",
-  "executed_protocol_sha256": "89bcd77e60744cb11df87d5bffdd9da7af36fedcbdcb19fb3226688097b500dc",
+  "source_commit": "1d4099f577e762a984d6cd869b55badc500cba82",
+  "executed_protocol_sha256": "d89d4504c7b56b24c3f224f9eb5ececa798ff2835bac86b3fe35936a43aa1e7d",
   "staging_protocol_sha256": "51e7245810b722c8e85f70117723e0c7b7bdec6723f33fd9e667c16855a78dff",
   "file_sha256": {
     "src/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
     "src/data/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
     "src/data/prepare_fairytale.py": "4046b745d220300cb4c94411a0c63f00eb4571b1bd0e115a6d74cd4aa34b968e",
-    "src/narrative_training.py": "44b6b59b45b143f349997d380415fc708052edfa1a1d08c53c25af1bf4ff52a5",
+    "src/narrative_training.py": "6cebf61143cd95e7d8de06822e1e605e3a1cc00a51ad8ee5d55e8afc6d7a1e31",
+    "src/models/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "src/models/narrative_generator.py": "da78e226f672c9f419699fe2000569b38f9f4635673b890546056063f696f567",
+    "evaluation_scripts/predict_narrative.py": "deb3da93612762f9d92b4381ed3c78bd6ba796ccf5efde97b32fcd5a2f934feb",
+    "evaluation_scripts/evaluate_narrative.py": "31b1a5071e1698717e79c943ff197a17677de1fad3fffcbb815194316a513763",
     "train.py": "a72ca29deacad2884772c187d73189ef393d33ab40f8483e3d2eedfdcf7fa6fd",
-    "docs/v5-training-protocol.json": "89bcd77e60744cb11df87d5bffdd9da7af36fedcbdcb19fb3226688097b500dc",
+    "docs/v5-training-protocol.json": "d89d4504c7b56b24c3f224f9eb5ececa798ff2835bac86b3fe35936a43aa1e7d",
     "private-data/manifest.json": "272d1d450c1e30e2153d603b41aaed6867152ee78bf798981749662c73630b08",
     "private-data/train/a-legend-of-confucius.qa.csv": "6e51d2f070dab7e947ad3eb754c0eb378a4afe1364ec0ef28aaed9276f88d67f",
     "private-data/train/a-legend-of-confucius.story.json": "4a22ba03b7e72d5fb2df004320af8b4869fd38e86c6c9514d4b46ce133406107",
@@ -269,9 +273,10 @@
   },
   "smoke": true,
   "test_files_packaged": false,
-  "hardware": "free CPU only; GPU quota exhausted; enable_gpu=false",
+  "hardware": "Free CPU only; GPU quota exhausted; enable_gpu=false",
+  "transport": "Plain mounted source files; standard ZIP upload automatically extracted by Kaggle",
   "private_dataset": "aikyatansinha/portfolio-narrative-qa-private-v5",
-  "payload_zip_sha256": "9c55e9d1df48f09bf77a223e0a7a0360254e6bfdb2b33a7aafc88fadc193b70e",
-  "private_bootstrap_sha256": "dca8e55894633d1ddaf4d2bf2d5c0ca0f05ea2233fa35057f0427af786481ea1",
-  "bootstrap_bytes": 1499
+  "payload_zip_sha256": "528d52027cedcb602be6e26d953e562e1636822813c7279e3c01bd39c7639125",
+  "private_bootstrap_sha256": "e8a4183ccced37ee9cdc1729f0529cf13d644786bcb69a5e89738e5c97ecd8cc",
+  "bootstrap_bytes": 2680
 }

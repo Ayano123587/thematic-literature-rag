@@ -36,6 +36,9 @@ Primary evaluation retrieves sections from the full question's story, without
 human evidence IDs. Generator training can use annotated evidence, but this is
 not secretly supplied at validation/test inference. Report answer EM/token F1
 separately from evidence recall/precision and exact source citation validity.
+The question's story identity is supplied by the dataset. This evaluates narrative
+reading and within-story retrieval, not global book identification or cross-book
+thematic reasoning. Existing thematic diagnostics retain their separate limits.
 Generated answers are free-form; exact citations establish their source location,
 not entailment. Answerable-only data cannot establish unknown-question calibration.
 Evidence recall after truncation counts the presence of an annotated section,
@@ -66,16 +69,21 @@ private payload was moved to a separate private Kaggle dataset. A Windows CLI
 relative-path upload failure was corrected by invoking upload from its folder.
 Kaggle automatically extracted the ZIP; the small kernel verifies the extracted
 manifest and every source/data file hash. CPU smoke version 1 was submitted and
-confirmed running, but subsequent plain CLI reads lost authentication. Its
-outcome is currently unknown; no duplicate training was submitted.
+confirmed running, but subsequent plain CLI reads lost authentication. Refreshing
+the existing OAuth session recovered its failure: duplicate official question
+IDs were rejected before model loading. No duplicate live job was submitted.
 
 A strict local loader subsequently caught nonunique official question IDs within
 seven stories: two extra training IDs and five validation IDs, each attached to
 different questions. This guard precedes model loading in the submitted smoke.
 Canonical IDs now include the stable CSV row ordinal and retain the original ID;
 the validation cohort was prospectively rebuilt before any model outcome. This
-correction does not inspect test QA. The submitted smoke's exact older payload
-is preserved rather than silently changed.
+correction does not inspect test QA. The failed smoke's exact older payload is
+preserved rather than silently changed. Corrected CPU smoke version 2 completed
+in 79.77 seconds on four CPU cores. It trained on four real QA, validated on two,
+saved weights and reproduced both answers after reload. Loading diagnostics had
+no missing, unexpected or mismatched keys. These tiny smoke examples establish
+mechanics, not a performance estimate. Full training is being prepared.
 
 The corrected 400-question validation cohort's BM25 evidence recall@4 is 83.96%
 and evidence precision@4 is 22.13%, before token truncation. These measure human
@@ -86,7 +94,7 @@ outside the hash-selected cohort never enter training. Test QA remains unparsed.
 ## Reproduction entrypoints
 
 Create a fresh virtual environment for this repository, install the project and
-its reader extra, and use pinned runtime versions captured by the cloud bootstrap.
+its reader extra, and use pinned runtime versions captured by the cloud runner.
 The real training command is:
 
 ```powershell

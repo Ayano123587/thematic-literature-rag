@@ -6,7 +6,7 @@ import pytest
 from src.data.prepare_fairytale import duplicate_reason, read_sections, sha
 from src.narrative_training import (assemble, evidence_metrics, lexical_ranking,
                                     load_split, rouge_l, section_ids, token_f1, validation_cohort)
-from src.models.narrative_generator import answer, verify_run
+from src.models.narrative_generator import answer, verify_run, verify_story
 
 
 def test_test_gold_gate_before_any_file_access(tmp_path):
@@ -109,3 +109,14 @@ def test_duplicate_official_ids_keep_distinct_stable_rows_and_hash_guards(tmp_pa
     qa.write_text(qa.read_text() + "\n")
     with pytest.raises(ValueError, match="QA hash"):
         load_split(tmp_path, "train")
+
+
+def test_generated_evidence_cannot_use_negative_or_empty_source_coordinates():
+    story = {"text": "Mira", "source_sha256": sha(b"Mira"), "sections": [
+        {"id": "1", "text": "Mira", "start": -4, "end": 4}]}
+    # Python's negative slice would match, but the declared citation is invalid.
+    with pytest.raises(ValueError, match="coordinates"):
+        verify_story(story)
+    story["sections"] = []
+    with pytest.raises(ValueError, match="source sections"):
+        verify_story(story)

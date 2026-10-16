@@ -12,6 +12,8 @@ from src.narrative_training import assemble, retrieve
 def verify_run(folder, allow_smoke=False):
     folder = Path(folder)
     selection = json.loads((folder / "selection.json").read_text(encoding="utf-8"))
+    if not isinstance(selection, dict):
+        raise ValueError("Expected a selection JSON object")
     if selection.get("status") != "frozen" or (selection.get("smoke") and not allow_smoke):
         raise ValueError("A full frozen training selection is required")
     provenance_path = folder / "provenance.json"
@@ -36,14 +38,32 @@ def load_selected(folder, allow_smoke=False):
     return model, tokenizer, selection
 
 
+def verify_story(story):
+    if not isinstance(story, dict) or not isinstance(story.get("text"), str):
+        raise ValueError("Expected a story with source text")
+    if sha(story["text"].encode()) != story.get("source_sha256"):
+        raise ValueError("Story source hash mismatch")
+    sections = story.get("sections")
+    if not isinstance(sections, list) or not sections:
+        raise ValueError("Story must contain source sections")
+    for section in sections:
+        if not isinstance(section, dict):
+            raise ValueError("Expected a source section object")
+        start, end = section.get("start"), section.get("end")
+        if type(start) is not int or type(end) is not int or not 0 <= start < end <= len(story["text"]):
+            raise ValueError("Invalid source section coordinates")
+        if story["text"][start:end] != section.get("text"):
+            raise ValueError("Story section source-offset mismatch")
+        if not isinstance(section.get("id"), str) or not section["id"]:
+            raise ValueError("Source section ID required")
+    if len({s["id"] for s in sections}) != len(sections):
+        raise ValueError("Duplicate source section IDs")
+
+
 def answer(question, story, model, tokenizer, selection):
     if not isinstance(question, str) or not question.strip() or len(question) > 2000:
         raise ValueError("A nonempty question of at most 2000 characters is required")
-    if sha(story["text"].encode()) != story["source_sha256"]:
-        raise ValueError("Story source hash mismatch")
-    for section in story["sections"]:
-        if story["text"][section["start"]:section["end"]] != section["text"]:
-            raise ValueError("Story section source-offset mismatch")
+    verify_story(story)
     indices = retrieve(question, story["sections"])
     context, citations = assemble(question, story["sections"], indices, tokenizer,
                                   min(512, tokenizer.model_max_length))
