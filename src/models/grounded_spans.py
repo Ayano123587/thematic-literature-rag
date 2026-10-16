@@ -65,5 +65,6 @@ def answer(index, question, book, source_directory, selection):
     passages = [expand_passage(p, text, config['expand']) if config['expand'] else p
                 for p, _ in hits]
     spans = candidates(question, passages, sliding=config['sliding'])
-    return assemble(select_span(spans, policy['threshold'], policy['rank_penalty']),
-                    passages, book)
+    result=assemble(select_span(spans, policy['threshold'], policy['rank_penalty']),passages,book)
+    from src.models.answer_artifact import make_artifact
+    return make_artifact(result,text,book,selection)

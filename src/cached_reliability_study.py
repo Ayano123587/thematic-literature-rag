@@ -71,7 +71,8 @@ def run():
                  -r['accepted_gold_em_mismatches'], -r['policy']['magnitude'])) if qualified else None
     private_path = Path('data/interim/v4-cached-selections-private.json')
     private_path.write_text(json.dumps(private, allow_nan=False), encoding='utf-8')
-    report = {'scope': 'Reused Dorian validation only, no observed-test loading or inference',
+    report = {'scope': 'Reused Dorian validation only; no observed-test predictions, gold, case analysis or inference',
+              'historical_metadata_use': 'Only validation prediction/gold hash fields read from the historical public v3 report; its fresh-test fields are not used.',
               'protocol': protocol, 'protocol_sha256': hashlib.sha256(protocol_path.read_bytes()).hexdigest(),
               'source_sha256': hashlib.sha256(text.encode()).hexdigest(), 'results': results,
               'qualified_winner': winner, 'independent_heldout_score_available': False,
