@@ -1,0 +1,30 @@
+{
+  "status": "Validation-only BM25 evidence diagnostic; not answer EM/F1",
+  "n": 400,
+  "full_validation_n": 2372,
+  "cohort_ids_sha256": "3a3e35b6cb0db580a6b9000fde69e198149f4f6e4b3d08ae0c191f5494b2e143",
+  "manifest_sha256": "272d1d450c1e30e2153d603b41aaed6867152ee78bf798981749662c73630b08",
+  "source_sha256": "d736be4563c895812fd20c8a00cd7c9a1a4c0fd12a08b977e52aaf063377e217",
+  "recall_at_4": 0.8395833333333332,
+  "precision_at_4": 0.22125,
+  "per_origin": {
+    "andersen-fairybook": {
+      "n": 100,
+      "recall_at_4": 0.9116666666666667
+    },
+    "blue-fairybook": {
+      "n": 100,
+      "recall_at_4": 0.745
+    },
+    "green-fairybook": {
+      "n": 100,
+      "recall_at_4": 0.91
+    },
+    "lilac-fairybook": {
+      "n": 100,
+      "recall_at_4": 0.7916666666666667
+    }
+  },
+  "test_accessed": false,
+  "token_truncation_not_measured": true
+}

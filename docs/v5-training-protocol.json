@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "status": "prespecified before model scoring/training; QA staging and prospective amendments disclosed below",
+  "dataset": {
+    "repository": "uci-soe/FairytaleQAData",
+    "revision": "a24ddc17364666b7c13a425b9970c87368b03417",
+    "license": "Apache-2.0",
+    "validation_origins": ["andersen-fairybook", "blue-fairybook", "green-fairybook", "lilac-fairybook"],
+    "test_origins": ["beatrix-potter-fairybook", "grimm-fairybook"],
+    "excluded_origins": ["first-round", "swedish-fairybook"],
+    "train_rule": "Only official train stories from other rights-verified origins. Never official validation/test stories, observed NarrativeQA books, or validation/test labels.",
+    "split_rationale": "All dataset Lang-origin groups stay together in validation: blue-fairybook contains stories actually published in Brown and Lilac collections, so its literal label is not an exact edition identity. Andersen is also validation; Potter and Grimm are test. This is a custom source-family holdout, not the standard published benchmark or proof of plot-disjointness.",
+    "amendment_before_scoring": "Original 34bfbd6 held out Blue but not Green/Lilac. Primary Gutenberg contents revealed mixed Lang provenance before model inference/training. This amendment moves ALL Lang-origin groups to validation. Original 529 validation QA were already parsed for format/count checks; no outcomes existed and no test QA were parsed. Staging manifest will be rebuilt under the amended protocol.",
+    "duplicate_rule": "Before training, remove train stories with identical normalized text or title to heldout stories; report token-shingle overlap and remove train stories with Jaccard >= 0.8. Never inspect test answers to decide exclusions.",
+    "rights_gate": "Verify source collection author/editor/translator and public-domain status before use. Exclusions are recorded before opening QA; dataset edits have their own exact section offsets. No source text or answers committed."
+  },
+  "generator": {
+    "name": "google-t5/t5-small",
+    "revision": "df1b051c49625cf57a3d0d8d3863ed4d13564fe4",
+    "license": "apache-2.0",
+    "input_tokens": 512,
+    "answer_tokens": 96,
+    "seed": 42,
+    "epochs": 3,
+    "learning_rate": 0.0001,
+    "effective_batch_size": 16,
+    "selection": "Highest validation token F1 among epoch checkpoints; tie chooses earlier epoch. No test access until serialized selection.",
+    "hardware_amendment_before_scoring": "Account free GPU quota exhausted according to audio submission rejection. No RAG GPU attempt or model scoring occurred. Adapt prospectively to free Kaggle CPU30GB using 60M T5-small, 512-token context and LR1e-4; original BART139M/1024/LR3e-5 plan remains in commit34bfbd6. This changes architecture/context/optimization together for feasibility and is not a controlled BART-vs-T5 superiority comparison. Measure a real CPU smoke before full launch."
+  },
+  "hypotheses": [
+    "Supervised narrative answer generation improves validation answer F1 over the same untuned T5-small and current extractive MiniLM with identical retrieved evidence.",
+    "Question-section cross-encoder adaptation using only train evidence labels improves validation evidence recall over BM25 and the frozen pretrained reranker.",
+    "Training with retrieved contexts plus linked sections improves retrieval-context robustness relative to gold-linked-only training. If training budget permits a second generator, compare on validation only."
+  ],
+  "retrieval": {
+    "unit": "official human-coded section",
+    "scope": "All sections of the question's story; never supply gold section IDs at inference.",
+    "baseline": "BM25 top 4 sections, source-order assembly, tokenizer truncation at 512 including question; report retained evidence loss",
+    "learned": "Rerank BM25 top 12 with pinned MiniLM cross-encoder, optionally fine-tuned on train positive evidence sections and same-story hard negatives. Nonlinked negatives may contain valid alternative evidence; disclose annotation incompleteness.",
+    "selection": "Validation evidence recall@4; ties choose frozen simpler policy. Report post-tokenization retained evidence recall as well."
+  },
+  "evaluation": {
+    "primary": "Macro question answer normalized token F1 on retrieved contexts",
+    "validation_cohort": "Before any model scoring, select 100 questions per validation dataset origin by ascending SHA256(canonical_question_id), tie ID, for CPU decoding feasibility. Canonical ID is story:rowN:original_question_id, with one-based CSV data-row ordinal N. Official question_id repeats on distinct questions (2 train and5 validation extra occurrences), discovered by strict preflight before model loading; ordinal identity is a prospective correction. All other validation questions remain excluded from training. Report cohort IDs/hash and source counts. Test remains all eligible test QA.",
+    "secondary": ["exact match", "ROUGE-L F1", "evidence recall@4", "evidence precision@4", "exact source citation validity", "per-origin metrics", "explicit/implicit metrics", "narrative-attribute metrics"],
+    "references": "Nonempty answer 1 and answer 4 only, max over references; report reference-count strata.",
+    "oracle": "Human linked context is a separately labeled diagnostic, never the primary retrieval score.",
+    "test_gate": "Preparation may stage test CSV without human inspection. Training/selection runner cannot parse test questions or gold until validation selection is serialized and hashed. Test evaluation runs once after selection; later reuse is retrospective.",
+    "no_answer": "FairytaleQA is answerable-only. No claim of unknown-question calibration.",
+    "historical": "Dorian, Persuasion, Call of the Wild, Journey and Cask are observed; no selection or fresh claims from them."
+  },
+  "provenance": ["Source file hashes", "source commit", "exact model revision and loaded tensor hashes", "QA head or generator loading audit", "environment", "split manifests", "private training logs and checkpoints", "validation checkpoint selection", "one-shot test gate"],
+  "limitations": [
+    "Source fairy tales may have appeared in model pretraining. This study does not prove pretraining decontamination.",
+    "Whole collection separation does not guarantee disjoint recurring plots.",
+    "Children's narrative adaptation is not proof of adult novel thematic reasoning.",
+    "A generated answer with retrieved section citations is not necessarily entailed by them; citation source validity and human-annotated evidence relevance are distinct metrics."
+  ]
+}
