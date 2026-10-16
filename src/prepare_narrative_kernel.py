@@ -16,6 +16,9 @@ def prepare(data, output, smoke, dataset=None):
         raise ValueError("Refusing to overwrite kernel payload")
     source = [Path("src/__init__.py"), Path("src/data/__init__.py"),
               Path("src/data/prepare_fairytale.py"), Path("src/narrative_training.py"),
+              Path("src/models/__init__.py"), Path("src/models/narrative_generator.py"),
+              Path("evaluation_scripts/predict_narrative.py"),
+              Path("evaluation_scripts/evaluate_narrative.py"),
               Path("train.py"), Path("docs/v5-training-protocol.json")]
     files = {str(p).replace("\\", "/"): p.read_bytes() for p in source}
     for path in data.rglob("*"):
