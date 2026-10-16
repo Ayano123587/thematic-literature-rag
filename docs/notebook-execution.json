@@ -1,55 +1,45 @@
 {
-  "status": "Actually executed in fresh Jupyter kernels",
+  "status": "Executed in fresh Jupyter kernels",
   "notebooks": [
     {
-      "notebook": "notebooks\\00_main_literature_rag.ipynb",
-      "code_cells_executed": 24,
+      "notebook": "notebooks/00_main_literature_rag.ipynb",
+      "code_cells_executed": 27,
       "actual_svg_plots": 1,
       "actual_tables": 5,
-      "seconds": 28.4,
+      "seconds": 36.98,
       "neural_model_training_or_inference": false,
       "test_qa_parsed_or_scored": false,
-      "normalized_utf8_sha256": "0eb3eb52f50b85c638b8178493a8004514d20240af3377530ef8607ffcbf137d"
+      "normalized_utf8_sha256": "ca5c66da9451450b0b2c2c740e2ab9fed424146773f73b035e3f7f5a040cdcf5"
     },
     {
-      "notebook": "notebooks\\01_source_family_eda.ipynb",
+      "notebook": "notebooks/01_source_family_eda.ipynb",
       "code_cells_executed": 8,
       "actual_svg_plots": 5,
       "actual_tables": 3,
-      "seconds": 16.69,
+      "seconds": 10.27,
       "neural_model_training_or_inference": false,
       "test_qa_parsed_or_scored": false,
-      "normalized_utf8_sha256": "565ee3516947d03f6ed80c21e8f49a665f055ab60eed1c5f05c78a5a478e7f35"
+      "normalized_utf8_sha256": "16c2495296d7ef39852650a97f0af1d0747111e0dcaeacc441dd10394b27d0df"
     },
     {
-      "notebook": "notebooks\\02_validation_experiments.ipynb",
+      "notebook": "notebooks/02_validation_experiments.ipynb",
       "code_cells_executed": 7,
       "actual_svg_plots": 2,
-      "actual_tables": 5,
-      "seconds": 22.27,
+      "actual_tables": 3,
+      "seconds": 3.37,
       "neural_model_training_or_inference": false,
       "test_qa_parsed_or_scored": false,
-      "normalized_utf8_sha256": "b8d514c84249616b34c843e45a4b977550c21ff240edbc16023af34ccc8d41b7"
+      "normalized_utf8_sha256": "fb29eeb33b4755d501b1325a0d88affcea5b7156b04e6efab026f60e94c73e92"
     },
     {
-      "notebook": "notebooks\\03_citation_and_error_analysis.ipynb",
+      "notebook": "notebooks/03_citation_and_error_analysis.ipynb",
       "code_cells_executed": 8,
       "actual_svg_plots": 1,
       "actual_tables": 3,
-      "seconds": 15.14,
+      "seconds": 4.38,
       "neural_model_training_or_inference": false,
       "test_qa_parsed_or_scored": false,
-      "normalized_utf8_sha256": "e19e1e24202df70f6e21164b86c7c03ed2f96d6baf660db8302def002a6bd597"
+      "normalized_utf8_sha256": "875e625155829a753923344c67bfcf62d6e4e3e8fdc571fc89e2533a78dfc894"
     }
-  ],
-  "outputs": "Real source aggregates, validation BM25 recomputation, historical metrics and saved artifact audits only; no invented full-training outcomes",
-  "source_validation": {
-    "pytest": "58 passed in 135.09 seconds",
-    "all_notebook_code_compiled": true,
-    "notebook_schema_validated": true,
-    "outputs_contain_errors": false,
-    "README_Report_local_links_valid": true,
-    "full_training_metrics": "pending; no held-out QA scored"
-  },
-  "hash_convention": "Notebook SHA-256 covers newline-normalized read_text UTF-8, stable across Windows checkout conversion."
+  ]
 }

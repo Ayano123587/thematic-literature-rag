@@ -1,0 +1,16 @@
+{
+  "train_questions": 7883,
+  "train_stories": 200,
+  "training_groups": 8848,
+  "training_pairs": 43757,
+  "questions_without_nongold_negative": 3,
+  "group_size_distribution": {
+    "5": 8532,
+    "4": 181,
+    "3": 103,
+    "2": 32
+  },
+  "manifest_sha256": "721733169b0c1e7b7c1d07fe1880d3c871d72017be6fc61923be126feea73225",
+  "test_accessed": false,
+  "model_weights_loaded": false
+}

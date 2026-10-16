@@ -1,7 +1,7 @@
 {
   "dataset_revision": "a24ddc17364666b7c13a425b9970c87368b03417",
   "metadata_sha256": "bd45290eb48a908829d50792fa465592f26bbe898ca16778e8576fbe2f1fdf76",
-  "staging_manifest_sha256": "272d1d450c1e30e2153d603b41aaed6867152ee78bf798981749662c73630b08",
+  "staging_manifest_sha256": "721733169b0c1e7b7c1d07fe1880d3c871d72017be6fc61923be126feea73225",
   "by_origin": {
     "andersen-fairybook": {
       "stories": 19,
@@ -42,8 +42,7 @@
         "test": 2
       },
       "study_split": {
-        "train": 20,
-        "excluded": 8
+        "train": 28
       }
     },
     "first-round": {
@@ -55,7 +54,7 @@
         "val": 3
       },
       "study_split": {
-        "excluded": 36
+        "train": 36
       }
     },
     "green-fairybook": {
@@ -87,8 +86,7 @@
         "val": 1
       },
       "study_split": {
-        "train": 14,
-        "excluded": 1
+        "train": 15
       }
     },
     "japanese-fairybook": {
@@ -100,8 +98,7 @@
         "test": 3
       },
       "study_split": {
-        "train": 14,
-        "excluded": 5
+        "train": 19
       }
     },
     "lilac-fairybook": {
@@ -124,8 +121,7 @@
         "val": 1
       },
       "study_split": {
-        "train": 23,
-        "excluded": 1
+        "train": 24
       }
     },
     "norwegian-fairybook": {
@@ -137,7 +133,7 @@
         "val": 3
       },
       "study_split": {
-        "excluded": 33
+        "train": 33
       }
     },
     "scottish-fairybook": {
@@ -149,7 +145,7 @@
         "test": 3
       },
       "study_split": {
-        "excluded": 19
+        "train": 19
       }
     },
     "swedish-fairybook": {
@@ -161,7 +157,7 @@
         "test": 1
       },
       "study_split": {
-        "excluded": 23
+        "train": 23
       }
     },
     "wonderclock-fairybook": {
@@ -177,18 +173,18 @@
   },
   "source_lengths": {
     "train": {
-      "stories": 74,
-      "metadata_qa": 3314,
+      "stories": 200,
+      "metadata_qa": 7883,
       "word_histogram": {
-        "0-499": 4,
-        "500-999": 12,
-        "1000-1999": 15,
-        "2000-3999": 33,
-        "4000-7999": 10,
+        "0-499": 15,
+        "500-999": 30,
+        "1000-1999": 52,
+        "2000-3999": 75,
+        "4000-7999": 28,
         "8000-15999": 0,
         "16000+": 0
       },
-      "median_words": 2214.5
+      "median_words": 2037.0
     },
     "validation": {
       "stories": 54,
@@ -219,67 +215,70 @@
       "median_words": 1040.0
     },
     "excluded": {
-      "stories": 126,
-      "metadata_qa": 4569,
+      "stories": 0,
+      "metadata_qa": 0,
       "word_histogram": {
-        "0-499": 11,
-        "500-999": 18,
-        "1000-1999": 37,
-        "2000-3999": 42,
-        "4000-7999": 18,
+        "0-499": 0,
+        "500-999": 0,
+        "1000-1999": 0,
+        "2000-3999": 0,
+        "4000-7999": 0,
         "8000-15999": 0,
         "16000+": 0
       },
-      "median_words": 1937.5
+      "median_words": null
     }
   },
   "annotations": {
     "train": {
-      "questions": 3314,
-      "stories": 74,
+      "questions": 7883,
+      "stories": 200,
       "attribute": {
-        "character": 387,
-        "causal relationship": 917,
-        "setting": 213,
-        "action": 1014,
-        "prediction": 152,
-        "outcome resolution": 339,
-        "feeling": 292
+        "character": 870,
+        "causal relationship": 2188,
+        "setting": 462,
+        "action": 2453,
+        "prediction": 431,
+        "outcome resolution": 716,
+        "feeling": 763
       },
       "explicit": {
-        "explicit": 2561,
-        "implicit": 753
+        "explicit": 6036,
+        "implicit": 1847
       },
       "references": {
-        "1": 3263,
-        "2": 51
+        "1": 5953,
+        "2": 1930
       },
       "evidence_sections": {
-        "1": 2923,
-        "2": 327,
-        "3": 51,
-        "4": 13
+        "1": 7080,
+        "2": 668,
+        "3": 108,
+        "4": 18,
+        "5": 7,
+        "7": 1,
+        "6": 1
       },
       "question_word_histogram": {
-        "0-4": 98,
-        "5-9": 1617,
-        "10-14": 1384,
-        "15-19": 199,
-        "20-39": 16,
+        "0-4": 138,
+        "5-9": 3362,
+        "10-14": 3636,
+        "15-19": 688,
+        "20-39": 59,
         "40-79": 0,
         "80+": 0
       },
       "answer_word_histogram": {
-        "0-1": 486,
-        "2-4": 884,
-        "5-9": 1105,
-        "10-19": 715,
-        "20-39": 119,
-        "40-79": 5,
+        "0-1": 1151,
+        "2-4": 2009,
+        "5-9": 2686,
+        "10-19": 1683,
+        "20-39": 345,
+        "40-79": 9,
         "80-159": 0,
         "160+": 0
       },
-      "duplicate_original_ids": 2,
+      "duplicate_original_ids": 5,
       "canonical_ids_unique": true
     },
     "validation": {

@@ -50,6 +50,16 @@ Use the same command with `reranker`, its protocol/run and epochs 0–2 for evid
 
 Checkpoint selection is not the final production policy. Compare selected retrieval with BM25 on complete validation using the frozen selected generator, then serialize the global policy before test release. No command in this workflow opens test QA.
 
+## Context assembly
+
+The context comparison uses one fixed question-matched window policy and the generator selected on all 2,372 validation questions. It preserves the same BM25 top four sections, 512-token input budget, tokenizer, weights and decoding. Exact source offsets identify every evidence slice. The [protocol](docs/context-assembly-protocol.json) requires at least 0.01 absolute answer F1 gain, no EM or source-citation regression, positive descriptive story-bootstrap lower bound and exact baseline replay. Section retention alone cannot select a policy.
+
+```powershell
+python -m src.context_validation --data data/interim/new-full-staging --generator-protocol docs/full-coverage-protocol.json --context-protocol docs/context-assembly-protocol.json --run models/full-continuation --selection models/generator-validation-selection.json --baseline-directory data/interim/selected-generator-validation --output data/interim/context-comparison
+```
+
+The command requires complete training and the audited complete-validation selection before loading weights. Interrupted comparisons resume only verified complete shards through `--previous`. The [tokenizer audit](docs/context-tokenizer-audit.json) checks every validation context against the pinned tokenizer and original source; it measures input and citation contracts, not neural answer quality.
+
 ## Results and interpretation
 
 Full-cohort trained-model results are pending actual inference. The operational extractive baseline and its source/citation guards remain available. No full-data score or superiority claim is inferred from training loss, retrieval overlap or a small mechanics run.

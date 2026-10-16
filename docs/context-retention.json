@@ -1,0 +1,63 @@
+{
+  "n": 2372,
+  "retrieved_evidence_recall": 0.8134134345137718,
+  "retained_evidence_recall": 0.5595489038785835,
+  "source_valid": 2372,
+  "mean_input_tokens": 505.83094435075884,
+  "max_input_tokens": 509,
+  "per_origin": {
+    "andersen-fairybook": {
+      "n": 377,
+      "retrieved_evidence_recall": 0.8742263483642794,
+      "retained_evidence_recall": 0.7250221043324491,
+      "source_valid": 377,
+      "mean_input_tokens": 505.0822281167109,
+      "max_input_tokens": 509
+    },
+    "blue-fairybook": {
+      "n": 152,
+      "retrieved_evidence_recall": 0.7664473684210527,
+      "retained_evidence_recall": 0.694078947368421,
+      "source_valid": 152,
+      "mean_input_tokens": 504.875,
+      "max_input_tokens": 509
+    },
+    "green-fairybook": {
+      "n": 480,
+      "retrieved_evidence_recall": 0.8659722222222223,
+      "retained_evidence_recall": 0.5637152777777777,
+      "source_valid": 480,
+      "mean_input_tokens": 507.37708333333336,
+      "max_input_tokens": 509
+    },
+    "lilac-fairybook": {
+      "n": 1363,
+      "retrieved_evidence_recall": 0.7833211054047445,
+      "retained_evidence_recall": 0.49730985571044267,
+      "source_valid": 1363,
+      "mean_input_tokens": 505.6001467351431,
+      "max_input_tokens": 509
+    }
+  },
+  "tokenizer": {
+    "name": "google-t5/t5-small",
+    "revision": "df1b051c49625cf57a3d0d8d3863ed4d13564fe4"
+  },
+  "policy": "BM25top4 assembled in source order,512tokens including question; source-prefix retention metric, not sentence entailment",
+  "validation_ids_sha256": "40d2ddd6b065469a8b947d84dbb630efcaac83acecc695606022116cc1a0f7cb",
+  "test_accessed": false,
+  "neural_model_allocated": false,
+  "narrative_source_sha256": "d0736c3cafeae67694c2c3b7eb35bc72cb012de897dd24ecb4fa42add991dccd",
+  "protocol_sha256": "5e4fc152ac55e2153b18885d88be380987a74ddae1202c2c5ef10be5a8c1fa88",
+  "manifest_sha256": "721733169b0c1e7b7c1d07fe1880d3c871d72017be6fc61923be126feea73225",
+  "environment": {
+    "python": "3.14.2",
+    "transformers": "4.57.6",
+    "tokenizers": "0.22.2"
+  },
+  "tokenizer_asset_sha256": {
+    "tokenizer.json": "d2acde0d8d71dd30a711834b07781b9c89feaac33fd332f60507699282740066",
+    "tokenizer_config.json": "d1e7146101aa96282057f374aa9c3b260fba2109e5990edb1775d6efc70ffa3c",
+    "spiece.model": "d60acb128cf7b7f2536e8f38a5b18a05535c9e14c7a355904270e15b0945ea86"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "status": "Prespecified before candidate model forward inference",
+  "hypothesis": "A question-matched window from each retrieved section preserves useful answer evidence better than consuming the context budget with source-ordered section prefixes.",
+  "source_manifest_sha256": "721733169b0c1e7b7c1d07fe1880d3c871d72017be6fc61923be126feea73225",
+  "validation_ids_sha256": "40d2ddd6b065469a8b947d84dbb630efcaac83acecc695606022116cc1a0f7cb",
+  "validation_questions": 2372,
+  "checkpoint_gate": "First select the generator from initial and every epoch on complete source-order validation. Use exactly that saved checkpoint, tokenizer and deterministic decoding for both context policies. No weight refit, partial checkpoint inference or test access.",
+  "retrieval": "Identical BM25 top 4 sections from the supplied story; no gold injection or answer-dependent selection",
+  "baseline": "Existing source-order prefix assembly, unchanged",
+  "candidate": {
+    "name": "ranked_question_windows",
+    "input_tokens": 512,
+    "order": "BM25 rank order",
+    "allocation": "Even token allocation among nonempty retrieved sections, with unused capacity redistributed round-robin in rank order. Reserve the question, special tokens and separators before allocation.",
+    "window_selection": "Each section uses full-budget token-offset windows with half-budget stride and an end-aligned window. Score question content words against those windows with BM25 k1=1.5 and b=0.75. IDF is fitted only to the candidate windows of that section. Exact score ties and zero query overlap choose the earliest window.",
+    "stopwords": "Fixed English function-word list in the source module; no dataset or answer-based fitting",
+    "source": "Slice original section characters using the pinned fast tokenizer offsets, preserve section IDs and absolute character offsets, and trim only exact source characters if concatenation exceeds 512 tokens. Never decode token IDs to manufacture citation text."
+  },
+  "decoding": {
+    "num_beams": 4,
+    "max_new_tokens": 96,
+    "do_sample": false,
+    "early_stopping": true
+  },
+  "comparison": "Run paired source-order and candidate inference with the same selected weights, question batches and frozen question-only retrieval plan for all 2372 IDs. This prevents process hash-order or retrieval ties from confounding the assembly comparison. Save both predictions in resumable hashed shards and audit source-order replay against the previously selected checkpoint predictions. Publish aggregates only.",
+  "promotion": {
+    "minimum_absolute_macro_answer_F1_gain": 0.01,
+    "macro_EM": "No decrease",
+    "citation_source_validity": "Every candidate citation must be an exact bounded source slice; no regression against baseline",
+    "story_paired_F1_interval": "Lower bound strictly above 0 for the descriptive 95 percent cluster-bootstrap interval",
+    "ties": "Keep source-order baseline",
+    "no_proxy_promotion": "Higher retained-section recall alone cannot promote the candidate",
+    "baseline_replay": "Require source-order answers and citation slices to replay the audited selected-checkpoint baseline; otherwise the comparison is diagnostic only."
+  },
+  "interval": {
+    "unit": "story",
+    "resamples": 10000,
+    "seed": 20261016,
+    "method": "Resample 54 stories with replacement, preserve question pairs within each story, and recompute the question-weighted mean difference; linear 2.5/97.5 percent quantiles",
+    "interpretation": "Descriptive validation uncertainty only. Stories share source families and validation has prior exposure; this is not an independent confirmatory significance claim."
+  },
+  "remaining_gate": "Any accepted context policy must still be combined with selected retrieval and verified on complete validation using the frozen generator before a global test-authorizing production policy.",
+  "test_accessed": false,
+  "limits": [
+    "Section-ID retention does not prove a supporting sentence survives.",
+    "Citation validity does not prove entailment.",
+    "Answerable-only QA does not establish unknown-question calibration.",
+    "One fixed candidate only; no refinement from candidate or test outcomes in this comparison."
+  ],
+  "existing_validation_information": "The earlier 400-question validation subset and complete validation BM25/tokenizer diagnostics have been observed. This is a validation development comparison, not independent held-out confirmation. No candidate model outputs or sealed test answers informed this protocol."
+}

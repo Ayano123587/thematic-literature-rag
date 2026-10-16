@@ -1,0 +1,24 @@
+{
+  "scope": "Actual pinned fast-tokenizer/source contract audit only; no candidate model forward or answer score",
+  "validation_questions": 2372,
+  "valid_contexts": 2372,
+  "failures": 0,
+  "max_input_tokens": 509,
+  "mean_input_tokens": 503.5543844856661,
+  "citation_count_distribution": {
+    "4": 2372
+  },
+  "retained_section_recall_proxy": 0.8134134345137718,
+  "proxy_limit": "Equal allocation makes section-ID retention largely mechanical; this cannot justify promotion or prove supporting sentence retention.",
+  "model": {
+    "tokenizer": "google-t5/t5-small",
+    "revision": "df1b051c49625cf57a3d0d8d3863ed4d13564fe4"
+  },
+  "source_sha256": "b683477eba40c7163317f7647955d0fc7f086c5d456d1801b31157ca3634c200",
+  "context_protocol_sha256": "83b3e611039695ba8a3dc6d01ee3edd7b00df8e1815c985ef46b56833fa44502",
+  "validation_ids_sha256": "40d2ddd6b065469a8b947d84dbb630efcaac83acecc695606022116cc1a0f7cb",
+  "seconds": 90.85130619999836,
+  "neural_model_allocated": false,
+  "candidate_forward_passes": 0,
+  "test_accessed": false
+}

@@ -41,7 +41,7 @@ Validation is independently resumable in complete shards, so cloud time limits d
 
 ## Notebooks and results
 
-[Main workflow](notebooks/00_main_literature_rag.ipynb), [source EDA](notebooks/01_source_family_eda.ipynb), [experiments](notebooks/02_validation_experiments.ipynb) and [citation audit](notebooks/03_citation_and_error_analysis.ipynb) contain readable algorithms and genuinely executed outputs. Their recorded subset diagnostics are labelled; full-cohort curves and selected-model inference will be added from verified runs. Optional training/download/test cells are disabled by default.
+[Main workflow](notebooks/00_main_literature_rag.ipynb), [source EDA](notebooks/01_source_family_eda.ipynb), [experiments](notebooks/02_validation_experiments.ipynb) and [citation audit](notebooks/03_citation_and_error_analysis.ipynb) contain readable algorithms and genuinely executed outputs. They show the complete source cohort, measured evidence/context retention and verified continuation mechanics. Full model curves and selected-model inference require completed validation artifacts. Optional training/download/test cells are disabled by default.
 
 ## Limits
 

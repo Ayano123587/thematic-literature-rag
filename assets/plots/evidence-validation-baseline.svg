@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-16T13:58:20.269725</dc:date>
+    <dc:date>2026-10-16T18:37:31.742229</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,45 +40,45 @@ z
    <g id="patch_3">
     <path d="M 71.241818 260.12
 L 170.281053 260.12
-L 170.281053 47.482867
-L 71.241818 47.482867
+L 170.281053 56.215447
+L 71.241818 56.215447
 z
-" clip-path="url(#p1ce96ded2b)" style="fill: #4c956c"/>
+" clip-path="url(#pd29c92147b)" style="fill: #386cb0"/>
    </g>
    <g id="patch_4">
     <path d="M 195.040861 260.12
 L 294.080096 260.12
-L 294.080096 86.3562
-L 195.040861 86.3562
+L 294.080096 81.353816
+L 195.040861 81.353816
 z
-" clip-path="url(#p1ce96ded2b)" style="fill: #4c956c"/>
+" clip-path="url(#pd29c92147b)" style="fill: #386cb0"/>
    </g>
    <g id="patch_5">
     <path d="M 318.839904 260.12
 L 417.879139 260.12
-L 417.879139 47.8716
-L 318.839904 47.8716
+L 417.879139 58.140639
+L 318.839904 58.140639
 z
-" clip-path="url(#p1ce96ded2b)" style="fill: #4c956c"/>
+" clip-path="url(#pd29c92147b)" style="fill: #386cb0"/>
    </g>
    <g id="patch_6">
     <path d="M 442.638947 260.12
 L 541.678182 260.12
-L 541.678182 75.471667
-L 442.638947 75.471667
+L 541.678182 77.418185
+L 442.638947 77.418185
 z
-" clip-path="url(#p1ce96ded2b)" style="fill: #4c956c"/>
+" clip-path="url(#pd29c92147b)" style="fill: #386cb0"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
      <g id="line2d_1">
       <defs>
-       <path id="mbbc46bdd03" d="M 0 0
+       <path id="m788398afad" d="M 0 0
 L 0 3.5
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#mbbc46bdd03" x="120.761435" y="260.12" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m788398afad" x="120.761435" y="260.12" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_1">
@@ -88,7 +88,7 @@ L 0 3.5
     <g id="xtick_2">
      <g id="line2d_2">
       <g>
-       <use xlink:href="#mbbc46bdd03" x="244.560478" y="260.12" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m788398afad" x="244.560478" y="260.12" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_2">
@@ -98,7 +98,7 @@ L 0 3.5
     <g id="xtick_3">
      <g id="line2d_3">
       <g>
-       <use xlink:href="#mbbc46bdd03" x="368.359522" y="260.12" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m788398afad" x="368.359522" y="260.12" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_3">
@@ -108,7 +108,7 @@ L 0 3.5
     <g id="xtick_4">
      <g id="line2d_4">
       <g>
-       <use xlink:href="#mbbc46bdd03" x="492.158565" y="260.12" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m788398afad" x="492.158565" y="260.12" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_4">
@@ -120,12 +120,12 @@ L 0 3.5
     <g id="ytick_1">
      <g id="line2d_5">
       <defs>
-       <path id="m9bd9664d24" d="M 0 0
+       <path id="m54744522a1" d="M 0 0
 L -3.5 0
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#m9bd9664d24" x="47.72" y="260.12" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m54744522a1" x="47.72" y="260.12" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_5">
@@ -135,7 +135,7 @@ L -3.5 0
     <g id="ytick_2">
      <g id="line2d_6">
       <g>
-       <use xlink:href="#m9bd9664d24" x="47.72" y="213.472" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m54744522a1" x="47.72" y="213.472" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_6">
@@ -145,7 +145,7 @@ L -3.5 0
     <g id="ytick_3">
      <g id="line2d_7">
       <g>
-       <use xlink:href="#m9bd9664d24" x="47.72" y="166.824" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m54744522a1" x="47.72" y="166.824" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_7">
@@ -155,7 +155,7 @@ L -3.5 0
     <g id="ytick_4">
      <g id="line2d_8">
       <g>
-       <use xlink:href="#m9bd9664d24" x="47.72" y="120.176" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m54744522a1" x="47.72" y="120.176" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_8">
@@ -165,7 +165,7 @@ L -3.5 0
     <g id="ytick_5">
      <g id="line2d_9">
       <g>
-       <use xlink:href="#m9bd9664d24" x="47.72" y="73.528" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m54744522a1" x="47.72" y="73.528" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_9">
@@ -175,7 +175,7 @@ L -3.5 0
     <g id="ytick_6">
      <g id="line2d_10">
       <g>
-       <use xlink:href="#m9bd9664d24" x="47.72" y="26.88" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m54744522a1" x="47.72" y="26.88" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_10">
@@ -183,13 +183,13 @@ L -3.5 0
      </g>
     </g>
     <g id="text_11">
-     <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="18.737188" y="143.5" transform="rotate(-90 18.737188 143.5)">Annotated evidence recall@4</text>
+     <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="18.737188" y="143.5" transform="rotate(-90 18.737188 143.5)">Human-linked section recall@4</text>
     </g>
    </g>
    <g id="line2d_11">
-    <path d="M 47.72 64.295583
-L 565.2 64.295583
-" clip-path="url(#p1ce96ded2b)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #000000; stroke-width: 1.5"/>
+    <path d="M 47.72 70.399451
+L 565.2 70.399451
+" clip-path="url(#pd29c92147b)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #000000; stroke-width: 1.5"/>
    </g>
    <g id="patch_7">
     <path d="M 47.72 260.12
@@ -202,23 +202,23 @@ L 565.2 260.12
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_12">
-    <text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="306.46" y="20.88" transform="rotate(-0 306.46 20.88)">Recorded BM25 validation retrieval; not QA accuracy</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="306.46" y="20.88" transform="rotate(-0 306.46 20.88)">Complete validation evidence retrieval</text>
    </g>
    <g id="legend_1">
     <g id="line2d_12">
-     <path d="M 420.021875 39.978437
-L 430.021875 39.978437
-L 440.021875 39.978437
+     <path d="M 472.4625 39.978437
+L 482.4625 39.978437
+L 492.4625 39.978437
 " style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #000000; stroke-width: 1.5"/>
     </g>
     <g id="text_13">
-     <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="448.021875" y="43.478437" transform="rotate(-0 448.021875 43.478437)">Macro question mean</text>
+     <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="500.4625" y="43.478437" transform="rotate(-0 500.4625 43.478437)">All2372 QA</text>
     </g>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p1ce96ded2b">
+  <clipPath id="pd29c92147b">
    <rect x="47.72" y="26.88" width="517.48" height="233.24"/>
   </clipPath>
  </defs>

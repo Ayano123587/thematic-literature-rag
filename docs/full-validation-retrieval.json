@@ -1,0 +1,70 @@
+{
+  "n": 2372,
+  "recall_at_4": 0.8134134345137718,
+  "precision_at_4": 0.21395446880269814,
+  "candidate_recall_at_12": 0.963146430578977,
+  "annotation_top4_ceiling": 1.0,
+  "origin": {
+    "andersen-fairybook": {
+      "n": 377,
+      "recall_at_4": 0.8742263483642794
+    },
+    "blue-fairybook": {
+      "n": 152,
+      "recall_at_4": 0.7664473684210527
+    },
+    "green-fairybook": {
+      "n": 480,
+      "recall_at_4": 0.8659722222222223
+    },
+    "lilac-fairybook": {
+      "n": 1363,
+      "recall_at_4": 0.7833211054047445
+    }
+  },
+  "attribute": {
+    "action": {
+      "n": 761,
+      "recall_at_4": 0.7696014016644765
+    },
+    "causal relationship": {
+      "n": 667,
+      "recall_at_4": 0.8614442778610695
+    },
+    "character": {
+      "n": 267,
+      "recall_at_4": 0.8854556803995006
+    },
+    "feeling": {
+      "n": 240,
+      "recall_at_4": 0.7472222222222222
+    },
+    "outcome resolution": {
+      "n": 237,
+      "recall_at_4": 0.8681434599156118
+    },
+    "prediction": {
+      "n": 52,
+      "recall_at_4": 0.7628205128205128
+    },
+    "setting": {
+      "n": 148,
+      "recall_at_4": 0.7297297297297297
+    }
+  },
+  "explicit": {
+    "explicit": {
+      "n": 1625,
+      "recall_at_4": 0.8265641025641026
+    },
+    "implicit": {
+      "n": 747,
+      "recall_at_4": 0.784805890227577
+    }
+  },
+  "scope": "All2372 custom-source-family validation QA; known story; BM25top4, no gold injection",
+  "validation_ids_sha256": "40d2ddd6b065469a8b947d84dbb630efcaac83acecc695606022116cc1a0f7cb",
+  "manifest_sha256": "721733169b0c1e7b7c1d07fe1880d3c871d72017be6fc61923be126feea73225",
+  "test_accessed": false,
+  "model_weights_loaded": false
+}
