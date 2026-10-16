@@ -5,11 +5,12 @@ import gzip
 import json
 from pathlib import Path
 import subprocess
+import zipfile
 
 from src.data.prepare_fairytale import sha
 
 
-def prepare(data, output, smoke):
+def prepare(data, output, smoke, dataset=None):
     data, output = Path(data), Path(output)
     if output.exists():
         raise ValueError("Refusing to overwrite kernel payload")
@@ -50,12 +51,47 @@ result=subprocess.run(command)
 if result.returncode: raise SystemExit(result.returncode)
 '''.replace("PACKED", repr(packed)).replace("SMOKE", repr(["--smoke"] if smoke else []))
     output.mkdir(parents=True)
+    if dataset:
+        dataset_folder = output / "dataset-upload"
+        dataset_folder.mkdir()
+        archive = dataset_folder / "payload.zip"
+        with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as handle:
+            for name, raw in files.items():
+                handle.writestr(name, raw)
+        license_file = next(Path("data/external/fairytaleqa").glob("FairytaleQAData-*/LICENSE"))
+        (dataset_folder / "LICENSE").write_bytes(license_file.read_bytes())
+        (dataset_folder / "dataset-metadata.json").write_text(json.dumps({
+            "id": dataset, "title": "Private narrative training source-family study",
+            "licenses": [{"name": "other"}],
+            "description": "Private FairytaleQA Apache-2.0 research subset and original training source. See LICENSE. No test QA included."
+        }, indent=2), encoding="utf-8")
+        bootstrap = '''import os,sys,subprocess,json,time,zipfile,hashlib
+from pathlib import Path
+os.environ['TOKENIZERS_PARALLELISM']='false'
+os.environ['OMP_NUM_THREADS']='4'
+os.environ['MKL_NUM_THREADS']='4'
+subprocess.run([sys.executable,'-m','pip','install','-q','transformers==4.57.6','sentencepiece==0.2.1'],check=True)
+archives=list(Path('/kaggle/input').rglob('payload.zip'))
+if len(archives)!=1: raise ValueError('Expected one private payload')
+if hashlib.sha256(archives[0].read_bytes()).hexdigest()!=EXPECTED_HASH: raise ValueError('Payload bytes changed')
+root=Path('/kaggle/working/experiment');root.mkdir()
+with zipfile.ZipFile(archives[0]) as handle: handle.extractall(root)
+os.chdir(root)
+started=time.monotonic()
+command=[sys.executable,'train.py','--data','private-data','--output','run','--micro-batch','2','--threads','4']+SMOKE_ARGUMENTS
+result=subprocess.run(command)
+(root/'runtime.json').write_text(json.dumps({'exit_code':result.returncode,'wall_seconds':time.monotonic()-started,'test_files_packaged':False}))
+if result.returncode: raise SystemExit(result.returncode)
+'''.replace("EXPECTED_HASH", repr(sha(archive.read_bytes()))).replace(
+            "SMOKE_ARGUMENTS", repr(["--smoke"] if smoke else []))
+        report["private_dataset"] = dataset
+        report["payload_zip_sha256"] = sha(archive.read_bytes())
     (output / "run.py").write_text(bootstrap, encoding="utf-8", newline="\n")
     slug = "portfolio-narrative-t5-cpu-smoke" if smoke else "portfolio-narrative-t5-cpu-train"
     metadata = {"id": "aikyatansinha/" + slug, "title": slug.replace("-", " ").title(),
                 "code_file": "run.py", "language": "python", "kernel_type": "script",
                 "is_private": True, "enable_gpu": False, "enable_internet": True,
-                "dataset_sources": [], "competition_sources": [], "kernel_sources": []}
+                "dataset_sources": [dataset] if dataset else [], "competition_sources": [], "kernel_sources": []}
     (output / "kernel-metadata.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
     report["private_bootstrap_sha256"] = sha((output / "run.py").read_bytes())
     report["bootstrap_bytes"] = (output / "run.py").stat().st_size
@@ -70,5 +106,6 @@ if __name__ == "__main__":
     parser.add_argument("--data", required=True)
     parser.add_argument("--output", required=True)
     parser.add_argument("--smoke", action="store_true")
+    parser.add_argument("--dataset", help="Private Kaggle dataset slug for payloads exceeding script size limits")
     args = parser.parse_args()
-    prepare(args.data, args.output, args.smoke)
+    prepare(args.data, args.output, args.smoke, args.dataset)
