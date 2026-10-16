@@ -4,6 +4,8 @@ Retrieve evidence across public-domain books, follow character mentions through 
 
 Literary QA is still difficult here. The historical Persuasion reader scored 15.27% token F1; a Qwen experiment scored zero after its support gate. Cross-book theme diagnostics missed required evidence. A new T5 adaptation study uses real FairytaleQA annotations and source-family separation; full training is running and answer metrics are pending. The completed four-example CPU check verifies training and checkpoint replay only.
 
+Full-data expansion now covers all 10,580 FairytaleQA annotations in a custom source-family partition. All 2,372 validation QA are retained; new full-cohort scores are pending. The older running jobs and plots below remain subset evidence.
+
 ## Run
 
 Use Python 3.11+ and a fresh environment for this repository. These research repositories share a `src` package and incompatible optional dependencies; a combined installation is unsupported.
@@ -59,3 +61,9 @@ These books are now observed historical tests. [Evaluation](docs/evaluation.md),
 Story identity is supplied in the new QA study; this does not evaluate global book identification. Human section boundaries and answerable-only annotations cannot establish unknown-question calibration. Source-family separation cannot rule out recurring plots or pretrained exposure. NarrativeQA answers were written from summaries and may not occur as literal book spans. Model margins are not calibrated probabilities.
 
 Citations are Python character offsets in newline-normalized processed UTF-8 text. Docling offsets address converted text rather than PDF pages. Character attribution and thematic interpretation remain limited. Persistence uses checked JSON and numeric arrays, rejects old pickle indexes, and verifies source/model/chunk contracts. Data, raw QA, weights and credentials remain ignored; the software license does not relicense them.
+
+## Full-data coverage expansion
+
+The pinned FairytaleQA release contains 10,580 QA: official train 8,548, validation 1,025 and test 1,007. The original running jobs use a smaller custom study (3,314 train and 400 scored validation QA); their outcomes must remain labelled historical subset results.
+
+All 278 provided stories are now audited and staged privately. Preserving prior source-family holdouts gives 7,883 train, **all 2,372 validation**, and 325 sealed test QA. No origin is excluded preemptively; no validation sampling cap is applied in the new protocol. This custom partition uses some official validation/test rows in training families and therefore is **not an official-split benchmark**. It preserves all previously held-out sources. See [coverage audit](docs/full-coverage-audit.json), [prospective full-data protocol](docs/full-coverage-protocol.json) and [preflight](docs/full-coverage-preflight.json). New full-cohort model results are pending.

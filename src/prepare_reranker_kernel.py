@@ -8,7 +8,7 @@ import zipfile
 from src.data.prepare_fairytale import sha
 
 
-def prepare(data, output, dataset, smoke):
+def prepare(data, output, dataset, smoke, protocol="docs/v5-reranker-protocol.json"):
     data, output = Path(data), Path(output)
     if output.exists():
         raise ValueError("Refusing to overwrite a prepared reranker payload")
@@ -16,6 +16,9 @@ def prepare(data, output, dataset, smoke):
              "src/narrative_training.py", "src/reranker_training.py", "src/cloud/__init__.py",
              "src/cloud/narrative_runner.py", "docs/v5-reranker-protocol.json"]
     files = {name: Path(name).read_bytes() for name in paths}
+    # Keep the runner's mounted protocol filename stable while selecting an
+    # explicit preregistered experiment; legacy default payloads are unchanged.
+    files["docs/v5-reranker-protocol.json"] = Path(protocol).read_bytes()
     for path in data.rglob("*"):
         if path.is_file() and "test" not in path.relative_to(data).parts:
             files["private-data/" + path.relative_to(data).as_posix()] = path.read_bytes()
@@ -23,6 +26,7 @@ def prepare(data, output, dataset, smoke):
               "protocol_sha256": sha(files["docs/v5-reranker-protocol.json"]),
               "file_sha256": {name: sha(raw) for name, raw in files.items()},
               "test_files_packaged": False, "smoke": smoke, "gpu": False,
+              "protocol_source_path": str(protocol),
               "transport": "Plain mounted Python, JSON and CSV; ZIP extracted by Kaggle"}
     files["payload-provenance.json"] = json.dumps(report, indent=2).encode()
     output.mkdir(parents=True)
@@ -52,7 +56,11 @@ def prepare(data, output, dataset, smoke):
     report.update({"private_dataset": dataset, "runner_sha256": sha((output / "run.py").read_bytes()),
                    "payload_zip_sha256": sha((upload / "payload.zip").read_bytes())})
     kind = "smoke" if smoke else "train"
-    Path(f"docs/v5-reranker-{kind}-preflight.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    preflight = Path(f"docs/v5-reranker-{kind}-preflight.json") if protocol == "docs/v5-reranker-protocol.json" else Path(
+        "docs") / (Path(protocol).stem + f"-{kind}-preflight.json")
+    if preflight.exists() and protocol != "docs/v5-reranker-protocol.json":
+        raise ValueError("Preserve prior experiment preflight; use a versioned protocol")
+    preflight.write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(json.dumps({"kernel": metadata["id"], "test_packaged": False, "gpu": False,
                       "runner_bytes": (output / "run.py").stat().st_size}))
 
@@ -63,5 +71,6 @@ if __name__ == "__main__":
     parser.add_argument("--output", required=True)
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--smoke", action="store_true")
+    parser.add_argument("--protocol", default="docs/v5-reranker-protocol.json")
     args = parser.parse_args()
-    prepare(args.data, args.output, args.dataset, args.smoke)
+    prepare(args.data, args.output, args.dataset, args.smoke, args.protocol)

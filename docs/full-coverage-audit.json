@@ -1,0 +1,2890 @@
+{
+  "source_revision": "a24ddc17364666b7c13a425b9970c87368b03417",
+  "metadata_sha256": "bd45290eb48a908829d50792fa465592f26bbe898ca16778e8576fbe2f1fdf76",
+  "license_sha256": "335d2c093cbb191de9693d87c9935f832a2442a67615a6e47ac71f74ccb4bd5d",
+  "official_counts": {
+    "train": {
+      "stories": 232,
+      "QA_metadata": 8548
+    },
+    "val": {
+      "stories": 23,
+      "QA_metadata": 1025
+    },
+    "test": {
+      "stories": 23,
+      "QA_metadata": 1007
+    }
+  },
+  "full_source_family_counts": {
+    "train": {
+      "stories": 200,
+      "QA_metadata": 7883
+    },
+    "validation": {
+      "stories": 54,
+      "QA_metadata": 2372
+    },
+    "test": {
+      "stories": 24,
+      "QA_metadata": 325
+    }
+  },
+  "by_origin": {
+    "andersen-fairybook": {
+      "stories": 19,
+      "QA_metadata": 377
+    },
+    "beatrix-potter-fairybook": {
+      "stories": 13,
+      "QA_metadata": 176
+    },
+    "blue-fairybook": {
+      "stories": 8,
+      "QA_metadata": 152
+    },
+    "chinese-fairybook": {
+      "stories": 28,
+      "QA_metadata": 566
+    },
+    "first-round": {
+      "stories": 36,
+      "QA_metadata": 728
+    },
+    "green-fairybook": {
+      "stories": 6,
+      "QA_metadata": 480
+    },
+    "grimm-fairybook": {
+      "stories": 11,
+      "QA_metadata": 149
+    },
+    "irish-fairybook": {
+      "stories": 15,
+      "QA_metadata": 1075
+    },
+    "japanese-fairybook": {
+      "stories": 19,
+      "QA_metadata": 1185
+    },
+    "lilac-fairybook": {
+      "stories": 21,
+      "QA_metadata": 1363
+    },
+    "native-american-fairybook": {
+      "stories": 24,
+      "QA_metadata": 1004
+    },
+    "norwegian-fairybook": {
+      "stories": 33,
+      "QA_metadata": 1428
+    },
+    "scottish-fairybook": {
+      "stories": 19,
+      "QA_metadata": 1228
+    },
+    "swedish-fairybook": {
+      "stories": 23,
+      "QA_metadata": 593
+    },
+    "wonderclock-fairybook": {
+      "stories": 3,
+      "QA_metadata": 76
+    }
+  },
+  "duplicate_edges": [],
+  "duplicate_group_migrations": [],
+  "prior_observed_role_migrations": [],
+  "old_study_counts": {
+    "train_QA": 3314,
+    "validation_QA_total": 2372,
+    "validation_QA_scored": 400,
+    "sealed_test_QA_metadata": 325
+  },
+  "source_inventory": [
+    {
+      "id": "brave-tin-soldier",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 27,
+      "role": "validation",
+      "source_sha256": "7919a71b47bb81a9c42618b43fd68addcd3c25ef7cde3b540216bd94ddd7b5b9",
+      "source_file_sha256": "b22f5bdf18c6a751a29359393c682a0d1d8e871b2a63d13ae4959338fa163f0d",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "buckwheat",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 15,
+      "role": "validation",
+      "source_sha256": "0c6f51ca49ab9e2d9d02f76702cdc56df3a46817a675fa2d5cbd41652e42583e",
+      "source_file_sha256": "89ff2b3ee7296d765755b1d17944184d01160eff22a0f12732e96832887694ec",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "flax",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 24,
+      "role": "validation",
+      "source_sha256": "2db556d433d424db1c699cd2e932850e9e97037c7d4db580a625d782da10b581",
+      "source_file_sha256": "d62a33f359f7cdcf78c771a77e6d34e77a8de5a31f335201b4c5246b70db9271",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "goblin-huckster",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 24,
+      "role": "validation",
+      "source_sha256": "539b937f255d59d34b4808c121f8ec28d735311b676b7c60f37931c13b18af08",
+      "source_file_sha256": "143102924dd276ee3b9c2dd9d5587486066f4da443729591719791131f53e31c",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "grandmother",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 11,
+      "role": "validation",
+      "source_sha256": "129b25ef50f2170f30abfc199551476039b0419162a0404ae3cff7855c577d44",
+      "source_file_sha256": "ebb36281bfadc831c52536c79558f9cec0f51c660d29c84436683c4f1d3f4fc8",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "money-box",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "validation",
+      "source_sha256": "5f7d03d280c23d75bc38e61b74f789e53e05133e850c77bda61472ebe93963a4",
+      "source_file_sha256": "a280ce74baa6dc9cd3fa3e9353fb8dd37c53370832756cb01c1e98bb5eba2a05",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "naughty-boy",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 15,
+      "role": "validation",
+      "source_sha256": "f6bdc74defd98437be52b9ade5ba8ff8a482835d59107ef2346ef14f2116c759",
+      "source_file_sha256": "975178bffb2f06ad77a7d1e3e5343e9f479431cd55cc0e37de2282bae22f6f0b",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "old-street-lamp",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 39,
+      "role": "validation",
+      "source_sha256": "78580430361808ded3b7a4f5584297fdc1ac843e3d463ac4ae98ec033ef63347",
+      "source_file_sha256": "da9935df2b0f06ff5674f9538a077c8364d67f8ce2107cbba03faea1adb2b846",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "puppet-show-man",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 24,
+      "role": "validation",
+      "source_sha256": "ff755e2ecdcb91e53765a28c4e143103c78baefca0e3c46d2a4c50d85583b9e7",
+      "source_file_sha256": "ceda6dbd5ab1706d9e8cda37831e1187b2692b9f126fc57c22055ad6566ab00d",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "races",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 16,
+      "role": "validation",
+      "source_sha256": "2c11a89be32716d914023c94c9f00dcb8c1b58029cfe12d6c5e347ff1d31d2cd",
+      "source_file_sha256": "63a174cc4823ae042f1228524c7bb06c64deb8da1d17fe77a7d27550752deac4",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "red-shoes",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 30,
+      "role": "validation",
+      "source_sha256": "bbcad5ee88b7d109f6f92ea778631e649be4ac403521debca119b0cd923c0809",
+      "source_file_sha256": "999fc0b1b84831db138137e6240d05268f6773f8e28874e6f039555f61f8e22f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "snail-rose-tree",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 15,
+      "role": "validation",
+      "source_sha256": "135a5475b504cb8acd373b151e9d5edbe2fa63230d7c4361a62f50bd79076a89",
+      "source_file_sha256": "64dff6735e0e61185bf2fc597fceaf4ba046b003b486d52df50e0ed63c0c091c",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "snow-man",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 24,
+      "role": "validation",
+      "source_sha256": "96336ab3043b6fad9fa3d0582ba4aa5fb4f82baf95b074443b5662fb19eb38d5",
+      "source_file_sha256": "6cc2c4e5ba8c2bd92aa7cca4a0019cf764e98e08b32827211d291d8e4f2f471a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "storks",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 9,
+      "role": "validation",
+      "source_sha256": "4d4cb0b6520d54db6b4d0ae9ac8ba1b7def78bae0c6a6207b6fd652e6822f0c4",
+      "source_file_sha256": "5cf44dc86883d6a9919b427ccb8c9438de6a1be203154f85e8700cd74aec156d",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-mother",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 23,
+      "role": "validation",
+      "source_sha256": "2b5b44d7ffb555a26045b6857ccb6095f61f45ccc6e6af521680caf1de5b149e",
+      "source_file_sha256": "d645c9543eba0053f96faae788cfb4cee70bb6fb76fa5833952ad13ff9a1ba44",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-teapot",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 11,
+      "role": "validation",
+      "source_sha256": "10385d62bd774f981ecc7a0f6a46064197882879b21e173175f20e0ed2c0b0d5",
+      "source_file_sha256": "557b60f4b69fe98c5890a8ffe2673355191ce140c91f08db6574708f754c44ef",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "two-maidens",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 12,
+      "role": "validation",
+      "source_sha256": "7e5c30adc5d2afaca7710c76e62b3321855b4d0854f2184ef0934eac766f9d11",
+      "source_file_sha256": "9c4c60d2e71a4517c351462996c68bf7bf933e12433d7d88a737436ccfa07044",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "what-one-can-invent",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 13,
+      "role": "validation",
+      "source_sha256": "9e6b5b790bc77470151e56d8731676fade424173a74560210857cd09f204d1e7",
+      "source_file_sha256": "574de05a82bcdc5acd63bd48a8e4d3cf923e5872ccb995f1ba20c83da8705240",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "what-the-goodman-does-is-always-right",
+      "origin": "andersen-fairybook",
+      "official": "train",
+      "QA_metadata": 26,
+      "role": "validation",
+      "source_sha256": "0c4c85faa65fa21bf161fdeed83da6f8046d045eb67de2035d4f3b155caed526",
+      "source_file_sha256": "29b054c9730028e2ee1a446cb5a45055fbce4ad51b53c5a0edfb9d51325d2eaf",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-pie-and-the-patty-pan",
+      "origin": "beatrix-potter-fairybook",
+      "official": "train",
+      "QA_metadata": 24,
+      "role": "test",
+      "source_sha256": "82f6daf7e89ed407c459be93b2b6e88e79a8c670220f39cf36d2b81b9883e8c0",
+      "source_file_sha256": "a6ebf44fb2e69b9c3e6d6db2680bbda11ada33102ad1a4a7296003db15750e73",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-roly-poly-pudding",
+      "origin": "beatrix-potter-fairybook",
+      "official": "train",
+      "QA_metadata": 22,
+      "role": "test",
+      "source_sha256": "e9788e64c59145af017ce86fd34d52c879c7d8fd12ff36f52040930515e37b36",
+      "source_file_sha256": "40ff192964f92fc8dd50501ca4f5deb0df7a01335ae15218a7565e70fd8f585b",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-story-of-miss-moppet",
+      "origin": "beatrix-potter-fairybook",
+      "official": "train",
+      "QA_metadata": 5,
+      "role": "test",
+      "source_sha256": "2db72b2d1bf9d0a915235c2c7859c82667552935c663f15d6ff77e0da12fc810",
+      "source_file_sha256": "de10b84847ff4d9e3da55c7bade135339520627d1d8dfaad29ecfb719275176d",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-tale-of-bad-mice",
+      "origin": "beatrix-potter-fairybook",
+      "official": "train",
+      "QA_metadata": 10,
+      "role": "test",
+      "source_sha256": "90a5de7c21ccbd2a9324070a091a81bcb9711153e5b3d70e61811c6882e5f984",
+      "source_file_sha256": "040c4e3f0e99e5ea73fb243bce3cbf1d071228dee5570a128d304344f77dce04",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-tale-of-benjamin-bunny",
+      "origin": "beatrix-potter-fairybook",
+      "official": "train",
+      "QA_metadata": 12,
+      "role": "test",
+      "source_sha256": "f523f5d75a11f7da6d43ef2558210d85aee452f59d44443bd90b05d6a41e2b0c",
+      "source_file_sha256": "ab1663dbaf64c420e8df274a87b8045e4581b1a5ca532ed146869b289ee7997c",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-tale-of-jemina-puddle-duck",
+      "origin": "beatrix-potter-fairybook",
+      "official": "train",
+      "QA_metadata": 13,
+      "role": "test",
+      "source_sha256": "9ae9e538daa16161b681f17a3419fe45abecab164ae4a5031074885a4c8bc7b4",
+      "source_file_sha256": "8d6718db94966bbb08c4f5f1966099c7d353a0255fcf5650378b807aab26da2a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-tale-of-mr-jeremy-fisher",
+      "origin": "beatrix-potter-fairybook",
+      "official": "train",
+      "QA_metadata": 9,
+      "role": "test",
+      "source_sha256": "c062088412766d33c17a002278d55ca073feda5563afa64b6e9a4f5646783311",
+      "source_file_sha256": "93f0055cba0525bdad952fdebccfd9b6560a786f43ab86ff6fc4c53d71c7c64f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-tale-of-mrs.-tiggy-winkle",
+      "origin": "beatrix-potter-fairybook",
+      "official": "train",
+      "QA_metadata": 11,
+      "role": "test",
+      "source_sha256": "ef940796407ffb5f09335717952033ce2894165a4c2979d35eb16d4425ced68d",
+      "source_file_sha256": "695f38cc9c21c5af69a90e65d03730ea386b81e98cd41ce517a131339c75f259",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-tale-of-peter-rabbit",
+      "origin": "beatrix-potter-fairybook",
+      "official": "train",
+      "QA_metadata": 12,
+      "role": "test",
+      "source_sha256": "d65a7bf9098d493a44bb86d18929cf581968aac5896d73dd9f654533dd8b8a53",
+      "source_file_sha256": "3c516421270c3ff2bafff11081f8a062cb26a22576095bc9e142113fef80ad37",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-tale-of-the-flopsy-bunnies",
+      "origin": "beatrix-potter-fairybook",
+      "official": "train",
+      "QA_metadata": 10,
+      "role": "test",
+      "source_sha256": "4bb3f189324a0e2580e31b697a2deaf7f038ae773f1bc2429d8aaac463379d89",
+      "source_file_sha256": "398d2fcdabf57939735d65fc6c8cedf94a5766facb04f93244cfd4fc50b558eb",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-tale-of-timmy-tiptoes",
+      "origin": "beatrix-potter-fairybook",
+      "official": "train",
+      "QA_metadata": 14,
+      "role": "test",
+      "source_sha256": "bd9541b4b2fd9f5e8aabd154ddf5e7462645fe6b66a12473c4b43b4972e9af19",
+      "source_file_sha256": "7e8fb9e6e4ebc27487205f550f1454470abd999e7feb7763fe59e1903a976266",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-toad",
+      "origin": "beatrix-potter-fairybook",
+      "official": "train",
+      "QA_metadata": 23,
+      "role": "test",
+      "source_sha256": "d04f7b75054c2a8fc55ba8b438e84ce080ae3c6be659acec1cbc58021c740df4",
+      "source_file_sha256": "085864d1340175179850f61d3cbb41134ec128635ac8f97806c4755eb1f1a8db",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-top-and-ball",
+      "origin": "beatrix-potter-fairybook",
+      "official": "train",
+      "QA_metadata": 11,
+      "role": "test",
+      "source_sha256": "7b38bb6eeb7a8b465eaf4eb57c393671840c7ec162a8cb7eac7f4b99994f4e4b",
+      "source_file_sha256": "b8d217c6c5517f7403cc1b00b36ff924af68a36b46566fa797d90517272c1443",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-brownie-of-the-lake",
+      "origin": "blue-fairybook",
+      "official": "train",
+      "QA_metadata": 33,
+      "role": "validation",
+      "source_sha256": "f25ddc54a8d3a2a04aa3325d38f92f2256c30d1b87b1965379a115e4f1c6d61b",
+      "source_file_sha256": "2f0d9cbbc5551c15b099b5670f39dc2890d8821ebdd703519948ccd169ac8414",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-bunyip",
+      "origin": "blue-fairybook",
+      "official": "train",
+      "QA_metadata": 14,
+      "role": "validation",
+      "source_sha256": "ae2ad6d270eb4ffa11c61936628c48dcc8313a4c61e91057e579195c3052b712",
+      "source_file_sha256": "59413acb1de786d2927e56916a90164a1bce36fce203d6995d265885f21ab98e",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-golden-blackbird",
+      "origin": "blue-fairybook",
+      "official": "train",
+      "QA_metadata": 20,
+      "role": "validation",
+      "source_sha256": "5d0f838895feb912df1e7ce1c49711514c8f032eb3f43ffd027d26573575010b",
+      "source_file_sha256": "4a67599bb4510e02abc772fc14b02d61b1061ed5f01291610b0192f8c2ce1aca",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-history-of-jack-the-giant-killer",
+      "origin": "blue-fairybook",
+      "official": "train",
+      "QA_metadata": 21,
+      "role": "validation",
+      "source_sha256": "67fc865be39257a8c315774782ed990adf2047f600aadd072087080cb5083443",
+      "source_file_sha256": "c0326b4c1249a4487445cff3d61927ff9644a42e65cb9714cc1edc397ad86490",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-magic-mirror",
+      "origin": "blue-fairybook",
+      "official": "train",
+      "QA_metadata": 20,
+      "role": "validation",
+      "source_sha256": "55103d4aa9282cc0c48290a37e0cbc7a6bc926601424b32f65761a592f5ecc43",
+      "source_file_sha256": "a57d06a6adc1a74a96bde87a0c3d9d47170e0049f49c6bad3e15e8c5780b72d1",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-sunchild",
+      "origin": "blue-fairybook",
+      "official": "train",
+      "QA_metadata": 14,
+      "role": "validation",
+      "source_sha256": "c42cfbb357d3cd3aec6689536c4a62210937e92ae0d1d32ad79f679bbc4f34fd",
+      "source_file_sha256": "aee79a31ac1a3db319d6462f7b612fee22daa6506670dd5bde53120cc6efa6fd",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-war-of-the-wolf-and-the-fox",
+      "origin": "blue-fairybook",
+      "official": "train",
+      "QA_metadata": 17,
+      "role": "validation",
+      "source_sha256": "7501ca81ab13c21c1c7e2d6ca645e7fea13e81648845193138b3afe7d28632b6",
+      "source_file_sha256": "8d107c47c0c5d373c9648b70e541682713736c808892b5810975a5edb96b17a7",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "which-was-the-foolishest",
+      "origin": "blue-fairybook",
+      "official": "train",
+      "QA_metadata": 13,
+      "role": "validation",
+      "source_sha256": "de44864a337a82b5fe492b28e70e15c70f5e253f9a8d931392a6c1063ead0960",
+      "source_file_sha256": "89d89e66ce420bb7bdd027cf4d0a60e4e2c7e27aa4ac0f13d1bfcd82570047fd",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "a-legend-of-confucius",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 15,
+      "role": "train",
+      "source_sha256": "4b33d70aac4a044b8c53d9e15189ff048162e387b95843ff91a4fd6bbc074f3e",
+      "source_file_sha256": "9ebc7346477bc420ba1e3616c1a90da59f4cdd5e5bea64e6de4b5c0a49522a2a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "black-arts",
+      "origin": "chinese-fairybook",
+      "official": "val",
+      "QA_metadata": 30,
+      "role": "train",
+      "source_sha256": "2e763cf566a6136ef3b344a214fda95b00fd143420ed0a5b88b055056fc15997",
+      "source_file_sha256": "94ad55a3d3d81bfd23dd621a4cbca801b3a915a974f6f14d354d460e91181e54",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "dschang-liang",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 16,
+      "role": "train",
+      "source_sha256": "91177c41a588299fc1dd545b6b731d60143038fc21c2e3ab6993f6b80b3d7ddc",
+      "source_file_sha256": "0a2ce119683c798949b38ba2bcc66e6a12022395f9dea7128a47f1f2757f78ab",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "fox-fire",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 15,
+      "role": "train",
+      "source_sha256": "2c243703db6829cbb2f26038b6584fda9762c6c46152010da94ecf1c066973e9",
+      "source_file_sha256": "057aae302ad52b2379260220a0f81a41713ea48ef28f58464f56296c45b44ff0",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "giauna-the-beautiful",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 30,
+      "role": "train",
+      "source_sha256": "c1fcf37ad8f3880a5869537b2e08d8babb1e8c95d7b043db9ac7656a72160675",
+      "source_file_sha256": "044d3d5ab2dd40aa4a485e838c07750ef08bd718a6a0ae1c5c5161d27f95896f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "help-in-need",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 28,
+      "role": "train",
+      "source_sha256": "b546a3334ae1d2681e9f9a65c68df1b0e673b9e89bce65dabd1b8920280ca15c",
+      "source_file_sha256": "d453124ee9409ec0e05070cfad66ad2a88fb254d09d28d56de68c0d6e192e22e",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "how-molo-stole-the-lovely-rose-red",
+      "origin": "chinese-fairybook",
+      "official": "test",
+      "QA_metadata": 22,
+      "role": "train",
+      "source_sha256": "a6cd2c2c4960e73c17e87095a3ef09ca817b9f880e663c3c7d9420f82a00cc4b",
+      "source_file_sha256": "dfe3c5a04c8e19733b5b692a5200475f525e4bd290c46d817a16270c2cb90c3f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "how-the-five-ancients-became-men",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 14,
+      "role": "train",
+      "source_sha256": "637b35b32e3caedb32194b533540e1f94d736a3bbb461cd56c404ff0b3f44050",
+      "source_file_sha256": "18abe567a9d56bc37cdd151f497e50614717eb5461f402863efd28779a2bc836",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "how-the-river-gods-wedding-was-broken-off",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 17,
+      "role": "train",
+      "source_sha256": "a5731aec51a550810df8f59cd03fe5e59be41798b7d0a5100119fa68ac96a8ad",
+      "source_file_sha256": "4c374ed101aa2ba0e38325f5e8903078a668a97243df4b9abdd5c414f01205c5",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "laotsze",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 15,
+      "role": "train",
+      "source_sha256": "17d1df72ba712fe33f5b2b25b44309b33fb82cc6b3da56810ddc14bce47c2eda",
+      "source_file_sha256": "0aa7e97b808c97fcaddc148a2b7418e34f4cce415e576bcaffe47602af4b567a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "notscha",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 43,
+      "role": "train",
+      "source_sha256": "38920509fd23aea67d4d6c2acbe16938329660b5c7c2c7360d33fe72f0e8a138",
+      "source_file_sha256": "e870facaf7a6b0f6dd84e7057f3794f7db0775b1b34533efbccbf2a50c8ee3d1",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "old-dschang",
+      "origin": "chinese-fairybook",
+      "official": "val",
+      "QA_metadata": 21,
+      "role": "train",
+      "source_sha256": "5d47ae74514c1fbaa75b46933e409ed8aba4f0f8e9eaa66c3611270993dbe3a0",
+      "source_file_sha256": "01bce17f415b8ec80bb105749ff519e35cb7e9dcc633b8d92eba5054b348f724",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "rose-of-evening",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 31,
+      "role": "train",
+      "source_sha256": "5b82da878f73bbd769dbc1c455b218f4836bc8025ec3afb74b9d3116c9f8926c",
+      "source_file_sha256": "a3416ed01be3d5ff10e44304a26625348e76a001dfabb2a3dda430ad4ab5126c",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-bird-with-nine-heads",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 14,
+      "role": "train",
+      "source_sha256": "22129a8cbb75e409870de90257e488730aa22d2132472e139a12c3a5c8037157",
+      "source_file_sha256": "3dbeb728c39d1b0a1cb701b001345ebfb23f43dfacf38ed503962c42cfb232d0",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-constable",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "train",
+      "source_sha256": "6b786fc0750bf891377b41cf5a232e0bb6995c988469e9ae176acb30665de146",
+      "source_file_sha256": "0d441c277b0289c00f3c5df25b297f52a4f472f4c314e2cac606612162fcef11",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-dangerous-reward",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 14,
+      "role": "train",
+      "source_sha256": "dcb43b2bd2606b65feef04a85191c81caca03198244f62fa370e4ca0d90f23a2",
+      "source_file_sha256": "8bf59d31c970fb2347cbe8f08e5e09cd34d3820225614c1af13a789f4810dbc2",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-disowned-princess",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 23,
+      "role": "train",
+      "source_sha256": "99527216767128e1ecd5142e6ef60920c27329d6b5b646e86233ce327744178e",
+      "source_file_sha256": "ac637637172e328b12369615ab84d97889369255116f71bdd0c9b7abbc0b80da",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-dragon-princess",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 18,
+      "role": "train",
+      "source_sha256": "dcd55afd376c41ef3e5d9c518261d9e9a2724a9ecf25d97081e5973eaaa96acd",
+      "source_file_sha256": "5d8266b0cfaa9c51795891d56b7360b6901dd59aff380c5865896b59060a8a31",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-favorite-of-fortune-and-the-child-of-ill-luck",
+      "origin": "chinese-fairybook",
+      "official": "val",
+      "QA_metadata": 14,
+      "role": "train",
+      "source_sha256": "6887b5c21e6d61d0546504eed05f6909186db9e3e1428a6f2dad426aafe9678c",
+      "source_file_sha256": "4b45f4cfa7598e5f85c0e5a425af277aae403ba658a00e8716b9dc61a0ee9d4c",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-fire-god",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 11,
+      "role": "train",
+      "source_sha256": "fc6eb9531b9dc072ce577a2fc9d0015ddd409ec08b40d520022e9f3b11844f27",
+      "source_file_sha256": "3d673c13f824351f754cf27f4a0b12791de2ed1675c153c3f132ae50861d66a0",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-flying-ogre",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 13,
+      "role": "train",
+      "source_sha256": "b29bea248ee1662369f8285dffdb142a177614eab81c131fed06c2495c2d19ba",
+      "source_file_sha256": "b9a568c800db18b9bc742035af820c03a551b4e0e2a8b5f56318f614d0e83309",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-king-of-the-ants",
+      "origin": "chinese-fairybook",
+      "official": "val",
+      "QA_metadata": 13,
+      "role": "train",
+      "source_sha256": "9b7fd1da3f6bb242c92b2872bc1f9d4e28b3fbc8b3222ead06368758da1d5102",
+      "source_file_sha256": "b79226a46ee829d580a7ca9dbfdc82bdb019698c5e3e4836c6488f7313710018",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-lady-of-the-moon",
+      "origin": "chinese-fairybook",
+      "official": "val",
+      "QA_metadata": 20,
+      "role": "train",
+      "source_sha256": "86b99717ccd182f95249cc2fb81ff13a563b604cf30eb9e78376c964d6893e34",
+      "source_file_sha256": "4760f1bace74c58868e1d538695c7c228daccbb270fe210d9be2d56278c87e63",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-little-hunting-dog",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 21,
+      "role": "train",
+      "source_sha256": "d98631e93a1e43e59ceca9c39e1bc4da967bf0d83f3f1e0664edfcdb72175c64",
+      "source_file_sha256": "262c75b78a4fa3d447f9327e280853f8b5b42d165ec68caa66487c26b669ecdb",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-miserly-farmer",
+      "origin": "chinese-fairybook",
+      "official": "test",
+      "QA_metadata": 20,
+      "role": "train",
+      "source_sha256": "73c168c2211148ba35d5674ef2caa001ce68fd427c2c3b723769847f8381bcb1",
+      "source_file_sha256": "bc0df826f6f6da4891c9b77ad95d4b489621598b06a1b57ab4149c7f318a4275",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-queen-of-heaven",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 24,
+      "role": "train",
+      "source_sha256": "b664b84a4defd491289b08638c230fe21e0ef409d00d6f8007d5a066952dd38b",
+      "source_file_sha256": "936ce0b85a0247fd7baf04bf0457694ac2ccdfdbe44fcdc53a314e09b6ddac4d",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-two-scholars",
+      "origin": "chinese-fairybook",
+      "official": "train",
+      "QA_metadata": 25,
+      "role": "train",
+      "source_sha256": "100df5e2fb69c3355dddeacdd0db849d071d3aa3c2f6f941c20ec0218ff8efc2",
+      "source_file_sha256": "a56698ee838ddc7a8d7209d7d78c7f417a6c16908f3f83297246b291484901b4",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "why-dog-and-cat-are-enemies",
+      "origin": "chinese-fairybook",
+      "official": "val",
+      "QA_metadata": 20,
+      "role": "train",
+      "source_sha256": "51b44e4d9ebe82fa23a7a85f67dcbcb2484f65f5e75c054b1a17fe783d095b45",
+      "source_file_sha256": "3569b85cc8e14e3d3d60adccd31dd46ba5efd170a0314bd5efe77c224a7bbdda",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "ali-baba-and-forty-thieves",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 17,
+      "role": "train",
+      "source_sha256": "127b890a826df5ec35c6420b1a4a0e1a323a941443013ade1fb5a9a284d199bf",
+      "source_file_sha256": "6391b055fd27a00f33ce51d9fe069c6095adb8940d8a22b0df21b6c6dfdb27e8",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "black-sheep",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 25,
+      "role": "train",
+      "source_sha256": "8cff17d42addbb5c3d085067bb68ce4d101566001cb1805a6177c9d9c1e43a87",
+      "source_file_sha256": "1a1c0f180d93bb193337bed1b7c51ef51e508a6da109d1cee4feddd84b53288b",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "cinderella-or-the-little-glass-slipper",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 23,
+      "role": "train",
+      "source_sha256": "2ffe1a25a70bb454567f0d0342d606797bca3516495bf9d47d3fb679443ce72d",
+      "source_file_sha256": "a80deab2616f8730324ff860c99f5aca020f5f139c5f07e1a6a57d84c6e9da6f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "enchanted-wreath",
+      "origin": "first-round",
+      "official": "test",
+      "QA_metadata": 24,
+      "role": "train",
+      "source_sha256": "1261a34efa820ad6eef10d53a35b123378625208e2dd6cbe088963f64b856021",
+      "source_file_sha256": "2957ea6037553e3c18b4c02ba4fa90b209a22481d98bb6bb61a9ff413be07ccd",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "fox-and-wolf",
+      "origin": "first-round",
+      "official": "test",
+      "QA_metadata": 14,
+      "role": "train",
+      "source_sha256": "265668d693819836296b653548d717cb4bac26f37890e519b3e17507c7d9bf7a",
+      "source_file_sha256": "ee738e2c72b025d2afd2f94883f8746c63d69fb1d476855437009c1ca4d60e93",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "golden-goose",
+      "origin": "first-round",
+      "official": "test",
+      "QA_metadata": 22,
+      "role": "train",
+      "source_sha256": "c03381fe7a401ffcb3ed4e166f24107a350ecb16520c10b668b63f714a7018ad",
+      "source_file_sha256": "b9fb5a701c073980b7a8d158e448cd2ed921276df0ea26e26d8673119dcc61eb",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "happy-prince",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 20,
+      "role": "train",
+      "source_sha256": "6e472bba503aa649a799f3a9c0cab6c4ac2bda1ab045a70e9861c8eefab336e7",
+      "source_file_sha256": "2d50c565783776329b320dfb6093f59ab01801d9a7bab0b92563095e975b0470",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "little-boy-blue",
+      "origin": "first-round",
+      "official": "val",
+      "QA_metadata": 26,
+      "role": "train",
+      "source_sha256": "bd6dcb61cd3b70e788d3d6dbff060ff6d6a23dc423a0f104fd7037a49938c988",
+      "source_file_sha256": "766f1f2667d46fa11520dde8be2dd975f3ee1bce3a3e0a8123b7ddfa74dcc9be",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "little-miss-muffet",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "train",
+      "source_sha256": "68376a4404167723fd3d9353a53ce31a2b15f473d85e8c7560e1fc296143dde3",
+      "source_file_sha256": "0572454315bf3112ad0a648c692ef3336d7ea203b3ee088bb0b7b99e7f053746",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "pinkel-thief",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 21,
+      "role": "train",
+      "source_sha256": "eb2918c757b833d26fbad9c85ad8edc93d00f5a8c114fb8383d2b39a80de01a3",
+      "source_file_sha256": "2f20baaa12a3bc86e04606f3251d2d2b94fe9255c8892f68bc891293c1722327",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "prince-hyacinth-and-thedear-little-princess",
+      "origin": "first-round",
+      "official": "val",
+      "QA_metadata": 20,
+      "role": "train",
+      "source_sha256": "b0a056003cf31db95b7be0c84917661224ee6b00ef1ec95e702b11587c4561a5",
+      "source_file_sha256": "2cface7d281d09de5e10381b1def002b0ebe5694d33658fb662319c90a4054df",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "princess-bella-flor",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "train",
+      "source_sha256": "80ecaf21288f33d1079fe2f42a31165e700677b5ce9617db2f725da2c1af755d",
+      "source_file_sha256": "a2de0abafa17fda0527c5cc5f777dd7a84ed53ed7f2f4c4397cde9035d251658",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "remarkable-rocket",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 15,
+      "role": "train",
+      "source_sha256": "4a75f45262e2cfefb1838d0b87bb944747dca4a34c934bf13f85ed952744b1e9",
+      "source_file_sha256": "47ac4cae0fa8a5c8196d0ab6c048e28ccbf5d60cc6c3929982b31ad53a77f04c",
+      "adjacent_duplicate_rows_merged": 1
+    },
+    {
+      "id": "sleeping-beauty-in-the-wood",
+      "origin": "first-round",
+      "official": "test",
+      "QA_metadata": 17,
+      "role": "train",
+      "source_sha256": "cb543bf9b1a7df4075ceab74ebe6ace7b9eb91703428a95be68c235040263209",
+      "source_file_sha256": "c5be9280bb610abb96a2149594721d00ddea0c01272a11378ae1f2431704dd56",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "snowflake",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 22,
+      "role": "train",
+      "source_sha256": "2849365767824073b1bd87e7f4f7e8d8df247eeb38642481f7eb4559335cd73b",
+      "source_file_sha256": "946e8eb0d9373983a9cfab7c34f881bae05f1340238e617b710cd7e86082cdac",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "tale-of-ginger-and-pickles",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "train",
+      "source_sha256": "1ec0afe2189d44713695ced434443e1fadc8618952501d138bede51a5b73bb5d",
+      "source_file_sha256": "474f8b0468f0ea1ad7b38a5ee705e0b2baf97941c5157579d18e9b2962d84a4e",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "tale-of-johnny-town-mouse",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 22,
+      "role": "train",
+      "source_sha256": "20f7690cd329b7b4c02607cccb1e6f854fa2b4baa5b9fa6d014237bb5deb8193",
+      "source_file_sha256": "55c25f4a277127ce5a610044d70128e08fdcf53c0003a3e75a8ee416b25dce80",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "tale-of-mrs.tittlemouse",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 16,
+      "role": "train",
+      "source_sha256": "23c745c439ce72f914736ff7236bcd48763d4d2ad7acf00ed9fc1e1eac2ed3da",
+      "source_file_sha256": "6f8439c72467c580a7a38432fa6cfca6d2c891b77a70c79687f2fc228204c14a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "tale-of-tom-kitten",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "train",
+      "source_sha256": "0e5ad7225e8ab88a42a11818e73910fb3248ba486bb6a5f1722ee728e2663b19",
+      "source_file_sha256": "45c9e43cc74282ef31c133fbe35d7463e73f4a18805fc73a9ee3355380200e5d",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-fir-tree",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "train",
+      "source_sha256": "e49312e171c16dfbf5e5353ad1ddc3be1f1ef0a28cbc11412e166ecfaa042c10",
+      "source_file_sha256": "ad3b1a434d83de3833c45609199ff0c88f0e3937cf01a668b2778c04a9a13177",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-flower-queens-daughter",
+      "origin": "first-round",
+      "official": "test",
+      "QA_metadata": 20,
+      "role": "train",
+      "source_sha256": "8d2bab9b2fcf0405dfe50f0326f414d578a77f0cf771adb0ce1830331a6b1e88",
+      "source_file_sha256": "bb0812f5d4953fdcd59b176ec8d25fdcf4de0255e9a0ecd7c9f0f2baef420af5",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-flying-trunk",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 20,
+      "role": "train",
+      "source_sha256": "7f479fe41437472b2b5642a07e3df97610b87b2d7ba5106a2a9131f03c229804",
+      "source_file_sha256": "e58643b0e72bd76d8e9a270b33d2396fbca07e48c9a371db89e4f6947fa6f7b1",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-golden-crab",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 20,
+      "role": "train",
+      "source_sha256": "d71dd9dbcec7819593209b8c48c06e7e8c740041657bdcb20e2563e3789437d0",
+      "source_file_sha256": "ac9f08892bf07eea1d8e9c62ad8504b5d0e3ed78df9c5f21d535c0b5ba603ab8",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-iron-stove",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "train",
+      "source_sha256": "68c634753b5fac03bb9e0d6948b54551f573eb35ff943521bee79e04f7bebce8",
+      "source_file_sha256": "7fc4707ab83ecdde55fbb997b474f1a3b6ff0e6d54b68d8a9c604a426940d3c9",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-king-of-the-polar-bears",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 18,
+      "role": "train",
+      "source_sha256": "427e4fdffc88984a88c7e8937e855176c27ba1c1760f5a0123933104edf68e3e",
+      "source_file_sha256": "0bb042a8437835e12ae71274657dd7e95ccbb247218c714dc730e06b0b8f23d4",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-magic-bon-bons",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "train",
+      "source_sha256": "9688bf0d6153e48f83a594d1a904ce89f3ad5fe2b0621c212f2a4f2d44618b25",
+      "source_file_sha256": "9c367ea404cf7a54ef41592e27e6189c182839cc661b86ca35f4b8636389508b",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-selfish-giant",
+      "origin": "first-round",
+      "official": "val",
+      "QA_metadata": 22,
+      "role": "train",
+      "source_sha256": "b1e56c33209da05cf6b7e56a0f228aa119770a55bb68e9178243dd6e8f42c04c",
+      "source_file_sha256": "79292a81a5623a0d87eafd4a5ac24606c2a6a4aa6ec6b0794954a7de2f306110",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-snow-man",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 18,
+      "role": "train",
+      "source_sha256": "a59c85f739ef589459a6922356c3874c2de1008daec60d784ee6ad92246ab8fb",
+      "source_file_sha256": "e02cffd2669cc2879541bfbd03079a9490b95d44187c7baa0a872b4dcf36e8ab",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-steadfast-tin-soldier",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "train",
+      "source_sha256": "2bba88715edec7f9236e4a1386397b935d96145b8693412b1bbcaff852531546",
+      "source_file_sha256": "c9c6e705592a6b7f72a516d4ac7ce7a6e9483912e27d47feccf777b2449074f5",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-ugly-duckling",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 22,
+      "role": "train",
+      "source_sha256": "3f424cd697b301eddf353fcde2371b4712204df1c7513fd641bf50db569451d6",
+      "source_file_sha256": "2cd3249f34b0ebf8958d8186695ee6281b2e51d5154042027bed99b0cb85987a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-uraschimataro-and-the-turtle",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 23,
+      "role": "train",
+      "source_sha256": "44da0853d69dadde8da6c0b12fdf140455a30b7f54c60fb8d71b804c40a1de77",
+      "source_file_sha256": "a99235dbc3869658e86d11d21ce41110e0d6c29d341eef7178742d30c9cde4ad",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-white-cat",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 20,
+      "role": "train",
+      "source_sha256": "7fb0e5152029685c15be758194b26ab10be8d6ea03566aba9d50483f1a8c5ff9",
+      "source_file_sha256": "734a0287a6cfb0e001b8b2e99119772efa152a00c5ab0e446ea2140009bf10cc",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "three-treasures-of-giants",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 24,
+      "role": "train",
+      "source_sha256": "62d5bd413e4a2be6766c6904515ccf4598e9bb10a1095a63700eeb1b8a8f7a69",
+      "source_file_sha256": "6599a7d2dfacf768572f78b699c6838b7ca6ac92d517489c1a55161c5f519ad8",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "thumbelina",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "train",
+      "source_sha256": "24e1f325326d9dccc36a71b1a8c11a9dee65cf4a9c2acb3654df7fb742f32def",
+      "source_file_sha256": "8b9e60399b624e9fa85e71e412e3ca4f7fb0d966eccb1f310c848607af5877e9",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "twelve-brothers",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "train",
+      "source_sha256": "d23f50b4a94851dd377a65e4d43cc9d24e56e1eb97621b5905539a804a314771",
+      "source_file_sha256": "2c1b722ce30cdbec2177025a2c4e54ccedaf97b7ff247f3856d79c920d406015",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "water-lily-gold-spinners",
+      "origin": "first-round",
+      "official": "train",
+      "QA_metadata": 27,
+      "role": "train",
+      "source_sha256": "57d9dc2e7751bf5e18a232dc3e61415bdf40d447aad39deb0e7959082d7cfe81",
+      "source_file_sha256": "5a4fa43b3b4738de4a33a41f3af3e26b0a339321a8365ac1463749de3bca10a8",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "alleleiraugh-or-the-many-furred-creature",
+      "origin": "green-fairybook",
+      "official": "test",
+      "QA_metadata": 72,
+      "role": "validation",
+      "source_sha256": "08cfcec2b74e53ff01f4eef93ba3b05e5ea36b0d7fff9c25be1a11c2c4d7edb5",
+      "source_file_sha256": "8ca40b149d0571b25f2170c3c6f80c4953839eec417473103129b4ca7f03a559",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "fairy-gifts",
+      "origin": "green-fairybook",
+      "official": "train",
+      "QA_metadata": 49,
+      "role": "validation",
+      "source_sha256": "94004078de773c2bc27b040c68caae12101374833ffd8c18023ffd53c8959bbd",
+      "source_file_sha256": "ee3d88ba270f0ce8ecd73e1d8530066d08ae2bee3d02ee6f9e7bd71581a1d92f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "jack-my-hedgehog",
+      "origin": "green-fairybook",
+      "official": "train",
+      "QA_metadata": 69,
+      "role": "validation",
+      "source_sha256": "e872a649f15b801fa65e3b56c0c765b5f34a1552b2001ff8253f4ce0a38a6f28",
+      "source_file_sha256": "f806ef67dcbdd98743402ad63a9ed192f909ccf9857321d5469e7bcd2ca5f7d6",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "jorinde-and-joringel",
+      "origin": "green-fairybook",
+      "official": "train",
+      "QA_metadata": 57,
+      "role": "validation",
+      "source_sha256": "f5ec964c68c9110a25b7f19fbb6eca0c2864e7418136b32f25660b108d650380",
+      "source_file_sha256": "9bb4b1f5c1a7b4d5343c3f0fb4ea93b39a19bf99bc10841b70bb4c1e48fa0a94",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "king-kojata",
+      "origin": "green-fairybook",
+      "official": "train",
+      "QA_metadata": 161,
+      "role": "validation",
+      "source_sha256": "9bed2192b17fe6e1a27da1c4c5ee86ddf52bce323e6b624a9044a0c73465c2ec",
+      "source_file_sha256": "197ed5ec86685a5aaa4f02c14cc43fa1cf44f5861a9bcb05efb39e35924f3b46",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "prince-featherhead-and-the-princess-celandine",
+      "origin": "green-fairybook",
+      "official": "train",
+      "QA_metadata": 72,
+      "role": "validation",
+      "source_sha256": "6fa36e42e19c116a1a4c5252debff201442bbcc9ff9c2f72bfc6f002f2be0ec4",
+      "source_file_sha256": "3124853ccf07e48bea3fe405a4e38623d9ceb74438e86c86ab879633e791b62f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "brother-sister",
+      "origin": "grimm-fairybook",
+      "official": "train",
+      "QA_metadata": 29,
+      "role": "test",
+      "source_sha256": "d412321e4f9bbee374a83fa40f85382a4ff81ad695df0f8dc3cfff76b9c1e88d",
+      "source_file_sha256": "aa3b1353a9fab734751610411aeeecbb1c34cb2bdecd63735cc1b2d698edd3e2",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "hans-in-luck",
+      "origin": "grimm-fairybook",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "test",
+      "source_sha256": "901d59db31cd4dc55bbd7ce109202cb6d50dd6c57fa86d914e8d9379155072bb",
+      "source_file_sha256": "7d6b28f50de76b5616be18efcf6933dc90289adc9e841cc408294eaf26fac34e",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "mother-hulda",
+      "origin": "grimm-fairybook",
+      "official": "train",
+      "QA_metadata": 17,
+      "role": "test",
+      "source_sha256": "4b1d3dda6ff20fac12c6c87ce94bebabb23d0d9a79d533639d156ab57533cade",
+      "source_file_sha256": "7309791c9bb9c5760863fdab9c474526f8ffd89d080ceecd4a70061897b5167f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "mr-korbes",
+      "origin": "grimm-fairybook",
+      "official": "train",
+      "QA_metadata": 6,
+      "role": "test",
+      "source_sha256": "9883af513e99562fb9f4936b0619df20ca815f2e533ef68b8179975eafae5ddd",
+      "source_file_sha256": "c1720064165085c7c9713536b646c0f1e016b15a52614fc29ff78688c40cb0e2",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "old-sultan",
+      "origin": "grimm-fairybook",
+      "official": "train",
+      "QA_metadata": 10,
+      "role": "test",
+      "source_sha256": "58614dac6cd211b9b1529409d30fa85bfa0d284b0966da6654f2fdf549a1cc8a",
+      "source_file_sha256": "c24fa2a7efd82c131609a67375439b22b9acd1368d12f10c9a6bd4f3e8a4e841",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "prudent-hans",
+      "origin": "grimm-fairybook",
+      "official": "train",
+      "QA_metadata": 14,
+      "role": "test",
+      "source_sha256": "a3a93e90139c42469dece1a1bb52de42ce1483c5f815e2a2ac33cfb67e17a1bc",
+      "source_file_sha256": "aba72ae89e569fc6f74997a3ccc1505a4cda03aea9ad59f7f520c2e2ba4e6620",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "robber-bridegroom",
+      "origin": "grimm-fairybook",
+      "official": "train",
+      "QA_metadata": 14,
+      "role": "test",
+      "source_sha256": "6f1ba89f5f08504455fb8baab0a882769ee1ff6b34c73bd14737d50697bfb82f",
+      "source_file_sha256": "605015610073603ef7e502d1a459df2e11ba38da1fa069f3c467cc4b7fa01989",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-death-of-the-hen",
+      "origin": "grimm-fairybook",
+      "official": "train",
+      "QA_metadata": 9,
+      "role": "test",
+      "source_sha256": "7833325f9e63650a4abec451ce6cf9f7bbd69f057eab47cfd1a62ab1b061d6fa",
+      "source_file_sha256": "c11fd20176423fd3cb4f097b515e02bb9c26b853d835553b70dd7f84d9db36a4",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-mouse-the-bird-and-the-sausage",
+      "origin": "grimm-fairybook",
+      "official": "train",
+      "QA_metadata": 10,
+      "role": "test",
+      "source_sha256": "3a1e65df9f2acad1fcbc292e7be1891152c35cb26ba9863f361e2482287c8fc7",
+      "source_file_sha256": "93855a463de52feadd1b06b7ca832b03a3fcca6e2fa5415d686ec5ae1cf90ea4",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-straw-the-coal-and-the-bean",
+      "origin": "grimm-fairybook",
+      "official": "train",
+      "QA_metadata": 7,
+      "role": "test",
+      "source_sha256": "30f457b711b8f24cc81c40095263d355c8cb526fe9b3032ce3d7bdf3004c8bc7",
+      "source_file_sha256": "6bb2bde369feaed7aad843aeda1f7bb021ed1d6b83cf0cdaffbf6eb58aa63989",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-wolf-and-the-seven-little-goats",
+      "origin": "grimm-fairybook",
+      "official": "train",
+      "QA_metadata": 14,
+      "role": "test",
+      "source_sha256": "c0ebe157bb55b874eeb40701fa7d2b33615e42951bfabb31039b2fdb2c4f66f9",
+      "source_file_sha256": "6ef2888401f2ce09c68ddb9bd77f03b7c8e4edfedc22c940b1440e616399150a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "a-legend-of-knockmany",
+      "origin": "irish-fairybook",
+      "official": "train",
+      "QA_metadata": 71,
+      "role": "train",
+      "source_sha256": "42a32d171b00d068e9086afca4d1fb7459cab136845d75fd0492bc280c86a4d4",
+      "source_file_sha256": "66f5bb3668adceb068e76eabea76acf1cad319feb071f7da55606d6ab68744ae",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "cuchulain-of-muirthemne",
+      "origin": "irish-fairybook",
+      "official": "train",
+      "QA_metadata": 32,
+      "role": "train",
+      "source_sha256": "d53ad87c1ff92b26ce2b632cda1844a8ce57779bf927f6b28e92e29064800288",
+      "source_file_sha256": "525e455ade6edf73590e342ce89d9fbf678cf474d62d879765c7c10a138eeb16",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "daniel-o-rourke",
+      "origin": "irish-fairybook",
+      "official": "train",
+      "QA_metadata": 43,
+      "role": "train",
+      "source_sha256": "9a01f75d1d5cd5f8bb32c63215cf2b4e375b6eccdfb80e62a94c6ac69938b49d",
+      "source_file_sha256": "1c031608fc54e6c7092ae655a40ef77b53dcab8135d6a6aef28023bcaa99d3d6",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "festivities-at-the-house-of-conan",
+      "origin": "irish-fairybook",
+      "official": "train",
+      "QA_metadata": 59,
+      "role": "train",
+      "source_sha256": "0a058bd064f34c8ff20628178813055bae865743ce91ef8def85945b787a6220",
+      "source_file_sha256": "1ea5414f99a35a97c2b7ef60a70a68d85f902f2298d86b40f9a54f408dbf6194",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "jamie-freel-and-the-young-lady",
+      "origin": "irish-fairybook",
+      "official": "train",
+      "QA_metadata": 58,
+      "role": "train",
+      "source_sha256": "b451db9f5c8bbca18c2a6400e966b558146ba19f414a69f94659e68d121e397c",
+      "source_file_sha256": "1b8a55680f999b586603ed2c26b5a85a4a473fb9ef526d549ae8831d4f87e135",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "king-o-toole-and-st-kevin",
+      "origin": "irish-fairybook",
+      "official": "train",
+      "QA_metadata": 40,
+      "role": "train",
+      "source_sha256": "93707081365f08fe970dc764892dd8ba43d73fd60b7de428ca1ad0cfe3fc2413",
+      "source_file_sha256": "27c6931b006e37a04453fc092bb90a762575efdce6438a6da43d69fa755362b6",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "lawn-dyarrig",
+      "origin": "irish-fairybook",
+      "official": "train",
+      "QA_metadata": 118,
+      "role": "train",
+      "source_sha256": "f68cd3317dfdd314e4a07d0561e5f4414bc04c3b1ecabe8a656ff28821d92c9f",
+      "source_file_sha256": "aae0c854d12a520b82598f7ac4ccab16c010620da00d136e5fcee9dd4a9a1930",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "morraha",
+      "origin": "irish-fairybook",
+      "official": "train",
+      "QA_metadata": 129,
+      "role": "train",
+      "source_sha256": "e6c1e61c7caf4463c82f8dd025fe19cf7abd8b448c4769ef46cffced331d713e",
+      "source_file_sha256": "50d4e494a424f53268b60c8f6543fbd925851afe68bca84be546883304707920",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "murtough-and-the-witch-woman",
+      "origin": "irish-fairybook",
+      "official": "train",
+      "QA_metadata": 96,
+      "role": "train",
+      "source_sha256": "94928f3c8f99be088f2d769542eee11dd05f24bb5d481a58ff413e003aa1a80b",
+      "source_file_sha256": "a6d4f1d45576aab6ebd261d9dd7e5e95db46c16dec4e4e94a90b7a01aeeac9b2",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-abbot-of-inisfalen",
+      "origin": "irish-fairybook",
+      "official": "train",
+      "QA_metadata": 42,
+      "role": "train",
+      "source_sha256": "12cc934edd989b7130cb70833641b3a2eada2420f84cbb420ee1371aea41b8c0",
+      "source_file_sha256": "db7ef9f6fce62a3e928a059dc8c3b57235543515a354075a66a33c555a3dec7a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-adventures-of-gilla-na-chreck-an-gour",
+      "origin": "irish-fairybook",
+      "official": "train",
+      "QA_metadata": 106,
+      "role": "train",
+      "source_sha256": "f7dbe248d44efd4683b6b10ba460bfbcd5dffdcd891d427e01b638b0669d9870",
+      "source_file_sha256": "1b85bcbeb31266c6e123d585d7495973b23911bd4be93502fd7ad8ba594ee16a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-boyhood-of-cuchulain",
+      "origin": "irish-fairybook",
+      "official": "train",
+      "QA_metadata": 70,
+      "role": "train",
+      "source_sha256": "1686c6e349b2a04ae3977f51ef646b97ebc936b6aeb635e4cfea5c2c5cd38990",
+      "source_file_sha256": "14560f307a6399002d60184fdff338ece190fa33630aaff31985c7ac76c39377",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-bracket-bull",
+      "origin": "irish-fairybook",
+      "official": "train",
+      "QA_metadata": 95,
+      "role": "train",
+      "source_sha256": "f48b88f17cd2e8392f7106b198449f7aa7a2a0102f4b835b4f07a72b3aad3409",
+      "source_file_sha256": "25053f180410c8d2cfbf4f1e45a4ea5c8acfeb49090a13ff6bf8d7964a3a4474",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-coming-of-finn",
+      "origin": "irish-fairybook",
+      "official": "train",
+      "QA_metadata": 65,
+      "role": "train",
+      "source_sha256": "883bed1f4351f9c5d9853dbd928b3f8eabb891d3dcf85255a2efd8094f482827",
+      "source_file_sha256": "6ca6693226373d47092646e22b7082eba870cac82fc5c0d2b143cd3efc544a1f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-corpse-watchers",
+      "origin": "irish-fairybook",
+      "official": "val",
+      "QA_metadata": 51,
+      "role": "train",
+      "source_sha256": "bd59fdd16bee6b718b14aeecb535fc5cd5297cc7db873502eafe1d54bfed632f",
+      "source_file_sha256": "02e59fadca98aac4c0b0544f5d98beb82d56c0d0533fa20ca9885c80ca4ad7d0",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "adventures-of-kintaro-golden-boy",
+      "origin": "japanese-fairybook",
+      "official": "train",
+      "QA_metadata": 60,
+      "role": "train",
+      "source_sha256": "abe62716b0cdd999578359697d69ae353c0dfc72a70e279a081587b6d7309b85",
+      "source_file_sha256": "26d628c7e90e7bc221273410d8822835b4f34c80146698604a4cbd6c9d13e70a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "bamboo-cutter-moon-child",
+      "origin": "japanese-fairybook",
+      "official": "val",
+      "QA_metadata": 61,
+      "role": "train",
+      "source_sha256": "c45a00b9ac3281ac66927a83ee6d6a76649b8653315c8f8e1909b18d50962532",
+      "source_file_sha256": "d4c92d2c038bae6ff535e051cad53d9ee4092bb49e3ecdd2a13ef6c5bb961891",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "farmer-and-badger",
+      "origin": "japanese-fairybook",
+      "official": "train",
+      "QA_metadata": 20,
+      "role": "train",
+      "source_sha256": "7a50ccd54ca9b4032ea1182483de2732d48ef8c4165399ab4ab0aa88aaeb4560",
+      "source_file_sha256": "4d2021a64f4a267c60a283e56d201044c666c2e208d4e215cd52e289e4288ce8",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "happy-hunter-skillful-fisher",
+      "origin": "japanese-fairybook",
+      "official": "test",
+      "QA_metadata": 105,
+      "role": "train",
+      "source_sha256": "c13cbea335798585e0356703bec2f2eb2b3962cfc8bb76e93829d6f8a2cce5e4",
+      "source_file_sha256": "6414e7521a64eb781a31e693c611f78385161033ba0032b764f52fce7e6758dd",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "how-an-old-man-lost-his-wen",
+      "origin": "japanese-fairybook",
+      "official": "test",
+      "QA_metadata": 50,
+      "role": "train",
+      "source_sha256": "15db630e96b1a4c56301a44b572cee1ecb7401ef91f933158175a826e05e55d9",
+      "source_file_sha256": "55b204dc916016f3aeb191afb33abcaf46b2b4a404931a6d089e92991ab323c8",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "jelly-fish-and-monkey",
+      "origin": "japanese-fairybook",
+      "official": "test",
+      "QA_metadata": 59,
+      "role": "train",
+      "source_sha256": "5f7437ba2850676ff010072689e6369b180953518fe9e5b88ce1b1f48d30b415",
+      "source_file_sha256": "2aa9ed90609431fdb838ae2b1d1428bb492fdd827f378c0f81c91a15c95e8c75",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "mirror-of-matsuyama",
+      "origin": "japanese-fairybook",
+      "official": "train",
+      "QA_metadata": 65,
+      "role": "train",
+      "source_sha256": "097fd12ca95a68393e882d64dba95bbb9b2c77f33d827bb851248e5cd4a5eebb",
+      "source_file_sha256": "b1d5b39ba4e9ef436325f0c2edf951f94aeebe6fea401f43b6c3ac284c6af2dc",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "momotaro-story-of-son-of-peach",
+      "origin": "japanese-fairybook",
+      "official": "train",
+      "QA_metadata": 104,
+      "role": "train",
+      "source_sha256": "2ceb075a18ffc167ba99677488b1bc3188ac87f57343d4a5f6316f2994e8c32f",
+      "source_file_sha256": "1b96277cb242f641237ac822784f67c347c1654ff35f2a5ccdb52d205ac79c30",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "my-lord-bag-of-rice",
+      "origin": "japanese-fairybook",
+      "official": "train",
+      "QA_metadata": 60,
+      "role": "train",
+      "source_sha256": "d71356f0ac849395ac9ab0b991d7de0580c9534c8be234225e8beedc690a378f",
+      "source_file_sha256": "7386da5923a3fab73e409b82b3ddf0baa7d8fff7a7dceb39314aa35ee2eae0f3",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "ogre-of-rashomon",
+      "origin": "japanese-fairybook",
+      "official": "train",
+      "QA_metadata": 42,
+      "role": "train",
+      "source_sha256": "025ff2f84e9551b0f41da947effb54ca80bee1a3873cbc6c95d617cb62cac7ce",
+      "source_file_sha256": "f951d2877ee402a3218905e90e80e8b3ca8e1882b8021cf138d6e7e379290957",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "quarrel-of-monkey-and-crab",
+      "origin": "japanese-fairybook",
+      "official": "train",
+      "QA_metadata": 60,
+      "role": "train",
+      "source_sha256": "897829ee2ca25af82f77ec7732c220e4551e42d5dbc5f45579645864d3b5b443",
+      "source_file_sha256": "172a0a80f1838ab82ee092c7b803740c1d68d1927e8b835e3401f1f971b5d6a4",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "sagacious-monkey-and-boar",
+      "origin": "japanese-fairybook",
+      "official": "train",
+      "QA_metadata": 22,
+      "role": "train",
+      "source_sha256": "5dd47ce20e82c6b92778376f33c5f70bdec4e9b83e56a784f04cd0e516478f6a",
+      "source_file_sha256": "792ef387222a84216467749cfc734df9b3402168ebc0367a64bdc4aae914d61c",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "shinansha-or-south-pointing-carriage",
+      "origin": "japanese-fairybook",
+      "official": "train",
+      "QA_metadata": 44,
+      "role": "train",
+      "source_sha256": "e8440ea6a42d07386ccff70b691ffafb38e8f7ea1b0c8d001d08fdd3ef00140e",
+      "source_file_sha256": "43ed6c843c8da08e8344923aba069315789780e001a15f95fbd0a5efc3210edb",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "story-of-man-who-did-not-wish-to-die",
+      "origin": "japanese-fairybook",
+      "official": "train",
+      "QA_metadata": 84,
+      "role": "train",
+      "source_sha256": "2353eda6ebd957be166d61d01cee1243025a5ecb7aad6adc4d06a56f309efa79",
+      "source_file_sha256": "95b1d4621d8420b54189e8fc5c43bb5e5ef390b7fb8b0d558b1f16a23af8a5ac",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "story-of-old-man-who-made-withered-trees-to-flower",
+      "origin": "japanese-fairybook",
+      "official": "train",
+      "QA_metadata": 64,
+      "role": "train",
+      "source_sha256": "58061ad80756287c4c82a9379df690388820fc989c4ff099dd194668c2fe7a38",
+      "source_file_sha256": "2b2956c8ed2bbb2c3cb032742ce8e41deba440c013423ceec93bf17065befc25",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "story-of-prince-yamato-take",
+      "origin": "japanese-fairybook",
+      "official": "train",
+      "QA_metadata": 100,
+      "role": "train",
+      "source_sha256": "cfbc94bbf8ef670d281fe23da126e6feead7020dcc74967f0af455eadbd8e0d9",
+      "source_file_sha256": "6565668fc3a7c75cd4385bb31e90f20f57a733994b49c61f0057c519f47064e8",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "story-of-princess-hase",
+      "origin": "japanese-fairybook",
+      "official": "train",
+      "QA_metadata": 71,
+      "role": "train",
+      "source_sha256": "184c88758172bed9c910e804b9f90c2f8de2b712bbd93db217cda12ab9e5f388",
+      "source_file_sha256": "83ad10675ae2959a33cd022dc75c6906162c659e1e0e3307457a44cd9193b90a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "tongue-cut-sparrow",
+      "origin": "japanese-fairybook",
+      "official": "val",
+      "QA_metadata": 70,
+      "role": "train",
+      "source_sha256": "84e14c305e232bef8630407ffc60e71209e60594cb919daf7dd9b12447c771b5",
+      "source_file_sha256": "dabf68ca62df71591a177ad47fb2956b6f4855c5e5acac98c0c6e7ebd5994c5d",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "white-hare-and-crocodiles",
+      "origin": "japanese-fairybook",
+      "official": "train",
+      "QA_metadata": 44,
+      "role": "train",
+      "source_sha256": "544627949bfda4b3f785c60b7d519b10af015488bbd0267956e64c5c435be900",
+      "source_file_sha256": "00f15e10a54ddf50146010eac844b5da6c9e6e0a1afae628ba11f1e84508b481",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "a-fish-story",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 16,
+      "role": "validation",
+      "source_sha256": "fdd4822416bb315e6dd397461518e08d2b048fbe33c13ce32b56d780df309f19",
+      "source_file_sha256": "147fd2886e9e05f1af20ab29c299beb23f663555f6e634ef563149dc79e4207e",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "a-french-puck",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 25,
+      "role": "validation",
+      "source_sha256": "c83192dc7eb2dfcffdca6e3d1ceea83d4d3944176d56b36a70b91da6cbab8d7e",
+      "source_file_sha256": "7b1db9fa4f57144eb1b9aa5a157d739125f32512dc9dcbe14d9f5ad7bb6be6ab",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "a-lost-paradise",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 32,
+      "role": "validation",
+      "source_sha256": "eb8344c00ba7f5cf7d9f45e1e3a8b75c7fd11760c6294a8b13b303a31f599cd2",
+      "source_file_sha256": "5886e3865702f0abf0fe5ce4ac3e321c18a9db475d4243b11093e79bf6478072",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "how-brave-walter-hunted-wolves",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 53,
+      "role": "validation",
+      "source_sha256": "bdf3a8045255c20d11dd374d7504e32061db1e21c6577b1577b78091c7a4f7f4",
+      "source_file_sha256": "56c8f543dbabd2c59308d46323d3ffc1a5e366259d18387eb44a4265a306e491",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "little-lasse",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 38,
+      "role": "validation",
+      "source_sha256": "29018d9877f2abb761bc3063d0dc39f5c55d376c775ea72f97a9209ee262898e",
+      "source_file_sha256": "561312cea439cc1880d5151015228a7334e15b3aa536ae91af250ddf3e558010",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "moti",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 61,
+      "role": "validation",
+      "source_sha256": "c9e3b6225de7d48fefcc89210e47028025de83ee2b947e652265cf42421c9534",
+      "source_file_sha256": "8a928c5cb451918ee4585552f3b98cbec5d16c5235e681dc12eac3fe3b555579",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-battle-of-the-birds",
+      "origin": "lilac-fairybook",
+      "official": "val",
+      "QA_metadata": 89,
+      "role": "validation",
+      "source_sha256": "d55c83748187316d3433f6b35bf2505b6ba295add160aeb6ffa5fe5f8b1aca01",
+      "source_file_sha256": "dec25e7ea07151e15a8c3ee0460158691d461772c48a63e0b85486b53b3d3c18",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-believing-husbands",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 34,
+      "role": "validation",
+      "source_sha256": "fadddbac075e4bba7e8acd8b5b4b87544f6b53cf1f5f7b5eb671acf43f717b86",
+      "source_file_sha256": "cea883935fa5a0e5dcf1425c90f2f9bbd450f835e8ee2533e1626580fbf433f2",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-bones-of-djulung",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 27,
+      "role": "validation",
+      "source_sha256": "69bd07694ee4f4c1c700780bf442b1b7d511b9e0dad2ae9c64958fb9956cd327",
+      "source_file_sha256": "38ebaebea74a220b051a2409de2699fe2d1a0f29272dd66dfd2eaa3c7f9b75d6",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-brown-bear-of-norway",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 78,
+      "role": "validation",
+      "source_sha256": "cf3626e1eb3f36966341cd282d4b9589dc8a3caae5e2f5de6ee92c8aa4bff288",
+      "source_file_sha256": "be26def5cf4c32b5bff16cbafef8a4c99b26cc66b0db63abd3f3482c78cec7ac",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-enchanted-deer",
+      "origin": "lilac-fairybook",
+      "official": "test",
+      "QA_metadata": 60,
+      "role": "validation",
+      "source_sha256": "b8f017e1ffeb0a0ee088c6aa0401f44e2dcf4f830d71400c3fd850ecdbd68cfd",
+      "source_file_sha256": "078cd102b113e7a1d4b53a4321ea76dd1163e6a031fb2d14d1a829ca7eab08f6",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-escape-of-the-mouse",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 60,
+      "role": "validation",
+      "source_sha256": "8d19d9af9975ee2c00e64f372cd26a60545e87214353a5ceca0d139e5a85338a",
+      "source_file_sha256": "c0f42b040255185d82ed4647c45c6b3cad29481d66a42c37759455f0141dd659",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-fairy-nurse",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 36,
+      "role": "validation",
+      "source_sha256": "214e0d708ef87487f3578827c7c4e02055e3203f17260e1fdbd332387356b617",
+      "source_file_sha256": "71bd27aca0c85e9234cf06ea12f202a7c05a34c4f0fb99e8ce249e76d4ce09dc",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-false-prince-and-the-true",
+      "origin": "lilac-fairybook",
+      "official": "test",
+      "QA_metadata": 64,
+      "role": "validation",
+      "source_sha256": "f158e5754ff612b5051180701bcf2939a9ad70da713bf904b7a7f7b59a130b48",
+      "source_file_sha256": "d331b3011aec49687b0f4493cb492c10ef3946cf293854247276c2a81addcc05",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-four-gifts",
+      "origin": "lilac-fairybook",
+      "official": "val",
+      "QA_metadata": 88,
+      "role": "validation",
+      "source_sha256": "609f87f49158d0a60dfa5b98e92579a1bc29aa9f1a43e2da29a6ef5da11f707e",
+      "source_file_sha256": "2bf08b8275cecefb773dc972cbba0e3323f077e21bc1606a39cd680669c8c222",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-one-handed-girl",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 161,
+      "role": "validation",
+      "source_sha256": "7104e887312804532dfb6d613b94c0825d84e3d86412fb6cb415b6d047f85068",
+      "source_file_sha256": "6d8ebb68ca6d4599ef4446cdac27e2edb2fc9b167cb83a6db2a6eb76b8de838f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-raspberry-worm",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 57,
+      "role": "validation",
+      "source_sha256": "f551fdff05bea83ab2e9869d5f4b1ea9158134a83039cff20e506699ed0084f3",
+      "source_file_sha256": "38ccb1f07c9b43b64d3207ccd5316f94180de93795b96b951bbe0c8eaa895521",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-rich-brother-and-the-poor-brother",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 99,
+      "role": "validation",
+      "source_sha256": "657d454ea160708603013544a4e0dbf38c9b1954afd458aadc0be4f89f9332ff",
+      "source_file_sha256": "31f34abf6982058529b7ac83973bd2e03c2e4cfd5aa8b3ec8c6adcfa97a9ba4f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-sea-king-gift",
+      "origin": "lilac-fairybook",
+      "official": "test",
+      "QA_metadata": 70,
+      "role": "validation",
+      "source_sha256": "05a710fd7572c92a24f1f4f8bcd972d52626d0405d8dc7080e037a8330c18c9a",
+      "source_file_sha256": "5927729dc66a517af06c2629dd6671cebb9ba13b6e63dc7fcad6ca79ad91da06",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-three-crowns",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 115,
+      "role": "validation",
+      "source_sha256": "07c57262da4f500ee6e4bdde50a592929d5192f0117e0fb2a6a1d30a2bfe43ed",
+      "source_file_sha256": "21c3c295a04156f17ed3597b0ea289e93f8036cc9600713a9607c97b85c08aea",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-winning-of-olwen",
+      "origin": "lilac-fairybook",
+      "official": "train",
+      "QA_metadata": 100,
+      "role": "validation",
+      "source_sha256": "cd65bbfe23bde1aa0c652c31604522df05a0938817a5da003dd70769782588b5",
+      "source_file_sha256": "731db8746db7f54a144bc891653f45747c2a8d647e3f0a5f36893a2af059dfd9",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "bokwewa-the-humpback",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 29,
+      "role": "train",
+      "source_sha256": "86307af2f6964d3c2a6d688cfe115131ea89073891e371ef66e31ee4f0bd02b0",
+      "source_file_sha256": "e5bd56867a716c813fbf697585f832be4c8b5004ee3486b481e5a1cd969be2d2",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "gray-eagle-and-his-five-brothers",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 25,
+      "role": "train",
+      "source_sha256": "2f919ebe35c116edc2789d1987c418bbffb869fdcbcf76dc049b7aefed2de695",
+      "source_file_sha256": "60700ff760de0279a77826b12ae91f164b1658619f9cbd6ecba726016b29754a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "he-of-the-little-shell",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 27,
+      "role": "train",
+      "source_sha256": "d04fc4e04916da4821a00178a8142bb5c3428cd524bf05048ace7b45a64a05cf",
+      "source_file_sha256": "145eae33fbe4a4381601c0e8321868f970e2520d217746fa00065a39b29cb5cf",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "leelinau-the-lost-daughter",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 27,
+      "role": "train",
+      "source_sha256": "85b8293f7293aec9a310cf5a13fb4c24ad462a0f0032308cd07819d4490f52a0",
+      "source_file_sha256": "3508a13d57850aedb9fed58ca2ace44fcd1cb8b59f2c21ebffc314a1de220839",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "osseo-the-son-of-the-evening-star",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 26,
+      "role": "train",
+      "source_sha256": "25c855c73a4d1ea0e2a790ea4b062ab0acaf37383b0980808c1f1cb62d642bc2",
+      "source_file_sha256": "ef0a739317b2e89ebfb01c7ec0761671a3b10cdd347028cb2b5efc674ece11d6",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "sheem-the-forsaken-boy",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 52,
+      "role": "train",
+      "source_sha256": "611469a70a2cec847b46be63ad4049f9788e04d2267876274ffc06426adaafef",
+      "source_file_sha256": "a429efda856f08f881ed99fc967101d1b52950498feee0cdd072b67f4575c9f0",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "strong-desire-and-the-red-sorcerer",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 37,
+      "role": "train",
+      "source_sha256": "50b5e142b92b94f6037e03e5634374383442952097361e0e0250676944e073da",
+      "source_file_sha256": "58cfba314e5e04be27d80cc581a84a17ea3d2e18fcc84a2cb3bd5ae64b014dbc",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-bird-lover",
+      "origin": "native-american-fairybook",
+      "official": "val",
+      "QA_metadata": 36,
+      "role": "train",
+      "source_sha256": "6fb7b933821e4e9aabea34189a7f676d7b4efe3e77423e7ee852bb2a54037a10",
+      "source_file_sha256": "2b5a5a9555231ebffb51199f74793bc3bdc7ca293a7f2b08f8ea14cedf59d8fe",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-boy-who-set-a-snare-for-the-sun",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 23,
+      "role": "train",
+      "source_sha256": "2f66130b91891b71421f78adca24008ebf5e4c2942ad4b7471e02caf618f7ee4",
+      "source_file_sha256": "fe9ff5c2337eae26ac38b454ed182a350b3237cf601cbb9d8da09b804c2ba3b1",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-celestial-sisters",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 34,
+      "role": "train",
+      "source_sha256": "9439f815dd32c16ac94fe1c5becd088c4308603f31b9d8e438af3f064bbb51cf",
+      "source_file_sha256": "6c50034778dc3c1e6148a635c3c3b3b341d5fb0da99804f19d35c6abb9335f6e",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-crane-that-crossed-the-river",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 20,
+      "role": "train",
+      "source_sha256": "12455d1e775c1c142fc2c1d4d1768ba19493794e29ffaf14f6a96ac4c7718ecf",
+      "source_file_sha256": "ecc8f4746a58d23663967ecef5e2000e91e787ff2ab98c82d61d42b407ae133f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-enchanted-moccasins",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 53,
+      "role": "train",
+      "source_sha256": "39b1486855103b069468075a1e12c87684a1d639351c5d4f040c6f8bf98d1646",
+      "source_file_sha256": "b067c9ffbedbf2b4e5d1fb0055370b4a777f2fee46226162a944fbb2f8ed2bb3",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-fire-plume",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 84,
+      "role": "train",
+      "source_sha256": "6f31c86a9f6be99d16e0e5b7e4b285fd75cfc774d811346e1b8f5e5a78d98590",
+      "source_file_sha256": "e16a0a9e363c7a6bb25a785f8107ba42d10f77edf04094c08dd965cb8a1d2011",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-little-spirit-or-boy-man",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 40,
+      "role": "train",
+      "source_sha256": "77545099714310f34e9b30389cfe6dc1baed79a2a77d54a0591f6d768ec881d7",
+      "source_file_sha256": "837ddd7da280049a8a1aec1fe9c53bd56fd81691e2b4d188cb3bafde32684fe5",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-magic-bundle",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 25,
+      "role": "train",
+      "source_sha256": "e33641d0aba73cd922b492345821f6e784dcdd15a46c9ccc3c66f463183c57f7",
+      "source_file_sha256": "80509d0b917746174d8b2d0439e05a0e87fb4d26da99aaa8e026a8f42b90d09b",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-man-with-his-leg-tied-up",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 47,
+      "role": "train",
+      "source_sha256": "c8038516e1975b61ce2ba8c3c7412756f7d72a2f391d26c8dee08c6795adfb98",
+      "source_file_sha256": "be56df9d48d15d102cc45087f6728e8187f7d82a22e33696a4494b7a0b0741e5",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-origin-of-the-robin",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 34,
+      "role": "train",
+      "source_sha256": "652b3e65cbb173dfa3c2bd8795504f360434691f4a915b3ec2730ddd64f42552",
+      "source_file_sha256": "5faf647f464ed84baa4acef8326d8ca34cf813246539710ca7a84721fc62acd6",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-red-swan",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 127,
+      "role": "train",
+      "source_sha256": "6455fc16ba65c0545320b62e644a06f11706c520bf8cf3b8eac4c1f7eca65d83",
+      "source_file_sha256": "b6a334a1151a5d7ada111929ed0803473a76ce86131ee527e86cc4894b57de32",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-toad-woman",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 40,
+      "role": "train",
+      "source_sha256": "19125fc8e4a00643ae6a4043d28efeb500ca9c538c5944bac827495b22fd069b",
+      "source_file_sha256": "67d314f83c121071d0d8c5bbcb5aa74a505cf21c55434abf6a0d26a142e559e6",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-two-jeebi",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 42,
+      "role": "train",
+      "source_sha256": "f73108f9791136886b967b03b9caa2b5a43003b55033724576daedd5ede4624a",
+      "source_file_sha256": "c55b2578ea1313b4f0165878e16289798cddc7cf9dc98afe9de04bf572e7e75a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-winter-spirit-and-his-visitor",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 24,
+      "role": "train",
+      "source_sha256": "2f2fa39e19d42e8640d31e3f96be11b8e61c7d628f805a14248275497f36d9fb",
+      "source_file_sha256": "18248f9255ea6cd797b542a06060993c750df1fbfbf764d05d6546bac2b96975",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "weendigoes-and-the-bone-dwarf",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 60,
+      "role": "train",
+      "source_sha256": "137429896b40ff4f24fdf9ae62f76b78aba7008855edc1feff88dc26cba58277",
+      "source_file_sha256": "f05727b2179f0addb7b4f93f7ed6940cd2e6ddb0825ec15af874e669bb24d3ad",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "white-feather-and-the-six-giants",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 63,
+      "role": "train",
+      "source_sha256": "ebb86cc03aaa1eb02aeca4124365fdb255a0fa791e599967af344a36e468edee",
+      "source_file_sha256": "6207f985cfa4bc9aefeb9fdffc5338d69db96de43588687fbb1099aa75e91ca3",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "wunzh-the-father-of-indian-corn",
+      "origin": "native-american-fairybook",
+      "official": "train",
+      "QA_metadata": 29,
+      "role": "train",
+      "source_sha256": "a4dab788ebcdb09b901c34c37dd43519d226bd7dcd93a63caa0cb4d505494413",
+      "source_file_sha256": "e33984a192e4125873a87696d2b764aa9b0882b6f6b526bd2c2ea8ca56790863",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "anent-giant-who-did-not-have-his-heart-about-him",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 53,
+      "role": "train",
+      "source_sha256": "7f08b4f4a9fe220099559eb8e0df6e8ff0d8f4af508dd798a95caf85f2613b8a",
+      "source_file_sha256": "9771391d784647a4a545ec993721f7e61b1486699856a6bed1959e6d28aa7e6c",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "aspenclog",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 23,
+      "role": "train",
+      "source_sha256": "44c981f24e929baf7404d838f9f3e41abdf6203ff708505332227b29f29a71b6",
+      "source_file_sha256": "4fdf5b5b967a73537051d16724077dd55dc2b002eb3d577f5da3f4c43356ed9b",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "cat-who-could-eat-so-much",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 22,
+      "role": "train",
+      "source_sha256": "18d8bce88c13eb1a4adb856d04fcc1af83c40fcc45ebfd9a40858436ee5e6be9",
+      "source_file_sha256": "48065073316bb901f7b909d7f62e7d37f0c6f3934a5f56e7900a05d6e759e70a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "child-of-mary",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 45,
+      "role": "train",
+      "source_sha256": "ebe231429c9402881972e2e30e426810f9187ea497c981e14e9b9154557df149",
+      "source_file_sha256": "e4ac9a71614dbb9cf7f0cfe08982342ea2ec601d95ce1712b88685e88f2b1fca",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "chronicle-of-pancake",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "train",
+      "source_sha256": "3fab7f5b42bdb3a96243da5f035dddc44e8ff386f87611680903196c863c6893",
+      "source_file_sha256": "2c1cc70ec05d0fa83017c4c95ae1c371cac1e203ef18fb2e4781da8956308ceb",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "comrade",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 70,
+      "role": "train",
+      "source_sha256": "9edd9ed0800a01b705efaf1e40fbbdb77e6a6918af1bc28793996ac8e3e27544",
+      "source_file_sha256": "cb75c7caa191e32145c0c0f3bba154082afe3f3046a40cf6362f31e3b07e2452",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "east-of-sun-and-west-of-moon",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 84,
+      "role": "train",
+      "source_sha256": "5b047c8a5900eb81836b4c731a8d79a1aca99fb31aff0d02d24071af011225d2",
+      "source_file_sha256": "c4cfa20c16de81dd4cf1be17b6e8ad27dc633b314d0379892dd5b8edbff4c96d",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "farther-south-than-south-and-farther-north-than-north-and-in-great-hill-of-gold",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 34,
+      "role": "train",
+      "source_sha256": "74778bcce708768f79bfbf60218437f40824a6f8411a56907b0d8648732a942f",
+      "source_file_sha256": "4a4fdcc5da181457dda47491abe794f51241065fe4898b11f0a5b6cc7bdcb4a9",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "four-shilling-piece",
+      "origin": "norwegian-fairybook",
+      "official": "test",
+      "QA_metadata": 26,
+      "role": "train",
+      "source_sha256": "e214792a5fad6c885a1ecc3e10fed6b70ec6030dbffee0217b24020eac9969cb",
+      "source_file_sha256": "cfb05e1a833ae3825372d3571d84a28b3ed479f77785f9268ef29865ab87ec88",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "hat-of-huldres",
+      "origin": "norwegian-fairybook",
+      "official": "test",
+      "QA_metadata": 12,
+      "role": "train",
+      "source_sha256": "033c11cdf5ee841eaa266165ca109b16bde929b8028457822bcda32b098067a0",
+      "source_file_sha256": "e4ba9d3b0e9b667b10e569af2f12f8552cb8afce5219c062985de09d30882ac8",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "helge-hal-in-blue-hill",
+      "origin": "norwegian-fairybook",
+      "official": "val",
+      "QA_metadata": 62,
+      "role": "train",
+      "source_sha256": "3322fed273480f7f2f4d09d95610ba39d01caf1462968c80598694524814de97",
+      "source_file_sha256": "a62f77e173498fdf9089929649d033e5d9b30a537331de6eab767f0e77c5748e",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "isle-of-udrost",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 31,
+      "role": "train",
+      "source_sha256": "a1c7f25971cb57b85f7d55779d104f6faea42931ae8716a3c7ebf057d085eec0",
+      "source_file_sha256": "4f0ac8a3ce7ff3d30ad38eb05871b58d9a278b78256da5faebc5d147a08a2ecd",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "kari-woodencoat",
+      "origin": "norwegian-fairybook",
+      "official": "val",
+      "QA_metadata": 100,
+      "role": "train",
+      "source_sha256": "476a13d5dbb7f85ceb313040b2bca51f70beb0bc297b946b9117ae6a316d3da1",
+      "source_file_sha256": "db5012df75f0ed31f9e846cdef82a1e50ae4ed4f00650f0eab11e8acff0c22f9",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "kings-hares",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 55,
+      "role": "train",
+      "source_sha256": "4fa50d17404b7905e53e78450e20eac1c504646397e9f264795407abab34f140",
+      "source_file_sha256": "a646b8448359e2a3fdcdc469772d22ba72740ed426596df52b4adb281c1567e7",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "lord-of-hill-and-john-blessom",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 14,
+      "role": "train",
+      "source_sha256": "00b7e8de2671b14ff4197189ef5701cf7ed893253c52060172a4ce04d71d3a40",
+      "source_file_sha256": "4706129515a6197bddd151b70d93c5471f091cbde5637d51800758fd1c254340",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "lucky-andrew",
+      "origin": "norwegian-fairybook",
+      "official": "test",
+      "QA_metadata": 72,
+      "role": "train",
+      "source_sha256": "fbce7cc9940256f7f54c42603017470c7112a72fab69a9c007a6138813fa1151",
+      "source_file_sha256": "8f9ac4c847ace9d25fbecf4248d71851daa9ea457e6643dfbbe1cf5e3ca10f4e",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "magic-apples",
+      "origin": "norwegian-fairybook",
+      "official": "val",
+      "QA_metadata": 29,
+      "role": "train",
+      "source_sha256": "3a6d8904f221048dae6f18ce379d6933f3a9698825b0903a44fc9e18d81ad6c4",
+      "source_file_sha256": "fbaf12af0448f87c259d23a96fb2f6b25482ec14a19b8249c15cf5513f516331",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "master-girl",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 70,
+      "role": "train",
+      "source_sha256": "aae3db6f37f7a6cd67cdf3ef634f0944a8c8c20c0bbb3269b64ecf8804cac9ce",
+      "source_file_sha256": "23223ebc53a2dba0da89e72d7a3485c8d48449ac1b2619ec25b96d79c939aad0",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "murmur-goose-egg",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 102,
+      "role": "train",
+      "source_sha256": "181a7831355c158980c05a187bea776e5684188666460fc35d155e740be7de7d",
+      "source_file_sha256": "d0eb62a7a7886a9b117f7aee528d6302606b309eda0dde157921ca4f105342ea",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "neighbor-underground",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 16,
+      "role": "train",
+      "source_sha256": "2d42928627ae8ea538036d86175e7b4da869ec09a1fe07ce1c2ad3e80e57084f",
+      "source_file_sha256": "6d930a6fe8af2a47fc032457846c19002e85866b4fc25dd6a4ae792619580b1d",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "ola-storbaekkjen",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 14,
+      "role": "train",
+      "source_sha256": "2519d7d5a2f6f0995303aa52f03fce092c6b0440d2ea38106bf8d5b6cc92c204",
+      "source_file_sha256": "93e1bd023de3e125a0ca33fdb3dcc1ba0f01f6985cfe9727968ccc173c301321",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "per-gynt",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 37,
+      "role": "train",
+      "source_sha256": "2795029b9cd3ccbd283946e5cf5f219eeecf21d0fa196415b750c39d550507a5",
+      "source_file_sha256": "27fc8df7a2b0e5a0bba9f809694a1f84b98bced3e275dfd916c817e8444256e4",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "secret-church",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "train",
+      "source_sha256": "46cd39c53c4e67fa7e186b997f1525990447bfc3d138757037c2c4c1b2d1fe69",
+      "source_file_sha256": "4e21a2c775d549da51b515564c95f8808ec4bdc931b2046c6a54894aa871f6fd",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "self-did-it",
+      "origin": "norwegian-fairybook",
+      "official": "test",
+      "QA_metadata": 15,
+      "role": "train",
+      "source_sha256": "946435d0ad1e3ccb437189fec683ee96b53494dba3f1f153cc0130df5673efc6",
+      "source_file_sha256": "beeadefb51e8c454c8c5fec90060a2ea81c66edc7c84d7ad1d42be5d2b51f1b4",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "skipper-and-sir-urian",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 12,
+      "role": "train",
+      "source_sha256": "a097ab68c57db37521e80f1e24923064ca3e5397c9a923690c1f72a2115704eb",
+      "source_file_sha256": "9062f977478aa0522deba2afedb845f0b3d3f954784dbc624c804a41096e99e8",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "soria-moria-castle",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 125,
+      "role": "train",
+      "source_sha256": "090485828781c2769b87d5200c7e1ffa8dc0d827d2156c16613c52a8e4b6dc23",
+      "source_file_sha256": "3ebff7dcd8ea97670da7147402c88f78de4c051b7af0359a56083fdb719201a3",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "storm-magic",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 46,
+      "role": "train",
+      "source_sha256": "779c459f8828d7a5366a5729500c3bded6bbfe6afecd062ae0987ad6cdb042a4",
+      "source_file_sha256": "fc08202be44646c307a9e483f2e25ab2523bd4b39b76ba75104f12fd4378053e",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "three-lemons",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 30,
+      "role": "train",
+      "source_sha256": "12ee5aafd60623e6fe8b3da9b5f53dadcbe458ace48842e1396369399305d716",
+      "source_file_sha256": "803d4e85a0d0de33bf3bea867ef8f4a3361e4fbefd54dd40d0a1d6eba7a39577",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "three-princesses-in-whiteland",
+      "origin": "norwegian-fairybook",
+      "official": "test",
+      "QA_metadata": 35,
+      "role": "train",
+      "source_sha256": "6297c280fe85ce8f6995585d27e1fdd19f656b0fb2d9cc4ae666ffd2dd3eb7a6",
+      "source_file_sha256": "031a643de3c62ca6ebe63960387efab17a69ede8cbfdb65b198930bf6157525d",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "troll-wedding",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 14,
+      "role": "train",
+      "source_sha256": "3d8a6e721c519b990ec2e4c6e97ef4cbb7b127bc21448990a92b20ee1cedd047",
+      "source_file_sha256": "24ec59177ad46aa301ce2ac3aca16f7f30c9f15b39d4724561738842542605a5",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "troll-wife",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 24,
+      "role": "train",
+      "source_sha256": "a9999d9ddab2238dc7489fea7aec572539308f3e036b2ed2f04776aca7164185",
+      "source_file_sha256": "337904f854caa79db85d3b2502ba33f94657e5012278653ad58205cf3f158c39",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "youth-who-wanted-to-win-daughter-of-mother-in-corner",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 57,
+      "role": "train",
+      "source_sha256": "136fddc125d1ec0764c09b398ee775f183a975075bacf4d609915e6062a12991",
+      "source_file_sha256": "fffef5ce32caebc720c4268d65bd399a1b5081f724e0782b7d2c86e935243a62",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "youth-who-was-to-serve-three-years-without-pay",
+      "origin": "norwegian-fairybook",
+      "official": "train",
+      "QA_metadata": 61,
+      "role": "train",
+      "source_sha256": "4f3c8a2c37c15bbac63f56ab3f98f5be624f189fd323989eb379ff782d7f963c",
+      "source_file_sha256": "154b096b3d2a0e21d112482984f1fbae0d278942459b29c84d3584ce732a611f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "assipattle-and-the-mester-stoorworm",
+      "origin": "scottish-fairybook",
+      "official": "val",
+      "QA_metadata": 85,
+      "role": "train",
+      "source_sha256": "f5cef3253481fe1ce952e2cde9a381f973aa986392685503c30eea9850290226",
+      "source_file_sha256": "817e378202aa67fa44a2f99c274565c1cf4f104ca3912ed539e27e7c258beef2",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "canonbie-dick-and-thomas-of-ercildoune",
+      "origin": "scottish-fairybook",
+      "official": "train",
+      "QA_metadata": 35,
+      "role": "train",
+      "source_sha256": "fed3a565a8d6b149a9913df9354b870011ee20ba488270939c1c9f2834ff9fca",
+      "source_file_sha256": "4cda397b448d61a5432976aa73c6b745b1311dc680d768c321db8f2c756e87ee",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "farquhar-macneill",
+      "origin": "scottish-fairybook",
+      "official": "train",
+      "QA_metadata": 36,
+      "role": "train",
+      "source_sha256": "aa210142970904972908fdec5df3215e30a4c0f872e6f030bbc269651a5ff801",
+      "source_file_sha256": "6efdb8ef32ac1196666fe20d367c9b22567687d43b22d353d67b57a6fa57cb5e",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "gold-tree-and-silver-tree",
+      "origin": "scottish-fairybook",
+      "official": "train",
+      "QA_metadata": 78,
+      "role": "train",
+      "source_sha256": "3cebf7a9f123d08bc6f5e98533e87b476694fa3ebecb93c568ab5e996abd1bf3",
+      "source_file_sha256": "29ea14e851b07302d63dc05095d30dc09a04bc3125f348ac3df0cfaa8fb6274c",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "habetrot-the-spinstress",
+      "origin": "scottish-fairybook",
+      "official": "train",
+      "QA_metadata": 67,
+      "role": "train",
+      "source_sha256": "3ab274eee3866993f0b7ed47ccbfeef56978cb79713b3bfc8de12f9e564c98bf",
+      "source_file_sha256": "33ee73ee6204a1f412cd89752b5d7b53e95695e1d3baa65e7e17cf1c9b7c1d83",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "nippit-fit-and-clippit-fit",
+      "origin": "scottish-fairybook",
+      "official": "train",
+      "QA_metadata": 39,
+      "role": "train",
+      "source_sha256": "f411786f7e2d428cbc9f5b92eb548fc060d6fa9ee8f5b5b2c56f9331373d23b8",
+      "source_file_sha256": "ee03bb80c29e47937b7eabd97bcf447c2f9ea5f8251f9f9bcb60c200ff9f1ca2",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "peerifool",
+      "origin": "scottish-fairybook",
+      "official": "val",
+      "QA_metadata": 90,
+      "role": "train",
+      "source_sha256": "98a0b2c28374a6f820c8a66508358b8e71d98175dc318efa481cc2620fb1a0f3",
+      "source_file_sha256": "7b14bde65e7409dffc0b1cc29cb6bd81dd7fb38ef201fd3e310888016ce2981a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-black-bull-of-norroway",
+      "origin": "scottish-fairybook",
+      "official": "train",
+      "QA_metadata": 111,
+      "role": "train",
+      "source_sha256": "06d14109d6fc94270729092831a4c5b4c3e1ca1a2c450f7b1541083399ee8d58",
+      "source_file_sha256": "e6cff681ade61c0817c8e3b4c6fe2fc98e5f766c6aea2c1b72aeeca872f7dd53",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-dwarfie-stone",
+      "origin": "scottish-fairybook",
+      "official": "test",
+      "QA_metadata": 107,
+      "role": "train",
+      "source_sha256": "21cf1fda3d9f64f4fd4c563fff65cf87bb9559a0b98b7500ca52c1162c52b2bb",
+      "source_file_sha256": "0fcc042b136c9a7a90903f1442253dd31bd959ef2a5d438333e1ce736a50314a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-elfin-knight",
+      "origin": "scottish-fairybook",
+      "official": "train",
+      "QA_metadata": 81,
+      "role": "train",
+      "source_sha256": "969bcfaffd6b009c09f7f6bf17b6c4a4ae5bc29db31d268257f108792b7c8053",
+      "source_file_sha256": "bc89762cd9f861961658e75226507cb63ef73d507d6eee8e425da1192f11e555",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-fairies-of-merlin-crag",
+      "origin": "scottish-fairybook",
+      "official": "train",
+      "QA_metadata": 63,
+      "role": "train",
+      "source_sha256": "149e1cb58ae4371ae6650d04d3cd433ba166eb60a422f6c0703de16af4f45686",
+      "source_file_sha256": "211a0c26146aac003e520d1c672bbd7f8da3ad4cede30472e3f1861ed2a5acdf",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-fox-and-the-wolf",
+      "origin": "scottish-fairybook",
+      "official": "train",
+      "QA_metadata": 52,
+      "role": "train",
+      "source_sha256": "c4282ffb6fd6aa6194fb140b0ba61f463f0f3cbbf9f786060fcc4385f5aa386e",
+      "source_file_sha256": "edb647b8a3d92e16e69ea29630c0831e125e6627f19de748996f1868490a27db",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-page-boy-and-the-silver-goblet",
+      "origin": "scottish-fairybook",
+      "official": "val",
+      "QA_metadata": 47,
+      "role": "train",
+      "source_sha256": "0ebae2f79b9f6f09f787411e19db5501b3c05210831edeb27e60243387c1e06b",
+      "source_file_sha256": "e43aeda5b548928f997b003d0a5d36386f883511eb251043b4b32a4ed6f5d4cc",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-seal-catcher-and-the-merman",
+      "origin": "scottish-fairybook",
+      "official": "train",
+      "QA_metadata": 52,
+      "role": "train",
+      "source_sha256": "932cac821ca87e2145573dcfb1967c4a9a608e88b3eed4f81d95571d9e7a3042",
+      "source_file_sha256": "1ae7755788e1a14be72cafea0d81157633ad3f412eeb8baf4eb241ff11d5193b",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-wee-bannock",
+      "origin": "scottish-fairybook",
+      "official": "test",
+      "QA_metadata": 50,
+      "role": "train",
+      "source_sha256": "47553a8127f4075707fd15f84a1a0ea440d78ec02bd5316df90f40a0cbb7c7be",
+      "source_file_sha256": "3f71bcbf61782aa9242874440ee491e94a05a6e78f9fbf6bcab45b123246fac5",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-well-o-the-worlds-end",
+      "origin": "scottish-fairybook",
+      "official": "train",
+      "QA_metadata": 30,
+      "role": "train",
+      "source_sha256": "748993e637b18d0169b75a1f3ba175f2f55df997740089a0ad62faeb2a0eb74c",
+      "source_file_sha256": "f692a67a5e97a75c23e16774781b85094a8a1bce2a4d9520def4068f27f4e797",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "the-witch-of-fife",
+      "origin": "scottish-fairybook",
+      "official": "train",
+      "QA_metadata": 60,
+      "role": "train",
+      "source_sha256": "7fac8474269690d8a5ef7e945316c9f6715214ae330a8d810fc16aa3f84330a5",
+      "source_file_sha256": "e5c4795b2c50144b479a3ecc1a6961f5d8debba07da583f88cd7d45d152d6937",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "thomas-the-rhymer",
+      "origin": "scottish-fairybook",
+      "official": "train",
+      "QA_metadata": 89,
+      "role": "train",
+      "source_sha256": "52f2a30432a93d03a8e3c5cbd5e5aabc7470b53fe20ffcc88db8b57bf77f6bf3",
+      "source_file_sha256": "a93ff41ee32f7307c82e059e7153f51b1fe551932bad339f221fb082f4ae09d1",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "whippety-stourie",
+      "origin": "scottish-fairybook",
+      "official": "test",
+      "QA_metadata": 56,
+      "role": "train",
+      "source_sha256": "9b60c95a15a913d839e486fb7600d1f5c19d590764007c2e81622525c70a0be3",
+      "source_file_sha256": "abfe18313425e659d2d58c431655ee363ed8fb14ecb2baf60b62c8e54c6c6eca",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "charcol-nils-troll-woman",
+      "origin": "swedish-fairybook",
+      "official": "val",
+      "QA_metadata": 14,
+      "role": "train",
+      "source_sha256": "1e8f468248f98e4559dc9ca5cd7daafbfd0c8f9ff696730b0f9a0a1143f3551f",
+      "source_file_sha256": "3f87e529e691bf8621e19d6bb5d75ed21264b40cd8d5861b68f0c63570bfbe75",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "evil-one-kitta-grau",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 19,
+      "role": "train",
+      "source_sha256": "0a63a5d9b65ad3ea7c54c94646b673918f5ded4a6743bf090ab53cbd0ea7d042",
+      "source_file_sha256": "f67dd926f08f12c53cdaffe87fe00b5b0bf35b1ea739b514c4a8c523f4a3f7bd",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "faithful-and-unfaithful",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 23,
+      "role": "train",
+      "source_sha256": "b677a18541882afee2a467d1792f4793e263ce257ada25e6eca0b60f7aa830c7",
+      "source_file_sha256": "420b9a472eb24523d1f67afdcda26d710f2229bbb5b3af4b22906eaedfe3064e",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "finn-the-giant-and-the-minister-of-lund",
+      "origin": "swedish-fairybook",
+      "official": "val",
+      "QA_metadata": 17,
+      "role": "train",
+      "source_sha256": "7ef3aa7faff85ae2f139a28e8bfe1134724b391878deabe20ff2c6a334e6459b",
+      "source_file_sha256": "0f046ccd4e026cc365887b9449a1cb23168c3ec323c05619b66166a24c1272e3",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "first-born-first-wed",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 25,
+      "role": "train",
+      "source_sha256": "cef5115130f76773490a75379f8ea1c033a5c999d8313fc4589c411905b51aaf",
+      "source_file_sha256": "b829023d64f56445790b32d879d02e6ec9ce8d263175d9c229ddb3635cf6f7f9",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "girl-and-snake",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 13,
+      "role": "train",
+      "source_sha256": "3421dfa38058e2900bc394e355533728486a63c316ea2589d7886a3657fd5909",
+      "source_file_sha256": "edb555840c1e26a4b1b4238219e3d8bdc66859327a6c5afb0c53ea6d83d9dd8f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "knos",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 23,
+      "role": "train",
+      "source_sha256": "d5f7dfa2443f617613ef16ddb12b06aba8ca366a620206cb7164597724dbedf1",
+      "source_file_sha256": "55ef9ca15d628b844c794badf10d51ad3c2f20b6155f68884dfd690fd116aedb",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "lame-dog",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 35,
+      "role": "train",
+      "source_sha256": "778ca347f4fffcd8de2af88abd87c3347ed5413a8200c20494de120385d0f28d",
+      "source_file_sha256": "c70ba665fb68cf24033789408e9f76f0cdc15a151407626943951b9fa3a0a993",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "lasse-my-thrall",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 42,
+      "role": "train",
+      "source_sha256": "3aaaa045cddfa13dd87693414ea1d22b27e1b8ab22b8040a1d9605226281fab9",
+      "source_file_sha256": "838f74b5923f18dbb0c7a4515689ad9efba2425b0484663780a2b2d92ffbffd6",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "mount-of-golden-queen",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 25,
+      "role": "train",
+      "source_sha256": "1bbadfce723f403fe96d249ef0f4312201ea0f934ced6b66bcb14a491c6ce248",
+      "source_file_sha256": "959299fb1f173597cc5ae1b33ced0c2f2239898289aaaf5c8f0b2aae38adbf1e",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "old-hop-giant",
+      "origin": "swedish-fairybook",
+      "official": "test",
+      "QA_metadata": 15,
+      "role": "train",
+      "source_sha256": "e56f6eac6f0be718805133404968440ba97fe6da1584822d888c02213abec89d",
+      "source_file_sha256": "d57cb5e3173ce1bca76c0ba96f8488835d6490b1675fc5f907d1e27e0d33ec81",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "princess-glass-mountain",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 59,
+      "role": "train",
+      "source_sha256": "dec87f23a8db0863001f7033a5cbea02639afc399c6fd675db67fc54f90f3615",
+      "source_file_sha256": "bf64af12d43de068ea49acb70194f9f1b3ec8165a0550199598df56db70844b2",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "queen-crane",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 30,
+      "role": "train",
+      "source_sha256": "99224b401b18f4e04679defa74b4684fe2b165829ebc59c172e51c0b0eb05f2c",
+      "source_file_sha256": "bbb5ef0a18dc1ea525e500a487c32db217cf0720d386912ed81d8cec312560d9",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "rooster-handmill-swarm-of-hornets",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 22,
+      "role": "train",
+      "source_sha256": "080eeb1aa89ce98bc0c3a47145f0cd9ab4d052a3904c826e734924ceeb7a216f",
+      "source_file_sha256": "04b88f97a566a7b8702c0a71a15f81bb0718031bac9d52039eefab93d4b3141f",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "silverwhite-lillwacker",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 44,
+      "role": "train",
+      "source_sha256": "b5a4093cbccfeeb63eec941e42606ceb796eb2417ae3c04fe24c6b01d9daa600",
+      "source_file_sha256": "f3a557d51328027fcf1309dde56f3dd5224cc0e71bf7e5a4168df8c2e0cf1549",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "skalunda-giant",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 14,
+      "role": "train",
+      "source_sha256": "c6aa9bf8284bdc078893320c6648e0a06e93b397de91fe81397d4c0cb1337279",
+      "source_file_sha256": "b6988610d9509d901b9af6d1d684319b90215cc128fbccbdcbc35242b1c48f03",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "spectre-fjelkinge",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 11,
+      "role": "train",
+      "source_sha256": "337ce88a39686f13ad0a1ceb5fe9ea522f344e952cd73fa147db928d60b9db04",
+      "source_file_sha256": "6a10e767261731a35f10409d9f158a0759e932151970902bf2c1fbc5065aff55",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "starkad-bale",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 9,
+      "role": "train",
+      "source_sha256": "ea762c303690c9d883fe2174c90092997120dfc5e7e3031870ec8cc051bdfedc",
+      "source_file_sha256": "e6547033de4f88525c40a44972bd28b2f547cbe162ba46bf4ca8278cc2239b91",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "stompe-pilt",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 13,
+      "role": "train",
+      "source_sha256": "e0f997196ab328289678178d3c007f6b3e5084abf4a6c36a948c676c7c3ed2da",
+      "source_file_sha256": "6cc4f066bef71d12f96e94609bcc853ab6f878cc2973fb7373fa6ca6ada16a10",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "three-dogs",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 56,
+      "role": "train",
+      "source_sha256": "50e9d33703ed3cc7e39cd786b6cc40f515df3c9e00842abe4432d4424c1c55df",
+      "source_file_sha256": "fd257718b8fcfb6b829feb3f502fcdcb887393ea38daf4f26014440509b92c6a",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "torre-jeppe",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 15,
+      "role": "train",
+      "source_sha256": "c33b326b1c0c4cb96dbeed4bb83ba0d9359465ce99f8770e556d6416b7a88784",
+      "source_file_sha256": "7c82ad2d434b8a7f272d8b57ee2a75dc645b20d5af1b3d6254c29233dda01c91",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "werewolf",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 54,
+      "role": "train",
+      "source_sha256": "f6475e7af49d9f3af4a67be8217967ddd3f46d6bea086ac850ea3f53d3d8f2a7",
+      "source_file_sha256": "424d4f767d949c9fd18ef8ab596e80a8eacc5585c87639d5fa3e664d58e7774c",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "yuletide-specters",
+      "origin": "swedish-fairybook",
+      "official": "train",
+      "QA_metadata": 15,
+      "role": "train",
+      "source_sha256": "afffee0aad420b6ae14fcbb281c31b39d5e973996c2951ab1558b454fd951c5e",
+      "source_file_sha256": "273eac3aaf7787cc87ddc52df4d8fd999bff195b00d2380c2a4524218c8da127",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "how-boots-befooled-king",
+      "origin": "wonderclock-fairybook",
+      "official": "train",
+      "QA_metadata": 26,
+      "role": "train",
+      "source_sha256": "14ca582e370e32d688977533a7a56ac4d02beab077eed110b80cac00708b7911",
+      "source_file_sha256": "def086560c14f2efec63bf6c2a4a7d89c9acd0549b91b831083502426e32b25d",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "how-princess-pride-was-broken",
+      "origin": "wonderclock-fairybook",
+      "official": "train",
+      "QA_metadata": 21,
+      "role": "train",
+      "source_sha256": "7648176cdd9764ef26362e99b7782cf26ab07f36b8b08f170a53528e123a8e24",
+      "source_file_sha256": "f5b2e8ad162c8dba2658884cc239f1b1659f3d0b2dca8565fe7259c97b2b0cd0",
+      "adjacent_duplicate_rows_merged": 0
+    },
+    {
+      "id": "swan-maiden",
+      "origin": "wonderclock-fairybook",
+      "official": "train",
+      "QA_metadata": 29,
+      "role": "train",
+      "source_sha256": "d7775b6cc876cbedd86fbe786b6190fba7227299a3d308f0ef62ab65516c2553",
+      "source_file_sha256": "bc95f1817009896b6c92113e979ee34db02fdaf221c54e936ffa891fbcaad818",
+      "adjacent_duplicate_rows_merged": 0
+    }
+  ],
+  "QA_files_parsed": false,
+  "test_answers_inspected": false,
+  "count_basis": "Pinned official story metadata; no test CSV parsing",
+  "raw_text_or_answers_published": false
+}

@@ -225,6 +225,16 @@ def validation_cohort(questions, per_origin=100):
         key=lambda q: (sha(q["id"].encode()), q["id"]))[:per_origin]]
 
 
+def select_validation(questions, policy):
+    """Legacy sampling remains explicit; full coverage never inherits its cap."""
+    sampling = policy.get("validation_sampling")
+    if sampling is None:
+        return validation_cohort(questions)
+    if sampling != {"mode": "all"}:
+        raise ValueError("Unsupported validation sampling policy")
+    return sorted(questions, key=lambda q: q["id"])
+
+
 def run(args):
     if args.micro_batch < 1 or args.threads < 1:
         raise ValueError("Microbatch and thread counts must be positive")
@@ -241,7 +251,7 @@ def run(args):
     seed_all(spec["seed"])
     train_stories, train = load_split(args.data, "train")
     valid_stories, valid = load_split(args.data, "validation")
-    valid = validation_cohort(valid)
+    valid = select_validation(valid, policy)
     if args.smoke:
         train, valid = train[:4], valid[:2]
     tokenizer = AutoTokenizer.from_pretrained(spec["name"], revision=spec["revision"], use_fast=True)

@@ -1,0 +1,16 @@
+{
+  "source_manifest_sha256": "721733169b0c1e7b7c1d07fe1880d3c871d72017be6fc61923be126feea73225",
+  "train_stories": 200,
+  "train_QA": 7883,
+  "validation_stories": 54,
+  "validation_QA_all": 2372,
+  "training_groups": 8848,
+  "training_pairs": 43757,
+  "train_QA_without_nongold_negative": 3,
+  "test_QA_parsed": false,
+  "test_QA_count_metadata": 325,
+  "all_QA_metadata": 10580,
+  "model_allocated": false,
+  "QA_reference_policy": "Nonempty answer1/answer4 only; canonical story/row/originalID identities",
+  "fullvalidation_IDs_sha256": "40d2ddd6b065469a8b947d84dbb630efcaac83acecc695606022116cc1a0f7cb"
+}

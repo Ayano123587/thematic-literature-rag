@@ -118,3 +118,20 @@ CLI whose schema labels free-form generated answers separately from retrieved
 source spans. Its checkpoint-loading inference has not yet been validated on a
 completed v5 training artifact; it is not advertised as a verified production
 replacement for the existing extractive reader.
+
+## Full usable-data coverage
+
+The original study is a subset, not full FairytaleQA. Metadata audit covers all 278 stories/10,580 QA, with official split counts 8,548/1,025/1,007. The expanded custom source-family partition retains every QA and all previous holdout roles: 200 training stories/7,883 QA, 54 validation stories/all 2,372 QA and 24 test stories/325 QA. Previously sampled 400 validation QA remain observed; expanding to all validation is not an independent replication. Official split assignments are not used as benchmark partitions in this custom study.
+
+The official dataset repository licenses its provided edited story/QA files under Apache-2.0 and identifies all stories as Gutenberg-sourced. Four previous conservative origin exclusions are removed on that actual source evidence; no claim is made that every modern translation is public domain everywhere. No raw text is redistributed. One source issue (two adjacent distinct paragraphs sharing section ID 5 in remarkable-rocket) is handled by deterministic text-preserving grouping. All 7,883 train and 2,372 validation rows pass the loader; test QA remain byte-staged and unopened. No cross-story normalized title/text or >=.8 five-token Jaccard duplicate was found; recurring plots and pretrained exposure remain unresolved.
+
+The new protocol is serialized before new model fits, removes arbitrary validation caps and retains all valid examples. Current immutable subset jobs finish as historical evidence. Full-data generation may require resumable epoch jobs under the platform's normal 12-hour ceiling; checkpoint/optimizer/RNG replay must be verified before that launch. No full-data score is claimed yet.
+
+Full-data preparation is reproducible without parsing test QA:
+
+```powershell
+python -m src.data.full_coverage_audit --source data/external/fairytaleqa/FairytaleQAData-a24ddc17364666b7c13a425b9970c87368b03417 --previous-manifest data/interim/v5-fairytale-cpu/manifest.json --output data/interim/new-full-audit.json
+python -m src.data.full_coverage_audit --source data/external/fairytaleqa/FairytaleQAData-a24ddc17364666b7c13a425b9970c87368b03417 --audit-file docs/full-coverage-audit.json --stage-protocol docs/full-coverage-protocol.json --output data/interim/new-full-staging
+```
+
+The supervised full-data reranker preflight has 8,848 evidence groups/43,757 pairs. Three training QA have no nongold negative and cannot form a contrastive group; they remain in the generator dataset and coverage count. This is an objective limitation, not silent QA removal.

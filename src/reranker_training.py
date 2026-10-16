@@ -7,7 +7,7 @@ import time
 
 from src.data.prepare_fairytale import sha
 from src.narrative_training import (evidence_metrics, lexical_ranking, load_split,
-                                    retrieve, seed_all, validation_cohort)
+                                    retrieve, seed_all, select_validation)
 
 
 def build_groups(stories, questions, seed=42):
@@ -110,7 +110,7 @@ def run(args):
         raise ValueError("Prespecified dataset manifest changed")
     stories, train = load_split(args.data, "train")
     validation_stories, validation = load_split(args.data, "validation")
-    validation = validation_cohort(validation)
+    validation = select_validation(validation, policy)
     if sha(json.dumps([q["id"] for q in validation]).encode()) != policy["source"]["validation_ids_sha256"]:
         raise ValueError("Prespecified validation cohort changed")
     if args.smoke:
