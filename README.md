@@ -35,13 +35,11 @@ Saved reader answers can be audited against source/model/chunk contracts without
 
 [Report](Report.md) gives preparation and training commands. The [coverage audit](docs/full-coverage-audit.json), [training protocol](docs/full-coverage-protocol.json), [reranker protocol](docs/full-reranker-protocol.json) and [preflight](docs/full-coverage-preflight.json) bind the complete cohort and model pins. Source preparation retains every usable annotation and handles one repeated section ID without deleting text.
 
-Both full-data runners checkpoint optimizer, weights, source identities and RNG at optimizer boundaries. Actual pretrained-model continuation passed exact tensor replay; the [reranker proof](docs/full-reranker-readiness.json) also compares every optimizer and RNG state. These are mechanics checks, not performance estimates.
-
-Validation is independently resumable in complete shards, so cloud time limits do not become data sampling caps. The [selection command](evaluation_scripts/select_full_validation.py) requires every initial/epoch checkpoint and all 2,372 validation questions, checks source/citation identities, and recomputes the aggregate metrics. Checkpoint selection does not authorize test access.
+Training and validation resume from verified checkpoints and complete shards. The [selection command](evaluation_scripts/select_full_validation.py) compares every required checkpoint on all 2,372 validation questions. The test partition stays sealed until the final policy is frozen.
 
 ## Notebooks and results
 
-[Main workflow](notebooks/00_main_literature_rag.ipynb), [source EDA](notebooks/01_source_family_eda.ipynb), [experiments](notebooks/02_validation_experiments.ipynb) and [citation audit](notebooks/03_citation_and_error_analysis.ipynb) contain readable algorithms and genuinely executed outputs. They show the complete source cohort, measured evidence/context retention and verified continuation mechanics. Full model curves and selected-model inference require completed validation artifacts. Optional training/download/test cells are disabled by default.
+[Main workflow](notebooks/00_main_literature_rag.ipynb), [source EDA](notebooks/01_source_family_eda.ipynb), [experiments](notebooks/02_validation_experiments.ipynb) and [citation audit](notebooks/03_citation_and_error_analysis.ipynb) show source coverage, evidence/context retention and checkpoint replay with executed outputs. Full model curves and selected-model inference await completed validation. Optional training/download/test cells are disabled by default.
 
 ## Limits
 
