@@ -1,137 +1,46 @@
-# Narrative QA training report
+# Narrative retrieval and reading
 
-The next study fine-tunes a real narrative answer generator with human-authored
-questions and linked story sections. Full CPU training is running; full v5
-answer metrics are not yet available. Historical low scores and failed calibration studies remain
-in the [README](README.md) and versioned experiment documents.
+## Data
 
-## Dataset and filtering
+The pinned [FairytaleQA release](https://github.com/uci-soe/FairytaleQAData/tree/a24ddc17364666b7c13a425b9970c87368b03417) supplies 278 Gutenberg-sourced edited stories and 10,580 human QA under its Apache-2.0 license. Raw source files and annotations are kept private. This does not claim that every modern translation is public domain everywhere.
 
-Use the official [FairytaleQA source](https://github.com/uci-soe/FairytaleQAData)
-at commit `a24ddc17364666b7c13a425b9970c87368b03417`, licensed Apache-2.0.
-Its human-coded evidence sections support an evaluation of both answer quality
-and evidence relevance. The [dataset paper](https://aclanthology.org/2022.acl-long.34/)
-motivates narrative domain adaptation; our custom split and retrieval setting
-are not directly comparable with its published benchmark.
+| Partition | Stories | QA |
+|---|---:|---:|
+| Custom training | 200 | 7,883 |
+| Custom validation | 54 | 2,372 |
+| Custom test, sealed | 24 | 325 |
 
-Source-family separation is stronger than trusting origin labels literally.
-The dataset's Blue group includes The Bunyip, listed in Gutenberg's
-[Brown collection](https://www.gutenberg.org/ebooks/3282), and The Brownie of the
-Lake, listed in the [Lilac collection](https://www.gutenberg.org/ebooks/3454).
-Therefore all Lang groups are validation, together with Andersen. Potter and
-Grimm are sealed test. Training uses only official training stories from other
-eligible families. Ambiguous or unresolved rights groups are excluded. Exact
-text/title and high-overlap source duplicates are checked without test answers.
-Recurring plots can still cross families; pretraining exposure is also unknown.
+All Lang-labelled origins and Andersen are validation; Potter and Grimm are test. Every other source family is training. All prior holdout roles are preserved, and all validation QA are used. The official split is 8,548/1,025/1,007; some official validation/test rows belong to custom training families, so these experiments are **not official-split benchmark results**. Prior validation exposure is disclosed in the protocol.
 
-## Training and evaluation
+Normalized title/text and >=.8 five-token Jaccard source checks found no cross-story duplicate edges. A repeated adjacent section ID in remarkable-rocket is merged into one evidence unit, preserving every paragraph and character offset. All 7,883 training and 2,372 validation rows pass the loader; test QA are staged as bytes without parsing. See [audit](docs/full-coverage-audit.json) and [preflight](docs/full-coverage-preflight.json).
 
-The [prespecified protocol](docs/v5-training-protocol.json) records model pins,
-source filters, checkpoint selection, metrics and limitations before scoring.
-Root `train.py` delegates to `src.narrative_training`. The main notebook contains readable implementations of preparation, retrieval,
-training, scoring and citation checks. Supporting notebooks retain executed
-source analysis, validation comparisons and error audits.
-Private data, logs and checkpoints stay ignored. An isolated repository virtual
-environment is required because these research repositories share a `src` name.
-
-Primary evaluation retrieves sections from the full question's story, without
-human evidence IDs. Generator training can use annotated evidence, but this is
-not secretly supplied at validation/test inference. Report answer EM/token F1
-separately from evidence recall/precision and exact source citation validity.
-The question's story identity is supplied by the dataset. This evaluates narrative
-reading and within-story retrieval, not global book identification or cross-book
-thematic reasoning. Existing thematic diagnostics retain their separate limits.
-Generated answers are free-form; exact citations establish their source location,
-not entailment. Answerable-only data cannot establish unknown-question calibration.
-Evidence recall after truncation counts the presence of an annotated section,
-including a partial prefix; it does not establish retention of every relevant
-sentence. ROUGE-L uses the documented word-token LCS implementation without
-stemming, so it is not presented as a reproduction of the paper's scorer.
-
-| Policy | Validation answer F1 | Test answer F1 | Status |
-| --- | --- | --- | --- |
-| Untuned T5-small, BM25 contexts | Pending | Not accessed | Preparation |
-| Fine-tuned T5-small, BM25 contexts | Pending | Not accessed | Preparation |
-| Learned retrieval ablation | Pending | Not accessed | Not trained |
-
-The first staging attempt failed after writing private files because its rights
-path variable was overwritten by parsed metadata. That partial directory is
-preserved; the corrected staging is separate. No inference or test QA access
-occurred in that failure.
-
-Before model scoring, the account's free GPU quota was exhausted. The study was
-prospectively adapted to a free Kaggle CPU run with pinned T5-small, 512 input
-tokens and learning rate 1e-4. The initial BART/1024-token plan remains in Git
-history. Architecture, context and optimization change together for feasibility;
-this is not evidence that T5 outperforms BART. A small real CPU training smoke
-must establish practical runtime before full training.
-
-The initial embedded script submission returned HTTP 400 before execution. The
-private payload was moved to a separate private Kaggle dataset. A Windows CLI
-relative-path upload failure was corrected by invoking upload from its folder.
-Kaggle automatically extracted the ZIP; the small kernel verifies the extracted
-manifest and every source/data file hash. CPU smoke version 1 was submitted and
-confirmed running, but subsequent plain CLI reads lost authentication. Refreshing
-the existing OAuth session recovered its failure: duplicate official question
-IDs were rejected before model loading. No duplicate live job was submitted.
-
-A strict local loader subsequently caught nonunique official question IDs within
-six stories: two extra training IDs and five validation IDs, each attached to
-different questions. This guard precedes model loading in the submitted smoke.
-Canonical IDs now include the stable CSV row ordinal and retain the original ID;
-the validation cohort was prospectively rebuilt before any model outcome. This
-correction does not inspect test QA. The failed smoke's exact older payload is
-preserved rather than silently changed. Corrected CPU smoke version 2 completed
-in 79.77 seconds on four CPU cores. It trained on four real QA, validated on two,
-saved weights and reproduced both answers after reload. Loading diagnostics had
-no missing, unexpected or mismatched keys. These tiny smoke examples establish
-mechanics, not a performance estimate. Full private CPU training version 1 is now
-running at `aikyatansinha/portfolio-narrative-t5-cpu-train`; its validation and
-held-out answer metrics are pending. No test QA is mounted in that training job.
-
-The corrected 400-question validation cohort's BM25 evidence recall@4 is 83.96%
-and evidence precision@4 is 22.13%, before token truncation. These measure human
-section relevance, **not answer accuracy**. Answer F1 remains pending. The source
-corpus has 3,314 training QA and 2,372 validation QA; the 1,972 validation questions
-outside the hash-selected cohort never enter training. Test QA remains unparsed.
-
-## Reproduction entrypoints
-
-Create a fresh virtual environment for this repository, install the project and
-its reader extra, and use pinned runtime versions captured by the cloud runner.
-The real training command is:
+## Preparation
 
 ```powershell
-python train.py --data data/interim/v5-fairytale-cpu --output models/v5-run --micro-batch 2 --threads 4
+python -m src.data.full_coverage_audit --fetch --output data/external/full-fairytale
+python -m src.data.full_coverage_audit --source data/external/full-fairytale --audit-file docs/full-coverage-audit.json --stage-protocol docs/full-coverage-protocol.json --output data/interim/new-full-staging
 ```
 
-The test evaluation is a separate explicit command. It requires frozen selection
-and exact trained weight hashes and writes an exclusive marker before opening
-test QA; a failure cannot be silently overwritten:
+Use a fresh repository virtual environment and install the reader extra. Preparation refuses to overwrite an existing cohort. Model weights, optimizer state, predictions and raw QA remain ignored.
+
+## Models and objectives
+
+The pinned T5-small generator uses 512 input tokens, 96 answer tokens, effective batch16, AdamW LR1e-4 and three epochs. Training uses human-linked sections; primary validation retrieves BM25 top4 sections without gold injection. Answer EM/token F1, evidence relevance and exact citation validity are separate measurements. Nonempty answer1/answer4 are evaluation references; ROUGE-L uses word LCS without stemming.
+
+The pinned MiniLM cross-encoder uses listwise evidence supervision. The complete training cohort yields 8,848 groups/43,757 pairs. Three QA have no nongold negative and cannot form a contrastive group; they remain in the generator data and coverage count. Reranker selection uses all validation QA, followed by frozen-generator answer evaluation; evidence recall alone cannot establish answer quality.
+
+## Training and validation
 
 ```powershell
-python -m evaluation_scripts.evaluate_narrative --data data/interim/v5-fairytale-cpu --run models/v5-run
+python train.py full train --data data/interim/new-full-staging --protocol docs/full-coverage-protocol.json --output models/full-run
+python train.py full train --data data/interim/new-full-staging --protocol docs/full-coverage-protocol.json --resume models/full-run --output models/full-continuation
+python train.py full validate --data data/interim/new-full-staging --protocol docs/full-coverage-protocol.json --run models/full-continuation --epoch 1 --output data/interim/full-validation-epoch1
 ```
 
-`evaluation_scripts.predict_narrative` provides an experimental saved-checkpoint
-CLI whose schema labels free-form generated answers separately from retrieved
-source spans. Its checkpoint-loading inference has not yet been validated on a
-completed v5 training artifact; it is not advertised as a verified production
-replacement for the existing extractive reader.
+A normal cloud time ceiling triggers a checkpoint, not a smaller dataset. Two atomic progress slots retain optimizer/RNG state and exact source/model/runtime identities. Epoch snapshots remain available for all-validation comparison. Validation resumes complete hashed shards through `--resume`, decoding every required query. Test access is a separate globally frozen step; this runner never opens test QA.
 
-## Full usable-data coverage
+## Results and interpretation
 
-The original study is a subset, not full FairytaleQA. Metadata audit covers all 278 stories/10,580 QA, with official split counts 8,548/1,025/1,007. The expanded custom source-family partition retains every QA and all previous holdout roles: 200 training stories/7,883 QA, 54 validation stories/all 2,372 QA and 24 test stories/325 QA. Previously sampled 400 validation QA remain observed; expanding to all validation is not an independent replication. Official split assignments are not used as benchmark partitions in this custom study.
+Full-cohort trained-model results are pending actual inference. The operational extractive baseline and its source/citation guards remain available. No full-data score or superiority claim is inferred from training loss, retrieval overlap or a small mechanics run.
 
-The official dataset repository licenses its provided edited story/QA files under Apache-2.0 and identifies all stories as Gutenberg-sourced. Four previous conservative origin exclusions are removed on that actual source evidence; no claim is made that every modern translation is public domain everywhere. No raw text is redistributed. One source issue (two adjacent distinct paragraphs sharing section ID 5 in remarkable-rocket) is handled by deterministic text-preserving grouping. All 7,883 train and 2,372 validation rows pass the loader; test QA remain byte-staged and unopened. No cross-story normalized title/text or >=.8 five-token Jaccard duplicate was found; recurring plots and pretrained exposure remain unresolved.
-
-The new protocol is serialized before new model fits, removes arbitrary validation caps and retains all valid examples. Current immutable subset jobs finish as historical evidence. Full-data generation may require resumable epoch jobs under the platform's normal 12-hour ceiling; checkpoint/optimizer/RNG replay must be verified before that launch. No full-data score is claimed yet.
-
-Full-data preparation is reproducible without parsing test QA:
-
-```powershell
-python -m src.data.full_coverage_audit --source data/external/fairytaleqa/FairytaleQAData-a24ddc17364666b7c13a425b9970c87368b03417 --previous-manifest data/interim/v5-fairytale-cpu/manifest.json --output data/interim/new-full-audit.json
-python -m src.data.full_coverage_audit --source data/external/fairytaleqa/FairytaleQAData-a24ddc17364666b7c13a425b9970c87368b03417 --audit-file docs/full-coverage-audit.json --stage-protocol docs/full-coverage-protocol.json --output data/interim/new-full-staging
-```
-
-The supervised full-data reranker preflight has 8,848 evidence groups/43,757 pairs. Three training QA have no nongold negative and cannot form a contrastive group; they remain in the generator dataset and coverage count. This is an objective limitation, not silent QA removal.
+Question story identity and human section boundaries are given. Source-family splits do not prove plot or pretraining disjointness; repeated validation selection limits generalization claims. Free-form generation can be unsupported despite valid citation coordinates. Unknown-question calibration requires additional data.

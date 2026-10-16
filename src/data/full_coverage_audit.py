@@ -4,12 +4,47 @@ from collections import defaultdict
 import csv
 import json
 from pathlib import Path
+import urllib.request
+import zipfile
 
 from src.data.prepare_fairytale import normalized, sha, shingles
 
 REVISION = "a24ddc17364666b7c13a425b9970c87368b03417"
 VALIDATION = {"andersen-fairybook", "blue-fairybook", "green-fairybook", "lilac-fairybook"}
 TEST = {"grimm-fairybook", "beatrix-potter-fairybook"}
+ARCHIVE_SHA256 = "353ec962a911ea9b2a4fbba2fe9fdebe2a92c392ce4be36194f2062f0ac9a998"
+
+
+def fetch_source(output):
+    """Fetch the immutable official archive; extract data/attribution files only."""
+    output = Path(output)
+    if output.exists():
+        raise ValueError("Preserve existing source downloads")
+    output.mkdir(parents=True)
+    archive = output / "source.zip"
+    url = "https://codeload.github.com/uci-soe/FairytaleQAData/zip/" + REVISION
+    with urllib.request.urlopen(url, timeout=120) as response, archive.open("wb") as handle:
+        while block := response.read(1024*1024):
+            handle.write(block)
+    if sha(archive.read_bytes()) != ARCHIVE_SHA256:
+        raise ValueError("Pinned official archive hash changed")
+    prefix = "FairytaleQAData-" + REVISION + "/"
+    with zipfile.ZipFile(archive) as bundle:
+        for member in bundle.infolist():
+            if not member.filename.startswith(prefix):
+                raise ValueError("Unexpected archive root")
+            relative = member.filename[len(prefix):]
+            if not relative or member.is_dir():
+                continue
+            if "\\" in relative or Path(relative).is_absolute() or ".." in Path(relative).parts or ":" in relative:
+                raise ValueError("Unsafe archive member")
+            if relative not in ("LICENSE", "README.md", "story_meta.csv") and not relative.startswith(
+                    ("data-by-train-split/section-stories/", "data-by-train-split/questions/")):
+                continue
+            destination = output / relative
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_bytes(bundle.read(member))
+    return output
 
 
 def source_sections(path):
@@ -153,19 +188,24 @@ def stage(source, output, audit_path, protocol_path):
                 "audit_normalized_utf8_sha256": dataset["audit_normalized_utf8_sha256"],
                 "counts_metadata": report["full_source_family_counts"], "QA_parsed": False,
                 "test_QA_copied_as_bytes_only": True, "source_family_split_not_official_benchmark": True}
-    (output / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8", newline="\n")
+    (output / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n")
     return manifest
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source", required=True)
+    parser.add_argument("--source")
+    parser.add_argument("--fetch", action="store_true")
     parser.add_argument("--previous-manifest")
     parser.add_argument("--audit-file")
     parser.add_argument("--stage-protocol")
     parser.add_argument("--output", required=True)
     args = parser.parse_args()
-    if args.stage_protocol:
+    if args.fetch:
+        print(fetch_source(args.output))
+    elif not args.source:
+        parser.error("--source is required unless fetching")
+    elif args.stage_protocol:
         if not args.audit_file:
             parser.error("--stage-protocol requires --audit-file")
         result = stage(args.source, args.output, args.audit_file, args.stage_protocol)
