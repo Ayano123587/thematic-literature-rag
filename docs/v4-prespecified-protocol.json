@@ -1,0 +1,19 @@
+{
+  "declared_at_utc": "2026-10-16T05:53:48+00:00",
+  "scope": "CPU cached Dorian validation only; no model inference, GPU, observed-test scoring or policy selection from test cases",
+  "inputs": "Original version-1 matched-GPU MiniLM/RoBERTa validation predictions and separate Dorian gold; 29 official questions plus four authored unknown controls",
+  "baseline": {"reader": "deepset/minilm-uncased-squad2", "threshold": 0, "rank_penalty": 0.8},
+  "hypotheses": [
+    {"name": "source_consensus", "weights": [0.5, 1, 2], "rule": "Group normalized answer strings; deduplicate overlapping occurrences by global source intervals. Add weight*log(1+min(2,distinct_nonoverlapping_occurrences-1)) to the best margin-minus-rank score. Repetition is supporting agreement, not independent semantic evidence."},
+    {"name": "ambiguity_gap", "minimum_gaps": [1, 2, 4], "rule": "Collapse identical normalized answer strings, retain the maximum adjusted score per string, and abstain if the best two different strings have score gap below the chosen minimum."},
+    {"name": "cross_reader_agreement", "roberta_minimum_margins": [-2, 0, 2], "rule": "Filter MiniLM spans to exact book/start/end agreement with a RoBERTa candidate above its margin cutoff; then apply the frozen MiniLM selector. Diagnostic only unless deployment mechanics can be validated without additional model inference."}
+  ],
+  "fixed_miniLM_eligibility": "Finite null margin >0; valid positive integer retrieval rank; exact source offsets. No negative MiniLM threshold expansion.",
+  "normalization": "Same lower-case, punctuation/article removal as conventional QA scorer; no gold-dependent normalization or substring matching",
+  "primary_objective": "Mean conventional answer token F1 minus0.25 authored-control false-answer rate",
+  "promotion_requirements": {"control_false_answer_rate": "No regression from baseline", "minimum_answer_coverage": 0.5, "exact_match": "No regression from baseline", "either": ["At least0.01 absolute token-F1 gain", "Noninferior token F1 and at least3 fewer accepted answers that do not exactly match any gold reference"]},
+  "ties": "Larger objective, larger EM, fewer accepted gold-EM-mismatching answers, smaller policy magnitude, hypothesis order",
+  "annotation_limits": "A gold EM mismatch is not proof of incorrectness or unsupported interpretation. Reused29-question validation and4 authored controls provide no independent calibration claim.",
+  "historical_tests_excluded": ["Persuasion", "The Call of the Wild", "A Sentimental Journey Through France and Italy", "The Cask of Amontillado"],
+  "stopping": "Evaluate these nine policies and baseline once from cached spans; no refined grids after outcomes. Preserve all negatives. If nothing qualifies, retain production baseline and implement only separately verified reliability/audit mechanics."
+}
