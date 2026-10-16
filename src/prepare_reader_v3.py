@@ -1,20 +1,25 @@
-"""Prepare a private bounded reader experiment; never publish literary payloads."""
+"""Prepare retrospective v3 reproduction using plain mounted private files.
+
+The original executed payload and hash receipts remain historical evidence.
+All v3 test books have now been observed; reproductions are not fresh tests.
+"""
 import ast
-import base64
 import csv
-import gzip
 import hashlib
 import json
 from pathlib import Path
 import subprocess
 import urllib.request
+import zipfile
 
 
 def digest(raw):
     return hashlib.sha256(raw).hexdigest()
 
 
-def prepare(folder=Path('data/interim/kaggle-reader-v3')):
+def prepare(folder=Path('data/interim/kaggle-reader-v3'), dataset=None):
+    if not dataset or '/' not in dataset:
+        raise ValueError('A private Kaggle dataset slug is required for plain source transport')
     from src.data.make_dataset import strip_gutenberg, write_processed
     from src.features.build_features import chunk_book
     from src.models.train_model import HybridIndex, DENSE_REVISION
@@ -114,29 +119,31 @@ def prepare(folder=Path('data/interim/kaggle-reader-v3')):
     for path in source_files:
         files[path] = Path(path).read_bytes()
     files['reader_cloud.py'] = Path('src/reader_cloud.py').read_bytes()
-    packed = {name: base64.b64encode(gzip.compress(raw)).decode() for name, raw in files.items()}
-    bootstrap = '''import os,sys,time,threading,subprocess,json,base64,gzip
-from pathlib import Path
-os.environ['READER_STARTED_MONOTONIC']=str(time.monotonic())
-watchdog=threading.Timer(900,lambda:os._exit(124));watchdog.daemon=True;watchdog.start()
-subprocess.run([sys.executable,'-m','pip','install','-q','transformers==4.57.6','sentence-transformers==5.1.2'],check=True,timeout=180)
-folder=Path('/kaggle/working/private-input');folder.mkdir(parents=True,exist_ok=True)
-packed=PACKED_PAYLOAD
-for name,raw in packed.items():
- path=folder/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(gzip.decompress(base64.b64decode(raw)))
-sys.path.insert(0,str(folder))
-namespace={'__name__':'reader_cloud'}
-exec(compile((folder/'reader_cloud.py').read_text(),'reader_cloud.py','exec'),namespace)
-namespace['run'](folder,Path('/kaggle/working'),900)
-os._exit(0)
-'''.replace('PACKED_PAYLOAD', repr(packed))
-    (folder / 'run.py').write_text(bootstrap, encoding='utf-8')
+    folder.mkdir(parents=True, exist_ok=True)
+    upload = folder / 'dataset-upload'
+    upload.mkdir(exist_ok=False)
+    manifest = {'file_sha256': {name: digest(raw) for name, raw in files.items()},
+                'historical_warning': 'Retrospective reproduction; v3 test books already observed',
+                'transport': 'Plain mounted Python and data files; no encoded source literals'}
+    files['reader-v3-provenance.json'] = json.dumps(manifest, indent=2).encode()
+    with zipfile.ZipFile(upload / 'payload.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+        for name, raw in files.items():
+            archive.writestr(name, raw)
+    (upload / 'dataset-metadata.json').write_text(json.dumps({
+        'id': dataset, 'title': 'Private retrospective literary reader inputs',
+        'licenses': [{'name': 'other'}],
+        'description': 'Private historical NarrativeQA reproduction and plain source. Not a fresh heldout experiment.'
+    }, indent=2), encoding='utf-8')
+    runner = Path('src/cloud/reader_v3_runner.py').read_text(encoding='utf-8')
+    runner = runner.replace('EXPECTED_MANIFEST_SHA256 = None',
+                            'EXPECTED_MANIFEST_SHA256 = ' + repr(digest(files['reader-v3-provenance.json'])))
+    (folder / 'run.py').write_text(runner, encoding='utf-8', newline='\n')
     metadata = {'id': 'aikyatansinha/portfolio-literary-reader-v3',
                 'title': 'Portfolio Literary Reader V3', 'code_file': 'run.py', 'language': 'python',
                 'kernel_type': 'script', 'is_private': True, 'enable_gpu': True, 'enable_internet': True,
-                'dataset_sources': [], 'competition_sources': [], 'kernel_sources': []}
+                'dataset_sources': [dataset], 'competition_sources': [], 'kernel_sources': []}
     (folder / 'kernel-metadata.json').write_text(json.dumps(metadata, indent=2), encoding='utf-8')
-    report = {'status': 'Prepared; GPU launch awaits root coordination and smoke checks',
+    report = {'status': 'Prepared retrospective reproduction only; plain mounted source; no launch performed',
               'protocol': protocol, 'private_bootstrap_sha256': digest((folder / 'run.py').read_bytes()),
               'private_bootstrap_bytes': (folder / 'run.py').stat().st_size,
               'validation_exact_source_slices': sum(len(r['passages']) for r in validation),
