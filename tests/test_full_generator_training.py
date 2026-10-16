@@ -4,6 +4,8 @@ from types import SimpleNamespace
 
 import pytest
 
+pytest.importorskip("torch", reason="Full-data training mechanics require the optional reader runtime")
+
 from src import full_generator_training as full
 
 

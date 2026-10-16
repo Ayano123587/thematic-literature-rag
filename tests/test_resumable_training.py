@@ -4,7 +4,7 @@ from types import SimpleNamespace
 
 import numpy as np
 import pytest
-import torch
+torch = pytest.importorskip("torch", reason="CPU training mechanics require the optional reader runtime")
 
 from src.resumable_training import (epoch_order, load_progress, optimize_epoch,
                                     restore_rng, rng_state, save_progress)

@@ -1,0 +1,56 @@
+{
+  "scope": "Actual CPU optimizer/RNG continuation and saved-model decoding mechanics; not a full-data performance estimate",
+  "kernel": "aikyatansinha/portfolio-narrative-full-resume-smoke-v6",
+  "version": 1,
+  "executed_source_commit": "8182f619e1b417fa33a3c19e20a2538970362bdf",
+  "train_QA": 20,
+  "validation_QA": 2,
+  "test_accessed": false,
+  "elapsed_seconds": 99.79563937699999,
+  "tensor_replay_max_abs_difference": 0.0,
+  "initial_saved_weights_sha256": "881ecd3d2e20cfb1ddf96ac598ad90a610007dfa4ff04cfc024e4afd118bc686",
+  "trained_saved_weights_sha256": "4c198afbd60a61701dd3454bf040fa3f8f67159096c097a706da8916631af8f2",
+  "config_and_tokenizer_unchanged": true,
+  "strict_loading_info": {
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "mismatched_keys": [],
+    "error_msgs": []
+  },
+  "identity": {
+    "source_manifest_sha256": "721733169b0c1e7b7c1d07fe1880d3c871d72017be6fc61923be126feea73225",
+    "protocol_sha256": "5e4fc152ac55e2153b18885d88be380987a74ddae1202c2c5ef10be5a8c1fa88",
+    "micro_batch": 2,
+    "smoke": true,
+    "threads": 4,
+    "generator": {
+      "name": "google-t5/t5-small",
+      "revision": "df1b051c49625cf57a3d0d8d3863ed4d13564fe4",
+      "license": "apache-2.0",
+      "input_tokens": 512,
+      "answer_tokens": 96,
+      "seed": 42,
+      "epochs": 3,
+      "learning_rate": 0.0001,
+      "effective_batch_size": 16,
+      "selection": "Highest ALL-validation normalized answer tokenF1 among initial/epoch checkpoints; exact ties earliest. No test access until global selection serialized.",
+      "hardware_amendment_before_scoring": "Account free GPU quota exhausted according to audio submission rejection. No RAG GPU attempt or model scoring occurred. Adapt prospectively to free Kaggle CPU30GB using 60M T5-small, 512-token context and LR1e-4; original BART139M/1024/LR3e-5 plan remains in commit34bfbd6. This changes architecture/context/optimization together for feasibility and is not a controlled BART-vs-T5 superiority comparison. Measure a real CPU smoke before full launch."
+    },
+    "torch": "2.11.0+cpu",
+    "python": "3.13.15",
+    "machine": "x86_64",
+    "environment": {
+      "transformers": "4.57.6",
+      "tokenizers": "0.22.2",
+      "numpy": "2.1.3",
+      "huggingface-hub": "0.36.2"
+    },
+    "source_sha256": {
+      "full_generator_training.py": "7fe941fb319296bb79dc0d1ed44ccb042876ad07c72aa37f547648c871c40645",
+      "resumable_training.py": "cd97033ac4b9bf63658b14a1467574a1b0fb3f1e4a6f08c99264eeb55b856c02",
+      "narrative_training.py": "d0736c3cafeae67694c2c3b7eb35bc72cb012de897dd24ecb4fa42add991dccd",
+      "data/prepare_fairytale.py": "4046b745d220300cb4c94411a0c63f00eb4571b1bd0e115a6d74cd4aa34b968e"
+    }
+  },
+  "post_run_change": "Cloud transport adds immutable upstream training/shard mounts; scientific training source hashes above remain unchanged. CI separately installs CPU Torch for tiny mechanics fixtures."
+}

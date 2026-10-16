@@ -10,6 +10,9 @@ import time
 
 EXPECTED_MANIFEST_SHA256 = None
 ACTION = "smoke"
+USE_PREVIOUS_RUN = False
+VALIDATION_EPOCH = 0
+USE_PREVIOUS_VALIDATION = False
 
 
 def main():
@@ -34,6 +37,12 @@ def main():
     output=Path("/kaggle/working/full-generator");output.mkdir()
     atomic_json(output/"payload-provenance.json",manifest)
     data=source/"private-data";protocol=source/"docs/full-coverage-protocol.json"
+    previous_run=None
+    if USE_PREVIOUS_RUN:
+        runs=[p.parent for p in Path("/kaggle/input").rglob("training-status.json")
+              if (p.parent/"provenance.json").is_file()]
+        if len(runs)!=1:raise ValueError("Expected one immutable prior full training output")
+        previous_run=runs[0]
     began=time.monotonic();success=False
     try:
         if ACTION=="smoke":
@@ -62,7 +71,15 @@ def main():
                      "actual_validation":validation,"test_accessed":False}
             atomic_json(output/"resume-smoke-receipt.json",receipt)
         elif ACTION=="train":
-            train_full(data,protocol,output/"run")
+            train_full(data,protocol,output/"run",resume=previous_run)
+        elif ACTION=="validate":
+            if previous_run is None:raise ValueError("Validation requires a completed training kernel source")
+            previous_validation=None
+            if USE_PREVIOUS_VALIDATION:
+                shards=[p.parent for p in Path("/kaggle/input").rglob("validation-status.json")]
+                if len(shards)!=1:raise ValueError("Expected one prior immutable validation output")
+                previous_validation=shards[0]
+            validate_epoch(data,protocol,previous_run,VALIDATION_EPOCH,output/"validation",previous=previous_validation)
         else:
             raise ValueError("Unsupported execution action")
         success=True
