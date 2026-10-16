@@ -1,3 +1,6 @@
 * text=auto eol=lf
 *.ipynb text eol=lf
 docs/full-coverage-protocol.json -text
+src/prepare_context_comparison.py -text
+src/cloud/context_comparison_runner.py -text
+tests/test_context_cloud.py -text
