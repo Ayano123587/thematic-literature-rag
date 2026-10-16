@@ -5,35 +5,37 @@
     "repository": "uci-soe/FairytaleQAData",
     "revision": "a24ddc17364666b7c13a425b9970c87368b03417",
     "license": "Apache-2.0",
-    "validation_origins": ["andersen-fairybook", "blue-fairybook"],
+    "validation_origins": ["andersen-fairybook", "blue-fairybook", "green-fairybook", "lilac-fairybook"],
     "test_origins": ["beatrix-potter-fairybook", "grimm-fairybook"],
     "excluded_origins": ["first-round", "swedish-fairybook"],
     "train_rule": "Only official train stories from other rights-verified origins. Never official validation/test stories, observed NarrativeQA books, or validation/test labels.",
-    "split_rationale": "Whole origin collections selected using metadata counts only. Small heldout collections permit full-book retrieval evaluation. This is a custom source-origin holdout, not the standard published benchmark.",
+    "split_rationale": "All dataset Lang-origin groups stay together in validation: blue-fairybook contains stories actually published in Brown and Lilac collections, so its literal label is not an exact edition identity. Andersen is also validation; Potter and Grimm are test. This is a custom source-family holdout, not the standard published benchmark or proof of plot-disjointness.",
+    "amendment_before_scoring": "Original 34bfbd6 held out Blue but not Green/Lilac. Primary Gutenberg contents revealed mixed Lang provenance before model inference/training. This amendment moves ALL Lang-origin groups to validation. Original 529 validation QA were already parsed for format/count checks; no outcomes existed and no test QA were parsed. Staging manifest will be rebuilt under the amended protocol.",
     "duplicate_rule": "Before training, remove train stories with identical normalized text or title to heldout stories; report token-shingle overlap and remove train stories with Jaccard >= 0.8. Never inspect test answers to decide exclusions.",
     "rights_gate": "Verify source collection author/editor/translator and public-domain status before use. Exclusions are recorded before opening QA; dataset edits have their own exact section offsets. No source text or answers committed."
   },
   "generator": {
-    "name": "facebook/bart-base",
-    "revision": "aadd2ab0ae0c8268c7c9693540e9904811f36177",
+    "name": "google-t5/t5-small",
+    "revision": "df1b051c49625cf57a3d0d8d3863ed4d13564fe4",
     "license": "apache-2.0",
-    "input_tokens": 1024,
+    "input_tokens": 512,
     "answer_tokens": 96,
     "seed": 42,
     "epochs": 3,
-    "learning_rate": 0.00003,
+    "learning_rate": 0.0001,
     "effective_batch_size": 16,
-    "selection": "Highest validation token F1 among epoch checkpoints; tie chooses earlier epoch. No test access until serialized selection."
+    "selection": "Highest validation token F1 among epoch checkpoints; tie chooses earlier epoch. No test access until serialized selection.",
+    "hardware_amendment_before_scoring": "Account free GPU quota exhausted according to audio submission rejection. No RAG GPU attempt or model scoring occurred. Adapt prospectively to free Kaggle CPU30GB using 60M T5-small, 512-token context and LR1e-4; original BART139M/1024/LR3e-5 plan remains in commit34bfbd6. This changes architecture/context/optimization together for feasibility and is not a controlled BART-vs-T5 superiority comparison. Measure a real CPU smoke before full launch."
   },
   "hypotheses": [
-    "Supervised narrative answer generation improves validation answer F1 over the same untuned BART and current extractive MiniLM with identical retrieved evidence.",
+    "Supervised narrative answer generation improves validation answer F1 over the same untuned T5-small and current extractive MiniLM with identical retrieved evidence.",
     "Question-section cross-encoder adaptation using only train evidence labels improves validation evidence recall over BM25 and the frozen pretrained reranker.",
     "Training with retrieved contexts plus linked sections improves retrieval-context robustness relative to gold-linked-only training. If training budget permits a second generator, compare on validation only."
   ],
   "retrieval": {
     "unit": "official human-coded section",
     "scope": "All sections of the question's story; never supply gold section IDs at inference.",
-    "baseline": "BM25 top 4 sections, source-order assembly, tokenizer truncation at 1024 including question",
+    "baseline": "BM25 top 4 sections, source-order assembly, tokenizer truncation at 512 including question; report retained evidence loss",
     "learned": "Rerank BM25 top 12 with pinned MiniLM cross-encoder, optionally fine-tuned on train positive evidence sections and same-story hard negatives. Nonlinked negatives may contain valid alternative evidence; disclose annotation incompleteness.",
     "selection": "Validation evidence recall@4; ties choose frozen simpler policy. Report post-tokenization retained evidence recall as well."
   },

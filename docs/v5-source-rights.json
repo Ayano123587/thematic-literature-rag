@@ -1,0 +1,33 @@
+{
+  "dataset_license": "Apache-2.0",
+  "dataset_license_source": "https://github.com/uci-soe/FairytaleQAData/blob/a24ddc17364666b7c13a425b9970c87368b03417/LICENSE",
+  "usage": "Private research and model training; raw stories and annotations are not redistributed in this repository.",
+  "representation": "Dataset authors' edited section text, not a claim of byte identity to a Gutenberg edition. Dataset section offsets are authoritative for this experiment.",
+  "eligible_origins": ["andersen-fairybook", "blue-fairybook", "beatrix-potter-fairybook", "grimm-fairybook", "chinese-fairybook", "green-fairybook", "irish-fairybook", "japanese-fairybook", "lilac-fairybook", "native-american-fairybook", "wonderclock-fairybook"],
+  "excluded_pending_edition_or_rights_verification": ["first-round", "swedish-fairybook", "norwegian-fairybook", "scottish-fairybook"],
+  "sources": {
+    "chinese-fairybook": "https://www.gutenberg.org/ebooks/29939",
+    "japanese-fairybook": "https://www.gutenberg.org/ebooks/4018",
+    "irish-fairybook": "https://www.gutenberg.org/ebooks/32202",
+    "native-american-fairybook": "https://www.gutenberg.org/ebooks/22248",
+    "wonderclock-fairybook": "https://www.gutenberg.org/ebooks/63383",
+    "blue-fairybook": "https://www.gutenberg.org/ebooks/503",
+    "green-fairybook": "https://www.gutenberg.org/ebooks/7277",
+    "lilac-fairybook": "https://www.gutenberg.org/ebooks/28096",
+    "andersen-fairybook": "https://www.gutenberg.org/ebooks/1597",
+    "grimm-fairybook": "https://www.gutenberg.org/ebooks/2591",
+    "beatrix-potter-fairybook": "https://www.gutenberg.org/ebooks/14838"
+  },
+  "scope": "Gutenberg marks source editions public domain in the USA. The pinned dataset itself explicitly licenses the provided edited text and annotations under Apache-2.0. This is not a statement that every modern translation of these stories is public domain worldwide. Unresolved origin collections are excluded before QA inspection.",
+  "bibliography": {
+    "Chinese": "Richard Wilhelm (1930 death); Frederick Herman Martens (1932 death), English translator",
+    "Japanese": "Yei Theodora Ozaki (1932 death), verified National Diet Library authority https://id.ndl.go.jp/auth/ndlna/01162614",
+    "Irish": "Alfred Perceval Graves (1931 death), editor",
+    "Native American": "Cornelius Mathews (1889 death)",
+    "Wonder Clock": "Howard Pyle (1911 death), Katharine Pyle (1938 death)",
+    "Lang collections": "Andrew Lang (1912 death); Leonora Blanche Lang (1933 death), editorial collaborator",
+    "Andersen": "H. C. Andersen (1875 death); dataset licensed edition, exact source translation not inferred from author death alone",
+    "Grimm": "Jacob Grimm (1863 death), Wilhelm Grimm (1859 death); dataset licensed edition, exact source translation not inferred from author death alone",
+    "Potter": "Beatrix Potter (1943 death)"
+  }
+}
