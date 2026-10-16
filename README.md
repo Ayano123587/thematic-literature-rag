@@ -84,6 +84,12 @@ long-novel performance or proven entailment. A cached negative-threshold follow-
 raised validation F1 but regressed unknown controls; its diagnostic winner was
 not deployed. Original failed experiments and all tested policies remain visible.
 
+The [cached reliability study](docs/v4-cached-reliability.md) found no qualifying
+span-selection improvement and retains those negatives. `answer-v2 --output`
+now saves source/policy fingerprints in UTF-8; `audit-answer` rechecks a saved
+answer against its source, chunk geometry and expected frozen policy without
+neural inference. This verifies consistency, not authenticity or entailment.
+
 ## Optional grounded generation
 
 ```bash

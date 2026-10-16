@@ -1,0 +1,20 @@
+{
+  "scope": "Retained actual v2 neural output; artifact persistence/audit only, no new inference",
+  "original_saved_output_sha256": "156e573d2c64d4f427087903430a58e4c1aa1c45f64f2448373f9ae07621d261",
+  "saved_artifact_sha256": "d9e30a35984ba4cb11d32ba96a6a2722c006007a82ecba911655690e386a7508",
+  "valid_cli_exit": 0,
+  "tampered_cli_exit": 2,
+  "valid_cli_result": {
+    "valid": true,
+    "abstained": false,
+    "source_exact": true,
+    "frozen_policy_matches": true,
+    "selection_decision_recomputed": false,
+    "semantic_correctness_verified": false,
+    "authenticity_verified": false
+  },
+  "raw_answer_private": true,
+  "auditor_source_sha256": "fbcd856253505055fc9ddd5f61dc7368bee60e817420084cc497c2abad800d55",
+  "cli_source_sha256": "a0a0983e3436eb90ba2d2ea6942f0fd8350b7caf753a045d507df242020c546a",
+  "tests": "41 passed in 72.55 seconds"
+}

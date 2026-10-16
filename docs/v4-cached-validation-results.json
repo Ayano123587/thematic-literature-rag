@@ -1,0 +1,222 @@
+{
+  "scope": "Reused Dorian validation only; no observed-test predictions, gold, case analysis or inference",
+  "protocol": {
+    "declared_at_utc": "2026-10-16T05:53:48+00:00",
+    "scope": "CPU cached Dorian validation only; no model inference, GPU, observed-test scoring or policy selection from test cases",
+    "inputs": "Original version-1 matched-GPU MiniLM/RoBERTa validation predictions and separate Dorian gold; 29 official questions plus four authored unknown controls",
+    "baseline": {
+      "reader": "deepset/minilm-uncased-squad2",
+      "threshold": 0,
+      "rank_penalty": 0.8
+    },
+    "hypotheses": [
+      {
+        "name": "source_consensus",
+        "weights": [
+          0.5,
+          1,
+          2
+        ],
+        "rule": "Group normalized answer strings; deduplicate overlapping occurrences by global source intervals. Add weight*log(1+min(2,distinct_nonoverlapping_occurrences-1)) to the best margin-minus-rank score. Repetition is supporting agreement, not independent semantic evidence."
+      },
+      {
+        "name": "ambiguity_gap",
+        "minimum_gaps": [
+          1,
+          2,
+          4
+        ],
+        "rule": "Collapse identical normalized answer strings, retain the maximum adjusted score per string, and abstain if the best two different strings have score gap below the chosen minimum."
+      },
+      {
+        "name": "cross_reader_agreement",
+        "roberta_minimum_margins": [
+          -2,
+          0,
+          2
+        ],
+        "rule": "Filter MiniLM spans to exact book/start/end agreement with a RoBERTa candidate above its margin cutoff; then apply the frozen MiniLM selector. Diagnostic only unless deployment mechanics can be validated without additional model inference."
+      }
+    ],
+    "fixed_miniLM_eligibility": "Finite null margin >0; valid positive integer retrieval rank; exact source offsets. No negative MiniLM threshold expansion.",
+    "normalization": "Same lower-case, punctuation/article removal as conventional QA scorer; no gold-dependent normalization or substring matching",
+    "primary_objective": "Mean conventional answer token F1 minus0.25 authored-control false-answer rate",
+    "promotion_requirements": {
+      "control_false_answer_rate": "No regression from baseline",
+      "minimum_answer_coverage": 0.5,
+      "exact_match": "No regression from baseline",
+      "either": [
+        "At least0.01 absolute token-F1 gain",
+        "Noninferior token F1 and at least3 fewer accepted answers that do not exactly match any gold reference"
+      ]
+    },
+    "ties": "Larger objective, larger EM, fewer accepted gold-EM-mismatching answers, smaller policy magnitude, hypothesis order",
+    "annotation_limits": "A gold EM mismatch is not proof of incorrectness or unsupported interpretation. Reused29-question validation and4 authored controls provide no independent calibration claim.",
+    "historical_tests_excluded": [
+      "Persuasion",
+      "The Call of the Wild",
+      "A Sentimental Journey Through France and Italy",
+      "The Cask of Amontillado"
+    ],
+    "stopping": "Evaluate these nine policies and baseline once from cached spans; no refined grids after outcomes. Preserve all negatives. If nothing qualifies, retain production baseline and implement only separately verified reliability/audit mechanics."
+  },
+  "protocol_sha256": "720b493c4fe6e91405ebdbe18743a240571dff4e8195b3d97d32f102a230a7ff",
+  "source_sha256": "96fe04970f0eaa11a0281ad4c0498c30e3421279597ef11028c8b49c388ba302",
+  "results": [
+    {
+      "policy": {
+        "method": "baseline",
+        "magnitude": 0
+      },
+      "token_f1": 0.08775234231623684,
+      "exact_match": 0.06896551724137931,
+      "accepted_answers": 27,
+      "answer_coverage": 0.9310344827586207,
+      "accepted_gold_em_mismatches": 25,
+      "control_false_answers": 0,
+      "control_false_answer_rate": 0.0,
+      "objective": 0.08775234231623684,
+      "meets_prespecified_promotion": false
+    },
+    {
+      "policy": {
+        "method": "source_consensus",
+        "magnitude": 0.5
+      },
+      "token_f1": 0.08775234231623684,
+      "exact_match": 0.06896551724137931,
+      "accepted_answers": 27,
+      "answer_coverage": 0.9310344827586207,
+      "accepted_gold_em_mismatches": 25,
+      "control_false_answers": 0,
+      "control_false_answer_rate": 0.0,
+      "objective": 0.08775234231623684,
+      "meets_prespecified_promotion": false
+    },
+    {
+      "policy": {
+        "method": "source_consensus",
+        "magnitude": 1
+      },
+      "token_f1": 0.08775234231623684,
+      "exact_match": 0.06896551724137931,
+      "accepted_answers": 27,
+      "answer_coverage": 0.9310344827586207,
+      "accepted_gold_em_mismatches": 25,
+      "control_false_answers": 0,
+      "control_false_answer_rate": 0.0,
+      "objective": 0.08775234231623684,
+      "meets_prespecified_promotion": false
+    },
+    {
+      "policy": {
+        "method": "source_consensus",
+        "magnitude": 2
+      },
+      "token_f1": 0.08775234231623684,
+      "exact_match": 0.06896551724137931,
+      "accepted_answers": 27,
+      "answer_coverage": 0.9310344827586207,
+      "accepted_gold_em_mismatches": 25,
+      "control_false_answers": 0,
+      "control_false_answer_rate": 0.0,
+      "objective": 0.08775234231623684,
+      "meets_prespecified_promotion": false
+    },
+    {
+      "policy": {
+        "method": "ambiguity_gap",
+        "magnitude": 1
+      },
+      "token_f1": 0.053269583695547185,
+      "exact_match": 0.034482758620689655,
+      "accepted_answers": 20,
+      "answer_coverage": 0.6896551724137931,
+      "accepted_gold_em_mismatches": 19,
+      "control_false_answers": 0,
+      "control_false_answer_rate": 0.0,
+      "objective": 0.053269583695547185,
+      "meets_prespecified_promotion": false
+    },
+    {
+      "policy": {
+        "method": "ambiguity_gap",
+        "magnitude": 2
+      },
+      "token_f1": 0.0451559934318555,
+      "exact_match": 0.034482758620689655,
+      "accepted_answers": 17,
+      "answer_coverage": 0.5862068965517241,
+      "accepted_gold_em_mismatches": 16,
+      "control_false_answers": 0,
+      "control_false_answer_rate": 0.0,
+      "objective": 0.0451559934318555,
+      "meets_prespecified_promotion": false
+    },
+    {
+      "policy": {
+        "method": "ambiguity_gap",
+        "magnitude": 4
+      },
+      "token_f1": 0.010673234811165846,
+      "exact_match": 0.0,
+      "accepted_answers": 11,
+      "answer_coverage": 0.3793103448275862,
+      "accepted_gold_em_mismatches": 11,
+      "control_false_answers": 0,
+      "control_false_answer_rate": 0.0,
+      "objective": 0.010673234811165846,
+      "meets_prespecified_promotion": false
+    },
+    {
+      "policy": {
+        "method": "cross_reader_agreement",
+        "magnitude": -2
+      },
+      "token_f1": 0.09113300492610837,
+      "exact_match": 0.06896551724137931,
+      "accepted_answers": 11,
+      "answer_coverage": 0.3793103448275862,
+      "accepted_gold_em_mismatches": 9,
+      "control_false_answers": 0,
+      "control_false_answer_rate": 0.0,
+      "objective": 0.09113300492610837,
+      "meets_prespecified_promotion": false
+    },
+    {
+      "policy": {
+        "method": "cross_reader_agreement",
+        "magnitude": 0
+      },
+      "token_f1": 0.03940886699507389,
+      "exact_match": 0.034482758620689655,
+      "accepted_answers": 5,
+      "answer_coverage": 0.1724137931034483,
+      "accepted_gold_em_mismatches": 4,
+      "control_false_answers": 0,
+      "control_false_answer_rate": 0.0,
+      "objective": 0.03940886699507389,
+      "meets_prespecified_promotion": false
+    },
+    {
+      "policy": {
+        "method": "cross_reader_agreement",
+        "magnitude": 2
+      },
+      "token_f1": 0.03940886699507389,
+      "exact_match": 0.034482758620689655,
+      "accepted_answers": 3,
+      "answer_coverage": 0.10344827586206896,
+      "accepted_gold_em_mismatches": 2,
+      "control_false_answers": 0,
+      "control_false_answer_rate": 0.0,
+      "objective": 0.03940886699507389,
+      "meets_prespecified_promotion": false
+    }
+  ],
+  "qualified_winner": null,
+  "independent_heldout_score_available": false,
+  "private_selections_sha256": "15158c4a8348d807588d0a56a8e23854c9b553541aae7e7cab69a033e060cd7d",
+  "annotation_limit": "Gold EM mismatch is not proof of incorrectness or lack of semantic support.",
+  "historical_metadata_use": "Only validation prediction/gold hash fields read from the historical public v3 report; its fresh-test fields are not used. Metadata wording clarified after scoring, without changing policies or results."
+}
