@@ -1,0 +1,55 @@
+{
+  "status": "Actually executed in fresh Jupyter kernels",
+  "notebooks": [
+    {
+      "notebook": "notebooks\\00_main_literature_rag.ipynb",
+      "code_cells_executed": 24,
+      "actual_svg_plots": 1,
+      "actual_tables": 5,
+      "seconds": 28.4,
+      "neural_model_training_or_inference": false,
+      "test_qa_parsed_or_scored": false,
+      "normalized_utf8_sha256": "0eb3eb52f50b85c638b8178493a8004514d20240af3377530ef8607ffcbf137d"
+    },
+    {
+      "notebook": "notebooks\\01_source_family_eda.ipynb",
+      "code_cells_executed": 8,
+      "actual_svg_plots": 5,
+      "actual_tables": 3,
+      "seconds": 16.69,
+      "neural_model_training_or_inference": false,
+      "test_qa_parsed_or_scored": false,
+      "normalized_utf8_sha256": "565ee3516947d03f6ed80c21e8f49a665f055ab60eed1c5f05c78a5a478e7f35"
+    },
+    {
+      "notebook": "notebooks\\02_validation_experiments.ipynb",
+      "code_cells_executed": 7,
+      "actual_svg_plots": 2,
+      "actual_tables": 5,
+      "seconds": 22.27,
+      "neural_model_training_or_inference": false,
+      "test_qa_parsed_or_scored": false,
+      "normalized_utf8_sha256": "b8d514c84249616b34c843e45a4b977550c21ff240edbc16023af34ccc8d41b7"
+    },
+    {
+      "notebook": "notebooks\\03_citation_and_error_analysis.ipynb",
+      "code_cells_executed": 8,
+      "actual_svg_plots": 1,
+      "actual_tables": 3,
+      "seconds": 15.14,
+      "neural_model_training_or_inference": false,
+      "test_qa_parsed_or_scored": false,
+      "normalized_utf8_sha256": "e19e1e24202df70f6e21164b86c7c03ed2f96d6baf660db8302def002a6bd597"
+    }
+  ],
+  "outputs": "Real source aggregates, validation BM25 recomputation, historical metrics and saved artifact audits only; no invented full-training outcomes",
+  "source_validation": {
+    "pytest": "58 passed in 135.09 seconds",
+    "all_notebook_code_compiled": true,
+    "notebook_schema_validated": true,
+    "outputs_contain_errors": false,
+    "README_Report_local_links_valid": true,
+    "full_training_metrics": "pending; no held-out QA scored"
+  },
+  "hash_convention": "Notebook SHA-256 covers newline-normalized read_text UTF-8, stable across Windows checkout conversion."
+}

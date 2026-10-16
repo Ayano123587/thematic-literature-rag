@@ -1,7 +1,0 @@
-{
-  "utf8_files_checked": 95,
-  "public_book_qa_or_weight_artifacts": false,
-  "tests": "41 passed in 72.55 seconds",
-  "model_inference_or_gpu_runs_this_study": 0,
-  "observed_test_cases_used_for_selection": false
-}

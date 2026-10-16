@@ -1,8 +1,8 @@
 # Narrative QA training report
 
 The next study fine-tunes a real narrative answer generator with human-authored
-questions and linked story sections. It is being prepared; there are no v5
-training results yet. Historical low scores and failed calibration studies remain
+questions and linked story sections. Full CPU training is running; full v5
+answer metrics are not yet available. Historical low scores and failed calibration studies remain
 in the [README](README.md) and versioned experiment documents.
 
 ## Dataset and filtering
@@ -28,9 +28,9 @@ Recurring plots can still cross families; pretraining exposure is also unknown.
 
 The [prespecified protocol](docs/v5-training-protocol.json) records model pins,
 source filters, checkpoint selection, metrics and limitations before scoring.
-Root `train.py` delegates to `src.narrative_training`. At the user's updated request,
-the end-to-end notebook adds explicit optional orchestration of these modules;
-the original EDA notebook remains available.
+Root `train.py` delegates to `src.narrative_training`. The main notebook contains readable implementations of preparation, retrieval,
+training, scoring and citation checks. Supporting notebooks retain executed
+source analysis, validation comparisons and error audits.
 Private data, logs and checkpoints stay ignored. An isolated repository virtual
 environment is required because these research repositories share a `src` name.
 
@@ -76,7 +76,7 @@ the existing OAuth session recovered its failure: duplicate official question
 IDs were rejected before model loading. No duplicate live job was submitted.
 
 A strict local loader subsequently caught nonunique official question IDs within
-seven stories: two extra training IDs and five validation IDs, each attached to
+six stories: two extra training IDs and five validation IDs, each attached to
 different questions. This guard precedes model loading in the submitted smoke.
 Canonical IDs now include the stable CSV row ordinal and retain the original ID;
 the validation cohort was prospectively rebuilt before any model outcome. This
