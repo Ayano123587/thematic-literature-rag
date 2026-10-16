@@ -8,16 +8,21 @@ import zipfile
 from src.data.prepare_fairytale import sha
 
 
-def prepare(data,protocol,output,dataset,action,kernel_source=None,epoch=0,run_tag=None,validation_source=None,task="generator"):
+def prepare(data,protocol,output,dataset,action,kernel_source=None,epoch=0,run_tag=None,validation_source=None,task="generator",selection_sources=None):
     if task not in ("generator", "reranker"):raise ValueError("Unknown full-data task")
-    if action not in ("smoke","train","validate"):raise ValueError("Invalid full-data action")
-    if action=="validate" and not kernel_source:raise ValueError("Validation needs an immutable training kernel source")
+    if action not in ("smoke","train","validate","select"):raise ValueError("Invalid full-data action")
+    if action in ("validate","select") and not kernel_source:raise ValueError("Validation needs an immutable training kernel source")
     if validation_source and action!="validate":raise ValueError("Validation shards apply only to validation")
+    if action=="select" and not selection_sources:raise ValueError("Selection needs every complete validation kernel source")
+    if selection_sources and action!="select":raise ValueError("Selection sources apply only to selection")
+    mounted=([kernel_source] if kernel_source else [])+([validation_source] if validation_source else [])+(selection_sources or [])
+    if len(set(mounted))!=len(mounted):raise ValueError("Each immutable kernel source must be mounted once")
     if type(epoch) is not int or not 0<=epoch<=3:raise ValueError("Expected a declared epoch snapshot")
     if run_tag is not None and (not run_tag or any(c not in 'abcdefghijklmnopqrstuvwxyz0123456789-' for c in run_tag)):
         raise ValueError("Use a plain lowercase versioned run tag")
     slug="portfolio-narrative-full-"+("resume" if task=="generator" else "reranker")+"-"+action+"-v6"
-    if action=="validate":slug+="-epoch"+str(epoch)
+    if action=="validate":slug="portfolio-rag-"+task+"-validation-e"+str(epoch)+"-v6"
+    if action=="select":slug="portfolio-rag-"+task+"-selection-v6"
     if run_tag:slug+="-"+run_tag
     if len(slug)>50:raise ValueError("Kaggle kernel title cannot exceed 50 characters; shorten the run tag")
     output=Path(output);data=Path(data)
@@ -25,8 +30,9 @@ def prepare(data,protocol,output,dataset,action,kernel_source=None,epoch=0,run_t
     if subprocess.check_output(["git","status","--porcelain"],text=True).strip():
         raise ValueError("Commit the coherent source/protocol milestone before packaging")
     paths=["src/__init__.py","src/data/__init__.py","src/data/prepare_fairytale.py",
-           "src/narrative_training.py","src/full_generator_training.py","src/resumable_training.py"]
-    if task=="reranker":paths += ["src/reranker_training.py", "src/full_reranker_training.py"]
+           "src/narrative_training.py","src/full_generator_training.py","src/resumable_training.py",
+           "src/full_validation_selection.py","src/reranker_training.py"]
+    if task=="reranker":paths += ["src/full_reranker_training.py"]
     files={name:Path(name).read_bytes() for name in paths}
     files["docs/full-coverage-protocol.json"]=Path(protocol).read_bytes()
     for path in data.rglob("*"):
@@ -55,11 +61,11 @@ def prepare(data,protocol,output,dataset,action,kernel_source=None,epoch=0,run_t
     (output/"kernel-metadata.json").write_text(json.dumps({"id":"aikyatansinha/"+slug,
         "title":slug.replace("-"," ").title(),"code_file":"run.py","language":"python","kernel_type":"script",
         "is_private":True,"enable_gpu":False,"enable_internet":True,"dataset_sources":[dataset],
-        "competition_sources":[],"kernel_sources":([kernel_source] if kernel_source else [])+
-        ([validation_source] if validation_source else [])},indent=2),encoding="utf-8")
+        "competition_sources":[],"kernel_sources":mounted},indent=2),encoding="utf-8")
     receipt={**manifest,"payload_zip_sha256":sha((upload/"payload.zip").read_bytes()),
              "runner_sha256":sha((output/"run.py").read_bytes()),"dataset":dataset,
-             "kernel_source":kernel_source,"validation_source":validation_source,"validation_epoch":epoch,"run_tag":run_tag}
+             "kernel_source":kernel_source,"validation_source":validation_source,"validation_epoch":epoch,"run_tag":run_tag,
+             "selection_sources":selection_sources or []}
     (output/"preflight.json").write_text(json.dumps(receipt,indent=2),encoding="utf-8")
     print(json.dumps({"kernel":"aikyatansinha/"+slug,"action":action,"test_QA_packaged":False}))
 
@@ -68,9 +74,10 @@ if __name__=="__main__":
     parser=argparse.ArgumentParser(description=__doc__)
     for name in ("data","protocol","output","dataset"):
         parser.add_argument("--"+name,required=True)
-    parser.add_argument("--action",choices=("smoke","train","validate"),default="smoke")
+    parser.add_argument("--action",choices=("smoke","train","validate","select"),default="smoke")
     parser.add_argument("--kernel-source");parser.add_argument("--epoch",type=int,default=0)
     parser.add_argument("--run-tag")
     parser.add_argument("--validation-source")
     parser.add_argument("--task",choices=("generator","reranker"),default="generator")
-    a=parser.parse_args();prepare(a.data,a.protocol,a.output,a.dataset,a.action,a.kernel_source,a.epoch,a.run_tag,a.validation_source,a.task)
+    parser.add_argument("--selection-source",nargs="+")
+    a=parser.parse_args();prepare(a.data,a.protocol,a.output,a.dataset,a.action,a.kernel_source,a.epoch,a.run_tag,a.validation_source,a.task,a.selection_source)

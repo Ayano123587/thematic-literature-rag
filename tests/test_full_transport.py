@@ -14,6 +14,8 @@ def test_oversized_kernel_title_is_rejected_before_creating_payload(tmp_path):
     ({"action": "validate"}, "immutable training"),
     ({"action": "train", "validation_source": "owner/shards"}, "only to validation"),
     ({"action": "train", "task": "unknown"}, "Unknown full-data task"),
+    ({"action": "select", "kernel_source": "owner/train"}, "every complete validation"),
+    ({"action": "select", "kernel_source": "owner/train", "selection_sources": ["owner/val", "owner/val"]}, "mounted once"),
 ])
 def test_invalid_transport_contract_fails_before_source_packaging(tmp_path, kwargs, message):
     with pytest.raises(ValueError, match=message):

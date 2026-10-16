@@ -74,12 +74,20 @@ def main():
             train_full(data,protocol,output/"run",resume=previous_run)
         elif ACTION=="validate":
             if previous_run is None:raise ValueError("Validation requires a completed training kernel source")
+            from src.full_validation_selection import completed_run
+            completed_run(previous_run,data,protocol,"generator")
             previous_validation=None
             if USE_PREVIOUS_VALIDATION:
                 shards=[p.parent for p in Path("/kaggle/input").rglob("validation-status.json")]
                 if len(shards)!=1:raise ValueError("Expected one prior immutable validation output")
                 previous_validation=shards[0]
             validate_epoch(data,protocol,previous_run,VALIDATION_EPOCH,output/"validation",previous=previous_validation)
+        elif ACTION=="select":
+            from src.full_validation_selection import select
+            if previous_run is None:raise ValueError("Selection requires a completed training kernel source")
+            reports=[p.parent for p in Path("/kaggle/input").rglob("validation-status.json")]
+            reports.sort(key=lambda p:json.loads((p/"identity.json").read_text())["epoch"])
+            select(data,protocol,previous_run,reports,output/"selection.json","generator")
         else:
             raise ValueError("Unsupported execution action")
         success=True

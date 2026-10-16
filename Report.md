@@ -35,9 +35,20 @@ The pinned MiniLM cross-encoder uses listwise evidence supervision. The complete
 python train.py full train --data data/interim/new-full-staging --protocol docs/full-coverage-protocol.json --output models/full-run
 python train.py full train --data data/interim/new-full-staging --protocol docs/full-coverage-protocol.json --resume models/full-run --output models/full-continuation
 python train.py full validate --data data/interim/new-full-staging --protocol docs/full-coverage-protocol.json --run models/full-continuation --epoch 1 --output data/interim/full-validation-epoch1
+python train.py full-reranker train --data data/interim/new-full-staging --protocol docs/full-reranker-protocol.json --output models/full-ranking-run
 ```
 
-A normal cloud time ceiling triggers a checkpoint, not a smaller dataset. Two atomic progress slots retain optimizer/RNG state and exact source/model/runtime identities. Epoch snapshots remain available for all-validation comparison. Validation resumes complete hashed shards through `--resume`, decoding every required query. Test access is a separate globally frozen step; this runner never opens test QA.
+A normal cloud time ceiling triggers a checkpoint, not a smaller dataset. Two atomic progress slots retain optimizer/RNG state and exact source/model/runtime identities. Continue into a fresh output until `training-status.json` says `training_complete`; full-validation cloud dispatch refuses partial training outputs. Epoch snapshots remain available for all-validation comparison. Validation resumes complete hashed shards through `--resume`, decoding every required query. The private cloud builder supports `--action validate` with an immutable completed training kernel source, and `--action select` with every complete validation kernel source; it mounts readable source files and never packages test QA.
+
+After complete validation for epochs 0–3, select the generator with the declared all-question F1 objective:
+
+```powershell
+python -m evaluation_scripts.select_full_validation generator --data data/interim/new-full-staging --protocol docs/full-coverage-protocol.json --run models/full-continuation --validation data/interim/val-e0 data/interim/val-e1 data/interim/val-e2 data/interim/val-e3 --output models/generator-validation-selection.json
+```
+
+Use the same command with `reranker`, its protocol/run and epochs 0–2 for evidence-recall selection; ties favor BM25, then the pretrained head, then earlier adapted epochs. Every checkpoint file, validation ID and shard hash is checked. Answer metrics are recomputed from current references and exact source citations. Missing, overlapping, changed or incomplete artifacts are rejected, and existing selections cannot be overwritten. The selection contains aggregates rather than raw QA or answers.
+
+Checkpoint selection is not the final production policy. Compare selected retrieval with BM25 on complete validation using the frozen selected generator, then serialize the global policy before test release. No command in this workflow opens test QA.
 
 ## Results and interpretation
 

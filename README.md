@@ -35,7 +35,9 @@ Saved reader answers can be audited against source/model/chunk contracts without
 
 [Report](Report.md) gives preparation and training commands. The [coverage audit](docs/full-coverage-audit.json), [training protocol](docs/full-coverage-protocol.json), [reranker protocol](docs/full-reranker-protocol.json) and [preflight](docs/full-coverage-preflight.json) bind the complete cohort and model pins. Source preparation retains every usable annotation and handles one repeated section ID without deleting text.
 
-The full generator runner checkpoints optimizer, weights, source identities and dropout RNG at optimizer boundaries. Validation decoding is independently resumable in complete shards, so cloud time limits do not become data sampling caps. Training keeps every epoch snapshot; selection must use all validation rows before test release.
+Both full-data runners checkpoint optimizer, weights, source identities and RNG at optimizer boundaries. Actual pretrained-model continuation passed exact tensor replay; the [reranker proof](docs/full-reranker-readiness.json) also compares every optimizer and RNG state. These are mechanics checks, not performance estimates.
+
+Validation is independently resumable in complete shards, so cloud time limits do not become data sampling caps. The [selection command](evaluation_scripts/select_full_validation.py) requires every initial/epoch checkpoint and all 2,372 validation questions, checks source/citation identities, and recomputes the aggregate metrics. Checkpoint selection does not authorize test access.
 
 ## Notebooks and results
 
