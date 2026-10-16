@@ -16,6 +16,10 @@ def prepare(data,protocol,output,dataset,action,kernel_source=None,epoch=0,run_t
     if type(epoch) is not int or not 0<=epoch<=3:raise ValueError("Expected a declared epoch snapshot")
     if run_tag is not None and (not run_tag or any(c not in 'abcdefghijklmnopqrstuvwxyz0123456789-' for c in run_tag)):
         raise ValueError("Use a plain lowercase versioned run tag")
+    slug="portfolio-narrative-full-"+("resume" if task=="generator" else "reranker")+"-"+action+"-v6"
+    if action=="validate":slug+="-epoch"+str(epoch)
+    if run_tag:slug+="-"+run_tag
+    if len(slug)>50:raise ValueError("Kaggle kernel title cannot exceed 50 characters; shorten the run tag")
     output=Path(output);data=Path(data)
     if output.exists():raise ValueError("Preserve prepared payloads; choose a fresh output")
     if subprocess.check_output(["git","status","--porcelain"],text=True).strip():
@@ -48,9 +52,6 @@ def prepare(data,protocol,output,dataset,action,kernel_source=None,epoch=0,run_t
     runner=runner.replace('VALIDATION_EPOCH = 0',"VALIDATION_EPOCH = "+str(epoch))
     runner=runner.replace('USE_PREVIOUS_VALIDATION = False',"USE_PREVIOUS_VALIDATION = "+repr(bool(validation_source)))
     (output/"run.py").write_text(runner,encoding="utf-8",newline="\n")
-    slug="portfolio-narrative-full-"+("resume" if task=="generator" else "reranker")+"-"+action+"-v6"
-    if action=="validate":slug+="-epoch"+str(epoch)
-    if run_tag:slug+="-"+run_tag
     (output/"kernel-metadata.json").write_text(json.dumps({"id":"aikyatansinha/"+slug,
         "title":slug.replace("-"," ").title(),"code_file":"run.py","language":"python","kernel_type":"script",
         "is_private":True,"enable_gpu":False,"enable_internet":True,"dataset_sources":[dataset],

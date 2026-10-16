@@ -1,0 +1,68 @@
+{
+  "scope": "Actual pretrained optimizer/RNG continuation and saved-model validation mechanics only; not a full-cohort performance estimate",
+  "kernel": "aikyatansinha/portfolio-narrative-reranker-rng-smoke-v6",
+  "version": 1,
+  "source_commit": "13df8566cdf6348a283baf65c660c057f208ba8d",
+  "train_QA": 20,
+  "validation_QA": 2,
+  "elapsed_seconds": 146.27210773499996,
+  "test_accessed": false,
+  "all_rng_states_equal": true,
+  "equal_training_state_tensor_counts": {
+    "model": 105,
+    "optimizer": 315,
+    "rng": 1
+  },
+  "tensor_replay_max_abs_difference": 0.0,
+  "validation_shard_replay_exact": true,
+  "pretrained_weights_sha256": "821d1aa69520101d6e0737f78a042ae25b19e5cb9160701909d10434f4aeb0ae",
+  "initial_saved_weights_sha256": "a6e1fd85181a93a58bc33f65700f2ba34da3af2667f85cc57bcdf0f9f0092200",
+  "trained_saved_weights_sha256": "489dd7c2dc9b604dff9a62029f30e269c8f537b063fcf946add5ea1c2e7acb35",
+  "loading_info": {
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "mismatched_keys": [],
+    "error_msgs": []
+  },
+  "identity": {
+    "manifest_sha256": "721733169b0c1e7b7c1d07fe1880d3c871d72017be6fc61923be126feea73225",
+    "protocol_sha256": "bab7ac62ff4f944563c688497acca1793ff79365c0fcd1581c857f022ec70bb1",
+    "model": {
+      "name": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+      "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+      "license": "apache-2.0",
+      "source": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/tree/233902d25c440f23af6f7d6e94d2946bac0bee0a",
+      "max_tokens": 384,
+      "seed": 42
+    },
+    "training": {
+      "epochs": 2,
+      "learning_rate": 2e-05,
+      "weight_decay": 0.01,
+      "micro_groups": 2,
+      "effective_groups": 16,
+      "objective": "Each annotated positive section forms a listwise group with up to four nongold same-story negatives; cross-entropy selects the positive. All annotated positives participate, so multi-section questions contribute more training groups; report counts.",
+      "negatives": "First three nongold BM25-ranked sections, then one seeded random remaining nongold section; no other gold-linked section can be a negative. If fewer negatives exist use those available. Questions with no nongold section yield no ranking group and are counted.",
+      "truncation": "Question-section pair capped at 384 tokens; section annotation does not prove the retained prefix contains every relevant sentence. Report truncation counts."
+    },
+    "smoke": true,
+    "threads": 4,
+    "torch": "2.11.0+cpu",
+    "python": "3.13.15",
+    "environment": {
+      "transformers": "4.57.6",
+      "tokenizers": "0.22.2",
+      "numpy": "2.1.3",
+      "huggingface-hub": "0.36.2"
+    },
+    "source_sha256": {
+      "full_reranker_training.py": "42d7db7637d7a0577c3ab2a79da76d4fdc624426d0bfe59a7fc8393f160d86c8",
+      "reranker_training.py": "17271b577bd36e2e00e2e97f1056e4c2385a8b545ca2d42977dd126ba961d0d9",
+      "resumable_training.py": "cd97033ac4b9bf63658b14a1467574a1b0fb3f1e4a6f08c99264eeb55b856c02",
+      "full_generator_training.py": "7fe941fb319296bb79dc0d1ed44ccb042876ad07c72aa37f547648c871c40645",
+      "narrative_training.py": "d0736c3cafeae67694c2c3b7eb35bc72cb012de897dd24ecb4fa42add991dccd",
+      "data/prepare_fairytale.py": "4046b745d220300cb4c94411a0c63f00eb4571b1bd0e115a6d74cd4aa34b968e"
+    }
+  },
+  "receipt_sha256": "9f0a7580d9e24080896dcddada2c2f729ef447f1bbae59f65476c0c54b1a0921"
+}
