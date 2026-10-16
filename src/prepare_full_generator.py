@@ -8,7 +8,8 @@ import zipfile
 from src.data.prepare_fairytale import sha
 
 
-def prepare(data,protocol,output,dataset,action,kernel_source=None,epoch=0,run_tag=None,validation_source=None):
+def prepare(data,protocol,output,dataset,action,kernel_source=None,epoch=0,run_tag=None,validation_source=None,task="generator"):
+    if task not in ("generator", "reranker"):raise ValueError("Unknown full-data task")
     if action not in ("smoke","train","validate"):raise ValueError("Invalid full-data action")
     if action=="validate" and not kernel_source:raise ValueError("Validation needs an immutable training kernel source")
     if validation_source and action!="validate":raise ValueError("Validation shards apply only to validation")
@@ -21,6 +22,7 @@ def prepare(data,protocol,output,dataset,action,kernel_source=None,epoch=0,run_t
         raise ValueError("Commit the coherent source/protocol milestone before packaging")
     paths=["src/__init__.py","src/data/__init__.py","src/data/prepare_fairytale.py",
            "src/narrative_training.py","src/full_generator_training.py","src/resumable_training.py"]
+    if task=="reranker":paths += ["src/reranker_training.py", "src/full_reranker_training.py"]
     files={name:Path(name).read_bytes() for name in paths}
     files["docs/full-coverage-protocol.json"]=Path(protocol).read_bytes()
     for path in data.rglob("*"):
@@ -28,7 +30,7 @@ def prepare(data,protocol,output,dataset,action,kernel_source=None,epoch=0,run_t
             files["private-data/"+path.relative_to(data).as_posix()]=path.read_bytes()
     manifest={"source_commit":subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip(),
               "files":{name:sha(raw) for name,raw in files.items()},"action":action,
-              "test_QA_packaged":False,"plain_source":True}
+              "test_QA_packaged":False,"plain_source":True,"task":task}
     raw=json.dumps(manifest,indent=2).encode()
     files["full-payload-provenance.json"]=raw
     output.mkdir(parents=True);upload=output/"dataset-upload";upload.mkdir()
@@ -39,14 +41,14 @@ def prepare(data,protocol,output,dataset,action,kernel_source=None,epoch=0,run_t
     (upload/"dataset-metadata.json").write_text(json.dumps({"id":dataset,
         "title":"Private full narrative source v6","licenses":[{"name":"other"}],
         "description":"All custom-family train/validation FairytaleQA under Apache2; readable code; no test QA."},indent=2),encoding="utf-8")
-    runner=Path("src/cloud/full_generator_runner.py").read_text(encoding="utf-8")
+    runner=Path("src/cloud/full_generator_runner.py" if task=="generator" else "src/cloud/full_reranker_runner.py").read_text(encoding="utf-8")
     runner=runner.replace("EXPECTED_MANIFEST_SHA256 = None","EXPECTED_MANIFEST_SHA256 = "+repr(sha(raw)))
     runner=runner.replace('ACTION = "smoke"',"ACTION = "+repr(action))
     runner=runner.replace('USE_PREVIOUS_RUN = False',"USE_PREVIOUS_RUN = "+repr(bool(kernel_source)))
     runner=runner.replace('VALIDATION_EPOCH = 0',"VALIDATION_EPOCH = "+str(epoch))
     runner=runner.replace('USE_PREVIOUS_VALIDATION = False',"USE_PREVIOUS_VALIDATION = "+repr(bool(validation_source)))
     (output/"run.py").write_text(runner,encoding="utf-8",newline="\n")
-    slug="portfolio-narrative-full-resume-"+action+"-v6"
+    slug="portfolio-narrative-full-"+("resume" if task=="generator" else "reranker")+"-"+action+"-v6"
     if action=="validate":slug+="-epoch"+str(epoch)
     if run_tag:slug+="-"+run_tag
     (output/"kernel-metadata.json").write_text(json.dumps({"id":"aikyatansinha/"+slug,
@@ -69,4 +71,5 @@ if __name__=="__main__":
     parser.add_argument("--kernel-source");parser.add_argument("--epoch",type=int,default=0)
     parser.add_argument("--run-tag")
     parser.add_argument("--validation-source")
-    a=parser.parse_args();prepare(a.data,a.protocol,a.output,a.dataset,a.action,a.kernel_source,a.epoch,a.run_tag,a.validation_source)
+    parser.add_argument("--task",choices=("generator","reranker"),default="generator")
+    a=parser.parse_args();prepare(a.data,a.protocol,a.output,a.dataset,a.action,a.kernel_source,a.epoch,a.run_tag,a.validation_source,a.task)
