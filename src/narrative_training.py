@@ -213,6 +213,14 @@ def seed_all(seed):
         torch.cuda.manual_seed_all(seed)
 
 
+def validation_cohort(questions, per_origin=100):
+    """Predefined, label-independent sampling; never sample by difficulty/score."""
+    origins = sorted(set(q["origin"] for q in questions))
+    return [q for origin in origins for q in sorted(
+        (q for q in questions if q["origin"] == origin),
+        key=lambda q: (sha(q["id"].encode()), q["id"]))[:per_origin]]
+
+
 def run(args):
     import torch
     from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, DataCollatorForSeq2Seq
@@ -227,6 +235,7 @@ def run(args):
     seed_all(spec["seed"])
     train_stories, train = load_split(args.data, "train")
     valid_stories, valid = load_split(args.data, "validation")
+    valid = validation_cohort(valid)
     if args.smoke:
         train, valid = train[:4], valid[:2]
     tokenizer = AutoTokenizer.from_pretrained(spec["name"], revision=spec["revision"], use_fast=True)
@@ -247,6 +256,7 @@ def run(args):
                   "manifest_sha256": sha((Path(args.data) / "manifest.json").read_bytes()),
                   "model": spec, "loading_info": loading, "device": device,
                   "train_questions": len(train), "validation_questions": len(valid),
+                  "validation_ids": [q["id"] for q in valid],
                   "torch": torch.__version__, "smoke": args.smoke,
                   "pretrained_weights_sha256": sha(weights.read_bytes()),
                   "python": platform.python_version(),
