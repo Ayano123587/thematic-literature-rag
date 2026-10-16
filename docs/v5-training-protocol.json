@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "status": "prespecified before opening candidate QA files or model training",
+  "status": "prespecified before model scoring/training; QA staging and prospective amendments disclosed below",
   "dataset": {
     "repository": "uci-soe/FairytaleQAData",
     "revision": "a24ddc17364666b7c13a425b9970c87368b03417",
@@ -41,7 +41,7 @@
   },
   "evaluation": {
     "primary": "Macro question answer normalized token F1 on retrieved contexts",
-    "validation_cohort": "Before any model scoring, select 100 questions per validation dataset origin by ascending SHA256(question_id), tie ID, for CPU decoding feasibility. All other validation questions remain excluded from training. Report cohort IDs/hash and source counts. Test remains all eligible test QA.",
+    "validation_cohort": "Before any model scoring, select 100 questions per validation dataset origin by ascending SHA256(canonical_question_id), tie ID, for CPU decoding feasibility. Canonical ID is story:rowN:original_question_id, with one-based CSV data-row ordinal N. Official question_id repeats on distinct questions (2 train and5 validation extra occurrences), discovered by strict preflight before model loading; ordinal identity is a prospective correction. All other validation questions remain excluded from training. Report cohort IDs/hash and source counts. Test remains all eligible test QA.",
     "secondary": ["exact match", "ROUGE-L F1", "evidence recall@4", "evidence precision@4", "exact source citation validity", "per-origin metrics", "explicit/implicit metrics", "narrative-attribute metrics"],
     "references": "Nonempty answer 1 and answer 4 only, max over references; report reference-count strata.",
     "oracle": "Human linked context is a separately labeled diagnostic, never the primary retrieval score.",

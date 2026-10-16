@@ -38,6 +38,10 @@ not secretly supplied at validation/test inference. Report answer EM/token F1
 separately from evidence recall/precision and exact source citation validity.
 Generated answers are free-form; exact citations establish their source location,
 not entailment. Answerable-only data cannot establish unknown-question calibration.
+Evidence recall after truncation counts the presence of an annotated section,
+including a partial prefix; it does not establish retention of every relevant
+sentence. ROUGE-L uses the documented word-token LCS implementation without
+stemming, so it is not presented as a reproduction of the paper's scorer.
 
 | Policy | Validation answer F1 | Test answer F1 | Status |
 | --- | --- | --- | --- |
@@ -56,3 +60,49 @@ tokens and learning rate 1e-4. The initial BART/1024-token plan remains in Git
 history. Architecture, context and optimization change together for feasibility;
 this is not evidence that T5 outperforms BART. A small real CPU training smoke
 must establish practical runtime before full training.
+
+The initial embedded script submission returned HTTP 400 before execution. The
+private payload was moved to a separate private Kaggle dataset. A Windows CLI
+relative-path upload failure was corrected by invoking upload from its folder.
+Kaggle automatically extracted the ZIP; the small kernel verifies the extracted
+manifest and every source/data file hash. CPU smoke version 1 was submitted and
+confirmed running, but subsequent plain CLI reads lost authentication. Its
+outcome is currently unknown; no duplicate training was submitted.
+
+A strict local loader subsequently caught nonunique official question IDs within
+seven stories: two extra training IDs and five validation IDs, each attached to
+different questions. This guard precedes model loading in the submitted smoke.
+Canonical IDs now include the stable CSV row ordinal and retain the original ID;
+the validation cohort was prospectively rebuilt before any model outcome. This
+correction does not inspect test QA. The submitted smoke's exact older payload
+is preserved rather than silently changed.
+
+The corrected 400-question validation cohort's BM25 evidence recall@4 is 83.96%
+and evidence precision@4 is 22.13%, before token truncation. These measure human
+section relevance, **not answer accuracy**. Answer F1 remains pending. The source
+corpus has 3,314 training QA and 2,372 validation QA; the 1,972 validation questions
+outside the hash-selected cohort never enter training. Test QA remains unparsed.
+
+## Reproduction entrypoints
+
+Create a fresh virtual environment for this repository, install the project and
+its reader extra, and use pinned runtime versions captured by the cloud bootstrap.
+The real training command is:
+
+```powershell
+python train.py --data data/interim/v5-fairytale-cpu --output models/v5-run --micro-batch 2 --threads 4
+```
+
+The test evaluation is a separate explicit command. It requires frozen selection
+and exact trained weight hashes and writes an exclusive marker before opening
+test QA; a failure cannot be silently overwritten:
+
+```powershell
+python -m evaluation_scripts.evaluate_narrative --data data/interim/v5-fairytale-cpu --run models/v5-run
+```
+
+`evaluation_scripts.predict_narrative` provides an experimental saved-checkpoint
+CLI whose schema labels free-form generated answers separately from retrieved
+source spans. Its checkpoint-loading inference has not yet been validated on a
+completed v5 training artifact; it is not advertised as a verified production
+replacement for the existing extractive reader.

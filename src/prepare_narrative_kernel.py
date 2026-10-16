@@ -65,24 +65,30 @@ if result.returncode: raise SystemExit(result.returncode)
             "licenses": [{"name": "other"}],
             "description": "Private FairytaleQA Apache-2.0 research subset and original training source. See LICENSE. No test QA included."
         }, indent=2), encoding="utf-8")
-        bootstrap = '''import os,sys,subprocess,json,time,zipfile,hashlib
+        bootstrap = '''import os,sys,subprocess,json,time,hashlib,shutil
 from pathlib import Path
 os.environ['TOKENIZERS_PARALLELISM']='false'
 os.environ['OMP_NUM_THREADS']='4'
 os.environ['MKL_NUM_THREADS']='4'
 subprocess.run([sys.executable,'-m','pip','install','-q','transformers==4.57.6','sentencepiece==0.2.1'],check=True)
-archives=list(Path('/kaggle/input').rglob('payload.zip'))
-if len(archives)!=1: raise ValueError('Expected one private payload')
-if hashlib.sha256(archives[0].read_bytes()).hexdigest()!=EXPECTED_HASH: raise ValueError('Payload bytes changed')
+manifests=list(Path('/kaggle/input').rglob('payload-provenance.json'))
+if len(manifests)!=1: raise ValueError('Expected one private payload manifest')
+if hashlib.sha256(manifests[0].read_bytes()).hexdigest()!=EXPECTED_PROVENANCE_HASH: raise ValueError('Payload manifest changed')
+source=manifests[0].parent
+expected=json.loads(manifests[0].read_text())
 root=Path('/kaggle/working/experiment');root.mkdir()
-with zipfile.ZipFile(archives[0]) as handle: handle.extractall(root)
+for name,digest in expected['file_sha256'].items():
+ p=source/name
+ if hashlib.sha256(p.read_bytes()).hexdigest()!=digest: raise ValueError('Private payload file changed: '+name)
+ destination=root/name;destination.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,destination)
+shutil.copyfile(manifests[0],root/'payload-provenance.json')
 os.chdir(root)
 started=time.monotonic()
 command=[sys.executable,'train.py','--data','private-data','--output','run','--micro-batch','2','--threads','4']+SMOKE_ARGUMENTS
 result=subprocess.run(command)
 (root/'runtime.json').write_text(json.dumps({'exit_code':result.returncode,'wall_seconds':time.monotonic()-started,'test_files_packaged':False}))
 if result.returncode: raise SystemExit(result.returncode)
-'''.replace("EXPECTED_HASH", repr(sha(archive.read_bytes()))).replace(
+'''.replace("EXPECTED_PROVENANCE_HASH", repr(sha(files["payload-provenance.json"]))).replace(
             "SMOKE_ARGUMENTS", repr(["--smoke"] if smoke else []))
         report["private_dataset"] = dataset
         report["payload_zip_sha256"] = sha(archive.read_bytes())

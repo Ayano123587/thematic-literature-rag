@@ -19,6 +19,8 @@ from src.data.prepare_fairytale import normalized, sha
 
 
 def section_ids(value):
+    if not isinstance(value, str) or not re.fullmatch(r"\s*\d+(?:\s*,\s*\d+)*\s*", value):
+        raise ValueError("Expected comma-separated evidence section IDs")
     ids = re.findall(r"\d+", value)
     if not ids:
         raise ValueError("Question has no annotated evidence sections")
@@ -48,14 +50,16 @@ def load_split(folder, split, selection=None):
             if story["text"][section["start"]:section["end"]] != section["text"]:
                 raise ValueError("Section source offsets changed")
         stories[name] = story
-        for row in csv.DictReader(qa.open(encoding="utf-8-sig")):
+        for ordinal, row in enumerate(csv.DictReader(qa.open(encoding="utf-8-sig")), 1):
             refs = [row.get(key, "").strip() for key in ("answer1", "answer4")]
             refs = list(dict.fromkeys(r for r in refs if r))
             gold = section_ids(row["cor_section"])
             known = {s["id"] for s in story["sections"]}
             if not refs or not row["question"].strip() or not set(gold) <= known:
                 raise ValueError(f"Malformed QA in {name}")
-            questions.append({"id": name + ":" + row["question_id"], "story": name,
+            questions.append({"id": name + ":row" + str(ordinal) + ":" + row["question_id"],
+                              "source_question_id": row["question_id"], "source_row_ordinal": ordinal,
+                              "story": name,
                               "question": row["question"], "references": refs,
                               "gold_sections": gold, "origin": record["origin"],
                               "attribute": row["attribute1"], "explicit": row["ex-or-im1"]})
@@ -222,6 +226,8 @@ def validation_cohort(questions, per_origin=100):
 
 
 def run(args):
+    if args.micro_batch < 1 or args.threads < 1:
+        raise ValueError("Microbatch and thread counts must be positive")
     import torch
     from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, DataCollatorForSeq2Seq
     from torch.utils.data import DataLoader
@@ -330,6 +336,21 @@ def run(args):
                  "provenance_sha256": sha((output / "provenance.json").read_bytes())}
     selection_path = output / "selection.json"
     selection_path.write_text(json.dumps(selection, indent=2), encoding="utf-8")
+    if args.smoke:
+        # Exercise real persisted-weight loading and deterministic answer equality.
+        # The optimizer/collator retain parameter references, so release them too.
+        import gc
+        del optimizer, scaler, loader, collator, model
+        gc.collect()
+        reloaded = AutoModelForSeq2SeqLM.from_pretrained(checkpoint, local_files_only=True,
+                                                       use_safetensors=True).to(device)
+        repeated, _ = evaluate(reloaded, tokenizer, valid_stories, valid)
+        expected = json.loads((output / "validation-epoch-1-private.json").read_text())
+        equal = [r["answer"] for r in repeated] == [r["answer"] for r in expected]
+        (output / "reload-check.json").write_text(json.dumps({"answers_identical": equal,
+                                                              "questions": len(repeated)}))
+        if not equal:
+            raise ValueError("Saved checkpoint reload changed deterministic smoke answers")
     # Smoke never opens test QA. Real test is a separate explicit command and
     # exclusive output marker, so a failed test is preserved rather than rerun.
     print(json.dumps({"selected_epoch": best["epoch"], "validation": best["validation"],

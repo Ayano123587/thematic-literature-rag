@@ -3,9 +3,10 @@ from pathlib import Path
 
 import pytest
 
-from src.data.prepare_fairytale import duplicate_reason, read_sections
+from src.data.prepare_fairytale import duplicate_reason, read_sections, sha
 from src.narrative_training import (assemble, evidence_metrics, lexical_ranking,
-                                    load_split, rouge_l, section_ids, token_f1)
+                                    load_split, rouge_l, section_ids, token_f1, validation_cohort)
+from src.models.narrative_generator import answer, verify_run
 
 
 def test_test_gold_gate_before_any_file_access(tmp_path):
@@ -43,9 +44,11 @@ def test_real_answer_metrics_not_retrieval_surrogate():
 def test_lexical_reader_does_not_take_gold():
     sections = [{"text": "A wolf howled."}, {"text": "Mira carried a silver key."}]
     assert lexical_ranking("Who carried the key?", sections)[0] == 1
-    assert section_ids("1, 3 and 5") == ["1", "3", "5"]
+    assert section_ids("1, 3, 5") == ["1", "3", "5"]
     with pytest.raises(ValueError):
         section_ids("")
+    with pytest.raises(ValueError):
+        section_ids("1-3")
 
 
 class CharacterTokenizer:
@@ -65,3 +68,44 @@ def test_truncated_generation_context_citations_are_exact_source():
     assert ("xxxx" + sections[0]["text"])[citations[0]["start"]:citations[0]["end"]] == citations[0]["text"]
     with pytest.raises(ValueError, match="capacity"):
         assemble("?" * 100, sections, [0], CharacterTokenizer(), 80)
+
+
+def test_validation_cohort_is_order_invariant_and_label_independent():
+    questions = [{"id": str(i), "origin": str(i % 2), "references": ["unused"]} for i in range(20)]
+    first = validation_cohort(questions, 3)
+    assert len(first) == 6
+    assert first == validation_cohort(list(reversed(questions)), 3)
+    changed = [{**q, "references": ["changed"]} for q in questions]
+    assert [q["id"] for q in first] == [q["id"] for q in validation_cohort(changed, 3)]
+
+
+def test_generator_rejects_untrained_smoke_and_invalid_source_before_inference(tmp_path):
+    (tmp_path / "selection.json").write_text(json.dumps({"status": "frozen", "smoke": True}))
+    with pytest.raises(ValueError, match="full frozen"):
+        verify_run(tmp_path)
+    with pytest.raises(ValueError, match="nonempty"):
+        answer("", {}, None, None, {})
+    with pytest.raises(ValueError, match="hash mismatch"):
+        answer("Who?", {"text": "Forged source", "source_sha256": "0" * 64}, None, None, {})
+
+
+def test_duplicate_official_ids_keep_distinct_stable_rows_and_hash_guards(tmp_path):
+    folder = tmp_path / "train"
+    folder.mkdir()
+    story = {"id": "fixture", "text": "Mira slept.", "sections": [
+        {"id": "1", "text": "Mira slept.", "start": 0, "end": 11}]}
+    (folder / "fixture.story.json").write_text(json.dumps(story))
+    qa = folder / "fixture.qa.csv"
+    qa.write_text("question_id,question,cor_section,answer1,answer4,attribute1,ex-or-im1\n"
+                  "7,Who slept?,1,Mira,,character,explicit\n"
+                  "7,What did Mira do?,1,slept,,action,explicit\n")
+    manifest = {"stories": [{"id": "fixture", "split": "train", "origin": "fixture-origin",
+                              "source_sha256": sha(story["text"].encode()),
+                              "qa_sha256": sha(qa.read_bytes())}]}
+    (tmp_path / "manifest.json").write_text(json.dumps(manifest))
+    _, rows = load_split(tmp_path, "train")
+    assert [r["id"] for r in rows] == ["fixture:row1:7", "fixture:row2:7"]
+    assert [r["source_question_id"] for r in rows] == ["7", "7"]
+    qa.write_text(qa.read_text() + "\n")
+    with pytest.raises(ValueError, match="QA hash"):
+        load_split(tmp_path, "train")
