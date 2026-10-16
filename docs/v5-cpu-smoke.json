@@ -51,5 +51,21 @@
   "executed_training_source_sha256": "6cebf61143cd95e7d8de06822e1e605e3a1cc00a51ad8ee5d55e8afc6d7a1e31",
   "test_qa_accessed": false,
   "log_sha256": "e239832c3d3f977748b010e76bf22a16cbeb47fa93c50ee96c9c0f3f63ce7069",
-  "warnings": "Unused Kaggle gradio/diffusers packages conflict with installed hub version; no-triton CPU warning. No missing, unexpected, mismatched or uninitialized model weights."
+  "warnings": "Unused Kaggle gradio/diffusers packages conflict with installed hub version; no-triton CPU warning. No missing, unexpected, mismatched or uninitialized model weights.",
+  "validation_history": [
+    {
+      "epoch": 0,
+      "validation_examples": 2,
+      "answer_token_f1": 0.42857142857142855,
+      "exact_match": 0.0,
+      "source_citation_validity": 1.0
+    },
+    {
+      "epoch": 1,
+      "validation_examples": 2,
+      "answer_token_f1": 0.42857142857142855,
+      "exact_match": 0.0,
+      "source_citation_validity": 1.0
+    }
+  ]
 }
