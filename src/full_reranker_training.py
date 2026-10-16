@@ -126,6 +126,10 @@ def train_full(data, protocol, output, *, resume=None, smoke=False, threads=4, m
         progress = load_progress(output/"progress", wrapper, optimizer, lineage)
     else:
         snapshot(output, 0, model, tokenizer, lineage)
+        # Lazy imports/model serialization can consume incidental NumPy RNG.
+        # Start fresh training after all startup work; continuation restores the
+        # checkpoint RNG instead, so both branches share the same boundary.
+        seed_all(spec["seed"])
     micro = training["micro_groups"]
     def batch(indices):
         rows = []

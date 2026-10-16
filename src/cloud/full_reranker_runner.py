@@ -63,6 +63,29 @@ def main():
             difference=max(float((left[key]-right[key]).abs().max()) for key in left)
             if difference!=0:raise ValueError("Checkpoint continuation differs from uninterrupted real training")
             del left,right
+            # Compare the actual optimizer and RNG bundles, not only predictions.
+            def bundle(directory):
+                receipt=json.loads((directory/"progress/latest.json").read_text())
+                path=directory/"progress"/f"slot-{receipt['slot']}.pt"
+                if file_sha(path)!=receipt["state_sha256"]:raise ValueError("Changed training-state bytes")
+                return torch.load(path,map_location="cpu",weights_only=True)
+            left=bundle(output/"direct");right=bundle(output/"resumed")
+            counts={"model":0,"optimizer":0,"rng":0}
+            def exact(a,b,scope):
+                if type(a)!=type(b):raise ValueError("Changed state schema: "+scope)
+                if isinstance(a,torch.Tensor):
+                    if not torch.equal(a,b):raise ValueError("Changed state tensor: "+scope)
+                    counts[scope]+=1
+                elif isinstance(a,dict):
+                    if a.keys()!=b.keys():raise ValueError("Changed state keys: "+scope)
+                    for key in a:exact(a[key],b[key],scope)
+                elif isinstance(a,(list,tuple)):
+                    if len(a)!=len(b):raise ValueError("Changed state sequence: "+scope)
+                    for x,y in zip(a,b):exact(x,y,scope)
+                elif a!=b:raise ValueError("Changed scalar training state: "+scope)
+            for key in counts:exact(left[key],right[key],key)
+            if left["progress"]!=right["progress"]:raise ValueError("Changed training progress")
+            del left,right
             first_validation=validate_epoch(data,protocol,output/"resumed",1,output/"smoke-validation-first",
                                             smoke=True,shard_size=1,max_seconds=0)
             if first_validation["complete"] or first_validation["questions_completed"]!=1:
@@ -77,7 +100,8 @@ def main():
             receipt={"mechanics_only":True,"train_QA":20,"validation_QA":2,"direct":direct,
                      "interrupted":interrupted,"resumed":resumed,"tensor_replay_max_abs_difference":difference,
                      "resumed_epoch_weights_sha256":file_sha(output/"resumed/epoch-1/model.safetensors"),
-                     "actual_validation":validation,"validation_shard_replay_exact":True,"test_accessed":False}
+                     "actual_validation":validation,"validation_shard_replay_exact":True,
+                     "equal_training_state_tensor_counts":counts,"all_rng_states_equal":True,"test_accessed":False}
             atomic_json(output/"resume-smoke-receipt.json",receipt)
         elif ACTION=="train":
             train_full(data,protocol,output/"run",resume=previous_run)
