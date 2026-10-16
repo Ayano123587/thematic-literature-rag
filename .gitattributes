@@ -4,3 +4,14 @@ docs/full-coverage-protocol.json -text
 src/prepare_context_comparison.py -text
 src/cloud/context_comparison_runner.py -text
 tests/test_context_cloud.py -text
+docs/joint-answer-policy-protocol.json -text
+src/cloud/joint_answer_runner.py -text
+src/freeze_narrative_package.py -text
+src/joint_answer_selection.py -text
+src/joint_answer_validation.py -text
+src/models/frozen_narrative_reader.py -text
+src/narrative_cli.py -text
+src/prepare_joint_answer.py -text
+tests/test_joint_answer_selection.py -text
+tests/test_joint_answer_validation.py -text
+tests/test_joint_cloud.py -text

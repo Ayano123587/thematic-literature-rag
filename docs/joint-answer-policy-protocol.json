@@ -1,0 +1,56 @@
+{
+  "schema": "joint_answer_policy_protocol_v1",
+  "arms": [
+    "bm25_standard",
+    "bm25_windows",
+    "reranked_standard",
+    "reranked_windows"
+  ],
+  "validation_questions": 2372,
+  "validation_ids_sha256": "40d2ddd6b065469a8b947d84dbb630efcaac83acecc695606022116cc1a0f7cb",
+  "generator_epoch": 3,
+  "generator_weights_sha256": "4a51a48953e6c02c2c8aa5325a02600ae7a65dc8080abb5fb45e2b7131c39538",
+  "adapted_checkpoint": {
+    "eligible_epochs": [
+      1,
+      2
+    ],
+    "objective": "recall_at_4",
+    "tie": "earliest_epoch",
+    "independent_of_global_retrieval_winner": true
+  },
+  "retrieval": {
+    "candidate_count": 12,
+    "evidence_count": 4
+  },
+  "generation": {
+    "max_input_tokens": 512,
+    "max_new_tokens": 96,
+    "num_beams": 4,
+    "do_sample": false,
+    "early_stopping": true,
+    "use_cache": true
+  },
+  "selection": {
+    "objective": "answer_f1",
+    "baseline": "bm25_standard",
+    "minimum_f1_gain": 0.01,
+    "no_em_regression": true,
+    "citation_validity": 1.0,
+    "positive_story_interval": true,
+    "tie_order": [
+      "bm25_standard",
+      "bm25_windows",
+      "reranked_standard",
+      "reranked_windows"
+    ]
+  },
+  "interval": {
+    "resamples": 10000,
+    "seed": 20261016,
+    "confidence": 0.95,
+    "interpretation": "Descriptive reused-validation story bootstrap with three comparisons; not unbiased or multiplicity-adjusted confirmatory evidence."
+  },
+  "test_accessed": false,
+  "final_test_authorized": false
+}
