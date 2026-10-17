@@ -27,3 +27,6 @@ src/sealed_narrative_test.py -text
 src/cloud/sealed_narrative_test_runner.py -text
 src/prepare_sealed_narrative_test.py -text
 tests/test_sealed_narrative_test.py -text
+src/models/indexed_narrative_reader.py -text
+src/indexed_narrative_cli.py -text
+tests/test_indexed_narrative_reader.py -text
