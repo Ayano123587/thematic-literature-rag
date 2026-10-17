@@ -3,6 +3,7 @@
 import csv
 import io
 import json
+import platform
 from pathlib import Path
 
 import pytest
@@ -218,6 +219,7 @@ def test_full325_selected_policy_reload_and_failure_marker(
     runtime = {
         "python": "fixture",
         "torch": "fixture",
+        "machine": platform.machine(),
         "environment": {
             name: "fixture"
             for name in ("transformers", "tokenizers", "numpy", "huggingface-hub")
@@ -423,6 +425,7 @@ def package_metadata_fixture(tmp_path):
     runtime = {
         "python": "fixture",
         "torch": "fixture",
+        "machine": platform.machine(),
         "environment": {
             name: "fixture"
             for name in ("transformers", "tokenizers", "numpy", "huggingface-hub")

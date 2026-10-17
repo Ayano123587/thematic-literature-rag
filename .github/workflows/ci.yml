@@ -19,4 +19,4 @@ jobs:
           python-version: '3.11'
       - run: pip install torch --index-url https://download.pytorch.org/whl/cpu
       - run: pip install -e '.[dev]'
-      - run: pytest -q tests/test_resumable_training.py tests/test_full_generator_training.py tests/test_full_reranker_training.py
+      - run: pytest -q tests/test_resumable_training.py tests/test_full_generator_training.py tests/test_full_reranker_training.py tests/test_joint_answer_selection.py tests/test_sealed_narrative_test.py

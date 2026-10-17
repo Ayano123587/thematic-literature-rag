@@ -159,6 +159,7 @@ def test_unlisted_model_files_rejected_before_loading(tmp_path, extra):
 
 @pytest.mark.parametrize("arm", selection.ARMS)
 def test_production_output_and_source_citations_match_existing_helpers(arm):
+    pytest.importorskip("torch")
     import re
     from src.models.frozen_narrative_reader import answer
     from src.narrative_training import retrieve, assemble
@@ -256,7 +257,7 @@ def inference_package(tmp_path, monkeypatch):
     put("generator/tokenizer_config.json", {})
     put("generator/tokenizer.json", {})
     protocol = root.parent / "docs/joint-answer-policy-protocol.json"
-    put("joint-protocol.json", protocol.read_text())
+    (tmp_path / "joint-protocol.json").write_bytes(protocol.read_bytes())
     put(
         "generator-selection.json",
         {
