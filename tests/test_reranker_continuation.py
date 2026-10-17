@@ -106,6 +106,45 @@ def test_external_parent_version_required(tmp_path, monkeypatch):
         continuation.authenticate(tmp_path, contract)
 
 
+def test_full_runner_single_assignment_self_render_roundtrip():
+    import ast
+    from pathlib import Path
+
+    template = Path("src/cloud/reranker_continuation_runner.py").read_text()
+    frozen_hash = "a" * 64
+    rendered = template.replace(
+        "EXPECTED_MANIFEST_SHA256 = None",
+        "EXPECTED_MANIFEST_SHA256 = " + repr(frozen_hash),
+        1,
+    )
+    tree = ast.parse(rendered)
+    assignments = [
+        node
+        for node in tree.body
+        if isinstance(node, ast.Assign)
+        and any(
+            isinstance(target, ast.Name) and target.id == "EXPECTED_MANIFEST_SHA256"
+            for target in node.targets
+        )
+    ]
+    assert len(assignments) == 1
+    assert ast.literal_eval(assignments[0].value) == frozen_hash
+    checker = next(
+        node
+        for node in ast.walk(tree)
+        if isinstance(node, ast.Call)
+        and isinstance(node.func, ast.Attribute)
+        and node.func.attr == "replace"
+    )
+    assert ast.literal_eval(checker.args[0]) == "EXPECTED_MANIFEST_SHA256 = None"
+    assert ast.literal_eval(checker.args[2]) == 1
+    assert rendered == template.replace(
+        ast.literal_eval(checker.args[0]),
+        "EXPECTED_MANIFEST_SHA256 = " + repr(frozen_hash),
+        ast.literal_eval(checker.args[2]),
+    )
+
+
 @pytest.mark.parametrize(
     "failure",
     [
@@ -172,8 +211,15 @@ def test_runner_authentication_and_completion_flow(tmp_path, monkeypatch, failur
         template.replace(
             "EXPECTED_MANIFEST_SHA256 = None",
             "EXPECTED_MANIFEST_SHA256 = " + repr(manifest_sha),
+            1,
         )
     )
+    # Execute the rendered source itself: importing the unrendered module would
+    # miss a substitution that accidentally changes the checker's own literal.
+    rendered_module = types.ModuleType("actual_rendered_continuation_fixture")
+    rendered_module.__file__ = str(script)
+    exec(compile(script.read_text(), str(script), "exec"), rendered_module.__dict__)
+    runner = rendered_module
     monkeypatch.setattr(runner, "__file__", str(script))
     monkeypatch.setattr(runner, "EXPECTED_MANIFEST_SHA256", manifest_sha)
     original_path = Path

@@ -42,6 +42,7 @@ def main():
         .replace(
             "EXPECTED_MANIFEST_SHA256 = None",
             "EXPECTED_MANIFEST_SHA256 = " + repr(EXPECTED_MANIFEST_SHA256),
+            1,
         )
     )
     if Path(__file__).read_text() != rendered:

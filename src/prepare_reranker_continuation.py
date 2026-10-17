@@ -103,6 +103,7 @@ def prepare(original, parent, output, dataset):
         .replace(
             "EXPECTED_MANIFEST_SHA256 = None",
             "EXPECTED_MANIFEST_SHA256 = " + repr(sha(raw)),
+            1,
         )
     )
     (output / "run.py").write_text(runner, encoding="utf-8", newline="\n")
