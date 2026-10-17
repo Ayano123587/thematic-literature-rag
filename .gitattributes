@@ -23,3 +23,7 @@ src/reranker_validation_transport.py -text
 src/cloud/reranker_validation_runner.py -text
 src/prepare_reranker_validation.py -text
 tests/test_reranker_validation_transport.py -text
+src/sealed_narrative_test.py -text
+src/cloud/sealed_narrative_test_runner.py -text
+src/prepare_sealed_narrative_test.py -text
+tests/test_sealed_narrative_test.py -text
