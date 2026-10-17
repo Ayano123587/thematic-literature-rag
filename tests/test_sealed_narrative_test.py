@@ -20,6 +20,10 @@ import src.sealed_narrative_test as sealed
         ),
         (b"question_id,question,answer1\n1,\xff,\xfe\n", ["1"]),
         (b'question_id,answer1\n"id""quoted",x\n', ['id"quoted']),
+        (b"question_id,question\n1,a\n1,b\n", ["1", "1"]),
+        (b'question_id,question\n"  raw\nID  ",x\n,y\n', ["  raw\nID  ", ""]),
+        (b"question_id,question\n" + b"x" * 201 + b",a\n", ["x" * 201]),
+        (b"question_id,question\n\x01,a\n", ["\x01"]),
     ],
 )
 def test_id_scanner_decodes_only_metadata(raw, expected):
@@ -29,7 +33,6 @@ def test_id_scanner_decodes_only_metadata(raw, expected):
 @pytest.mark.parametrize(
     "raw",
     [
-        b"question_id,question\n1,a\n1,b\n",
         b"question_id,question\n\xff,a\n",
         b'question_id,question\n1,"truncated',
         b'question_id,question\n1,"quoted"junk\n',
@@ -120,6 +123,40 @@ def test_full325_metadata_reservation_and_tamper(tmp_path, monkeypatch):
     with pytest.raises(ValueError, match="before metadata scan"):
         sealed.cohort_metadata(data, reservation)
     assert reservation.exists()
+
+
+def test_repeated_raw_ids_keep_distinct_canonical_ordinals(tmp_path, monkeypatch):
+    data, ledger, reservation = fixture_cohort(tmp_path, monkeypatch)
+    path = sorted((data / "test").glob("*.qa.csv"))[0]
+    rows = list(csv.DictReader(io.StringIO(path.read_bytes().decode("utf-8-sig"))))
+    raw_id = '  shared\n"raw"  '
+    rows[0]["question_id"] = raw_id
+    rows[1]["question_id"] = raw_id
+    rows[2]["question_id"] = ""
+    stream = io.StringIO(newline="")
+    writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
+    writer.writeheader()
+    writer.writerows(rows)
+    path.write_bytes(stream.getvalue().encode("utf-8-sig"))
+    manifest = sealed.read(data / "manifest.json")
+    name = path.name.removesuffix(".qa.csv")
+    next(r for r in manifest["stories"] if r["id"] == name)["qa_sha256"] = (
+        sealed.digest(path)
+    )
+    (data / "manifest.json").write_text(json.dumps(manifest))
+    monkeypatch.setattr(sealed, "FULL_MANIFEST", sealed.digest(data / "manifest.json"))
+    cohort = sealed.cohort_metadata(data, reservation)
+    story = next(r for r in cohort["stories"] if r["id"] == name)
+    assert story["row_ids"][:3] == [
+        name + ":row1:" + raw_id,
+        name + ":row2:" + raw_id,
+        name + ":row3:",
+    ]
+    assert len(set(cohort["ids"])) == 325
+    sealed.authenticate_cohort(data, cohort)
+    story["row_ids"][1] = story["row_ids"][0]
+    with pytest.raises(ValueError, match="question IDs differ"):
+        sealed.authenticate_cohort(data, cohort)
 
 
 def test_subset_cannot_be_released(tmp_path, monkeypatch):

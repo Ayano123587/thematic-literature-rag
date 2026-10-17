@@ -119,15 +119,8 @@ def question_ids_only(raw):
         else:
             if len(fields) != width:
                 raise ValueError("CSV metadata column count differs")
-            identifier = fields[target].decode("utf-8").strip()
-            if (
-                not identifier
-                or len(identifier) > 200
-                or any(ord(c) < 32 for c in identifier)
-                or identifier in ids
-            ):
-                raise ValueError("Invalid or duplicate source question ID")
-            ids.append(identifier)
+            # Match load_split exactly; row ordinals provide canonical uniqueness.
+            ids.append(fields[target].decode("utf-8"))
     if width is None or not ids:
         raise ValueError("Nonempty CSV metadata required")
     return ids
