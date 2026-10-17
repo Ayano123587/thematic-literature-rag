@@ -150,6 +150,9 @@ def test_full_runner_single_assignment_self_render_roundtrip():
     [
         None,
         "runtime",
+        "torch_runtime",
+        "package_runtime",
+        "pip_failure",
         "source",
         "qa",
         "template",
@@ -184,7 +187,10 @@ def test_runner_authentication_and_completion_flow(tmp_path, monkeypatch, failur
     identity = {
         "python": "fixture",
         "torch": "fixture",
-        "environment": {},
+        "environment": {
+            name: "fixture"
+            for name in ("transformers", "tokenizers", "numpy", "huggingface-hub")
+        },
         "source_sha256": {"science.py": write("src/science.py", b"science")},
         "protocol_sha256": write("docs/full-coverage-protocol.json", b"protocol"),
         "manifest_sha256": write("private-data/manifest.json", b"data"),
@@ -232,7 +238,9 @@ def test_runner_authentication_and_completion_flow(tmp_path, monkeypatch, failur
             else (
                 working / "full-reranker/run"
                 if str(value) == "/kaggle/working/full-reranker/run"
-                else original_path(value)
+                else (
+                    working if str(value) == "/kaggle/working" else original_path(value)
+                )
             )
         ),
     )
@@ -241,7 +249,16 @@ def test_runner_authentication_and_completion_flow(tmp_path, monkeypatch, failur
         "python_version",
         lambda: "wrong" if failure == "runtime" else "fixture",
     )
-    monkeypatch.setattr(runner.importlib.metadata, "version", lambda name: "fixture")
+    monkeypatch.setattr(
+        runner.importlib.metadata,
+        "version",
+        lambda name: (
+            "wrong"
+            if (failure == "torch_runtime" and name == "torch")
+            or (failure == "package_runtime" and name == "transformers")
+            else "fixture"
+        ),
+    )
     calls = []
     monkeypatch.setattr(
         continuation,
@@ -249,9 +266,26 @@ def test_runner_authentication_and_completion_flow(tmp_path, monkeypatch, failur
         lambda folder, frozen: calls.append("authenticated") or identity,
     )
 
+    def pip(command, check):
+        assert calls == ["authenticated"]
+        assert command[:5] == [sys.executable, "-m", "pip", "install", "-q"]
+        assert command[5:] == [
+            name + "==fixture"
+            for name in ("transformers", "tokenizers", "numpy", "huggingface-hub")
+        ]
+        assert check is True
+        assert runner.os.environ["TOKENIZERS_PARALLELISM"] == "false"
+        assert runner.os.environ["OMP_NUM_THREADS"] == "4"
+        calls.append("pinned bootstrap")
+        if failure == "pip_failure":
+            raise runner.subprocess.CalledProcessError(1, command)
+
+    monkeypatch.setattr(runner.subprocess, "run", pip)
+
     def trainer(data, protocol, output, **kwargs):
         calls.append("trained")
         assert calls[0] == "authenticated"
+        assert calls[1] == "pinned bootstrap"
         output.mkdir(parents=True)
         progress = {"epoch": 2 if failure in ("paused", "final_epoch") else 3}
         result = {
@@ -303,6 +337,9 @@ def test_runner_authentication_and_completion_flow(tmp_path, monkeypatch, failur
         script.write_text(script.read_text() + "# changed")
     if failure in (
         "runtime",
+        "torch_runtime",
+        "package_runtime",
+        "pip_failure",
         "source",
         "qa",
         "template",
@@ -311,8 +348,28 @@ def test_runner_authentication_and_completion_flow(tmp_path, monkeypatch, failur
     ):
         with pytest.raises(ValueError):
             runner.main()
-        if failure in ("runtime", "source", "qa", "template"):
+        if failure in (
+            "runtime",
+            "torch_runtime",
+            "package_runtime",
+            "pip_failure",
+            "source",
+            "qa",
+            "template",
+        ):
             assert "trained" not in calls
+        if failure in ("runtime", "torch_runtime", "package_runtime", "pip_failure"):
+            diagnostic = json.loads((working / "continuation-runtime.json").read_text())
+            assert diagnostic["model_loaded"] is False
+            assert diagnostic["expected"]["python"] == "fixture"
+            if failure == "runtime":
+                assert diagnostic["difference_keys"] == ["python"]
+            if failure == "torch_runtime":
+                assert diagnostic["difference_keys"] == ["torch"]
+            if failure == "package_runtime":
+                assert diagnostic["difference_keys"] == ["environment.transformers"]
+            if failure == "pip_failure":
+                assert diagnostic["bootstrap_error"] == "CalledProcessError"
     else:
         runner.main()
         proof = json.loads(

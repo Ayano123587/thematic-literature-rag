@@ -3,12 +3,80 @@
 import hashlib
 import importlib.metadata
 import json
+import os
 from pathlib import Path
 import platform
+import subprocess
 import sys
 import time
 
 EXPECTED_MANIFEST_SHA256 = None
+
+PACKAGES = ("transformers", "tokenizers", "numpy", "huggingface-hub")
+
+
+def runtime_versions():
+    def version(name):
+        try:
+            return importlib.metadata.version(name)
+        except importlib.metadata.PackageNotFoundError:
+            return None
+
+    return {
+        "python": platform.python_version(),
+        "torch": version("torch"),
+        "environment": {name: version(name) for name in PACKAGES},
+    }
+
+
+def restore_runtime(identity):
+    """Restore authenticated package pins before any numerical training import."""
+    if set(identity["environment"]) != set(PACKAGES):
+        raise ValueError("Incomplete original runtime package inventory")
+    expected = {key: identity[key] for key in ("python", "torch", "environment")}
+    before = runtime_versions()
+    os.environ["TOKENIZERS_PARALLELISM"] = "false"
+    os.environ["OMP_NUM_THREADS"] = "4"
+    command = [sys.executable, "-m", "pip", "install", "-q"] + [
+        name + "==" + identity["environment"][name] for name in PACKAGES
+    ]
+    receipt_path = Path("/kaggle/working") / "continuation-runtime.json"
+    receipt_path.parent.mkdir(parents=True, exist_ok=True)
+    bootstrap_error = None
+    try:
+        subprocess.run(command, check=True)
+    except (OSError, subprocess.CalledProcessError) as error:
+        bootstrap_error = type(error).__name__
+    actual = runtime_versions()
+    differences = []
+    for name in ("python", "torch"):
+        if actual[name] != expected[name]:
+            differences.append(name)
+    differences.extend(
+        "environment." + name
+        for name in PACKAGES
+        if actual["environment"][name] != expected["environment"][name]
+    )
+    diagnostic = {
+        "schema": "reranker_continuation_runtime_v1",
+        "expected": expected,
+        "before": before,
+        "actual": actual,
+        "difference_keys": differences,
+        "bootstrap_error": bootstrap_error,
+        "installed_pins": command[5:],
+        "test_accessed": False,
+        "model_loaded": False,
+    }
+    receipt_path.write_text(json.dumps(diagnostic, indent=2, allow_nan=False) + "\n")
+    print(json.dumps(diagnostic, allow_nan=False), flush=True)
+    if bootstrap_error is not None:
+        raise ValueError("Original runtime bootstrap failed")
+    if differences:
+        raise ValueError(
+            "Original numerical runtime differs: " + ", ".join(differences)
+        )
+    return receipt_path
 
 
 def sha(path):
@@ -60,13 +128,7 @@ def main():
         raise ValueError("Expected one exact immutable parent")
     parent = parents[0]
     identity = authenticate(parent, contract)
-    if platform.python_version() != identity["python"] or any(
-        importlib.metadata.version(name) != version
-        for name, version in identity["environment"].items()
-    ):
-        raise ValueError("Original numerical runtime differs")
-    if importlib.metadata.version("torch") != identity["torch"]:
-        raise ValueError("Original torch runtime differs")
+    runtime_receipt = restore_runtime(identity)
     for name, expected in identity["source_sha256"].items():
         if sha(payload / "src" / name) != expected:
             raise ValueError("Original scientific training source differs")
@@ -121,6 +183,7 @@ def main():
         "schema": "reranker_continuation_execution_v1",
         "manifest_sha256": EXPECTED_MANIFEST_SHA256,
         "runner_sha256": sha(__file__),
+        "runtime_receipt_sha256": sha(runtime_receipt),
         "parent": contract["parent"],
         "initial_progress": contract["progress"],
         "initial_state_sha256": contract["files"]["progress/slot-0.pt"],
