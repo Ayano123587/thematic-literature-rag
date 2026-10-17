@@ -1,0 +1,45 @@
+{
+  "questions": 2372,
+  "stories": 54,
+  "selected_arm": "reranked_windows",
+  "metrics": {
+    "bm25_standard": {
+      "f1": 0.2656467270660276,
+      "em": 0.14165261382799327,
+      "citation_validity": 1.0
+    },
+    "bm25_windows": {
+      "f1": 0.3332797225968603,
+      "em": 0.1812816188870152,
+      "citation_validity": 1.0
+    },
+    "reranked_standard": {
+      "f1": 0.27368857336037894,
+      "em": 0.1433389544688027,
+      "citation_validity": 1.0
+    },
+    "reranked_windows": {
+      "f1": 0.3528916649753075,
+      "em": 0.19308600337268128,
+      "citation_validity": 1.0
+    }
+  },
+  "validation_kernel": "aikyatansinha/portfolio-rag-full-joint-comparison-v1/2",
+  "package_kernel": "aikyatansinha/audited-narrative-production-package/1",
+  "package_contract_sha256": "a3148b684777e34db0c814f27d0f5d24f8437d9f17dbe1c9c466c64f83fd6ff1",
+  "generator_epoch": 3,
+  "reranker_epoch": 1,
+  "cohort": {
+    "training_questions": 7883,
+    "validation_questions": 2372,
+    "sealed_test_questions": 325
+  },
+  "independent_audit": {
+    "pass": true,
+    "source_assembly_budget_citations_scores_replay": true,
+    "BM25_retrieval_and_two_arm_prior_cache_exact": true,
+    "all38_shards_raw_sha_authenticated": true,
+    "selection_and_10000_story_bootstrap_replay_exact": true
+  },
+  "scope": "Supplied-story FairytaleQA; custom source-family split. Validation selected the recipe."
+}

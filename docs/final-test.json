@@ -1,0 +1,161 @@
+{
+  "complete": true,
+  "questions": 325,
+  "stories": 24,
+  "families": [
+    "beatrix-potter-fairybook",
+    "grimm-fairybook"
+  ],
+  "kernel_id": 139299637,
+  "version": 1,
+  "all_prediction_raw_sha_exact": true,
+  "source_reference_metric_replay_exact": true,
+  "all_citations_full_source_and_section_bounds_exact": true,
+  "cloud_reload325_receipt_bound": true,
+  "metrics": {
+    "n": 325,
+    "em": 0.22153846153846155,
+    "f1": 0.4569556863936803,
+    "rouge_l": 0.4700135433069115,
+    "evidence_recall": 0.9646153846153847,
+    "evidence_precision": 0.25846153846153846,
+    "retained_evidence_recall": 0.9646153846153847,
+    "citation_validity": 1.0,
+    "origin": {
+      "beatrix-potter-fairybook": {
+        "n": 176,
+        "em": 0.1875,
+        "f1": 0.4776162625076505,
+        "rouge_l": 0.48184218573723425,
+        "evidence_recall": 0.9801136363636364,
+        "evidence_precision": 0.2528409090909091,
+        "retained_evidence_recall": 0.9801136363636364,
+        "citation_validity": 1.0
+      },
+      "grimm-fairybook": {
+        "n": 149,
+        "em": 0.26174496644295303,
+        "f1": 0.4325512474939572,
+        "rouge_l": 0.45604145560397985,
+        "evidence_recall": 0.9463087248322147,
+        "evidence_precision": 0.2651006711409396,
+        "retained_evidence_recall": 0.9463087248322147,
+        "citation_validity": 1.0
+      }
+    },
+    "explicit": {
+      "explicit": {
+        "n": 255,
+        "em": 0.2627450980392157,
+        "f1": 0.5183563802143366,
+        "rouge_l": 0.530234099037145,
+        "evidence_recall": 0.9686274509803922,
+        "evidence_precision": 0.2529411764705882,
+        "retained_evidence_recall": 0.9686274509803922,
+        "citation_validity": 1.0
+      },
+      "implicit": {
+        "n": 70,
+        "em": 0.07142857142857142,
+        "f1": 0.2332817303327178,
+        "rouge_l": 0.25063866171820387,
+        "evidence_recall": 0.95,
+        "evidence_precision": 0.2785714285714286,
+        "retained_evidence_recall": 0.95,
+        "citation_validity": 1.0
+      }
+    },
+    "attribute": {
+      "action": {
+        "n": 129,
+        "em": 0.24031007751937986,
+        "f1": 0.4457256224504431,
+        "rouge_l": 0.4591072157107174,
+        "evidence_recall": 0.9651162790697675,
+        "evidence_precision": 0.25,
+        "retained_evidence_recall": 0.9651162790697675,
+        "citation_validity": 1.0
+      },
+      "causal relationship": {
+        "n": 84,
+        "em": 0.10714285714285714,
+        "f1": 0.46430182300097983,
+        "rouge_l": 0.46919186143269215,
+        "evidence_recall": 0.9821428571428571,
+        "evidence_precision": 0.2767857142857143,
+        "retained_evidence_recall": 0.9821428571428571,
+        "citation_validity": 1.0
+      },
+      "character": {
+        "n": 36,
+        "em": 0.4166666666666667,
+        "f1": 0.5991552956465237,
+        "rouge_l": 0.6083375729209063,
+        "evidence_recall": 1.0,
+        "evidence_precision": 0.2638888888888889,
+        "retained_evidence_recall": 1.0,
+        "citation_validity": 1.0
+      },
+      "feeling": {
+        "n": 21,
+        "em": 0.23809523809523808,
+        "f1": 0.37566137566137564,
+        "rouge_l": 0.3746031746031746,
+        "evidence_recall": 0.8571428571428571,
+        "evidence_precision": 0.2261904761904762,
+        "retained_evidence_recall": 0.8571428571428571,
+        "citation_validity": 1.0
+      },
+      "outcome resolution": {
+        "n": 33,
+        "em": 0.21212121212121213,
+        "f1": 0.4634316126515003,
+        "rouge_l": 0.4895340854431763,
+        "evidence_recall": 0.9848484848484849,
+        "evidence_precision": 0.26515151515151514,
+        "retained_evidence_recall": 0.9848484848484849,
+        "citation_validity": 1.0
+      },
+      "prediction": {
+        "n": 2,
+        "em": 0.0,
+        "f1": 0.0,
+        "rouge_l": 0.0,
+        "evidence_recall": 1.0,
+        "evidence_precision": 0.375,
+        "retained_evidence_recall": 1.0,
+        "citation_validity": 1.0
+      },
+      "setting": {
+        "n": 20,
+        "em": 0.25,
+        "f1": 0.36294584500466853,
+        "rouge_l": 0.40980051381367166,
+        "evidence_recall": 0.9,
+        "evidence_precision": 0.2375,
+        "retained_evidence_recall": 0.9,
+        "citation_validity": 1.0
+      }
+    },
+    "reference_count": {
+      "1": {
+        "n": 325,
+        "em": 0.22153846153846155,
+        "f1": 0.4569556863936803,
+        "rouge_l": 0.4700135433069115,
+        "evidence_recall": 0.9646153846153847,
+        "evidence_precision": 0.25846153846153846,
+        "retained_evidence_recall": 0.9646153846153847,
+        "citation_validity": 1.0
+      }
+    }
+  },
+  "result_sha256": "1b1ac1de5ce1928316a4f9c4bdbcf0b0304664b9d2e973ee2a523d0b4d3ce2cc",
+  "execution_sha256": "0bddf3e9b56a65f71f46930004862b040b917673ab933cfe85d9b73a45014643",
+  "source_sha256": "4245251f326ea6b6c58edd731cde46536573a3a8c067ae593ec7bef008164c8b",
+  "package_contract_sha256": "a3148b684777e34db0c814f27d0f5d24f8437d9f17dbe1c9c466c64f83fd6ff1",
+  "root_freeze_sha256": "602fa8b673c63ba2990abe892af130e919f9572701101f41e5cb7f49af29fa2b",
+  "audit_sha256": "5272521964d661cf3748a7ff4e3d9fdb6ee7fddf9bf2d4399326b499e89030f0",
+  "kernel": "aikyatansinha/portfolio-narrative-sealed-full325-v1/1",
+  "scope": "One frozen recipe; custom source-family test split; supplied story identity."
+}

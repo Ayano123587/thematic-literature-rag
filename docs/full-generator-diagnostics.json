@@ -1,0 +1,141 @@
+{
+  "schema": "full_generator_validation_diagnostics_v1",
+  "epoch": 3,
+  "weights_sha256": "4a51a48953e6c02c2c8aa5325a02600ae7a65dc8080abb5fb45e2b7131c39538",
+  "rows": 2372,
+  "validation_ids_sha256": "40d2ddd6b065469a8b947d84dbb630efcaac83acecc695606022116cc1a0f7cb",
+  "shard_sha256": {
+    "shard-00000.json": "a3273687d0901156c7bf17be6ef35317245739810cb280660c632a3a24c5c8ba",
+    "shard-00064.json": "04fa080b84a953020eb96c3533f63f30b0e063f7980540ff9d279553bc887c4f",
+    "shard-00128.json": "d01ef71eea4f8674564f2ab852b59489b689986a44cd3711a263701acf7d4ca9",
+    "shard-00192.json": "a99dcd2cd811cfeb6ab1552ddb0d00df2b5100baa01f00506f1fa9abfa95bcc6",
+    "shard-00256.json": "7b6f44eb1f6e20a6e45074d5e245bd676e49fc24d9c0f93dbfc6fcfca129fc7f",
+    "shard-00320.json": "d200bfc08b0f9cd5edab20789d0692509f880a5cd22f55751b5312bdb605ea46",
+    "shard-00384.json": "4536432e50ffd0bbfbb63eaff85c7b9720f610e1214b8a6ed0b14c740b03b49b",
+    "shard-00448.json": "f33887cc32a1ed349c650f60633fd66b32e708df1d127303ff23dcfc8459db1f",
+    "shard-00512.json": "c660884b18df4d20df0743fb4347e44e2dee205e5ee657d0e18b1d542aeed039",
+    "shard-00576.json": "386684cc6939d76eda4d1409c4ee7f8b902cb0eeb6be17b2d559985aae37195f",
+    "shard-00640.json": "b1eeebd370a1134bdd556dcda6fda3c5d1f423bf6d0d18586df39a4efa8954f3",
+    "shard-00704.json": "bb50e0edabdc6e9c86cb53a92de0a5ccb81fd854915ccc8249179cf641c44e87",
+    "shard-00768.json": "6f285e428af8e68da2b890a7f3ea08c62e351e11669a0aa9de79a90da720959f",
+    "shard-00832.json": "a040d45398eb6ea76128c74225516b9a95e465825337276f0b01b20b1f860df9",
+    "shard-00896.json": "0aeaa5558ca6a20fa1e5abcefa0b44891adbf6c4915a71db6b70e7b2769e7bc7",
+    "shard-00960.json": "2af2fd502fde016ae69e239a7ce2131a64ab126c03a54df1d21605dae7685c54",
+    "shard-01024.json": "3f67492c9ff8579d4a35358054af73cac9b15b73f53320160ae55711ef0498c0",
+    "shard-01088.json": "e63e760617dbfa7e0fba3c92d8e4e607e7c8d2815d7cd7ccfa94c55af17e3354",
+    "shard-01152.json": "f5f2cdbcdb021ab2bfe5e5801820f5bba19db8052b201f6faa35bd417851f788",
+    "shard-01216.json": "ee640e89c6749d45086489858af307123ec57e1b04a91b6706c5cc7935c2d5bd",
+    "shard-01280.json": "1e2d605db490bc08df5a47640aad70edcc503a765370ebf8c120827b9bb397fb",
+    "shard-01344.json": "e12575c00e5e027fe42678c5818b39d682a6803d027a51da382c086695e1198b",
+    "shard-01408.json": "3e20bcd7c61c467dc8db1abe2ad02bec3721df093fb944a9621617cf44729970",
+    "shard-01472.json": "b0fcb4d4a5cb097c1377e0b1efd7bbede5b53dee87cfad64f2463a2d9817eb84",
+    "shard-01536.json": "36bab18f9a11b3ed15d228def2a7bcd315a4fc4d4012d22c58d49331cee28f15",
+    "shard-01600.json": "e64099fb8a9430e46ad3053d19e6f9112ab97ed2f14c097f1d12ee963c4964d6",
+    "shard-01664.json": "06817aae6cf37022a64deb559bd8c643aa20f443fe5aca9dca3402ee0cb21e97",
+    "shard-01728.json": "2ed184eec7d6150c4f0e629402af510d299edc994d6f9fd8ec236656e7362fd4",
+    "shard-01792.json": "9021d842a984f91c5473465adb35e9724ae6a5d1ec79065610a5695b8ea6be95",
+    "shard-01856.json": "4d2e89e3dc96757f82584c5e73b89e861ee6f4d6f86fb1502dae3f111e2fc784",
+    "shard-01920.json": "ccf0044954d7e6776f09a2210a0d9368bc455294587f17d71c5faea14ca8dc38",
+    "shard-01984.json": "e8ec3bb9af16f1a8b1623986522ea8e125c1b3327c9aceddf33770ae9868bade",
+    "shard-02048.json": "08e7429c8d31918f5a8db44c72f4e6e1d2e880e4c6855e570cf9b3960b1b664e",
+    "shard-02112.json": "cdae32a32b73df73d4e6e16c275759a25ea1cab1de61ec886323b806948849bb",
+    "shard-02176.json": "d80af2de12cb2f52957dea7f1ae637fc1e7cd5532f49cbdff0baf4ec76d53874",
+    "shard-02240.json": "91e5439eabff0b0682fc824e7692d358ba46c23b4d1a840b12ac2234c3990b1e",
+    "shard-02304.json": "8031e81e85a322c1ab838af062d288a358f1a1482130f2d23880295bca287c4c",
+    "shard-02368.json": "f90285327fd99a09978f626a8e630ef86a8f372b4c6658147bd01ce3c55766f9"
+  },
+  "means": {
+    "f1": 0.2656467270660276,
+    "em": 0.14165261382799327,
+    "rouge_l": 0.28917312043891985,
+    "citation_validity": 1.0,
+    "evidence_recall": 0.8134134345137718,
+    "retained_evidence_recall": 0.5595489038785835
+  },
+  "f1_distribution": [
+    {
+      "token_f1": "0",
+      "questions": 1139
+    },
+    {
+      "token_f1": "(0,0.25]",
+      "questions": 496
+    },
+    {
+      "token_f1": "(0.25,0.5]",
+      "questions": 218
+    },
+    {
+      "token_f1": "(0.5,0.75]",
+      "questions": 100
+    },
+    {
+      "token_f1": "(0.75,1)",
+      "questions": 83
+    },
+    {
+      "token_f1": "1",
+      "questions": 336
+    }
+  ],
+  "attributes": [
+    {
+      "attribute": "action",
+      "questions": 761,
+      "f1": 0.26640363291107677,
+      "em": 0.13009198423127463,
+      "retained_evidence_recall": 0.5431449846692947,
+      "citation_validity": 1.0
+    },
+    {
+      "attribute": "causal relationship",
+      "questions": 667,
+      "f1": 0.243929371079695,
+      "em": 0.0704647676161919,
+      "retained_evidence_recall": 0.5925787106446777,
+      "citation_validity": 1.0
+    },
+    {
+      "attribute": "character",
+      "questions": 267,
+      "f1": 0.41973826509499795,
+      "em": 0.3445692883895131,
+      "retained_evidence_recall": 0.6960049937578028,
+      "citation_validity": 1.0
+    },
+    {
+      "attribute": "feeling",
+      "questions": 240,
+      "f1": 0.16655982905982905,
+      "em": 0.1625,
+      "retained_evidence_recall": 0.4513888888888889,
+      "citation_validity": 1.0
+    },
+    {
+      "attribute": "outcome resolution",
+      "questions": 237,
+      "f1": 0.22609045378415088,
+      "em": 0.08438818565400844,
+      "retained_evidence_recall": 0.49156118143459915,
+      "citation_validity": 1.0
+    },
+    {
+      "attribute": "prediction",
+      "questions": 52,
+      "f1": 0.2636775231293724,
+      "em": 0.15384615384615385,
+      "retained_evidence_recall": 0.5673076923076923,
+      "citation_validity": 1.0
+    },
+    {
+      "attribute": "setting",
+      "questions": 148,
+      "f1": 0.30635700635700636,
+      "em": 0.20945945945945946,
+      "retained_evidence_recall": 0.5304054054054054,
+      "citation_validity": 1.0
+    }
+  ],
+  "test_accessed": false,
+  "interpretation": "Selected-checkpoint reused-validation diagnostics; citation validity checks source geometry, not answer entailment."
+}

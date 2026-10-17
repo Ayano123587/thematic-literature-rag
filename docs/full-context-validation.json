@@ -1,0 +1,30 @@
+{
+  "questions": 2372,
+  "stories": 54,
+  "baseline": {
+    "f1": 0.2656467270660276,
+    "em": 0.14165261382799327,
+    "rouge_l": 0.28917312043891985
+  },
+  "question_windows": {
+    "f1": 0.3332797225968603,
+    "em": 0.1812816188870152,
+    "rouge_l": 0.35270036494434015
+  },
+  "paired_story_f1_interval": {
+    "low": 0.05333767132435418,
+    "high": 0.08059165496211171,
+    "stories": 54,
+    "questions": 2372,
+    "resamples": 10000,
+    "seed": 20261016,
+    "interpretation": "Descriptive validation story-cluster interval; not independent confirmatory significance"
+  },
+  "source_citation_token_budget_replay_exact": true,
+  "execution_sha256": "43da51b0061bca4418a9f137fc4f9ed32706ccefc277ccdda04fff2d9a6a71d4",
+  "checkpoint": "epoch-3",
+  "generator_weights_sha256": "4a51a48953e6c02c2c8aa5325a02600ae7a65dc8080abb5fb45e2b7131c39538",
+  "test_questions_evaluated": 0,
+  "final_joint_policy_frozen": false,
+  "limitations": "Repeated validation reuse; known story identifier; citation span correctness does not establish answer entailment."
+}

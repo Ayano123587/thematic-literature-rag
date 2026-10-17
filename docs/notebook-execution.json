@@ -3,13 +3,13 @@
   "notebooks": [
     {
       "notebook": "notebooks/00_main_literature_rag.ipynb",
-      "code_cells_executed": 27,
+      "code_cells_executed": 29,
       "actual_svg_plots": 1,
-      "actual_tables": 5,
-      "seconds": 36.98,
+      "actual_tables": 6,
       "neural_model_training_or_inference": false,
       "test_qa_parsed_or_scored": false,
-      "normalized_utf8_sha256": "ca5c66da9451450b0b2c2c740e2ab9fed424146773f73b035e3f7f5a040cdcf5"
+      "normalized_utf8_sha256": "047988ce8d8a39158ed18d3948b46e766a61aa4bf49f69629d8dcedd538286dd",
+      "actual_png_plots": 2
     },
     {
       "notebook": "notebooks/01_source_family_eda.ipynb",
@@ -23,23 +23,49 @@
     },
     {
       "notebook": "notebooks/02_validation_experiments.ipynb",
-      "code_cells_executed": 7,
-      "actual_svg_plots": 2,
-      "actual_tables": 3,
-      "seconds": 3.37,
+      "code_cells_executed": 9,
+      "actual_svg_plots": 3,
+      "actual_tables": 6,
       "neural_model_training_or_inference": false,
       "test_qa_parsed_or_scored": false,
-      "normalized_utf8_sha256": "fb29eeb33b4755d501b1325a0d88affcea5b7156b04e6efab026f60e94c73e92"
+      "normalized_utf8_sha256": "475a2af5fde08fed8fc81b35064e05729bf601bb9f5e48283f1c4a13e13759d3",
+      "actual_png_plots": 0
     },
     {
       "notebook": "notebooks/03_citation_and_error_analysis.ipynb",
-      "code_cells_executed": 8,
+      "code_cells_executed": 9,
       "actual_svg_plots": 1,
-      "actual_tables": 3,
-      "seconds": 4.38,
+      "actual_tables": 6,
       "neural_model_training_or_inference": false,
       "test_qa_parsed_or_scored": false,
-      "normalized_utf8_sha256": "875e625155829a753923344c67bfcf62d6e4e3e8fdc571fc89e2533a78dfc894"
+      "normalized_utf8_sha256": "f8e429e7761672c79d19d56ab5e52f5c1da600a582a36c0b528e08a1fa4be917",
+      "actual_png_plots": 1
+    },
+    {
+      "notebook": "notebooks/04_context_policy_comparison.ipynb",
+      "code_cells_executed": 3,
+      "actual_png_plots": 1,
+      "neural_model_training_or_inference": false,
+      "test_qa_parsed_or_scored": false,
+      "normalized_utf8_sha256": "bbd669f08fe90618924d203f6d9b7132599f321801897acb3f1171ed244f3c1b"
+    },
+    {
+      "notebook": "notebooks/05_trained_reader_full_validation.ipynb",
+      "code_cells_executed": 4,
+      "actual_png_plots": 2,
+      "neural_model_training_or_inference": false,
+      "recorded_full_cloud_result_replay": true,
+      "test_gold_parsed_here": false,
+      "normalized_utf8_sha256": "ba780d92b085176c0f41ed10154d6a4e890f385d8dc2daf54cce71546b0d57ac"
+    },
+    {
+      "notebook": "notebooks/06_frozen_reader_full_test.ipynb",
+      "code_cells_executed": 5,
+      "actual_png_plots": 3,
+      "neural_model_training_or_inference": false,
+      "recorded_full_cloud_result_replay": true,
+      "test_gold_parsed_here": false,
+      "normalized_utf8_sha256": "53d52f887a859960766a17bcf995fdd0b62f2ce35b733d4a04dc17aeb8ae52cd"
     }
   ]
 }

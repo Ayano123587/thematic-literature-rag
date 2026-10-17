@@ -2,7 +2,7 @@
 
 Retrieve evidence across books, follow character mentions through narrative position, and answer questions with checkable source offsets. The index combines BM25, dense embeddings and optional neural reranking. Exact citations identify source text; they do not prove an interpretation follows from it.
 
-The narrative adaptation dataset covers **all 10,580 FairytaleQA annotations**. A custom source-family partition preserves held-out collections: 7,883 training QA, all 2,372 validation QA and 325 sealed test QA. This differs from the official benchmark split. Full-data trained-model scores are pending; no subset score is presented as full-dataset performance.
+The narrative adaptation dataset covers **all 10,580 FairytaleQA annotations**: 7,883 training questions, 2,372 validation questions and 325 held-out test questions. This custom source-family split differs from the official benchmark split. The selected T5 reader with a trained cross-encoder and question-matched source windows scores **0.35289 token F1 / 0.19309 exact match** on complete validation and **0.45696 token F1 / 0.22154 exact match** on the separate full test cohort. Every test prediction passed source/reference metric replay; fresh package loads reproduced all 325 answers and citations.
 
 ## Setup and inference
 
@@ -39,7 +39,9 @@ Training and validation resume from verified checkpoints and complete shards. Th
 
 ## Notebooks and results
 
-[Main workflow](notebooks/00_main_literature_rag.ipynb), [source EDA](notebooks/01_source_family_eda.ipynb), [experiments](notebooks/02_validation_experiments.ipynb) and [citation audit](notebooks/03_citation_and_error_analysis.ipynb) show source coverage, evidence/context retention and checkpoint replay with executed outputs. Full model curves and selected-model inference await completed validation. Optional training/download/test cells are disabled by default.
+[Main workflow](notebooks/00_main_literature_rag.ipynb), [source EDA](notebooks/01_source_family_eda.ipynb), [experiments](notebooks/02_validation_experiments.ipynb), [citation audit](notebooks/03_citation_and_error_analysis.ipynb), [context comparison](notebooks/04_context_policy_comparison.ipynb), [trained-reader validation](notebooks/05_trained_reader_full_validation.ipynb) and [full held-out test](notebooks/06_frozen_reader_full_test.ipynb) contain executed source analysis, training histories and full-cohort result plots. Neural training and inference ran on Kaggle; result notebooks replay their recorded measurements. Optional training/download/test cells are disabled by default.
+
+The [frozen production package](https://www.kaggle.com/code/aikyatansinha/audited-narrative-production-package) contains the selected generator epoch 3 and reranker epoch 1. Its contract authenticates every checkpoint and inference source file. Fresh package loads reproduced the audited validation answers and citations. See [package use](docs/production-package.md) for inference and verification.
 
 ## Limits
 

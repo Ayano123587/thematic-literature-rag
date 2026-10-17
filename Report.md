@@ -8,11 +8,11 @@ The pinned [FairytaleQA release](https://github.com/uci-soe/FairytaleQAData/tree
 |---|---:|---:|
 | Custom training | 200 | 7,883 |
 | Custom validation | 54 | 2,372 |
-| Custom test, sealed | 24 | 325 |
+| Custom held-out test | 24 | 325 |
 
-All Lang-labelled origins and Andersen are validation; Potter and Grimm are test. Every other source family is training. All prior holdout roles are preserved, and all validation QA are used. The official split is 8,548/1,025/1,007; some official validation/test rows belong to custom training families, so these experiments are **not official-split benchmark results**. Prior validation exposure is disclosed in the protocol.
+All Lang-labelled origins and Andersen are validation; Potter and Grimm are test. Every other source family is training. Evaluation uses every validation QA. The official split is 8,548/1,025/1,007; some official validation/test rows belong to custom training families, so these experiments are **not official-split benchmark results**. Prior validation exposure is disclosed in the protocol.
 
-Normalized title/text and >=.8 five-token Jaccard source checks found no cross-story duplicate edges. A repeated adjacent section ID in remarkable-rocket is merged into one evidence unit, preserving every paragraph and character offset. All 7,883 training and 2,372 validation rows pass the loader; test QA are staged as bytes without parsing. See [audit](docs/full-coverage-audit.json) and [preflight](docs/full-coverage-preflight.json).
+Normalized title/text and >=.8 five-token Jaccard source checks found no cross-story duplicate edges. A repeated adjacent section ID in remarkable-rocket is merged into one evidence unit, preserving every paragraph and character offset. All 7,883 training and 2,372 validation rows pass the loader. Preparation stages test QA as opaque bytes; gold parsing occurs only after the frozen one-shot release marker. See [audit](docs/full-coverage-audit.json) and [preflight](docs/full-coverage-preflight.json).
 
 ## Preparation
 
@@ -38,7 +38,7 @@ python train.py full validate --data data/interim/new-full-staging --protocol do
 python train.py full-reranker train --data data/interim/new-full-staging --protocol docs/full-reranker-protocol.json --output models/full-ranking-run
 ```
 
-A normal cloud time ceiling triggers a checkpoint, not a smaller dataset. Two atomic progress slots retain optimizer/RNG state and exact source/model/runtime identities. Continue into a fresh output until `training-status.json` says `training_complete`; full-validation cloud dispatch refuses partial training outputs. Epoch snapshots remain available for all-validation comparison. Validation resumes complete hashed shards through `--resume`, decoding every required query. The private cloud builder supports `--action validate` with an immutable completed training kernel source, and `--action select` with every complete validation kernel source; it mounts readable source files and never packages test QA.
+Interrupted training saves optimizer/RNG state and source/model identities. Resume into a fresh output until `training-status.json` says `training_complete`. Validation compares complete epoch snapshots and resumes verified shards through `--resume`. This training workflow does not read test QA.
 
 After complete validation for epochs 0–3, select the generator with the declared all-question F1 objective:
 
@@ -62,6 +62,20 @@ The command requires complete training and the audited complete-validation selec
 
 ## Results and interpretation
 
-Full-cohort trained-model results are pending actual inference. The operational extractive baseline and its source/citation guards remain available. No full-data score or superiority claim is inferred from training loss, retrieval overlap or a small mechanics run.
+T5 completed three epochs on all 7,883 training QA. Mean training loss was 1.17869, 0.99408 and 0.90596; the [training aggregate](docs/full-generator-training.json) records checkpoint and source identities. All four checkpoints decoded all 2,372 validation questions. The declared token-F1 rule selected generator epoch 3. Complete evidence-recall validation selected reranker epoch 1; the final answer comparison then selected reranked question-matched windows.
+
+| Complete cohort / policy | Questions | Token F1 | Exact match |
+|---|---:|---:|---:|
+| Validation: BM25, standard context | 2,372 | 0.26565 | 0.14165 |
+| Validation: BM25, question windows | 2,372 | 0.33328 | 0.18128 |
+| Validation: reranked, standard context | 2,372 | 0.27369 | 0.14334 |
+| Validation: reranked, question windows | 2,372 | 0.35289 | 0.19309 |
+| Frozen recipe, held-out test | 325 | 0.45696 | 0.22154 |
+
+The [full-validation aggregate](docs/final-validation.json) binds the four-arm comparison. All 38 paired shards were independently replayed, including source windows, token budgets and citations. Validation selects the recipe; the separate test row evaluates that frozen recipe and is not an improvement over validation.
+
+The [one-shot test aggregate](docs/final-test.json) covers all 325 questions across 24 Potter/Grimm stories: ROUGE-L 0.47001, evidence recall 0.96462 and citation validity 1.0. Every prediction hash, reference metric and source/section citation bound passed independent replay. A fresh package load reproduced all 325 prediction/citation dictionaries. [Package instructions](docs/production-package.md) identify the immutable artifacts and runtime.
+
+Executed notebooks show training histories, complete validation comparisons and test results by source family and question type. Citation geometry is checked separately from answer accuracy; valid source coordinates do not establish entailment.
 
 Question story identity and human section boundaries are given. Source-family splits do not prove plot or pretraining disjointness; repeated validation selection limits generalization claims. Free-form generation can be unsupported despite valid citation coordinates. Unknown-question calibration requires additional data.

@@ -1,0 +1,45 @@
+{
+  "schema": "full_generator_training_aggregate_v1",
+  "model": "google-t5/t5-small",
+  "model_revision": "df1b051c49625cf57a3d0d8d3863ed4d13564fe4",
+  "training_questions": 7883,
+  "epochs_required": 3,
+  "training_complete": true,
+  "test_accessed": false,
+  "protocol_sha256": "5e4fc152ac55e2153b18885d88be380987a74ddae1202c2c5ef10be5a8c1fa88",
+  "scientific_source_sha256": {
+    "full_generator_training.py": "7fe941fb319296bb79dc0d1ed44ccb042876ad07c72aa37f547648c871c40645",
+    "resumable_training.py": "cd97033ac4b9bf63658b14a1467574a1b0fb3f1e4a6f08c99264eeb55b856c02",
+    "narrative_training.py": "d0736c3cafeae67694c2c3b7eb35bc72cb012de897dd24ecb4fa42add991dccd",
+    "data/prepare_fairytale.py": "4046b745d220300cb4c94411a0c63f00eb4571b1bd0e115a6d74cd4aa34b968e"
+  },
+  "training_status_sha256": "ea131acfc1aa1f515b9bdff386aa63ab45d633f6d8bbf9a5c0eea90d4dc4709a",
+  "seconds": 27129.262157562,
+  "checkpoints": [
+    {
+      "epoch": 0,
+      "mean_train_loss": null,
+      "weights_sha256": "881ecd3d2e20cfb1ddf96ac598ad90a610007dfa4ff04cfc024e4afd118bc686",
+      "receipt_sha256": "3c6057a40afda3475e2e1e8c14ea62551003807f3f75283fafa52c656a6b18f6"
+    },
+    {
+      "epoch": 1,
+      "mean_train_loss": 1.1786895456597708,
+      "weights_sha256": "6752700e682cf3f25f4c50eef2ac44b7d8c186fe3497632fae97b264c9d819ac",
+      "receipt_sha256": "a409879bf4a1ce0c2c31963a8183f08cb3ead7c28517f5457e33f242b3b8e8a6"
+    },
+    {
+      "epoch": 2,
+      "mean_train_loss": 0.9940754068993648,
+      "weights_sha256": "4b94b6c580d1aa182b7b04cbeede8f3430bc1b019709266637f973b51137d227",
+      "receipt_sha256": "ed42904d90b763ea53eb60327197f0f40815143ade51f0f725cd2564caaf8392"
+    },
+    {
+      "epoch": 3,
+      "mean_train_loss": 0.9059641202162801,
+      "weights_sha256": "4a51a48953e6c02c2c8aa5325a02600ae7a65dc8080abb5fb45e2b7131c39538",
+      "receipt_sha256": "267ea8cc205acac8404a482a383613c47fad7d7fd72a8ed8fa43abe708e02f8b"
+    }
+  ],
+  "interpretation": "Measured full-cohort training losses; answer accuracy requires complete validation decoding."
+}
