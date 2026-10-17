@@ -19,3 +19,7 @@ src/reranker_continuation.py -text
 src/cloud/reranker_continuation_runner.py -text
 src/prepare_reranker_continuation.py -text
 tests/test_reranker_continuation.py -text
+src/reranker_validation_transport.py -text
+src/cloud/reranker_validation_runner.py -text
+src/prepare_reranker_validation.py -text
+tests/test_reranker_validation_transport.py -text
