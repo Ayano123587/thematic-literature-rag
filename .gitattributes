@@ -15,3 +15,7 @@ src/prepare_joint_answer.py -text
 tests/test_joint_answer_selection.py -text
 tests/test_joint_answer_validation.py -text
 tests/test_joint_cloud.py -text
+src/reranker_continuation.py -text
+src/cloud/reranker_continuation_runner.py -text
+src/prepare_reranker_continuation.py -text
+tests/test_reranker_continuation.py -text
