@@ -105,10 +105,10 @@ def restore(inputs, workspace, program, expected=None):
     if not mandatory <= files.keys():
         raise ValueError("Required transport files missing")
     token = "EXPECTED_" + "MANIFEST_SHA256 = None"
-    template = files["src/cloud/joint_answer_runner.py"].decode()
+    template = files["src/cloud/joint_answer_runner.py"].decode().replace("\r\n", "\n")
     if (
         template.count(token) != 1
-        or Path(program).read_bytes()
+        or Path(program).read_bytes().replace(b"\r\n", b"\n")
         != template.replace(
             token, "EXPECTED_MANIFEST_SHA256 = " + repr(expected)
         ).encode()
@@ -190,6 +190,12 @@ def main(
     runtime = check_runtime(cloud["runtime"])
     paths = {}
     for role, artifact in cloud["artifacts"].items():
+        if artifact.get("source") == "payload":
+            path = workspace / artifact["path"]
+            if sha(path) != artifact["sha256"]:
+                raise ValueError("Embedded selection differs from external freeze")
+            paths[role] = path
+            continue
         path = locate(inputs, artifact["marker"], artifact["sha256"])
         paths[role] = path.parent if artifact["directory"] else path
     previous = None

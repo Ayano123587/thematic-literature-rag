@@ -6,11 +6,16 @@ import math
 from pathlib import Path
 import re
 
-TRAINING_PARENT = "aikyatansinha/portfolio-reranker-auth-continuation-v1/3"
+TRAINING_PARENT = "aikyatansinha/portfolio-reranker-cancelled-resume-v1/2"
+TRAINING_KERNEL_ID = 139224383
+SCIENTIFIC_PARENT = "aikyatansinha/portfolio-reranker-auth-continuation-v1/3"
+INITIAL_PROGRESS = {"epoch": 2, "next_microstep": 3840, "loss_sum": 2230.544269273232}
+INITIAL_STATE = "bbb5822b3edf03a9dd25ba0fd6b7060871b035f402df06b51d154f3314c80db1"
+FROZEN_INPUTS = "372030aa8a1ba80a97908e5986c5a6a0cdf982cb53670d34a57c94b9493734aa"
 CONTINUATION_MANIFEST = (
-    "7034096754a18057f435fa3a991f5def7f117a10c2cae3114f6cd6f52cf0c98f"
+    "4ea7656ed556e84c5308461dd82734a8ec44dbee6775c03dcc90df0c90a112a2"
 )
-CONTINUATION_RUNNER = "8486c79580612b57cb8ea9edd9ad099e0f9caf794e83e82e2b3259485b459206"
+CONTINUATION_RUNNER = "678f6b2386bee01c1f54eb36d5abdd602171a41529dc403b20d103e028d4d455"
 VALIDATION_IDS = "40d2ddd6b065469a8b947d84dbb630efcaac83acecc695606022116cc1a0f7cb"
 FINAL_PROGRESS = {"epoch": 3, "next_microstep": 0, "loss_sum": 0.0}
 
@@ -50,7 +55,7 @@ def hash_value(value):
 
 
 def freeze_training_metadata(root, execution_sha256):
-    """Requires actual complete /3 receipts; never reads local model tensors."""
+    """Requires actual complete resumed /2 receipts; never reads local model tensors."""
     hash_value(execution_sha256)
     root = Path(root)
     execution_name = "full-reranker/continuation-execution.json"
@@ -62,8 +67,10 @@ def freeze_training_metadata(root, execution_sha256):
         or execution.get("complete") is not True
         or execution.get("manifest_sha256") != CONTINUATION_MANIFEST
         or execution.get("runner_sha256") != CONTINUATION_RUNNER
-        or execution.get("parent")
-        != "aikyatansinha/portfolio-narrative-full-reranker-train-v6/1"
+        or execution.get("parent") != SCIENTIFIC_PARENT
+        or execution.get("initial_progress") != INITIAL_PROGRESS
+        or execution.get("initial_state_sha256") != INITIAL_STATE
+        or execution.get("frozen_inputs_sha256") != FROZEN_INPUTS
         or execution.get("final_progress") != FINAL_PROGRESS
         or execution.get("test_accessed") is not False
     ):
@@ -138,6 +145,7 @@ def freeze_training_metadata(root, execution_sha256):
     return {
         "schema": "full_reranker_validation_parent_v1",
         "parent": TRAINING_PARENT,
+        "kernel_id": TRAINING_KERNEL_ID,
         "execution_sha256": execution_sha256,
         "identity": identity,
         "snapshots": snapshots,

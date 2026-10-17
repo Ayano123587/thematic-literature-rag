@@ -414,6 +414,7 @@ def runtime_now():
     return {
         "python": platform.python_version(),
         "torch": importlib.metadata.version("torch"),
+        "machine": platform.machine(),
         "environment": {
             name: importlib.metadata.version(name)
             for name in ("transformers", "tokenizers", "numpy", "huggingface-hub")

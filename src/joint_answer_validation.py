@@ -175,6 +175,53 @@ def check_immutable(expected):
         raise ValueError("Execution inputs drifted")
 
 
+def authenticate_reranker_selection(reranker_run, reranker_selection, ranking_lineage):
+    ranking_selection = read(reranker_selection)
+    candidates = ranking_selection.get("candidates", [])
+    if (
+        ranking_selection.get("manifest_sha256") != ranking_lineage["manifest_sha256"]
+        or ranking_selection.get("protocol_sha256")
+        != ranking_lineage["protocol_sha256"]
+        or ranking_selection.get("audit_source_sha256")
+        != digest(Path(__file__).parent / "full_validation_selection.py")
+        or ranking_selection.get("final_test_authorized") is not False
+        or any(c.get("validation", {}).get("n") != 2372 for c in candidates)
+    ):
+        raise ValueError("Reranker selection source/full-cohort provenance differs")
+    if (
+        [(c.get("kind"), c.get("epoch")) for c in candidates]
+        != [("bm25", 0), ("pretrained", 0), ("adapted", 1), ("adapted", 2)]
+        or ranking_selection.get("objective") != "recall_at_4"
+        or ranking_selection.get("tie_order")
+        != "earliest listed; BM25 precedes pretrained and adapted epochs"
+        or ranking_selection.get("training_identity") != ranking_lineage
+        or ranking_selection.get("selected")
+        != max(candidates, key=lambda c: c["validation"]["recall_at_4"])
+    ):
+        raise ValueError("Exact complete predeclared reranker selection required")
+    receipt_map = ranking_selection.get("artifact_receipts", [])
+    if [r.get("epoch") for r in receipt_map] != [0, 1, 2]:
+        raise ValueError("Every original reranker snapshot receipt required")
+    snapshots = {}
+    for candidate, external in zip(candidates[1:], receipt_map):
+        number = candidate["epoch"]
+        current = snapshot_receipt(reranker_run, number, ranking_lineage)
+        if (
+            current["weights_sha256"] != candidate["weights_sha256"]
+            or digest(Path(reranker_run) / f"epoch-{number}/receipt.json")
+            != external["checkpoint_receipt_sha256"]
+        ):
+            raise ValueError(
+                "All selected and unselected native snapshot bytes must match"
+            )
+        snapshots[number] = current
+    chosen = adapted_checkpoint(ranking_selection)
+    ranking_receipt = snapshots[chosen["epoch"]]
+    if ranking_receipt["weights_sha256"] != chosen["weights_sha256"]:
+        raise ValueError("Trained reranker checkpoint differs")
+    return chosen, ranking_receipt, snapshots
+
+
 def run(
     root,
     contract_sha256,
@@ -220,10 +267,9 @@ def run(
     ranking_policy, ranking_lineage, _ = completed_run(
         reranker_run, data, reranker_protocol, "reranker"
     )
-    chosen = adapted_checkpoint(read(reranker_selection))
-    ranking_receipt = snapshot_receipt(reranker_run, chosen["epoch"], ranking_lineage)
-    if ranking_receipt["weights_sha256"] != chosen["weights_sha256"]:
-        raise ValueError("Trained reranker checkpoint differs")
+    chosen, ranking_receipt, ranking_snapshots = authenticate_reranker_selection(
+        reranker_run, reranker_selection, ranking_lineage
+    )
     context = Path(context_directory)
     for filename, key in (
         ("identity.json", "context_identity_sha256"),
@@ -323,7 +369,10 @@ def run(
     input_paths += [context / name for name in contract["context_shards_sha256"]]
     for folder, checkpoint_receipt in (
         (Path(generator_run) / "epoch-3", receipt),
-        (Path(reranker_run) / f"epoch-{chosen['epoch']}", ranking_receipt),
+        *[
+            (Path(reranker_run) / f"epoch-{number}", saved)
+            for number, saved in ranking_snapshots.items()
+        ],
     ):
         input_paths += [folder / "receipt.json"] + [
             folder / name for name in checkpoint_receipt["files"]
@@ -348,7 +397,10 @@ def run(
         raise ValueError("Reranker runtime differs")
     for folder, model_receipt in (
         (Path(generator_run) / "epoch-3", receipt),
-        (Path(reranker_run) / f"epoch-{chosen['epoch']}", ranking_receipt),
+        *[
+            (Path(reranker_run) / f"epoch-{number}", saved)
+            for number, saved in ranking_snapshots.items()
+        ],
     ):
         if (
             any(p.is_symlink() for p in folder.rglob("*"))
@@ -487,7 +539,10 @@ def run(
     check_immutable(frozen_execution_inputs)
     for folder, model_receipt in (
         (Path(generator_run) / "epoch-3", receipt),
-        (Path(reranker_run) / f"epoch-{chosen['epoch']}", ranking_receipt),
+        *[
+            (Path(reranker_run) / f"epoch-{number}", saved)
+            for number, saved in ranking_snapshots.items()
+        ],
     ):
         if {p.name for p in folder.iterdir()} != set(model_receipt["files"]) | {
             "receipt.json"

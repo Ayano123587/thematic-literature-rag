@@ -115,6 +115,7 @@ def _execute():
         return {
             "python": platform.python_version(),
             "torch": version("torch"),
+            "machine": platform.machine(),
             "environment": {name: version(name) for name in names},
         }
 
@@ -169,6 +170,7 @@ def _execute():
     if {
         "python": platform.python_version(),
         "torch": importlib.metadata.version("torch"),
+        "machine": platform.machine(),
         "environment": {name: importlib.metadata.version(name) for name in names},
     } != actual:
         raise ValueError("Runtime changed during sealed evaluation")

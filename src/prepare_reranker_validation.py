@@ -1,6 +1,7 @@
 """Stage full ranking validation only from actual complete continuation receipts."""
 
 import argparse
+import ast
 import csv
 import hashlib
 import io
@@ -24,6 +25,64 @@ ORIGINAL_ARCHIVE_SHA256 = (
 
 def sha(raw):
     return hashlib.sha256(raw).hexdigest()
+
+
+def local_source_closure(files):
+    """Audit every local import, including imports inside dynamic entrypoints.
+
+    Parse source only: numerical modules and native artifacts are never loaded.
+    """
+    pending = ["src/cloud/reranker_validation_runner.py"]
+    visited = set()
+
+    def add_module(module):
+        if module != "src" and not module.startswith("src."):
+            return
+        stem = module.replace(".", "/")
+        candidates = (stem + ".py", stem + "/__init__.py")
+        path = next((name for name in candidates if name in files), None)
+        if path is None:
+            raise ValueError("Missing local validation source: " + module)
+        pending.append(path)
+        for parent in Path(path).parents:
+            initializer = parent.as_posix() + "/__init__.py"
+            if initializer in files:
+                pending.append(initializer)
+
+    while pending:
+        name = pending.pop()
+        if name in visited:
+            continue
+        if name not in files:
+            raise ValueError("Missing validation entrypoint: " + name)
+        visited.add(name)
+        for node in ast.walk(ast.parse(files[name], filename=name)):
+            if isinstance(node, ast.Import):
+                for alias in node.names:
+                    add_module(alias.name)
+            elif isinstance(node, ast.ImportFrom):
+                if node.level:
+                    raise ValueError(
+                        "Relative local import requires explicit closure review"
+                    )
+                if node.module == "src":
+                    for alias in node.names:
+                        add_module("src." + alias.name)
+                elif node.module:
+                    add_module(node.module)
+            elif isinstance(node, ast.Call) and (
+                isinstance(node.func, ast.Name)
+                and node.func.id == "__import__"
+                or isinstance(node.func, ast.Attribute)
+                and node.func.attr == "import_module"
+            ):
+                if not node.args or not isinstance(node.args[0], ast.Constant):
+                    raise ValueError(
+                        "Unresolved dynamic import requires closure review"
+                    )
+                if isinstance(node.args[0].value, str):
+                    add_module(node.args[0].value)
+    return {name: sha(files[name]) for name in sorted(visited)}
 
 
 def prepare(
@@ -98,12 +157,14 @@ def prepare(
         "src/prepare_reranker_validation.py",
         "src/reranker_continuation.py",
         "src/cloud/reranker_continuation_runner.py",
+        "src/full_validation_selection.py",
     )
     for name in paths:
         raw = Path(name).read_bytes()
         if subprocess.check_output(["git", "show", "HEAD:" + name]) != raw:
             raise ValueError("Validation transport source differs from committed HEAD")
         files[name] = raw
+    closure = local_source_closure(files)
     contract = {
         "schema": "full_reranker_validation_inputs_v1",
         "training": training,
@@ -124,6 +185,7 @@ def prepare(
         ).strip(),
         "files": {name: sha(raw) for name, raw in files.items()},
         "training_parent": TRAINING_PARENT,
+        "local_source_closure": closure,
         "epoch": epoch,
         "test_accessed": False,
     }

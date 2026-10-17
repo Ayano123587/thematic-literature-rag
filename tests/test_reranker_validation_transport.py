@@ -2,10 +2,68 @@
 
 import hashlib
 import json
+from pathlib import Path
+import shutil
 
 import pytest
 
 import src.reranker_validation_transport as transport
+
+ACTUAL_COMPLETED = (
+    Path(__file__).resolve().parents[1]
+    / "data/interim/reranker-cancelled-continuation-v1-reviewed"
+    / "checkpoint-input-update-v1/terminal-small-output-v2"
+)
+ACTUAL_EXECUTION = "856fef8e745600a74c009c50fd96f8ece4cf81f03dcd16c7d77a0e78b44ce8a7"
+
+
+@pytest.fixture
+def actual_completed_metadata(tmp_path):
+    if not ACTUAL_COMPLETED.is_dir():
+        pytest.skip("Private actual completed continuation receipts unavailable")
+    shutil.copytree(ACTUAL_COMPLETED, tmp_path / "completed")
+    return tmp_path / "completed"
+
+
+def test_actual_completed_run_receipts_bind_all_three_snapshots(
+    actual_completed_metadata,
+):
+    contract = transport.freeze_training_metadata(
+        actual_completed_metadata, ACTUAL_EXECUTION
+    )
+    assert (
+        contract["parent"] == "aikyatansinha/portfolio-reranker-cancelled-resume-v1/2"
+    )
+    assert contract["kernel_id"] == 139224383
+    assert set(contract["snapshots"]) == {"0", "1", "2"}
+    assert contract["snapshots"]["2"]["weights_sha256"] == (
+        "61a77b42daa4b9c7bda4e9fee55623d7d0842da3f88ca0212d37743ad3a7da32"
+    )
+    # Local metadata staging never opens a native model file.
+    assert not list(actual_completed_metadata.rglob("*.safetensors"))
+
+
+@pytest.mark.parametrize(
+    "field", ["parent", "initial_progress", "initial_state_sha256", "runner_sha256"]
+)
+def test_actual_completed_run_rejects_changed_resumption_identity(
+    actual_completed_metadata, field
+):
+    path = actual_completed_metadata / "full-reranker/continuation-execution.json"
+    value = transport.read(path)
+    value[field] = None
+    path.write_text(json.dumps(value))
+    with pytest.raises(ValueError):
+        transport.freeze_training_metadata(
+            actual_completed_metadata, transport.digest(path)
+        )
+
+
+def test_actual_last_snapshot_receipt_drift_refused(actual_completed_metadata):
+    path = actual_completed_metadata / "full-reranker/run/epoch-2/receipt.json"
+    path.write_bytes(path.read_bytes() + b"\n")
+    with pytest.raises(ValueError, match="epoch receipt bytes"):
+        transport.freeze_training_metadata(actual_completed_metadata, ACTUAL_EXECUTION)
 
 
 def save(root, name, value):
@@ -34,7 +92,10 @@ def complete_parent(tmp_path, identity=None):
         "complete": True,
         "manifest_sha256": transport.CONTINUATION_MANIFEST,
         "runner_sha256": transport.CONTINUATION_RUNNER,
-        "parent": "aikyatansinha/portfolio-narrative-full-reranker-train-v6/1",
+        "parent": transport.SCIENTIFIC_PARENT,
+        "initial_progress": transport.INITIAL_PROGRESS,
+        "initial_state_sha256": transport.INITIAL_STATE,
+        "frozen_inputs_sha256": transport.FROZEN_INPUTS,
         "final_progress": transport.FINAL_PROGRESS,
         "test_accessed": False,
         "snapshots": {},
@@ -516,103 +577,123 @@ def test_actual_rendered_validation_flow(tmp_path, monkeypatch, failure):
 
 
 @pytest.mark.parametrize("epoch", [0, 1, 2])
-def test_stager_full_csv_archive_and_versioned_parent(tmp_path, monkeypatch, epoch):
-    from pathlib import Path
-    import csv
-    import io
+def test_stager_actual_archive_full_cohort_and_real_import_closure(
+    tmp_path, monkeypatch, epoch, actual_completed_metadata
+):
+    import subprocess
+    import sys
     import zipfile
     import src.prepare_reranker_validation as stager
 
-    repo = Path.cwd()
+    repository_root = Path(__file__).resolve().parents[1]
+    original = repository_root / "data/interim/full-reranker-v6-train-ready"
+    if not (original / "dataset-upload/payload.zip").is_file():
+        pytest.skip("Actual immutable full training source archive unavailable")
     names = (
         "src/reranker_validation_transport.py",
         "src/cloud/reranker_validation_runner.py",
         "src/prepare_reranker_validation.py",
         "src/reranker_continuation.py",
         "src/cloud/reranker_continuation_runner.py",
+        "src/full_validation_selection.py",
     )
-    sources = {name: (repo / name).read_bytes() for name in names}
-    for name, raw in sources.items():
-        path = tmp_path / name
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_bytes(raw)
-    csv_buffer = io.StringIO()
-    writer = csv.DictWriter(
-        csv_buffer,
-        fieldnames=["question_id", "question", "answer1", "answer4", "cor_section"],
+    repository = tmp_path / "actual-source-checkout"
+    repository.mkdir()
+    for name in names:
+        destination = repository / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes((repository_root / name).read_bytes())
+    subprocess.run(["git", "init", "--quiet", str(repository)], check=True)
+    subprocess.run(
+        ["git", "-C", str(repository), "-c", "core.autocrlf=false", "add", "."],
+        check=True,
     )
-    writer.writeheader()
-    for ordinal in range(1, 2373):
-        writer.writerow(
-            {
-                "question_id": str(ordinal),
-                "question": "Software fixture question",
-                "answer1": "fixture",
-                "answer4": "",
-                "cor_section": "1",
-            }
-        )
-    ids = sorted(f"fixture-story:row{i}:{i}" for i in range(1, 2373))
-    ids_sha = hashlib.sha256(json.dumps(ids).encode()).hexdigest()
-    monkeypatch.setattr(stager, "VALIDATION_IDS", ids_sha)
-    archive_files = {
-        "src/science.py": b"original scientific fixture",
-        "private-data/manifest.json": b"manifest",
-        "private-data/validation/fixture-story.qa.csv": csv_buffer.getvalue().encode(
-            "utf-8-sig"
-        ),
-        "private-data/train/fixture.qa.csv": b"train",
-        "docs/full-coverage-protocol.json": b"protocol",
-    }
-    upload = tmp_path / "original/dataset-upload"
-    upload.mkdir(parents=True)
-    old = {
-        "files": {
-            name: hashlib.sha256(raw).hexdigest() for name, raw in archive_files.items()
-        }
-    }
-    with zipfile.ZipFile(upload / "payload.zip", "w") as z:
-        for name, raw in archive_files.items():
-            z.writestr(name, raw)
-        z.writestr("full-payload-provenance.json", json.dumps(old))
-    (upload / "LICENSE").write_bytes(b"Apache license software fixture")
-    monkeypatch.setattr(
-        stager, "ORIGINAL_ARCHIVE_SHA256", transport.digest(upload / "payload.zip")
+    subprocess.run(
+        [
+            "git",
+            "-C",
+            str(repository),
+            "-c",
+            "user.name=Source Packaging Check",
+            "-c",
+            "user.email=source-check@example.invalid",
+            "commit",
+            "-qm",
+            "Actual source byte check",
+        ],
+        check=True,
     )
-    training = {
-        "identity": {"source_sha256": {"science.py": old["files"]["src/science.py"]}},
-        "snapshots": {str(i): {"weights_sha256": str(i + 1) * 64} for i in range(3)},
-        "parent": transport.TRAINING_PARENT,
-    }
-    monkeypatch.setattr(stager, "freeze_training_metadata", lambda *args: training)
-
-    def git(arguments, text=False):
-        if arguments[-1] == "--show-toplevel":
-            return str(tmp_path) + "\n"
-        if "show" in arguments:
-            return sources[arguments[-1].removeprefix("HEAD:")]
-        return "fixture-source-commit\n"
-
-    monkeypatch.setattr(stager.subprocess, "check_output", git)
-    monkeypatch.chdir(tmp_path)
-    output = tmp_path / "stage"
+    monkeypatch.chdir(repository)
+    output = tmp_path / "actual-stage"
     manifest = stager.prepare(
-        upload.parent, tmp_path / "parent", "a" * 64, epoch, output, "owner/private"
+        original,
+        actual_completed_metadata,
+        ACTUAL_EXECUTION,
+        epoch,
+        output,
+        "owner/private-source-byte-check",
     )
-    metadata = json.loads((output / "kernel-metadata.json").read_text())
-    assert (
-        metadata["kernel_sources"] == [transport.TRAINING_PARENT]
-        and metadata["is_private"]
-        and not metadata["enable_gpu"]
+    assert manifest["epoch"] == epoch
+    assert manifest["training_parent"] == transport.TRAINING_PARENT
+    closure = manifest["local_source_closure"]
+    assert {
+        "src/full_validation_selection.py",
+        "src/full_reranker_training.py",
+        "src/full_generator_training.py",
+        "src/resumable_training.py",
+        "src/reranker_training.py",
+        "src/narrative_training.py",
+        "src/data/prepare_fairytale.py",
+        "src/__init__.py",
+        "src/data/__init__.py",
+    } <= set(closure)
+    extracted = tmp_path / "actual-extracted-payload"
+    with zipfile.ZipFile(output / "dataset-upload/payload.zip") as handle:
+        files = {name: handle.read(name) for name in handle.namelist()}
+    assert all(
+        hashlib.sha256(files[name]).hexdigest() == digest
+        for name, digest in manifest["files"].items()
     )
-    with zipfile.ZipFile(output / "dataset-upload/payload.zip") as z:
-        assert set(z.namelist()) == set(manifest["files"]) | {
-            "reranker-validation-manifest.json"
-        }
-        for name, sha in manifest["files"].items():
-            assert hashlib.sha256(z.read(name)).hexdigest() == sha
-        assert z.read("NOTICE/FairytaleQA-LICENSE") == (upload / "LICENSE").read_bytes()
-    assert (
-        manifest["epoch"] == epoch
-        and manifest["source_commit"] == "fixture-source-commit"
+    assert closure == stager.local_source_closure(files)
+    for name, raw in files.items():
+        if name.startswith("src/") and name.endswith(".py"):
+            destination = extracted / name
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_bytes(raw)
+    # The exact formerly missing pre-runtime imports execute from real extracted
+    # payload source, with isolated sys.path and no mocked module objects.
+    program = (
+        "import sys; sys.path.insert(0, " + repr(str(extracted)) + "); "
+        "import src.full_validation_selection as audit; "
+        "import src.reranker_validation_transport; "
+        "import src.cloud.reranker_validation_runner; "
+        "import src.cloud.reranker_continuation_runner; "
+        "assert audit.__file__.startswith(" + repr(str(extracted)) + "); "
+        "assert 'torch' not in sys.modules and 'numpy' not in sys.modules"
     )
+    subprocess.run(
+        [sys.executable, "-I", "-c", program], check=True, capture_output=True
+    )
+    # Audit imports inside post-runtime model entrypoints without importing
+    # numerical libraries or reading any native model artifact on this host.
+    del files["src/resumable_training.py"]
+    with pytest.raises(ValueError, match="resumable_training"):
+        stager.local_source_closure(files)
+
+
+def test_actual_failed_upload_missing_audit_module_is_rejected():
+    import zipfile
+    import src.prepare_reranker_validation as stager
+
+    root = Path(__file__).resolve().parents[1]
+    archive = (
+        root
+        / "data/interim/full-reranker-validation-completed-v1/epoch-0/dataset-upload/payload.zip"
+    )
+    if not archive.is_file():
+        pytest.skip("Actual failed uploaded source archive unavailable")
+    with zipfile.ZipFile(archive) as handle:
+        files = {name: handle.read(name) for name in handle.namelist()}
+    assert "src/full_validation_selection.py" not in files
+    with pytest.raises(ValueError, match="full_validation_selection"):
+        stager.local_source_closure(files)

@@ -34,3 +34,11 @@ src/indexed_demo_transport.py -text
 src/prepare_indexed_demo.py -text
 src/cloud/indexed_demo_runner.py -text
 tests/test_indexed_demo_transport.py -text
+src/reranker_cancelled_parent.py -text
+src/cloud/reranker_cancelled_runner.py -text
+src/prepare_cancelled_reranker.py -text
+tests/test_cancelled_reranker.py -text
+src/cloud/narrative_package_runner.py -text
+src/prepare_narrative_package.py -text
+tests/test_narrative_package_transport.py -text
+tests/test_sealed_package_runtime.py -text

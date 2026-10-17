@@ -75,6 +75,22 @@ def cloud_contract(contract, root):
     ):
         raise ValueError("Exact actual runtime required")
     artifacts = list(cloud["artifacts"].values())
+    for role, artifact in cloud["artifacts"].items():
+        source = artifact.get("source", "kernel")
+        if source not in ("kernel", "payload"):
+            raise ValueError("Explicit supported artifact source required")
+        if source == "payload":
+            if (
+                role != "reranker_selection"
+                or set(artifact) != {"source", "path", "sha256", "directory"}
+                or artifact["path"] != "private-artifacts/reranker-selection.json"
+                or artifact["directory"] is not False
+                or contract["files"].get(artifact["path"]) != artifact["sha256"]
+                or sha(Path(root) / artifact["path"]) != artifact["sha256"]
+            ):
+                raise ValueError(
+                    "Only externally frozen embedded reranker selection admitted"
+                )
     if cloud["resume"] is not None:
         resume = cloud["resume"]
         if (
@@ -102,8 +118,14 @@ def cloud_contract(contract, root):
             raise ValueError("Complete externally hashed resume prefix required")
         artifacts.append(resume["artifact"])
     for artifact in artifacts:
+        if artifact.get("source") == "payload":
+            continue
         if (
-            set(artifact) != {"kernel", "marker", "sha256", "directory"}
+            set(artifact)
+            not in (
+                {"kernel", "marker", "sha256", "directory"},
+                {"source", "kernel", "marker", "sha256", "directory"},
+            )
             or not re.fullmatch(r"[\w-]+/[\w-]+/[1-9][0-9]*", artifact["kernel"])
             or Path(artifact["marker"]).name != artifact["marker"]
             or not actual_sha(artifact["sha256"])
@@ -197,7 +219,9 @@ def prepare(input_root, frozen_inputs_sha256, output, dataset, kernel_id, licens
     }
     manifest_path = upload / "joint-source-manifest.json"
     manifest_path.write_bytes(encoded(manifest))
-    template = payload["src/cloud/joint_answer_runner.py"].decode()
+    template = (
+        payload["src/cloud/joint_answer_runner.py"].decode().replace("\r\n", "\n")
+    )
     token = "EXPECTED_MANIFEST_SHA256 = None"
     if template.count(token) != 1:
         raise ValueError("One rendered runner binding required")
@@ -217,7 +241,11 @@ def prepare(input_root, frozen_inputs_sha256, output, dataset, kernel_id, licens
         )
     )
     mounts = sorted(
-        {a["kernel"] for a in cloud["artifacts"].values()}
+        {
+            a["kernel"]
+            for a in cloud["artifacts"].values()
+            if a.get("source") != "payload"
+        }
         | ({cloud["resume"]["artifact"]["kernel"]} if cloud["resume"] else set())
     )
     (output / "kernel-metadata.json").write_bytes(
